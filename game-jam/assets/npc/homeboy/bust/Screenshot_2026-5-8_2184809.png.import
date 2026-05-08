@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6b7qda4jlhu"
-path="res://.godot/imported/Screenshot_2026-5-8_21613210.png-ad30b5d957194e7e979682dc7d73e121.ctex"
+uid="uid://dbexcm8pwc7ko"
+path="res://.godot/imported/Screenshot_2026-5-8_2184809.png-20bbff853550db3f842e9391a26938e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/brunette_guy/bust/Screenshot_2026-5-8_21613210.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_21613210.png-ad30b5d957194e7e979682dc7d73e121.ctex"]
+source_file="res://assets/npc/homeboy/bust/Screenshot_2026-5-8_2184809.png"
+dest_files=["res://.godot/imported/Screenshot_2026-5-8_2184809.png-20bbff853550db3f842e9391a26938e5.ctex"]
 
 [params]
 

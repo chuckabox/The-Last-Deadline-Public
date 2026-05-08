@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5sjqwubkhtsy"
-path="res://.godot/imported/Screenshot_2026-5-8_213855795.png-f5fdfaa8fa7daa6e45281be4484ec8af.ctex"
+uid="uid://yvnmepb677e6"
+path="res://.godot/imported/Screenshot_2026-5-8_22187414.png-0afead633bbc13be91883622f8c8eb66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/blonde_guy/sprites/Screenshot_2026-5-8_213855795.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_213855795.png-f5fdfaa8fa7daa6e45281be4484ec8af.ctex"]
+source_file="res://assets/npc/club_boss/bust/Screenshot_2026-5-8_22187414.png"
+dest_files=["res://.godot/imported/Screenshot_2026-5-8_22187414.png-0afead633bbc13be91883622f8c8eb66.ctex"]
 
 [params]
 
