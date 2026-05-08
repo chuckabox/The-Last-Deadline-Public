@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cx4x6l0e0qjk"]
+
+[ext_resource type="Script" path="res://scripts/minigames/BeerPong.gd" id="1_bp"]
+
+[node name="BeerPong" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bp")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Table" type="Node2D" parent="."]
+position = Vector2(320, 240)
+
+[node name="Sprite2D" type="Sprite2D" parent="Table"]
+
+[node name="CupPositions" type="Node2D" parent="Table"]
+
+[node name="Pos1" type="Node2D" parent="Table/CupPositions"]
+position = Vector2(-40, -40)
+
+[node name="Pos2" type="Node2D" parent="Table/CupPositions"]
+position = Vector2(0, -40)
+
+[node name="Pos3" type="Node2D" parent="Table/CupPositions"]
+position = Vector2(40, -40)
+
+[node name="SliderPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 80.0
+offset_right = 150.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SliderBar" type="ColorRect" parent="SliderPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="TargetZone" type="ColorRect" parent="SliderPanel"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+color = Color(0, 0.784314, 0, 0.490196)
+
+[node name="SliderIndicator" type="ColorRect" parent="SliderPanel"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 60.0
+
+[node name="CupsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -80.0
+offset_right = 20.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/3"
+horizontal_alignment = 1
+
+[node name="InstructionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 76.0
+grow_horizontal = 2
+text = "Press SPACEBAR when slider is in the green zone!"
+horizontal_alignment = 1
