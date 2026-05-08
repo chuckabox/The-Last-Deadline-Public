@@ -26,6 +26,7 @@ TimeManager="*res://scripts/systems/TimeManager.gd"
 EndingManager="*res://scripts/systems/EndingManager.gd"
 DialogueSystem="*res://scripts/systems/DialogueSystem.gd"
 GlobalStateManager="*res://scripts/systems/GlobalStateManager.gd"
+GibberishDatabase="*res://scripts/systems/GibberishDatabase.gd"
 
 [dotnet]
 
