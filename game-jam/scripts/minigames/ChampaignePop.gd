@@ -117,3 +117,8 @@ func lose_minigame(reason: String):
 		status_label.add_theme_color_override("font_color", Color.RED)
 	print("Champagne Pop LOST! %s" % reason)
 	emit_signal("minigame_lost")
+	
+	# Notify GameManager for global ending checks
+	var game_manager = get_node_or_null("/root/GameManager")
+	if game_manager:
+		game_manager.minigame_lost.emit()

@@ -90,26 +90,22 @@ func trigger_ending(ending_id: String) -> void:
 
 # ===== INTERNAL METHODS =====
 
-func _perform_transition(id: String, title: String, description: String) -> void:
-	var game_manager = get_node_or_null("/root/GameManager")
+func _perform_transition(id: String, _title: String, _description: String) -> void:
+	var path = ""
 	
-	# Special cinematic/visual logic for each ending
 	match id:
 		ENDING_PROCRASTINATOR:
-			# Cut to player crying on floor (Visual implementation would be in the Ending Scene)
-			pass
+			path = "res://scenes/endings/procrastinator_ending/Ending_Procrastinator.tscn"
 		ENDING_BLACKOUT:
-			# Cut to waking up on lawn
-			pass
+			path = "res://scenes/endings/blackout_ending/Ending_Blackout.tscn"
 		ENDING_DRINK:
-			# Fade to black
-			pass
+			path = "res://scenes/endings/drunk_mistake_ending/Ending_DrunkMistake.tscn"
+		ENDING_JOB:
+			path = "res://scenes/endings/floor_manager_ending/Ending_FloorManager.tscn"
 		ENDING_ACADEMIC:
-			# Cinematic of sprinting home
-			pass
+			path = "res://scenes/endings/academic_weapon_ending/Ending_AcademicWeapon.tscn"
 			
-	if game_manager:
-		game_manager.change_scene("ending")
+	if path != "":
+		get_tree().change_scene_to_file(path)
 	else:
-		# Fallback if GameManager is not found
-		get_tree().change_scene_to_file("res://scenes/EndingScene.tscn")
+		push_error("EndingManager: No path defined for ending %s" % id)

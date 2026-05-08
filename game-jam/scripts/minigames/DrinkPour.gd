@@ -101,6 +101,11 @@ func check_accuracy():
 			accuracy_label.add_theme_color_override("font_color", Color.RED)
 		print("Drink Pour LOST! Accuracy: %.0f%%" % accuracy_percent)
 		emit_signal("minigame_lost")
+		
+		# Notify GameManager for global ending checks
+		var game_manager = get_node_or_null("/root/GameManager")
+		if game_manager:
+			game_manager.minigame_lost.emit()
 
 func adjust_difficulty():
 	# Adjust parameters by alcohol stage

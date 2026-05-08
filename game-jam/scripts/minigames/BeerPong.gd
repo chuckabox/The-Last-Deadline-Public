@@ -160,6 +160,11 @@ func lose_minigame():
 	is_active = false
 	print("Beer Pong LOST! Alcohol +1")
 	emit_signal("minigame_lost")
+	
+	# Notify GameManager for global ending checks
+	var game_manager = get_node_or_null("/root/GameManager")
+	if game_manager:
+		game_manager.minigame_lost.emit()
 
 func play_sound(sound_name: String):
 	# TODO: Play SFX via AudioManager

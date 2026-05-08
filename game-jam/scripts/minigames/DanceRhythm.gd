@@ -257,6 +257,11 @@ func lose_minigame():
 	
 	print("Dance Rhythm LOST! Alcohol +1 stage potential")
 	emit_signal("minigame_lost")
+	
+	# Notify GameManager for global ending checks
+	var game_manager = get_node_or_null("/root/GameManager")
+	if game_manager:
+		game_manager.minigame_lost.emit()
 
 func get_bpm_multiplier() -> float:
 	return bpm / 110.0
