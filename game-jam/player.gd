@@ -3,23 +3,28 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 func _physics_process(_delta):
-	# 1. Get the direction from player input (Arrows or WASD)
-	# Go to Project Settings > Input Map to define "ui_left", etc., or use defaults
+	# Get direction from keys
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
-	# 2. Apply movement
+	# 1. HANDLE MOVEMENT LOGIC
 	if direction:
 		velocity = direction * SPEED
-		$AnimatedSprite2D.play("Walk") # Play your walk animation
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
-		$AnimatedSprite2D.play("Idle") # Play idle if not moving
 
-	# 3. Flip the sprite based on direction
-	if direction.x < 0:
-		$AnimatedSprite2D.flip_h = true
-	elif direction.x > 0:
-		$AnimatedSprite2D.flip_h = false
+	# 2. HANDLE ANIMATION SWITCHING
+	if velocity.length() > 0:
+		# We are moving!
+		$AnimatedSprite2D.play("Walk")
+		
+		# Flip the sprite left/right based on horizontal movement
+		if velocity.x < 0:
+			$AnimatedSprite2D.flip_h = true
+		elif velocity.x > 0:
+			$AnimatedSprite2D.flip_h = false
+	else:
+		# We are standing still!
+		$AnimatedSprite2D.play("Idle")
 
-	# 4. Move and handle collisions with walls
+	# 3. Apply the physics movement
 	move_and_slide()

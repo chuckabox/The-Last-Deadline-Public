@@ -3,6 +3,14 @@
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cbx7bctv7urqk" path="res://assets/npc/club_boss/sprite_sheet/character-spritesheet.png" id="2_i3pqv"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(0, 896, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(64, 896, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("2_i3pqv")
 region = Rect2(0, 3136, 69, 64)
@@ -27,6 +35,17 @@ region = Rect2(276, 3136, 69, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_onrkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hqtel")
 }, {
 "duration": 1.0,
@@ -42,7 +61,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dw050")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"Walk",
 "speed": 5.0
 }]
 
@@ -55,9 +74,9 @@ script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1792869756]
 sprite_frames = SubResource("SpriteFrames_b26j0")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.31407994
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.2209969
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2126154378]
 position = Vector2(-6, 22)
