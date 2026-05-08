@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Constants="*res://scripts/systems/Constants.gd"
 Global="*uid://csct3f87r5402"
+Constants="*res://scripts/systems/Constants.gd"
 GameManager="*res://scripts/systems/GameManager.gd"
 AudioManager="*res://scripts/systems/AudioManager.gd"
 AlcoholSystem="*res://scripts/systems/AlcoholSystem.gd"
