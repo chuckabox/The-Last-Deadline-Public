@@ -1,30 +1,32 @@
 extends Node
 
-# Dialogue cache
+## Dialogue Parser
+## Responsible for loading JSON dialogue trees and evaluating conditional variants.
+
+# Dialogue cache to avoid redundant file I/O
 var dialogue_cache = {}
 
 func _ready():
 	add_to_group("parsers")
 	print("DialogueParser initialized")
 
+## Loads a dialogue JSON file by NPC name
 func load_dialogue(npc_name: String) -> Dictionary:
-	# Check cache first
 	if dialogue_cache.has(npc_name):
 		return dialogue_cache[npc_name]
 	
-	# Load from JSON file
 	var file_path = "res://data/dialogue_trees/%s.json" % npc_name.to_lower()
 	var json_string = load_file_as_text(file_path)
 	
 	if json_string == "":
-		print("ERROR: Could not load dialogue for %s" % npc_name)
+		push_error("DialogueParser: Could not load dialogue for %s" % npc_name)
 		return {}
 	
 	var json = JSON.new()
 	var error = json.parse(json_string)
 	
 	if error != OK:
-		print("ERROR: Failed to parse JSON for %s: %s" % [npc_name, json.get_error_message()])
+		push_error("DialogueParser: Failed to parse JSON for %s: %s" % [npc_name, json.get_error_message()])
 		return {}
 	
 	var data = json.data
@@ -34,53 +36,44 @@ func load_dialogue(npc_name: String) -> Dictionary:
 func load_file_as_text(file_path: String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if file == null:
-		print("ERROR: Could not open file %s" % file_path)
 		return ""
 	return file.get_as_text()
 
-func get_node_text(dialogue_data: Dictionary, node_name: String) -> String:
-	if not dialogue_data.has("nodes"):
-		return ""
-	
-	var node = dialogue_data["nodes"].get(node_name, {})
-	return node.get("text", "")
-
-func get_node_options(dialogue_data: Dictionary, node_name: String) -> Array:
-	if not dialogue_data.has("nodes"):
-		return []
-	
-	var node = dialogue_data["nodes"].get(node_name, {})
-	return node.get("options", [])
-
-func evaluate_condition(condition: Dictionary, game_manager: Node) -> bool:
-	# Check if condition is met based on game state
-	if condition.is_empty():
-		return true
-	
-	var flag_name = condition.get("flag", "")
-	var flag_value = condition.get("is", true)
-	
-	# Get flag from game manager safely
-	if game_manager and "npc_completed" in game_manager and game_manager.npc_completed.has(flag_name):
-		return game_manager.npc_completed[flag_name] == flag_value
-	
-	return false
-
-func get_variant_node(dialogue_data: Dictionary, node_name: String, game_manager: Node) -> Dictionary:
-	# Find variant that matches conditions
+## Returns the best matching variant for a node based on current GlobalState
+func get_variant_node(dialogue_data: Dictionary, node_name: String) -> Dictionary:
 	if not dialogue_data.has("nodes"):
 		return {}
 	
 	var node = dialogue_data["nodes"].get(node_name, {})
 	
+	# If the node has no variants, return the base node
 	if not node.has("variants"):
 		return node
 	
+	# Iterate through variants and find the first one whose condition is met
 	for variant in node["variants"]:
-		if variant.has("condition"):
-			if evaluate_condition(variant["condition"], game_manager):
-				return variant
-		else:
+		if not variant.has("condition"):
+			return variant # Default variant with no conditions
+			
+		if evaluate_condition(variant["condition"]):
 			return variant
 	
-	return {}
+	# Fallback: return the first variant if nothing matches
+	return node["variants"][0] if node["variants"].size() > 0 else {}
+
+## Evaluates a single condition against the GlobalStateManager
+func evaluate_condition(condition: Dictionary) -> bool:
+	if condition.is_empty():
+		return true
+		
+	var flag_name = condition.get("flag", "")
+	var expected_value = condition.get("is", true)
+	
+	# Check against GlobalStateManager
+	var global_state = get_node_or_null("/root/GlobalStateManager")
+	if global_state:
+		return global_state.check_flag(flag_name) == expected_value
+	
+	# Fallback if manager is missing
+	push_warning("DialogueParser: GlobalStateManager not found during evaluation")
+	return false
