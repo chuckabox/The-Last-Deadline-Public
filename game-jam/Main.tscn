@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/systems/GameManager.gd" id="1_gm"]
 [ext_resource type="Script" path="res://scripts/systems/AudioManager.gd" id="2_am"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/systems/TimeManager.gd" id="4_tm"]
 [ext_resource type="Script" path="res://scripts/systems/DialogueSystem.gd" id="5_ds"]
 [ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="6_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MainMenu.tscn" id="7_mm"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -17,27 +18,24 @@ grow_vertical = 2
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_gm")
-editor_description = "Manages global game state and scene transitions"
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("2_am")
-editor_description = "Handles music and sfx channels"
 
 [node name="AlcoholSystem" type="Node" parent="."]
 script = ExtResource("3_as")
-editor_description = "Tracks alcohol levels and related effects"
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("4_tm")
-editor_description = "Tracks elapsed time towards the deadline"
 
 [node name="DialogueSystem" type="Node" parent="."]
 script = ExtResource("5_ds")
-editor_description = "Manages dialogue tree state"
 
 [node name="CurrentScene" type="Node" parent="."]
-editor_description = "Placeholder node where active room scenes will be loaded"
+
+[node name="MainMenu" parent="CurrentScene" instance=ExtResource("7_mm")]
+layout_mode = 1
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("6_hud")
-editor_description = "UI overlay rendered on top of everything else"
+visible = false
