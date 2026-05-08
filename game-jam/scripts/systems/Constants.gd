@@ -28,24 +28,22 @@ const ALCOHOL_MINIMUM := 0.0
 
 # ===== TIME SYSTEM =====
 
-## In-game clock values (represented as minutes elapsed since 11:00 PM)
-const TIME_START_MINUTES := 0         # 11:00 PM
-const TIME_DEADLINE_MINUTES := 60     # 12:00 AM (midnight)
+## In-game clock values (represented as minutes elapsed since 11:50 PM)
+## Real-time: 1 real second = 1 game second (no scaling)
+const TIME_START_MINUTES := 0         # 11:50 PM
+const TIME_DEADLINE_MINUTES := 10     # 12:00 AM (midnight)
+const TIME_TOTAL_SECONDS := 600       # 10 real minutes = 600 seconds
 
-## Time scaling — 1 in-game second passes for every N real seconds
-## e.g. 10 means the full 60-minute in-game hour takes 6 real minutes
-const TIME_MULTIPLIER := 10.0
-
-## Warning thresholds (minutes elapsed)
-const TIME_WARNING_YELLOW := 55       # 11:55 PM — clock turns yellow
-const TIME_WARNING_RED := 59          # 11:59 PM — clock turns red
+## Warning thresholds (minutes elapsed since 11:50 PM)
+const TIME_WARNING_YELLOW := 8        # 11:58 PM — clock turns yellow
+const TIME_WARNING_RED := 9           # 11:59 PM — clock turns red
 
 
 # ===== UI CONSTANTS =====
 
 ## Viewport / resolution
-const SCREEN_WIDTH := 640
-const SCREEN_HEIGHT := 360
+const SCREEN_WIDTH := 1980
+const SCREEN_HEIGHT := 1080
 
 ## HUD layout
 const HUD_MARGIN := 16               # pixels from screen edge
@@ -129,9 +127,9 @@ static func get_clock_color(minutes_elapsed: int) -> Color:
 		return COLOR_CLOCK_DEFAULT
 
 
-## Converts elapsed minutes to a display string like "11:47 PM" or "12:00 AM".
+## Converts elapsed minutes to a display string like "11:53 PM" or "12:00 AM".
 static func format_game_time(minutes_elapsed: int) -> String:
-	var total_minutes := 23 * 60 + minutes_elapsed  # 11 PM = 23:00 in 24h
+	var total_minutes := 23 * 60 + 50 + minutes_elapsed  # 11:50 PM = 23:50 in 24h
 	var hours_24 := (total_minutes / 60) % 24
 	var mins := total_minutes % 60
 	var period := "AM" if hours_24 >= 12 and hours_24 < 24 else "PM"
