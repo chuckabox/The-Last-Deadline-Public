@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://b6vhenxqur5hc"]
 
 [ext_resource type="Script" uid="uid://btxqss4oraelx" path="res://bar.gd" id="1_qyha7"]
-[ext_resource type="Texture2D" path="res://assets/scenery/bar/1.png" id="2_fhoit"]
-[ext_resource type="Texture2D" path="res://assets/scenery/bar/2.png" id="3_luqre"]
-[ext_resource type="Texture2D" path="res://assets/scenery/bar/3.png" id="4_47nkn"]
-[ext_resource type="Texture2D" path="res://assets/scenery/bar/4.png" id="5_d3clh"]
-[ext_resource type="Texture2D" path="res://assets/scenery/bar/5.png" id="6_84vuo"]
-[ext_resource type="Texture2D" path="res://assets/scenery/bar/6.png" id="7_5pmlc"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/bar/1.png" id="2_fhoit"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/bar/2.png" id="3_luqre"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/bar/3.png" id="4_47nkn"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/bar/4.png" id="5_d3clh"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/bar/5.png" id="6_84vuo"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/bar/6.png" id="7_5pmlc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
