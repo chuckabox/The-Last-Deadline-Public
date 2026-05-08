@@ -26,6 +26,7 @@ var npc_completed_status: Dictionary = {
 signal game_started()
 signal scene_changed(new_scene: String)
 signal npc_completed(npc_name: String)
+signal minigame_lost()
 
 
 func _ready() -> void:
