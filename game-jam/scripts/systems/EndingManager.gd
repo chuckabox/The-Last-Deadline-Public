@@ -25,6 +25,12 @@ func _ready() -> void:
 		if not time_manager.deadline_reached.is_connected(_on_deadline_reached):
 			time_manager.deadline_reached.connect(_on_deadline_reached)
 	
+	# Connect to GameManager for minigame losses
+	var game_manager = get_node_or_null("/root/GameManager")
+	if game_manager:
+		if not game_manager.minigame_lost.is_connected(handle_minigame_loss):
+			game_manager.minigame_lost.connect(handle_minigame_loss)
+	
 	print("EndingManager initialized")
 
 
