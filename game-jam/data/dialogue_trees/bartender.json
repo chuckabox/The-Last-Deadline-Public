@@ -1,0 +1,51 @@
+{
+  "id": "Bartender",
+  "name": "Bartender",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "variants": [
+          {
+            "condition": { "flag": "hasSpokenToFriend", "is": false },
+            "text": "Check your phone or buy a drink. I'm busy.",
+            "options": [
+              { "text": "Whatever.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "hasSpokenToFriend", "is": true },
+            "text": "Look, kid, I'm slammed. You want my help? Help me first. Remember these orders or get out of my face.",
+            "options": [
+              { "text": "Fine, lay it on me.", "next": "bartenderGame" },
+              { "text": "I'll be back later.", "next": "exit" }
+            ]
+          }
+        ]
+      },
+      "bartenderGame": {
+        "text": "[Triggers Bartender Memory Game]",
+        "options": [
+          { "text": "[Win]", "next": "passedGame", "setFlag": { "bartenderDefeated": true } },
+          { "text": "[Lose]", "next": "failedGame" }
+        ]
+      },
+      "passedGame": {
+        "text": "Not bad. You want to find a way out? Go talk to the Frat Bro at the pong table or Fat Chud by the taps.",
+        "options": [
+          { "text": "Cheers.", "next": "exit" }
+        ]
+      },
+      "failedGame": {
+        "text": "You're useless. Drink this and get out of the way.",
+        "options": [
+          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+        ]
+      },
+      "exit": {
+        "text": null,
+        "options": []
+      }
+    }
+  }
+}
