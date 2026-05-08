@@ -4,7 +4,7 @@ extends Node
 ## Elapsed real-world seconds since the game started
 var elapsed_seconds: float = 0.0
 ## Whether time is currently paused
-var is_paused: bool = false
+var is_paused: bool = true
 
 # ===== CONSTANTS (10-Minute Real-Time System) =====
 # Start time: 11:50 PM
