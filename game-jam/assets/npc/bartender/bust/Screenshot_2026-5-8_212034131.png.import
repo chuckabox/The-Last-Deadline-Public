@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beamvcy3ucvqq"
-path="res://.godot/imported/Screenshot_2026-5-8_213118586.png-92cb4ab2b195acb7c44cf8c46553d1e6.ctex"
+uid="uid://18l10pwfvlbj"
+path="res://.godot/imported/Screenshot_2026-5-8_212034131.png-5f714a2fd3cef6386fef23c033cce72a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/grey_girl/bust/Screenshot_2026-5-8_213118586.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_213118586.png-92cb4ab2b195acb7c44cf8c46553d1e6.ctex"]
+source_file="res://assets/npc/bartender/bust/Screenshot_2026-5-8_212034131.png"
+dest_files=["res://.godot/imported/Screenshot_2026-5-8_212034131.png-5f714a2fd3cef6386fef23c033cce72a.ctex"]
 
 [params]
 
