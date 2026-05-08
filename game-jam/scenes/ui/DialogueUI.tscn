@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://djk3iadjxcbxa"]
+
+[ext_resource type="Script" path="res://scripts/ui/DialogueUI.gd" id="1_dialogue"]
+[ext_resource type="FontFile" uid="uid://bvbtm81757ur8" path="res://assets/fonts/Fibberish v1.0/fibberish.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.1, 0.1, 0.9)
+
+[node name="DialoguePanel" type="Panel"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+script = ExtResource("1_dialogue")
+
+[node name="Content" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PortraitRect" type="TextureRect" parent="Content"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialogueContent" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeakerLabel" type="Label" parent="Content/DialogueContent"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Speaker"
+
+[node name="DialogueText" type="Label" parent="Content/DialogueContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Dialogue text goes here..."
+autowrap_mode = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="OptionLeft" type="Button" parent="Content/OptionsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "[Option 1]"
+flat = true
+alignment = 0
+
+[node name="OptionCenter" type="Button" parent="Content/OptionsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "[Option 2]"
+flat = true
+alignment = 0
+
+[node name="OptionRight" type="Button" parent="Content/OptionsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "[Option 3]"
+flat = true
+alignment = 0
