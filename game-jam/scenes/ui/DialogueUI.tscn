@@ -1,85 +1,152 @@
-[gd_scene format=3 uid="uid://djk3iadjxcbxa"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/DialogueUI.gd" id="1_dialogue"]
-[ext_resource type="FontFile" uid="uid://bvbtm81757ur8" path="res://assets/fonts/Fibberish v1.0/fibberish.ttf" id="2_font"]
+[ext_resource type="FontFile" path="res://assets/fonts/Fibberish v1.0/fibberish.ttf" id="2_font"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(0.1, 0.1, 0.1, 0.9)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.05, 0.05, 0.1, 0.85)
+border_width_top = 2
+border_color = Color(0, 0.8, 1, 0.5)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.1, 0.1, 0.2, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 1, 0.3)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_focus"]
+bg_color = Color(0, 0.8, 1, 0.1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_center"]
+bg_color = Color(0.2, 0.1, 0.2, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 1, 0.3)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_right = 10.0
 
 [node name="DialoguePanel" type="Panel"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -120.0
+offset_top = -220.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 script = ExtResource("1_dialogue")
 
-[node name="Content" type="HBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = -30.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="PortraitRect" type="TextureRect" parent="Content"]
-custom_minimum_size = Vector2(80, 80)
+[node name="UpperLayout" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="PortraitRect" type="TextureRect" parent="Content/UpperLayout"]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DialogueContent" type="VBoxContainer" parent="Content"]
+[node name="DialogueContent" type="VBoxContainer" parent="Content/UpperLayout"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpeakerLabel" type="Label" parent="Content/DialogueContent"]
+[node name="SpeakerLabel" type="Label" parent="Content/UpperLayout/DialogueContent"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 14
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Speaker"
+theme_override_font_sizes/font_size = 28
+text = "Speaker Name"
 
-[node name="DialogueText" type="Label" parent="Content/DialogueContent"]
+[node name="DialogueText" type="Label" parent="Content/UpperLayout/DialogueContent"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 12
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Dialogue text goes here..."
+theme_override_font_sizes/font_size = 22
+text = "This is where the NPC will speak their mind. The text will wrap around multiple lines if it gets too long for the container."
 autowrap_mode = 2
 
-[node name="OptionsContainer" type="VBoxContainer" parent="Content"]
+[node name="OptionsContainer" type="HBoxContainer" parent="Content"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="OptionLeft" type="Button" parent="Content/OptionsContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-text = "[Option 1]"
-flat = true
-alignment = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_focus")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_focus")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
+text = "PROCEED"
 
 [node name="OptionCenter" type="Button" parent="Content/OptionsContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-text = "[Option 2]"
-flat = true
-alignment = 0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_center")
+theme_override_styles/hover = SubResource("StyleBoxFlat_focus")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_focus")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
+text = "GIBBERISH LINE"
 
 [node name="OptionRight" type="Button" parent="Content/OptionsContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
-text = "[Option 3]"
-flat = true
-alignment = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_focus")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_focus")
+theme_override_styles/focus = SubResource("StyleBoxFlat_focus")
+text = "CANCEL"
