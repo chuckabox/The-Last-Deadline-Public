@@ -23,6 +23,7 @@ GameManager="*res://scripts/systems/GameManager.gd"
 AudioManager="*res://scripts/systems/AudioManager.gd"
 AlcoholSystem="*res://scripts/systems/AlcoholSystem.gd"
 TimeManager="*res://scripts/systems/TimeManager.gd"
+EndingManager="*res://scripts/systems/EndingManager.gd"
 DialogueSystem="*res://scripts/systems/DialogueSystem.gd"
 
 [dotnet]
