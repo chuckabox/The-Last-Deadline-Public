@@ -1,0 +1,82 @@
+{
+  "id": "VIP",
+  "name": "The VIP",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "variants": [
+          {
+            "condition": { "flag": "vipDefeated", "is": true },
+            "text": "Best waiter I've seen all night. Leave the bottle and go find the Boss.",
+            "options": [
+              { "text": "Will do.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "djDefeated", "is": false },
+            "text": "I don't remember ordering a 'random guy' to my table. Go back to the common area before I call security.",
+            "options": [
+              { "text": "Alright.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "vipPoured", "is": true },
+            "text": "Alright, let's see some fireworks. Pop that cork!",
+            "options": [
+              { "text": "[Pop the Bottle]", "next": "popGame" }
+            ]
+          },
+          {
+            "condition": { "flag": "djDefeated", "is": true },
+            "text": "Hey! Waiter! My glass is empty. Fill it up, and I'll make it worth your while.",
+            "options": [
+              { "text": "Coming right up.", "next": "pourGame" },
+              { "text": "Zzz... the assignment... it's made of cheese...", "next": "exit" },
+              { "text": "I'm busy.", "next": "exit" }
+            ]
+          }
+        ]
+      },
+      "pourGame": {
+        "text": "[Triggers Drink Pour Minigame]",
+        "options": [
+          { "text": "[Win]", "next": "pourWin", "setFlag": { "vipPoured": true } },
+          { "text": "[Lose]", "next": "pourLose" }
+        ]
+      },
+      "pourWin": {
+        "text": "Great pour. Hey, I'm feeling generous. Sit. Drink this champagne with us. Grab a bottle from the bar.",
+        "options": [
+          { "text": "[Go to bar & return]", "next": "exit" }
+        ]
+      },
+      "pourLose": {
+        "text": "You're spilling the good stuff! If you're going to be this shaky, you might as well just join the party. Drink up.",
+        "options": [
+          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+        ]
+      },
+      "popGame": {
+        "text": "[Triggers Champagne Pop Minigame]",
+        "options": [
+          { "text": "[Win]", "next": "popWin", "setFlag": { "vipDefeated": true } },
+          { "text": "[Lose]", "next": "popLose" }
+        ]
+      },
+      "popWin": {
+        "text": "Hell of a pop! You've got style. Bouncer! Take this guy to see the Boss.",
+        "options": [
+          { "text": "[Follow Bouncer]", "next": "exit" }
+        ]
+      },
+      "popLose": {
+        "text": "That was the saddest 'pop' I've ever heard. It didn't even fizz! Drink the rest of this failure.",
+        "options": [
+          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}

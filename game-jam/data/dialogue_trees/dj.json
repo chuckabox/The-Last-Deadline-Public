@@ -1,0 +1,63 @@
+{
+  "id": "DJ",
+  "name": "DJ",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "variants": [
+          {
+            "condition": { "flag": "djDefeated", "is": true },
+            "text": "I gave you the card, kid! Go enjoy the high life while I keep this bass dropping.",
+            "options": [
+              { "text": "Peace.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "fratBroDefeated", "is": false },
+            "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
+            "options": [
+              { "text": "My bad.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "fatChudDefeated", "is": false },
+            "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
+            "options": [
+              { "text": "My bad.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "fatChudDefeated", "is": true },
+            "text": "The energy in here is mid! I can't work like this! If someone doesn't start moving, I'm staying locked in this booth all night.",
+            "options": [
+              { "text": "Watch this.", "next": "danceGame" },
+              { "text": "Don't look now, but the DJ is three toddlers in a trench coat.", "next": "exit" },
+              { "text": "Nevermind.", "next": "exit" }
+            ]
+          }
+        ]
+      },
+      "danceGame": {
+        "text": "[Triggers Dance Rhythm Minigame]",
+        "options": [
+          { "text": "[Win]", "next": "passedGame", "setFlag": { "djDefeated": true } },
+          { "text": "[Lose]", "next": "failedGame" }
+        ]
+      },
+      "passedGame": {
+        "text": "Ayyy! That's what I'm talking about! You saved the set. Take this VIP pass. The Boss is in the lounge.",
+        "options": [
+          { "text": "Thanks.", "next": "exit" }
+        ]
+      },
+      "failedGame": {
+        "text": "You've got the rhythm of a wet noodle. You're killing the vibe! Here, take a shot-maybe it'll loosen those hips.",
+        "options": [
+          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}

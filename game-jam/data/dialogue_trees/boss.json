@@ -1,0 +1,48 @@
+{
+  "id": "Boss",
+  "name": "The Owner",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "text": "Sit down. Do you know why those doors are locked? ARPU. Average Revenue Per User. If you can't leave, you spend. But you... you've been doing everything but spending. I've been watching you on the monitors. You fixed the DJ's tech, calmed down the VIPs, and didn't break a single glass.",
+        "options": [
+          { "text": "I just need to leave.", "next": "offer" }
+        ]
+      },
+      "offer": {
+        "text": "You've caused quite a stir tonight, kid. Relax. The night is young. Have a drink with me before you head out into the cold.",
+        "options": [
+          { "text": "Sure, just one.", "next": "drinkBranch" },
+          { "text": "No thanks, I'm in a hurry.", "next": "jobBranch" }
+        ]
+      },
+      "drinkBranch": {
+        "text": "[FADE TO BLACK]\n\nEverything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone. You failed.",
+        "options": [
+          { "text": "[Trigger Blackout Failure Ending]", "next": "exit" }
+        ]
+      },
+      "jobBranch": {
+        "text": "Direct. I like that. Honestly, probably for the best. I usually keep that bottle for people who don't know when to leave. I need a Floor Manager. Someone who can handle the chaos. Stay here, run the floor, and I'll double whatever your future career pays.",
+        "options": [
+          { "text": "I'll take the job.", "next": "averageEnding" },
+          { "text": "I have to get out. Immediately.", "next": "successEnding" }
+        ]
+      },
+      "averageEnding": {
+        "text": "You become the new Floor Manager. You have money, but your degree is abandoned.",
+        "options": [
+          { "text": "[Trigger Average Ending]", "next": "exit" }
+        ]
+      },
+      "successEnding": {
+        "text": "The Owner respects the hustle and hands you the keys. You burst out the doors.",
+        "options": [
+          { "text": "[Trigger Academic Weapon Success Ending]", "next": "exit" }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}

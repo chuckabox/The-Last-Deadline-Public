@@ -7,10 +7,17 @@
       "talk": {
         "variants": [
           {
-            "condition": { "flag": "hasSpokenToFriend", "is": false },
-            "text": "Check your phone or buy a drink. I'm busy.",
+            "condition": { "flag": "bartenderDefeated", "is": true },
+            "text": "You've got your info. Now move along, I've got a line of people behind you.",
             "options": [
-              { "text": "Whatever.", "next": "exit" }
+              { "text": "Cheers.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "hasSpokenToFriend", "is": false },
+            "text": "Don't just stand there staring. Check your phone or buy a drink. I'm busy.",
+            "options": [
+              { "text": "Sorry.", "next": "exit" }
             ]
           },
           {
@@ -18,6 +25,7 @@
             "text": "Look, kid, I'm slammed. You want my help? Help me first. Remember these orders or get out of my face.",
             "options": [
               { "text": "Fine, lay it on me.", "next": "bartenderGame" },
+              { "text": "I heard the back exit is through the office.", "next": "exit" },
               { "text": "I'll be back later.", "next": "exit" }
             ]
           }
@@ -31,21 +39,18 @@
         ]
       },
       "passedGame": {
-        "text": "Not bad. You want to find a way out? Go talk to the Frat Bro at the pong table or Fat Chud by the taps.",
+        "text": "Not bad. You got a steady hand. Talk to the Frat Bro at the Beer Pong table or Fat Chud by the taps. They know the floor.",
         "options": [
-          { "text": "Cheers.", "next": "exit" }
+          { "text": "Thanks.", "next": "exit" }
         ]
       },
       "failedGame": {
-        "text": "You're useless. Drink this and get out of the way.",
+        "text": "You're useless. Clearly you've had enough. Drink this and get out of the way so a real pro can work.",
         "options": [
           { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
         ]
       },
-      "exit": {
-        "text": null,
-        "options": []
-      }
+      "exit": { "text": null, "options": [] }
     }
   }
 }

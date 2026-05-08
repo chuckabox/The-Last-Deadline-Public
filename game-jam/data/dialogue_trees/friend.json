@@ -1,0 +1,42 @@
+{
+  "id": "Friend",
+  "name": "The Friend",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "variants": [
+          {
+            "condition": { "flag": "hasSpokenToFriend", "is": true },
+            "text": "Go talk to the Bartender, move it!",
+            "options": [
+              { "text": "Right.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "hasSpokenToFriend", "is": false },
+            "text": "Cheers! To finishing the semester. You're hitting that cup pretty hard, man. Just watch the BAC, yeah? Don't want a repeat of last New Year's.",
+            "options": [
+              { "text": "[Stop drinking] I'm pacing myself.", "next": "phoneTrigger" },
+              { "text": "Is the... floor... supposed to be blue?", "next": "phoneTrigger" },
+              { "text": "I need some air.", "next": "exit" }
+            ]
+          }
+        ]
+      },
+      "phoneTrigger": {
+        "text": "[PHONE NOTIFICATION: DUE IN 55 MINUTES. STATUS: NOT SUBMITTED]\n\nAnyway, did you actually submit that final CSSE project? The 40-percenter?",
+        "options": [
+          { "text": "What? Isn't that due tomorrow?", "next": "panic" }
+        ]
+      },
+      "panic": {
+        "text": "Nah, man. 12:00 AM tonight. Look at your phone. Your laptop is still on your kitchen table... you need to get out of here right now. Front doors are locked for Power Hour. Talk to the Bartender-he knows who has the floor keys.",
+        "options": [
+          { "text": "I gotta go!", "next": "exit", "setFlag": { "hasSpokenToFriend": true } }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}
