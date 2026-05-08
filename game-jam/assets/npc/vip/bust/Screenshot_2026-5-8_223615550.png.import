@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwovuty3w4kwp"
-path="res://.godot/imported/Screenshot_2026-5-8_21211673.png-9ba84d14635ae10c24e97856297aca74.ctex"
+uid="uid://be2e3wjnkacxi"
+path="res://.godot/imported/Screenshot_2026-5-8_223615550.png-50b1d35457a9d95c53bcbe674ac5f1d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/black_girl/bust/Screenshot_2026-5-8_21211673.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_21211673.png-9ba84d14635ae10c24e97856297aca74.ctex"]
+source_file="res://assets/npc/vip/bust/Screenshot_2026-5-8_223615550.png"
+dest_files=["res://.godot/imported/Screenshot_2026-5-8_223615550.png-50b1d35457a9d95c53bcbe674ac5f1d2.ctex"]
 
 [params]
 
