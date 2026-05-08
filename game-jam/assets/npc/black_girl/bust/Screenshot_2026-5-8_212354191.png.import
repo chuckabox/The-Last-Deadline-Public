@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dudf87jb05453"
-path="res://.godot/imported/character-spritesheet.png-ff36109808ef4f19a090c44dbed6dc75.ctex"
+uid="uid://nicplvutleck"
+path="res://.godot/imported/Screenshot_2026-5-8_212354191.png-1802c9a6696fd5d610a3e24f9eb9ba87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/character-spritesheet.png"
-dest_files=["res://.godot/imported/character-spritesheet.png-ff36109808ef4f19a090c44dbed6dc75.ctex"]
+source_file="res://assets/npc/black_girl/bust/Screenshot_2026-5-8_212354191.png"
+dest_files=["res://.godot/imported/Screenshot_2026-5-8_212354191.png-1802c9a6696fd5d610a3e24f9eb9ba87.ctex"]
 
 [params]
 
