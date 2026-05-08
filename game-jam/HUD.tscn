@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://df723hjbxdax"]
+[gd_scene format=3 uid="uid://dplclcwunao6"]
 
-[ext_resource type="Script" path="res://HUD.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://16c08j5vvnq" path="res://HUD.gd" id="1_hud"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=948569939]
 script = ExtResource("1_hud")
 
-[node name="Container" type="Control" parent="."]
+[node name="Container" type="Control" parent="." unique_id=869402895]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,14 +13,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AlcoholMeterPanel" type="Panel" parent="Container"]
+[node name="AlcoholMeterPanel" type="Panel" parent="Container" unique_id=82231738]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 240.0
 offset_bottom = 80.0
 
-[node name="AlcoholMeter" type="ProgressBar" parent="Container/AlcoholMeterPanel"]
+[node name="AlcoholMeter" type="ProgressBar" parent="Container/AlcoholMeterPanel" unique_id=285683684]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
@@ -29,7 +29,7 @@ offset_bottom = 50.0
 max_value = 1.0
 show_percentage = false
 
-[node name="AlcoholStageLabel" type="Label" parent="Container/AlcoholMeterPanel"]
+[node name="AlcoholStageLabel" type="Label" parent="Container/AlcoholMeterPanel" unique_id=889306956]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 5.0
@@ -38,30 +38,30 @@ offset_bottom = 28.0
 text = "Normal"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/AlcoholMeterPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/AlcoholMeterPanel" unique_id=255820947]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 30.0
 offset_right = 210.0
 offset_bottom = 50.0
 
-[node name="VSeparator1" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer"]
+[node name="VSeparator1" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=1686417682]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator2" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=1611763403]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator3" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=510283689]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VSeparator4" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer"]
+[node name="VSeparator4" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=1060587266]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TopRight" type="HBoxContainer" parent="Container"]
+[node name="TopRight" type="HBoxContainer" parent="Container" unique_id=807004908]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -72,18 +72,13 @@ offset_right = -20.0
 offset_bottom = 60.0
 grow_horizontal = 0
 
-[node name="CashLabel" type="Label" parent="Container/TopRight"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Cash: $0"
-
-[node name="ClockLabel" type="Label" parent="Container/TopRight"]
+[node name="ClockLabel" type="Label" parent="Container/TopRight" unique_id=221180680]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "11:00"
 horizontal_alignment = 2
 
-[node name="WarningText" type="Control" parent="Container"]
+[node name="WarningText" type="Control" parent="Container" unique_id=158525695]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -98,7 +93,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WarningLabel" type="Label" parent="Container/WarningText"]
+[node name="WarningLabel" type="Label" parent="Container/WarningText" unique_id=64614254]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
