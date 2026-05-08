@@ -41,10 +41,10 @@ func load_file_as_text(file_path: String) -> String:
 
 ## Returns the best matching variant for a node based on current GlobalState
 func get_variant_node(dialogue_data: Dictionary, node_name: String) -> Dictionary:
-	if not dialogue_data.has("nodes"):
+	if not dialogue_data.get("dialogue", {}).has("nodes"):
 		return {}
 	
-	var node = dialogue_data["nodes"].get(node_name, {})
+	var node = dialogue_data.get("dialogue", {}).get("nodes", {}).get(node_name, {})
 	
 	# If the node has no variants, return the base node
 	if not node.has("variants"):

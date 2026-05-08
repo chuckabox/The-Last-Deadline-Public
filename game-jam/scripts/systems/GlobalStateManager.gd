@@ -67,7 +67,7 @@ func trigger_global_event(event_name: String) -> void:
 func increase_alcohol(amount: float) -> void:
 	var alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
-		alcohol_system.drink_alcohol(amount * 100.0) # System uses 0-100 range
+		alcohol_system.drink_alcohol(amount) # System uses 0-100 range
 		alcohol_increased.emit(amount)
 	else:
 		push_error("GlobalStateManager: AlcoholSystem not found!")

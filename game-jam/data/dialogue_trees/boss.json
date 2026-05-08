@@ -19,6 +19,7 @@
       },
       "drinkBranch": {
         "text": "[FADE TO BLACK]\n\nEverything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone. You failed.",
+        "triggerGlobal": "ending_blackout_failure",
         "options": [
           { "text": "[Trigger Blackout Failure Ending]", "next": "exit" }
         ]
@@ -32,12 +33,14 @@
       },
       "averageEnding": {
         "text": "You become the new Floor Manager. You have money, but your degree is abandoned.",
+        "triggerGlobal": "ending_average",
         "options": [
           { "text": "[Trigger Average Ending]", "next": "exit" }
         ]
       },
       "successEnding": {
         "text": "The Owner respects the hustle and hands you the keys. You burst out the doors.",
+        "triggerGlobal": "Academic_weapon_success_ending",
         "options": [
           { "text": "[Trigger Academic Weapon Success Ending]", "next": "exit" }
         ]
