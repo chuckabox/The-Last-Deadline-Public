@@ -10104,4 +10104,5 @@ tile_set = SubResource("TileSet_is8ec")
 
 [node name="Player" parent="." unique_id=702286683 instance=ExtResource("8_luqre")]
 z_index = 5
-position = Vector2(197, 161)
+position = Vector2(292, 193)
+scale = Vector2(1.5, 1.5)
