@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/systems/GameManager.gd" id="1_gm"]
 [ext_resource type="Script" path="res://scripts/systems/AudioManager.gd" id="2_am"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/systems/DialogueSystem.gd" id="5_ds"]
 [ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="6_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/MainMenu.tscn" id="7_mm"]
-[ext_resource type="PackedScene" path="res://scenes/ui/IntroCutscene.tscn" id="8_intro"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -36,8 +35,6 @@ script = ExtResource("5_ds")
 
 [node name="MainMenu" parent="CurrentScene" instance=ExtResource("7_mm")]
 layout_mode = 1
-
-[node name="IntroCutscene" parent="." instance=ExtResource("8_intro")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("6_hud")
