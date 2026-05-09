@@ -46,6 +46,48 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.784314)
 
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "BEER PONG"
+horizontal_alignment = 1
+
+[node name="StageLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Stage 1 / 3"
+horizontal_alignment = 1
+
+[node name="LivesLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "❤ ❤ ❤"
+horizontal_alignment = 2
+
 [node name="Table" type="Node2D" parent="." unique_id=837583732]
 position = Vector2(320, 240)
 
@@ -236,3 +278,71 @@ theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
 theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "FRAT BRO"
+
+[node name="TutorialOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.82)
+z_index = 10
+
+[node name="TutorialPanel" type="VBoxContainer" parent="TutorialOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -200.0
+offset_right = 280.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="HowToLabel" type="Label" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+
+[node name="Step1" type="Label" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Wait for the slider to reach the green zone"
+horizontal_alignment = 1
+
+[node name="Step2" type="Label" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "[ SPACE ] to throw the ball"
+horizontal_alignment = 1
+
+[node name="Step3" type="Label" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Sink 3 cups to win the stage!"
+horizontal_alignment = 1
+
+[node name="Step4" type="Label" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "3 stages — get it right!"
+horizontal_alignment = 1
+
+[node name="Divider2" type="HSeparator" parent="TutorialOverlay/TutorialPanel"]
+layout_mode = 2
+
+[node name="StartPrompt" type="Label" parent="TutorialOverlay/TutorialPanel"]
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Press any key to start..."
+horizontal_alignment = 1

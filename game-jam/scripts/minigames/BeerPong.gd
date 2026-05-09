@@ -1,5 +1,9 @@
 extends Control
 
+# Tutorial State
+var tutorial_active = true
+var tutorial_overlay: ColorRect
+
 # Slider properties
 var slider_position = 0.0
 var slider_speed = 1.0  # Normalized (0.0 to 1.0) per second
@@ -14,8 +18,13 @@ var base_zone_center = 0.5  # Center of target zone before drift
 # Game State
 var cups_sunk = 0
 var max_cups = 3
-var is_active = true
+var is_active = false
 var difficulty_stage = 0
+
+# Stage State
+var current_stage = 1
+var total_stages = 3
+var lives = 3
 
 # Difficulty Effects
 var stutter_timer = 0.0
@@ -29,6 +38,8 @@ var target_zone: ColorRect
 var slider_indicator: ColorRect
 var cups_label: Label
 var instruction_label: Label
+var stage_label: Label
+var lives_label: Label
 var alcohol_system: Node
 
 # Signals
@@ -42,16 +53,81 @@ func _ready():
 	slider_indicator = get_node_or_null("SliderPanel/SliderIndicator")
 	cups_label = get_node_or_null("CupsLabel")
 	instruction_label = get_node_or_null("InstructionLabel")
+	stage_label = get_node_or_null("StageLabel")
+	lives_label = get_node_or_null("LivesLabel")
+	tutorial_overlay = get_node_or_null("TutorialOverlay")
 	
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
-	if alcohol_system and "current_stage" in alcohol_system:
-		difficulty_stage = alcohol_system.current_stage
 	
-	# Adjust difficulty
+	if instruction_label:
+		instruction_label.text = "Press SPACEBAR when slider is in the green zone!"
+		
+	# Show tutorial first
+	tutorial_active = true
+	if tutorial_overlay:
+		tutorial_overlay.show()
+		var start_prompt = get_node_or_null("TutorialOverlay/TutorialPanel/StartPrompt")
+		if start_prompt:
+			var tween = create_tween().set_loops()
+			tween.tween_property(start_prompt, "modulate:a", 0.2, 0.6)
+			tween.tween_property(start_prompt, "modulate:a", 1.0, 0.6)
+			
+	print("Beer Pong mini-game started")
+
+func _input(event):
+	if tutorial_active:
+		if event is InputEventKey and event.pressed and not event.echo:
+			_dismiss_tutorial()
+		return
+		
+	if not is_active:
+		return
+	
+	if event.is_action_pressed("ui_select"): # Spacebar
+		check_throw()
+
+func _dismiss_tutorial():
+	tutorial_active = false
+	if tutorial_overlay:
+		var tween = create_tween()
+		tween.tween_property(tutorial_overlay, "modulate:a", 0.0, 0.3)
+		tween.tween_callback(tutorial_overlay.hide)
+	start_stage(1)
+
+func start_stage(stage: int):
+	current_stage = stage
+	cups_sunk = 0
+	
+	# Stage 1: 3 lives, Stage 2: 2 lives, Stage 3: 1 life
+	if current_stage == 1:
+		lives = 3
+	elif current_stage == 2:
+		lives = 2
+	else:
+		lives = 1
+		
+	difficulty_stage = current_stage
 	adjust_difficulty()
 	
-	instruction_label.text = "Press SPACEBAR when slider is in the green zone!"
-	print("Beer Pong mini-game started")
+	if slider_indicator:
+		slider_indicator.modulate = Color.WHITE
+	
+	is_active = true
+	update_ui()
+
+func update_ui():
+	if stage_label:
+		stage_label.text = "Stage %d / %d" % [current_stage, total_stages]
+	if cups_label:
+		cups_label.text = "%d/%d" % [cups_sunk, max_cups]
+	if lives_label:
+		var hearts = ""
+		for i in range(lives):
+			hearts += "❤ "
+		var max_lives = 4 - current_stage
+		for i in range(max_lives - lives):
+			hearts += "♡ "
+		lives_label.text = hearts.strip_edges()
 
 func _physics_process(delta):
 	if not is_active:
@@ -86,11 +162,7 @@ func _physics_process(delta):
 		slider_position = 0.0
 		slider_direction = 1.0
 	
-	# Stage 1+: Camera sway
-	if difficulty_stage >= 1:
-		sway_timer += delta
-		var sway_amount = sin(sway_timer * 3.0) * 3.0
-		rotation_degrees = sway_amount
+	# Removed camera sway based on user feedback
 	
 	# Update visuals
 	if slider_indicator:
@@ -100,20 +172,12 @@ func _physics_process(delta):
 		target_zone.position.x = target_zone_start * slider_width
 		target_zone.size.x = (target_zone_end - target_zone_start) * slider_width
 
-func _input(event):
-	if not is_active:
-		return
-	
-	if event.is_action_pressed("ui_select"): # Spacebar
-		check_throw()
-
 func check_throw():
 	# Check if slider is in target zone
 	if slider_position >= target_zone_start and slider_position <= target_zone_end:
 		# Hit!
 		cups_sunk += 1
-		if cups_label:
-			cups_label.text = "%d/%d" % [cups_sunk, max_cups]
+		update_ui()
 		play_sound("cup_sink")
 		
 		# Bar gets faster after each cup
@@ -125,18 +189,34 @@ func check_throw():
 			var tween = create_tween()
 			tween.tween_property(target_zone, "modulate", Color.WHITE, 0.3)
 		
+		is_active = false
 		if cups_sunk >= max_cups:
-			win_minigame()
+			await get_tree().create_timer(1.0).timeout
+			if current_stage >= total_stages:
+				win_minigame()
+			else:
+				start_stage(current_stage + 1)
+		else:
+			await get_tree().create_timer(1.0).timeout
+			is_active = true
 	else:
 		# Miss
 		play_sound("rim_bounce")
 		is_active = false
+		lives -= 1
+		update_ui()
 		
 		if slider_indicator:
 			slider_indicator.modulate = Color.RED
 			
-		await get_tree().create_timer(1.0).timeout
-		lose_minigame()
+		if lives <= 0:
+			await get_tree().create_timer(1.0).timeout
+			lose_minigame()
+		else:
+			await get_tree().create_timer(1.0).timeout
+			if slider_indicator:
+				slider_indicator.modulate = Color.WHITE
+			is_active = true
 
 func adjust_difficulty():
 	# Base zone: 0.2 wide centered at 0.5
@@ -168,14 +248,20 @@ func win_minigame():
 	is_active = false
 	var cash_reward = 100 + (difficulty_stage * 50)
 	print("Beer Pong WON! Cash: $%d" % cash_reward)
-	$Path2D.play_arc_animation()
+	var path_node = get_node_or_null("Path2D")
+	if path_node and path_node.has_method("play_arc_animation"):
+		path_node.play_arc_animation()
 	emit_signal("minigame_won", cash_reward)
 
 func lose_minigame():
 	is_active = false
-	$Path2D2.play_arc_animation()
+	var path2_node = get_node_or_null("Path2D2")
+	if path2_node and path2_node.has_method("play_arc_animation"):
+		path2_node.play_arc_animation()
 	await get_tree().create_timer(2.0).timeout
-	$Path2D3.play_arc_animation()
+	var path3_node = get_node_or_null("Path2D3")
+	if path3_node and path3_node.has_method("play_arc_animation"):
+		path3_node.play_arc_animation()
 	print("Beer Pong LOST! Alcohol +1")
 	emit_signal("minigame_lost")
 	
