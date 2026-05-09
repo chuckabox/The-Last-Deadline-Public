@@ -135,15 +135,24 @@ func _on_quit_pressed():
 func _on_button_hover():
 	if sfx_manager:
 		sfx_manager.play_sfx("menu_scroll")
-	
+
 	var focused = get_viewport().gui_get_focus_owner()
 	if focused is Button and focused.get_parent() == menu_container:
 		var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		tween.tween_property(focused, "scale", Vector2(1.1, 1.1), 0.2)
-		
+
+		# Scale the text label inside the button
+		var label = focused.get_node_or_null("Label")
+		if label:
+			tween.tween_property(label, "scale", Vector2(1.1, 1.1), 0.2)
+
 		for btn in menu_container.get_children():
 			if btn != focused:
-				create_tween().tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
+				var btn_tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				btn_tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
+				var btn_label = btn.get_node_or_null("Label")
+				if btn_label:
+					btn_tween.tween_property(btn_label, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _play_select_sfx():
 	if sfx_manager:
