@@ -12,7 +12,6 @@ var stage_changed_time: float = 0.0
 signal alcohol_changed(new_value: float, new_stage: int)
 signal stage_changed(new_stage: int)
 signal blackout_warning()
-signal blackout()
 
 # ===== STAGE DEFINITIONS =====
 var stage_thresholds: Dictionary = {
