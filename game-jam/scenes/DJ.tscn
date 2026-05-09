@@ -117,7 +117,7 @@ radius = 13.0
 height = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact_dj"]
-radius = 40.0
+radius = 65.0
 
 [node name="DJ" type="CharacterBody2D" unique_id=1338150573]
 script = ExtResource("2_dj_script")

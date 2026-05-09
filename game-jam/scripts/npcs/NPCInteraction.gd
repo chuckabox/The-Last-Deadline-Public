@@ -107,12 +107,12 @@ func _input(event):
 		interact()
 
 func _on_area_entered(area):
-	if area.name == "PlayerCollision":
+	if area.name.to_lower().contains("playercollision"):
 		is_in_range = true
 		_update_prompt_visibility()
 
 func _on_area_exited(area):
-	if area.name == "PlayerCollision":
+	if area.name.to_lower().contains("playercollision"):
 		is_in_range = false
 		_update_prompt_visibility()
 
