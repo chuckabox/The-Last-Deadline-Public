@@ -38,6 +38,10 @@ ScreenFX="*res://scripts/systems/ScreenFX.gd"
 
 project/assembly_name="GameJam"
 
+[gui]
+
+theme/custom="res://assets/themes/main_theme.tres"
+
 [input]
 
 ui_interact={
