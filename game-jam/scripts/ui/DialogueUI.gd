@@ -42,6 +42,7 @@ var current_dialogue_data = {}
 var current_node_name = ""
 var selected_option_index = 0
 var _is_showing_cutscene = false
+var _is_ending_cutscene = false
 var _current_cutscene_node_data = {}
 var _cutscene_overlay: TextureRect
 
@@ -416,6 +417,30 @@ func _on_minigame_finished(_minigame_id: String, won: bool, node_data: Dictionar
 	else:
 		close_dialogue()
 
+func show_ending_cutscene(ending_id: String) -> void:
+	var ending_data = {
+		"blackout": {
+			"image": "res://assets/endings/blackout.png",
+			"sound": "boom",
+			"pitch": 0.3,
+			"next": "FINISH_ENDING"
+		},
+		"procrastinator": {
+			"image": "res://assets/endings/the_procastinator.jpg",
+			"sound": "boom",
+			"pitch": 0.3,
+			"next": "FINISH_ENDING"
+		}
+	}
+	
+	if ending_data.has(ending_id):
+		_is_ending_cutscene = true
+		_show_cutscene(ending_data[ending_id])
+	else:
+		# Fallback if ending ID is unknown or not mapped
+		var em = get_node_or_null("/root/EndingManager")
+		if em: em.perform_transition(ending_id, "", "")
+
 func _show_cutscene(node_data: Dictionary) -> void:
 	_is_showing_cutscene = true
 	_current_cutscene_node_data = node_data
@@ -443,7 +468,9 @@ func _show_cutscene(node_data: Dictionary) -> void:
 		_on_cutscene_clicked()
 
 func _on_cutscene_clicked() -> void:
+	var is_ending = _is_ending_cutscene
 	_is_showing_cutscene = false
+	_is_ending_cutscene = false
 	_cutscene_overlay.hide()
 	
 	# Restore UI
@@ -453,6 +480,14 @@ func _on_cutscene_clicked() -> void:
 	self.self_modulate.a = 1
 	
 	var next_node = _current_cutscene_node_data.get("next", "exit")
+	
+	if is_ending or next_node == "FINISH_ENDING":
+		var em = get_node_or_null("/root/EndingManager")
+		if em:
+			var ending_id = em.pending_ending
+			em.perform_transition(ending_id, "", "")
+		return
+
 	if next_node == "exit" or next_node == "":
 		close_dialogue()
 	else:
@@ -464,6 +499,12 @@ func close_dialogue():
 	if bust_rect:
 		bust_rect.hide()
 	hide()
+	
+	# Check for pending endings in EndingManager
+	var em = get_node_or_null("/root/EndingManager")
+	if em and em.pending_ending != "":
+		show_ending_cutscene(em.pending_ending)
+		return
 
 	var sfx = get_node_or_null("/root/SFXManager")
 	if sfx and sfx.has_method("play_sfx"):

@@ -15,6 +15,7 @@ const ENDING_ACADEMIC = "academic"
 
 # ===== STATE =====
 var current_ending: String = ""
+var pending_ending: String = ""
 
 func _ready() -> void:
 	add_to_group("managers")
@@ -55,10 +56,16 @@ func trigger_ending(ending_id: String) -> void:
 		return # Already triggered an ending
 		
 	current_ending = ending_id
+	pending_ending = ending_id
 	
 	var time_manager = get_node_or_null("/root/TimeManager")
 	if time_manager and time_manager.has_method("pause_time"):
 		time_manager.pause_time()
+	
+	# If no dialogue is open, we can show it immediately via DialogueUI
+	var dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
+	if dialogue_ui and not dialogue_ui.visible:
+		dialogue_ui.show_ending_cutscene(ending_id)
 		
 	var title = ""
 	var description = ""
@@ -87,7 +94,7 @@ func trigger_ending(ending_id: String) -> void:
 		ENDING_ACADEMIC:
 			title = "Academic Weapon"
 			description = "Assignment 2 due in 6 hours."
-			_perform_transition(ending_id, title, description)
+			perform_transition(ending_id, title, description)
 	
 	ending_triggered.emit(ending_id, title, description)
 	print("Ending Triggered: %s - %s" % [title, description])
@@ -95,7 +102,7 @@ func trigger_ending(ending_id: String) -> void:
 
 # ===== INTERNAL METHODS =====
 
-func _perform_transition(id: String, _title: String, _description: String) -> void:
+func perform_transition(id: String, _title: String, _description: String) -> void:
 	var path = ""
 	
 	match id:
