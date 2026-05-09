@@ -179,7 +179,7 @@ func check_hit(direction: int):
 
 		combo += 1
 		var old_energy = crowd_energy
-		crowd_energy = min(1.0, crowd_energy + 0.015 + (combo * 0.001)) # Harder energy gain
+		crowd_energy = min(1.0, crowd_energy + 0.03 + (combo * 0.001)) # Harder energy gain
 
 		if player_sprite:
 			player_sprite.frame = DIRECTION_FRAMES[direction]
