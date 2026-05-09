@@ -45,6 +45,10 @@ func _build_visuals() -> void:
 	ambient_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	ambient_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	ambient_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	ambient_label.add_theme_font_size_override("font_size", 48)
+	var font = load("res://assets/fonts/monogram.ttf")
+	if font:
+		ambient_label.add_theme_font_override("font", font)
 	ambient_label.modulate.a = 0.0
 	visuals.add_child(ambient_label)
 
