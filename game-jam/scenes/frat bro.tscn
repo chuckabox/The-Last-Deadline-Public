@@ -15,11 +15,11 @@ atlas = ExtResource("2_g1k7f")
 region = Rect2(64, 1536, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1k7f"]
-atlas = ExtResource("1_g1k7f")
+atlas = ExtResource("2_g1k7f")
 region = Rect2(0, 1472, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67cph"]
-atlas = ExtResource("1_g1k7f")
+atlas = ExtResource("2_g1k7f")
 region = Rect2(64, 1472, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_67cph"]

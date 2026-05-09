@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://kur2hkw6plru" path="res://scenes/Homeboy.tscn" id="11_cur4r"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="12_door"]
 [ext_resource type="PackedScene" uid="uid://byxhgxjh7egsr" path="res://bartender.tscn" id="13_gscmp"]
+[ext_resource type="PackedScene" uid="uid://bgne0uufdausf" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9405,7 +9406,7 @@ color = Color(0.85336787, 0.6058732, 0.24513799, 1)
 texture = ExtResource("9_47nkn")
 
 [node name="fratbro" parent="." unique_id=1908960888 instance=ExtResource("10_y8qx1")]
-position = Vector2(845.00006, 382)
+position = Vector2(794.00006, 381.00003)
 scale = Vector2(1.3, 1.3)
 
 [node name="Homeboy" parent="." unique_id=1340862067 instance=ExtResource("11_cur4r")]
@@ -9426,4 +9427,10 @@ shape = SubResource("RectangleShape2D_door")
 [node name="Bartender" parent="." unique_id=351301306 instance=ExtResource("13_gscmp")]
 z_index = 3
 position = Vector2(83, 261)
+scale = Vector2(1.3, 1.3)
+script = null
+
+[node name="CharacterBody2D" parent="." unique_id=1077800405 instance=ExtResource("14_j0dyg")]
+z_index = 2
+position = Vector2(841, 441.00003)
 scale = Vector2(1.3, 1.3)
