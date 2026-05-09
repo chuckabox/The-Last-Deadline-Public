@@ -20,9 +20,9 @@ var bar_points: Array[Node] = []
 var alcohol_stage_label: Label
 var bac_label: Label
 var clock_label: Label
-var warning_label: Label
 var warning_control: Control
 var screen_effects: ColorRect
+var hud_container: Control
 
 # References to systems
 var alcohol_system: Node
@@ -35,21 +35,26 @@ var _stage_token: int = 0
 var _effects_tween: Tween
 
 func _ready():
+	# Get HUD container
+	hud_container = $HUDContainer
+	if hud_container:
+		hud_container.modulate.a = 0.0
+
 	# Get bar point references (1st to 8th)
 	var point_names = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"]
 	for p_name in point_names:
-		var node = get_node_or_null(p_name)
+		var node = get_node_or_null("HUDContainer/" + p_name)
 		if node:
 			bar_points.append(node)
 			node.hide()
 
 	# Get other references
-	alcohol_stage_label = get_node_or_null("Container/AlcoholMeterPanel/AlcoholStageLabel")
-	bac_label = get_node_or_null("Container/AlcoholMeterPanel/BACLabel")
-	clock_label = get_node_or_null("ClockLabel")
-	warning_label = get_node_or_null("Container/WarningText/WarningLabel")
-	warning_control = get_node_or_null("Container/WarningText")
-	screen_effects = get_node_or_null("Container/ScreenEffects")
+	alcohol_stage_label = get_node_or_null("HUDContainer/AlcoholMeterPanel/AlcoholStageLabel")
+	bac_label = get_node_or_null("HUDContainer/AlcoholMeterPanel/BACLabel")
+	clock_label = get_node_or_null("HUDContainer/ClockLabel")
+	warning_label = get_node_or_null("HUDContainer/WarningText/WarningLabel")
+	warning_control = get_node_or_null("HUDContainer/WarningText")
+	screen_effects = get_node_or_null("HUDContainer/ScreenEffects")
 
 	# Get system references
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
@@ -79,6 +84,12 @@ func _ready():
 		clock_label.pivot_offset = clock_label.size / 2.0
 
 	print("HUD initialized with discrete bar points")
+
+func fade_in(duration: float = 1.0) -> void:
+	visible = true
+	if hud_container:
+		var t = create_tween()
+		t.tween_property(hud_container, "modulate:a", 1.0, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _setup_screen_shader():
 	if not screen_effects: return

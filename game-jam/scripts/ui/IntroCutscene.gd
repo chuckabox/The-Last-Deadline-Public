@@ -25,6 +25,7 @@ func _ready() -> void:
 	if time_manager:
 		time_manager.pause_time()
 
+	_freeze_player(true)
 	_build_visuals()
 	_run()
 
@@ -67,7 +68,9 @@ func _run() -> void:
 	await get_tree().create_timer(1.6).timeout
 
 	# Fade out the ambient text so it doesn't overlap with the dialogue.
-	create_tween().tween_property(ambient_label, "modulate:a", 0.0, 0.4)
+	var fade_out := create_tween()
+	fade_out.tween_property(ambient_label, "modulate:a", 0.0, 0.5)
+	await fade_out.finished
 
 	if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
 		dialogue_ui.dialogue_closed.connect(_on_dialogue_closed, CONNECT_ONE_SHOT)
@@ -86,4 +89,10 @@ func _finish() -> void:
 	if game_manager and game_manager.has_method("start_game"):
 		game_manager.start_game()
 
+	_freeze_player(false)
 	queue_free()
+
+func _freeze_player(freeze: bool) -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	if player and "can_move" in player:
+		player.can_move = !freeze

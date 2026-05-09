@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://d14eeqx72um8u"]
+[gd_scene format=4 uid="uid://dqs52as6cntg7"]
 
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="1_va8kr"]
 [ext_resource type="Texture2D" uid="uid://ptgfxkqk2ar1" path="res://assets/tilesets/bar/2.png" id="2_u30at"]
@@ -8,19 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://q1at76dkcoju" path="res://assets/tilesets/bar/6.png" id="6_7fquq"]
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="7_suddt"]
 [ext_resource type="Texture2D" uid="uid://6fl4sa72uukf" path="res://assets/kenney_particle-pack/PNG (Transparent)/smoke_05.png" id="8_2s5rb"]
-[ext_resource type="Script" uid="uid://dbps5oyorlwgh" path="res://scenes/point_light_2d.gd" id="9_imjrb"]
-[ext_resource type="Script" uid="uid://b6yau14arbl4h" path="res://scenes/point_light_2d_2.gd" id="10_c7qf2"]
-[ext_resource type="Script" uid="uid://cwq2k6u8kcry6" path="res://scenes/point_light_2d_3.gd" id="11_k421b"]
-[ext_resource type="Script" uid="uid://cgn7jiehhjyyw" path="res://scenes/point_light_2d_4.gd" id="12_1rojm"]
-[ext_resource type="Script" uid="uid://dalsvat0r62to" path="res://scenes/point_light_2d_5.gd" id="13_v1lo0"]
-[ext_resource type="Script" uid="uid://4qwu3uyi5rpf" path="res://scenes/point_light_2d_6.gd" id="14_gcwxk"]
+[ext_resource type="Script" path="res://scenes/point_light_2d.gd" id="9_imjrb"]
+[ext_resource type="Script" path="res://scenes/point_light_2d_2.gd" id="10_c7qf2"]
+[ext_resource type="Script" path="res://scenes/point_light_2d_4.gd" id="12_1rojm"]
+[ext_resource type="Script" path="res://scenes/point_light_2d_6.gd" id="14_gcwxk"]
 [ext_resource type="Texture2D" uid="uid://dc8lhu4hskof7" path="res://assets/kenney_particle-pack/PNG (Transparent)/star_05.png" id="15_imjrb"]
 [ext_resource type="Script" path="res://scenes/point_light_2d_12.gd" id="16_k421b"]
 [ext_resource type="Script" path="res://scenes/point_light_2d_13.gd" id="17_1rojm"]
-[ext_resource type="PackedScene" uid="uid://basfcys1bolx8" path="res://scenes/zain.tscn" id="18_1rojm"]
-[ext_resource type="PackedScene" uid="uid://dsdsf1prci8fl" path="res://scenes/DJ.tscn" id="19_v1lo0"]
-[ext_resource type="PackedScene" uid="uid://c10kwm2oxdcit" path="res://scenes/tyreese.tscn" id="20_gcwxk"]
-[ext_resource type="PackedScene" uid="uid://cbu4a1vh76l0h" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
+[ext_resource type="PackedScene" path="res://scenes/zain.tscn" id="18_1rojm"]
+[ext_resource type="PackedScene" path="res://scenes/DJ.tscn" id="19_v1lo0"]
+[ext_resource type="PackedScene" path="res://scenes/tyreese.tscn" id="20_gcwxk"]
+[ext_resource type="PackedScene" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
 texture = ExtResource("1_va8kr")
@@ -11343,50 +11341,14 @@ color = Color(0.97530264, 0.10881101, 0.9999998, 1)
 texture = ExtResource("8_2s5rb")
 script = ExtResource("10_c7qf2")
 
-[node name="PointLight2D3" type="PointLight2D" parent="CanvasModulate" unique_id=71665526]
-position = Vector2(403, 500)
-color = Color(0.97530264, 0.10881101, 0.9999998, 1)
-texture = ExtResource("8_2s5rb")
-script = ExtResource("11_k421b")
-
 [node name="PointLight2D4" type="PointLight2D" parent="CanvasModulate" unique_id=824686237]
 position = Vector2(316, 479)
 color = Color(0.45739704, 0.5946258, 0.9920607, 1)
 texture = ExtResource("8_2s5rb")
 script = ExtResource("12_1rojm")
 
-[node name="PointLight2D5" type="PointLight2D" parent="CanvasModulate" unique_id=1576868593]
-position = Vector2(564, 421)
-color = Color(0.45739704, 0.5946258, 0.9920607, 1)
-texture = ExtResource("8_2s5rb")
-script = ExtResource("13_v1lo0")
-
 [node name="PointLight2D6" type="PointLight2D" parent="CanvasModulate" unique_id=1377696964]
 position = Vector2(668, 392.8215)
-color = Color(0.45739704, 0.5946258, 0.9920607, 1)
-texture = ExtResource("8_2s5rb")
-script = ExtResource("14_gcwxk")
-
-[node name="PointLight2D7" type="PointLight2D" parent="CanvasModulate" unique_id=1134352607]
-position = Vector2(332, 339.98004)
-color = Color(0.45739704, 0.5946258, 0.9920607, 1)
-texture = ExtResource("8_2s5rb")
-script = ExtResource("14_gcwxk")
-
-[node name="PointLight2D8" type="PointLight2D" parent="CanvasModulate" unique_id=26966440]
-position = Vector2(500, 356.9292)
-color = Color(0.45739704, 0.5946258, 0.9920607, 1)
-texture = ExtResource("8_2s5rb")
-script = ExtResource("14_gcwxk")
-
-[node name="PointLight2D9" type="PointLight2D" parent="CanvasModulate" unique_id=253604777]
-position = Vector2(473, 532.4028)
-color = Color(0.45739704, 0.5946258, 0.9920607, 1)
-texture = ExtResource("8_2s5rb")
-script = ExtResource("14_gcwxk")
-
-[node name="PointLight2D10" type="PointLight2D" parent="CanvasModulate" unique_id=1854250247]
-position = Vector2(777, 97)
 color = Color(0.45739704, 0.5946258, 0.9920607, 1)
 texture = ExtResource("8_2s5rb")
 script = ExtResource("14_gcwxk")

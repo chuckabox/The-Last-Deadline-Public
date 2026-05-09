@@ -53,9 +53,11 @@ func change_room(room_name: String) -> bool:
 	# Fade to black
 	await fade_to_black(0.5)
 	
-	# Unload current room
-	if current_room_scene:
-		current_room_scene.queue_free()
+	# Unload current room and any other leftovers in CurrentScene
+	var current_scene_node = get_node_or_null("/root/Main/CurrentScene")
+	if current_scene_node:
+		for child in current_scene_node.get_children():
+			child.queue_free()
 		# Wait a frame for cleanup
 		await get_tree().process_frame
 	
@@ -71,7 +73,6 @@ func change_room(room_name: String) -> bool:
 	
 	# Instantiate and add to scene tree
 	current_room_scene = room_scene.instantiate()
-	var current_scene_node = get_node_or_null("/root/Main/CurrentScene")
 	if current_scene_node:
 		current_scene_node.add_child(current_room_scene)
 	else:
@@ -189,18 +190,19 @@ func change_room_iris(room_name: String) -> bool:
 	if is_transitioning: return false
 	if not room_paths.has(room_name): return false
 	
+	var current_scene_node = get_node_or_null("/root/Main/CurrentScene")
 	is_transitioning = true
 	emit_signal("transition_started")
 	
 	await iris_to_black(0.8)
 	
-	if current_room_scene:
-		current_room_scene.queue_free()
+	if current_scene_node:
+		for child in current_scene_node.get_children():
+			child.queue_free()
 		await get_tree().process_frame
 	
 	var room_scene = load(room_paths[room_name])
 	current_room_scene = room_scene.instantiate()
-	var current_scene_node = get_node_or_null("/root/Main/CurrentScene")
 	if current_scene_node:
 		current_scene_node.add_child(current_room_scene)
 	else:

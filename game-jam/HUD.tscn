@@ -445,7 +445,7 @@ sources/1 = SubResource("TileSetAtlasSource_vow1y")
 [node name="HUD" type="CanvasLayer" unique_id=948569939]
 script = ExtResource("1_hud")
 
-[node name="Container" type="Control" parent="." unique_id=869402895]
+[node name="HUDContainer" type="Control" parent="." unique_id=869402895]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -453,7 +453,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScreenEffects" type="ColorRect" parent="Container" unique_id=1000]
+[node name="ScreenEffects" type="ColorRect" parent="HUDContainer" unique_id=1000]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -464,7 +464,7 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0)
 metadata/_edit_group_ = true
 
-[node name="TopRight" type="VBoxContainer" parent="Container" unique_id=807004908]
+[node name="TopRight" type="VBoxContainer" parent="HUDContainer" unique_id=807004908]
 z_index = 5
 layout_mode = 1
 anchors_preset = 1
@@ -477,7 +477,7 @@ offset_bottom = 84.0
 grow_horizontal = 0
 scale = Vector2(1.7, 1.7)
 
-[node name="WarningText" type="Control" parent="Container" unique_id=158525695]
+[node name="WarningText" type="Control" parent="HUDContainer" unique_id=158525695]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -492,7 +492,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WarningLabel" type="Label" parent="Container/WarningText" unique_id=64614254]
+[node name="WarningLabel" type="Label" parent="HUDContainer/WarningText" unique_id=64614254]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -505,7 +505,7 @@ text = "I don't feel well..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BarFrame" type="TileMapLayer" parent="." unique_id=259905234]
+[node name="BarFrame" type="TileMapLayer" parent="HUDContainer" unique_id=259905234]
 z_index = 2
 position = Vector2(1.4999999, -44.000015)
 rotation = 1.5707964
@@ -513,68 +513,68 @@ scale = Vector2(5, 5)
 tile_map_data = PackedByteArray(0, 0, 3, 0, 254, 255, 1, 0, 30, 0, 12, 0, 0, 0, 3, 0, 255, 255, 1, 0, 30, 0, 13, 0, 0, 0, 4, 0, 254, 255, 1, 0, 31, 0, 12, 0, 0, 0, 4, 0, 255, 255, 1, 0, 31, 0, 13, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="BarFrame2" type="TileMapLayer" parent="." unique_id=808795347]
+[node name="BarFrame2" type="TileMapLayer" parent="HUDContainer" unique_id=808795347]
 position = Vector2(4.385, -27.579987)
 rotation = 1.5707964
 scale = Vector2(3.76, 5)
 tile_map_data = PackedByteArray(0, 0, 5, 0, 254, 255, 1, 0, 33, 0, 8, 0, 0, 0, 5, 0, 255, 255, 1, 0, 33, 0, 9, 0, 0, 0, 4, 0, 254, 255, 1, 0, 32, 0, 8, 0, 0, 0, 4, 0, 255, 255, 1, 0, 32, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="1st" type="TileMapLayer" parent="." unique_id=108036769]
+[node name="1st" type="TileMapLayer" parent="HUDContainer" unique_id=108036769]
 position = Vector2(-16, -56)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="2nd" type="TileMapLayer" parent="." unique_id=1671202245]
+[node name="2nd" type="TileMapLayer" parent="HUDContainer" unique_id=1671202245]
 position = Vector2(-16, -71)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="3rd" type="TileMapLayer" parent="." unique_id=1136330786]
+[node name="3rd" type="TileMapLayer" parent="HUDContainer" unique_id=1136330786]
 position = Vector2(-16, -86)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="4th" type="TileMapLayer" parent="." unique_id=1029955096]
+[node name="4th" type="TileMapLayer" parent="HUDContainer" unique_id=1029955096]
 position = Vector2(-16, -101)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="5th" type="TileMapLayer" parent="." unique_id=697968123]
+[node name="5th" type="TileMapLayer" parent="HUDContainer" unique_id=697968123]
 position = Vector2(-16, -117)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="6th" type="TileMapLayer" parent="." unique_id=316647486]
+[node name="6th" type="TileMapLayer" parent="HUDContainer" unique_id=316647486]
 position = Vector2(-16, -132)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="7th" type="TileMapLayer" parent="." unique_id=2061307546]
+[node name="7th" type="TileMapLayer" parent="HUDContainer" unique_id=2061307546]
 position = Vector2(-16, -147)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="8th" type="TileMapLayer" parent="." unique_id=1384285343]
+[node name="8th" type="TileMapLayer" parent="HUDContainer" unique_id=1384285343]
 position = Vector2(-16, -162)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="ClockFrame" type="TileMapLayer" parent="." unique_id=716494234]
+[node name="ClockFrame" type="TileMapLayer" parent="HUDContainer" unique_id=716494234]
 position = Vector2(-904, 0)
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray(0, 0, 15, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 15, 0, 1, 0, 1, 0, 30, 0, 9, 0, 0, 0, 16, 0, 0, 0, 1, 0, 31, 0, 8, 0, 0, 0, 16, 0, 1, 0, 1, 0, 31, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
-[node name="ClockLabel" type="Label" parent="." unique_id=221180680]
+[node name="ClockLabel" type="Label" parent="HUDContainer" unique_id=221180680]
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
