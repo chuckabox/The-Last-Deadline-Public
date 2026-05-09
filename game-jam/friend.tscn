@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://com0157044vg"]
+
+[ext_resource type="Script" uid="uid://drnel835ryhob" path="res://scripts/npcs/NPC_Friend.gd" id="1_h35v6"]
+
+[node name="Node2D" type="Node2D" unique_id=521295960]
+script = ExtResource("1_h35v6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1811067780]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1105601323]
+
+[node name="Area2D" type="Area2D" parent="CollisionShape2D" unique_id=2007279378]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Area2D" unique_id=1832305655]

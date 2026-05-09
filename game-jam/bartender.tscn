@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://byxhgxjh7egsr"]
+
+[ext_resource type="Script" uid="uid://dllf5qvx3imvc" path="res://scripts/npcs/NPC_Bartender.gd" id="1_2scdx"]
+
+[node name="Node2D" type="Node2D" unique_id=1415750631]
+script = ExtResource("1_2scdx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2003118323]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=583361528]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=652711848]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=377421256]
