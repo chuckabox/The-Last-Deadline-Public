@@ -40,13 +40,40 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
 script = ExtResource("1_dialogue")
 
+[node name="SpeakerNameBox" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(180, 45)
+layout_mode = 0
+offset_left = 30.0
+offset_top = -25.0
+offset_right = 210.0
+offset_bottom = 20.0
+texture = ExtResource("4_banner")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="SpeakerLabel" type="Label" parent="SpeakerNameBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+text = "Speaker Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 30.0
-offset_top = 20.0
+offset_top = 25.0
 offset_right = -30.0
 offset_bottom = -20.0
 grow_horizontal = 2
@@ -68,36 +95,16 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpeakerNameBox" type="NinePatchRect" parent="Content/UpperLayout/DialogueContent"]
-custom_minimum_size = Vector2(150, 40)
+[node name="Spacer" type="Control" parent="Content/UpperLayout/DialogueContent"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("4_banner")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="SpeakerLabel" type="Label" parent="Content/UpperLayout/DialogueContent/SpeakerNameBox"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 28
-text = "Speaker Name"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="DialogueText" type="Label" parent="Content/UpperLayout/DialogueContent"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "This is where the NPC will speak their mind. The text will wrap around multiple lines if it gets too long for the container."
 autowrap_mode = 2
 
