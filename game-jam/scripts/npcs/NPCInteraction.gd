@@ -55,6 +55,8 @@ func _ready():
 			has_completed_quest = game_manager.is_npc_completed(npc_id)
 		elif "npc_completed_status" in game_manager:
 			has_completed_quest = game_manager.npc_completed_status.get(npc_id, false)
+	
+	_update_speech_bubble_icon()
 
 	print("NPC '%s' initialized" % npc_id)
 
@@ -67,12 +69,11 @@ func _setup_speech_bubble():
 	if npc_id in special_npcs:
 		var bubble = Sprite2D.new()
 		bubble.name = "SpeechBubble"
-		bubble.texture = load("res://game-jam/assets/npc/tiny-speech-indicators/exclamation.gif")
 		bubble.position = Vector2(0, -70)
-		bubble.scale = Vector2(2, 2)
 		bubble.z_index = 100
 		add_child(bubble)
 		speech_bubble = bubble
+		_update_speech_bubble_icon()
 	else:
 		var bubble = Label.new()
 		bubble.name = "SpeechBubble"
@@ -83,6 +84,20 @@ func _setup_speech_bubble():
 		bubble.add_theme_color_override("font_color", Color(1, 1, 1, 1))
 		add_child(bubble)
 		speech_bubble = bubble
+
+func _update_speech_bubble_icon():
+	if not speech_bubble or not (speech_bubble is Sprite2D):
+		return
+	
+	if has_completed_quest:
+		speech_bubble.texture = load("res://game-jam/assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
+		speech_bubble.region_enabled = true
+		speech_bubble.region_rect = Rect2(11, 0, 11, 11)
+		speech_bubble.scale = Vector2(2, 2)
+	else:
+		speech_bubble.texture = load("res://game-jam/assets/npc/tiny-speech-indicators/exclamation.gif")
+		speech_bubble.region_enabled = false
+		speech_bubble.scale = Vector2(2, 2)
 
 func _setup_prompt():
 	if has_node("InteractionPrompt"):
@@ -179,6 +194,7 @@ func complete_quest():
 		if game_manager and game_manager.has_method("mark_npc_completed"):
 			game_manager.mark_npc_completed(npc_id)
 		emit_signal("quest_completed", npc_id)
+		_update_speech_bubble_icon()
 		print("Quest completed: %s" % npc_id)
 
 func play_animation(anim_name: String):
