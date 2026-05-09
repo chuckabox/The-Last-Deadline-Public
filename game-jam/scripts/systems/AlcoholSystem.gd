@@ -50,11 +50,12 @@ func update_stage() -> void:
 		current_stage = new_stage
 		stage_changed_time = Time.get_ticks_msec()
 		stage_changed.emit(current_stage)
-		
-		# If we hit max stage
+
+		# Stage 4 is the danger zone: emit a warning for HUD/audio cues only.
+		# The actual blackout ending is triggered by EndingManager when the
+		# player loses another minigame while at stage 4.
 		if current_stage == 4:
 			blackout_warning.emit()
-			blackout.emit()
 
 ## Computes which stage a given alcohol value falls into
 func calculate_stage(value: float) -> int:
