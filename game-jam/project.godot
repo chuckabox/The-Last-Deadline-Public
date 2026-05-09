@@ -24,7 +24,6 @@ AudioManager="*res://scripts/systems/AudioManager.gd"
 AlcoholSystem="*res://scripts/systems/AlcoholSystem.gd"
 TimeManager="*res://scripts/systems/TimeManager.gd"
 EndingManager="*res://scripts/systems/EndingManager.gd"
-DialogueSystem="*res://scripts/systems/DialogueSystem.gd"
 GlobalStateManager="*res://scripts/systems/GlobalStateManager.gd"
 GibberishDatabase="*res://scripts/systems/GibberishDatabase.gd"
 DialogueParser="*res://scripts/systems/DialogueParser.gd"
@@ -34,7 +33,6 @@ RoomTransitionManager="*res://scripts/systems/RoomTransitionManager.gd"
 MinigameManager="*res://scripts/systems/MinigameManager.gd"
 FriendTimeDegradation="*res://scripts/npcs/FriendTimeDegradation.gd"
 ScreenFX="*res://scripts/systems/ScreenFX.gd"
-AudioFilterManager="*res://scripts/systems/AudioFilterManager.gd"
 
 [dotnet]
 
