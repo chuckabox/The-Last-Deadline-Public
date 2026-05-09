@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://oj47nyfbfkpc"]
+
+[ext_resource type="Texture2D" uid="uid://blg0hmaos2vqx" path="res://assets/drinks/Rum.png" id="1_ka556"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=69686100]
+position = Vector2(2.9999962, -33.000008)
+scale = Vector2(0.76589596, 0.7828685)
+texture = ExtResource("1_ka556")
