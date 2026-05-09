@@ -10,8 +10,13 @@ var sfx_manager: Node
 @onready var title_label = $Title
 @onready var subtitle_label = $Title/Subtitle
 @onready var menu_container = $MenuContainer
+@onready var menu_camera = $MenuCamera
 
 func _ready():
+	# Ensure the dedicated menu camera is active
+	if menu_camera:
+		menu_camera.make_current()
+	
 	# Get system references safely
 	music_manager = get_node_or_null("/root/MusicManager")
 	sfx_manager = get_node_or_null("/root/SFXManager")

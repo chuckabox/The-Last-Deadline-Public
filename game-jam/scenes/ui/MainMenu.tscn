@@ -51,6 +51,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
 
+[node name="MenuCamera" type="Camera2D" parent="." unique_id=987654]
+position = Vector2(576, 324)
+enabled = true
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=860771971]
 layer = -1
 
