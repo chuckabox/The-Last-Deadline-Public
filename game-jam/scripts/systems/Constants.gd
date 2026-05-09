@@ -19,7 +19,6 @@ const ALCOHOL_STAGE_BLACKOUT := 1.0   # 1.00 (instant game-over / ending)
 
 ## Per-action deltas
 const ALCOHOL_INCREMENT_PER_DRINK := 0.25
-const ALCOHOL_DECREMENT_PER_WATER := 0.125
 
 ## Hard cap
 const ALCOHOL_MAXIMUM := 1.0
