@@ -9,13 +9,22 @@ extends Node
 
 var alcohol_system: Node
 
-# Visual layer (built in code so no .tscn / .gdshader needed)
+# Visual layers (built in code so no .tscn / .gdshader needed)
 var canvas_layer: CanvasLayer
 var vignette_rect: ColorRect
 var vignette_material: ShaderMaterial
 
+var blur_canvas: CanvasLayer
+var blur_rect: ColorRect
+var blur_material: ShaderMaterial
+var _blur_phase: float = 0.0
+
 # Active animation; killed if a new stage change comes in mid-tween
 var _vignette_tween: Tween
+
+# Stage 3 blur: 1.5s build + 1.5s decay = 3s period; peak strength at 0.6.
+const BLUR_CYCLE_PERIOD := 3.0
+const BLUR_PEAK := 0.6
 
 # Per-stage vignette parameters: strength (0..1), tint color, fade-in seconds.
 # Strength controls how far in from the edges the dark band reaches.
@@ -43,6 +52,33 @@ void fragment() {
 }
 """
 
+# 9-tap Gaussian blur sampling the screen below this layer.
+const BLUR_SHADER_CODE := """
+shader_type canvas_item;
+
+uniform sampler2D screen_texture : hint_screen_texture, filter_linear, repeat_disable;
+uniform float blur_amount : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	if (blur_amount <= 0.001) {
+		COLOR = texture(screen_texture, SCREEN_UV);
+	} else {
+		vec2 px = SCREEN_PIXEL_SIZE * blur_amount * 8.0;
+		vec4 sum = vec4(0.0);
+		sum += texture(screen_texture, SCREEN_UV + vec2(-px.x, -px.y)) * 0.0625;
+		sum += texture(screen_texture, SCREEN_UV + vec2( 0.0,  -px.y)) * 0.125;
+		sum += texture(screen_texture, SCREEN_UV + vec2( px.x, -px.y)) * 0.0625;
+		sum += texture(screen_texture, SCREEN_UV + vec2(-px.x,  0.0 )) * 0.125;
+		sum += texture(screen_texture, SCREEN_UV)                       * 0.25;
+		sum += texture(screen_texture, SCREEN_UV + vec2( px.x,  0.0 )) * 0.125;
+		sum += texture(screen_texture, SCREEN_UV + vec2(-px.x,  px.y)) * 0.0625;
+		sum += texture(screen_texture, SCREEN_UV + vec2( 0.0,   px.y)) * 0.125;
+		sum += texture(screen_texture, SCREEN_UV + vec2( px.x,  px.y)) * 0.0625;
+		COLOR = sum;
+	}
+}
+"""
+
 func _ready() -> void:
 	add_to_group("managers")
 	_build_visuals()
@@ -54,6 +90,24 @@ func _ready() -> void:
 	print("ScreenFX initialized")
 
 func _build_visuals() -> void:
+	# Blur layer sits BELOW the vignette so the vignette tints whatever the
+	# blur produced. Both are above gameplay (layer 0) and HUD (layer 1).
+	blur_canvas = CanvasLayer.new()
+	blur_canvas.layer = 49
+	add_child(blur_canvas)
+
+	blur_rect = ColorRect.new()
+	blur_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	blur_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var blur_shader := Shader.new()
+	blur_shader.code = BLUR_SHADER_CODE
+	blur_material = ShaderMaterial.new()
+	blur_material.shader = blur_shader
+	blur_material.set_shader_parameter("blur_amount", 0.0)
+	blur_rect.material = blur_material
+	blur_canvas.add_child(blur_rect)
+
 	canvas_layer = CanvasLayer.new()
 	# High layer so the vignette sits over gameplay AND the HUD — periphery
 	# darkening is part of the "tunnel vision" effect by design.
@@ -100,3 +154,24 @@ func _set_color(c: Color) -> void:
 func _get_color() -> Color:
 	var c = vignette_material.get_shader_parameter("vcolor")
 	return c if c is Color else Color(0, 0, 0, 0)
+
+func _process(delta: float) -> void:
+	# Stage 3 blur cycle: gated by stage 3 intensity, oscillates 1.5s up / 1.5s down.
+	if not blur_material:
+		return
+
+	var base := 0.0
+	if alcohol_system and alcohol_system.has_method("get_stage_intensity"):
+		base = alcohol_system.get_stage_intensity(3)
+
+	if base <= 0.0:
+		var current = blur_material.get_shader_parameter("blur_amount")
+		if current != null and current > 0.0:
+			blur_material.set_shader_parameter("blur_amount", 0.0)
+		_blur_phase = 0.0
+		return
+
+	_blur_phase += delta
+	# Cosine remapped to [0, 1] over BLUR_CYCLE_PERIOD: 0 -> 1 -> 0.
+	var cycle := 0.5 - 0.5 * cos((_blur_phase / BLUR_CYCLE_PERIOD) * TAU)
+	blur_material.set_shader_parameter("blur_amount", base * cycle * BLUR_PEAK)
