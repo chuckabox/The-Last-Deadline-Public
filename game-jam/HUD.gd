@@ -1,5 +1,16 @@
 extends CanvasLayer
 
+const METER_FILL_DURATION := 0.4
+const STAGE_EFFECT_DELAY := 0.7
+
+const STAGE_COLORS := {
+	0: Color.WHITE,
+	1: Color.GREEN,
+	2: Color.ORANGE,
+	3: Color.RED,
+	4: Color.BLACK
+}
+
 # References
 var alcohol_meter: ProgressBar
 var alcohol_stage_label: Label
@@ -10,6 +21,9 @@ var warning_control: Control
 # References to systems
 var alcohol_system: Node
 var time_manager: Node
+
+# Debounce: rapid stage changes only run the latest scheduled effect.
+var _stage_token: int = 0
 
 func _ready():
 	# Get references
@@ -33,31 +47,33 @@ func _ready():
 		time_manager.warning_yellow.connect(_on_warning_yellow)
 		time_manager.warning_red.connect(_on_warning_red)
 
-	# Initialize visuals
-	update_alcohol_display()
+	# Initial fill is instant — no animation on game start.
+	_set_meter_value(_current_alcohol_value(), false)
 
 	print("HUD initialized")
 
-func _on_alcohol_changed(value: float, stage: int):
-	update_alcohol_display()
+func _on_alcohol_changed(value: float, _stage: int) -> void:
+	# Meter fills first (animated). Stage effects come later in _on_stage_changed.
+	_set_meter_value(value, true)
 
-func _on_stage_changed(new_stage: int):
-	# Update meter color based on stage
-	var colors = {
-		0: Color.WHITE,
-		1: Color.GREEN,
-		2: Color.ORANGE,
-		3: Color.RED,
-		4: Color.BLACK
-	}
-	
-	if colors.has(new_stage):
-		alcohol_meter.modulate = colors[new_stage]
-		
+func _on_stage_changed(new_stage: int) -> void:
+	# Spec: effects follow 0.5-1s AFTER the meter finishes filling.
+	# Wait for the fill, then the post-fill buffer, then apply effects.
+	# A token guards against rapid re-entry: only the latest schedule wins.
+	_stage_token += 1
+	var token := _stage_token
+	await get_tree().create_timer(METER_FILL_DURATION + STAGE_EFFECT_DELAY).timeout
+	if token != _stage_token:
+		return
+	_apply_stage_effects(new_stage)
+
+func _apply_stage_effects(new_stage: int) -> void:
+	if STAGE_COLORS.has(new_stage):
+		alcohol_meter.modulate = STAGE_COLORS[new_stage]
+
 	if alcohol_system and alcohol_system.has_method("get_stage_name"):
 		alcohol_stage_label.text = alcohol_system.get_stage_name()
-	
-	# Show warning at Stage 4
+
 	if new_stage == 4:
 		warning_control.show()
 
@@ -75,9 +91,15 @@ func _on_warning_red():
 	tween.tween_property(clock_label, "scale", Vector2(1.2, 1.2), 0.3)
 	tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.3)
 
-func update_alcohol_display():
-	var value = 0.0
+func _current_alcohol_value() -> float:
 	if alcohol_system and "alcohol" in alcohol_system:
-		value = alcohol_system.alcohol
+		return alcohol_system.alcohol
+	return 0.0
+
+func _set_meter_value(value: float, animated: bool) -> void:
 	alcohol_meter.max_value = 1.0
-	alcohol_meter.value = value
+	if animated:
+		var tween := create_tween()
+		tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION)
+	else:
+		alcohol_meter.value = value
