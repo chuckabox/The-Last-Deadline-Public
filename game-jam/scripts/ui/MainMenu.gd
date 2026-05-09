@@ -52,17 +52,25 @@ func _ready():
 func _run_entry_animation():
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	
-	# Fade in from 0
+	# Initial states: transparent and slightly offset
 	title_label.modulate.a = 0
 	subtitle_label.modulate.a = 0
 	menu_container.modulate.a = 0
-	var original_menu_y = menu_container.position.y
-	menu_container.position.y += 30
 	
-	tween.tween_property(title_label, "modulate:a", 1.0, 1.0)
-	tween.tween_property(subtitle_label, "modulate:a", 1.0, 1.0).set_delay(0.3)
-	tween.tween_property(menu_container, "modulate:a", 1.0, 0.8).set_delay(0.6)
-	tween.tween_property(menu_container, "position:y", original_menu_y, 0.8).set_delay(0.6)
+	var original_title_y = title_label.position.y
+	var original_menu_y = menu_container.position.y
+	
+	title_label.position.y -= 20
+	menu_container.position.y += 20
+	
+	# Staggered entry
+	tween.tween_property(title_label, "modulate:a", 1.0, 1.2)
+	tween.tween_property(title_label, "position:y", original_title_y, 1.2)
+	
+	tween.tween_property(subtitle_label, "modulate:a", 1.0, 1.0).set_delay(0.5)
+	
+	tween.tween_property(menu_container, "modulate:a", 1.0, 0.8).set_delay(1.0)
+	tween.tween_property(menu_container, "position:y", original_menu_y, 0.8).set_delay(1.0)
 
 func _process(_delta):
 	# Subtle neon flicker
