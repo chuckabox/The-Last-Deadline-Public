@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c2iwnm86r7bj2"
+path="res://.godot/imported/JDSherbert - Pixel UI SFX Pack - Error 2 (Saw).ogg-7a42bcadc164dd222aedb6a6969cc9ce.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Error 2 (Saw).ogg"
+dest_files=["res://.godot/imported/JDSherbert - Pixel UI SFX Pack - Error 2 (Saw).ogg-7a42bcadc164dd222aedb6a6969cc9ce.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
