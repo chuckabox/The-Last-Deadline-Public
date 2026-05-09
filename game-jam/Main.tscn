@@ -15,7 +15,6 @@ grow_vertical = 2
 [node name="CurrentScene" type="Node" parent="." unique_id=740287066]
 
 [node name="MainMenu" parent="CurrentScene" unique_id=142613987 instance=ExtResource("7_mm")]
-script = null
 
 [node name="HUD" parent="." unique_id=49930898 instance=ExtResource("6_hud")]
 visible = false
