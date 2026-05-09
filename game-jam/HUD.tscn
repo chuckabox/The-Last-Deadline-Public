@@ -573,13 +573,13 @@ tile_map_data = PackedByteArray(0, 0, 15, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 15, 
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockLabel" type="Label" parent="." unique_id=221180680]
+texture_filter = 1
 offset_left = 965.0
 offset_top = 44.0
 offset_right = 1056.5386
 offset_bottom = 74.769226
-scale = Vector2(1.3, 1.3)
 theme_override_fonts/font = ExtResource("2_vow1y")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "11:00 PM"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -46,7 +46,7 @@ func _ready():
 	# Get other references
 	alcohol_stage_label = get_node_or_null("Container/AlcoholMeterPanel/AlcoholStageLabel")
 	bac_label = get_node_or_null("Container/AlcoholMeterPanel/BACLabel")
-	clock_label = get_node_or_null("Container/TopRight/ClockLabel")
+	clock_label = get_node_or_null("ClockLabel")
 	warning_label = get_node_or_null("Container/WarningText/WarningLabel")
 	warning_control = get_node_or_null("Container/WarningText")
 	screen_effects = get_node_or_null("Container/ScreenEffects")
@@ -202,8 +202,8 @@ func _on_warning_yellow():
 	clock_label.add_theme_color_override("font_color", Color.YELLOW)
 	if _clock_tween: _clock_tween.kill()
 	_clock_tween = create_tween().set_loops()
-	_clock_tween.tween_property(clock_label, "scale", Vector2(1.1, 1.1), 0.5).set_trans(Tween.TRANS_SINE)
-	_clock_tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.5).set_trans(Tween.TRANS_SINE)
+	_clock_tween.tween_property(clock_label, "modulate", Color.YELLOW, 0.5)
+	_clock_tween.tween_property(clock_label, "modulate", Color.WHITE, 0.5)
 
 func _on_warning_red():
 	if not clock_label: return
