@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cx4x6l0e0qjk"]
+[gd_scene format=3 uid="uid://cx4x6l0e0qjb"]
 
 [ext_resource type="Script" path="res://scripts/minigames/BeerPong.gd" id="1_bp"]
 

@@ -1,6 +1,5 @@
 extends Node
 
-class_name RoomTransitionManager
 
 # Room Management
 var current_room = "bar"

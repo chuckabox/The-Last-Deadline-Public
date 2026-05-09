@@ -1,6 +1,5 @@
 extends Node
 
-class_name SFXManager
 
 # SFX library
 @export var sfx_library: Dictionary = {

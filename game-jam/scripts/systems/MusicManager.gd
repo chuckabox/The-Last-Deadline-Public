@@ -1,6 +1,5 @@
 extends AudioStreamPlayer
 
-class_name MusicManager
 
 # Music tracks by stage
 @export var music_by_stage: Dictionary = {

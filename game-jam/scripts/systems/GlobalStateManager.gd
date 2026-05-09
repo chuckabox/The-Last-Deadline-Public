@@ -19,6 +19,7 @@ var flags: Dictionary = {
 	"vipPoured": false,
 	"vipDefeated": false,
 	"bossConfronted": false
+	
 }
 
 func _ready() -> void:
