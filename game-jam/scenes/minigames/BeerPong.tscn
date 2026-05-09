@@ -46,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.784314)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=384011262]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -60,7 +60,7 @@ theme_override_font_sizes/font_size = 28
 text = "BEER PONG"
 horizontal_alignment = 1
 
-[node name="StageLabel" type="Label" parent="."]
+[node name="StageLabel" type="Label" parent="." unique_id=20137472]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -74,7 +74,7 @@ theme_override_font_sizes/font_size = 20
 text = "Stage 1 / 3"
 horizontal_alignment = 1
 
-[node name="LivesLabel" type="Label" parent="."]
+[node name="LivesLabel" type="Label" parent="." unique_id=1047359343]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -279,7 +279,8 @@ theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "FRAT BRO"
 
-[node name="TutorialOverlay" type="ColorRect" parent="."]
+[node name="TutorialOverlay" type="ColorRect" parent="." unique_id=492484437]
+z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,9 +288,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.82)
-z_index = 10
 
-[node name="TutorialPanel" type="VBoxContainer" parent="TutorialOverlay"]
+[node name="TutorialPanel" type="VBoxContainer" parent="TutorialOverlay" unique_id=1748370668]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -304,43 +304,43 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="HowToLabel" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="HowToLabel" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=926213539]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "HOW TO PLAY"
 horizontal_alignment = 1
 
-[node name="Divider" type="HSeparator" parent="TutorialOverlay/TutorialPanel"]
+[node name="Divider" type="HSeparator" parent="TutorialOverlay/TutorialPanel" unique_id=825250531]
 layout_mode = 2
 
-[node name="Step1" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step1" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=679296325]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Wait for the slider to reach the green zone"
 horizontal_alignment = 1
 
-[node name="Step2" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step2" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=1863960417]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "[ SPACE ] to throw the ball"
 horizontal_alignment = 1
 
-[node name="Step3" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step3" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=2080529290]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Sink 3 cups to win the stage!"
 horizontal_alignment = 1
 
-[node name="Step4" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step4" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=756425097]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "3 stages — get it right!"
 horizontal_alignment = 1
 
-[node name="Divider2" type="HSeparator" parent="TutorialOverlay/TutorialPanel"]
+[node name="Divider2" type="HSeparator" parent="TutorialOverlay/TutorialPanel" unique_id=400969330]
 layout_mode = 2
 
-[node name="StartPrompt" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="StartPrompt" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=185545235]
 modulate = Color(1, 1, 1, 0.7)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18

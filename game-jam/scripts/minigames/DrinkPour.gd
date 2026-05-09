@@ -200,7 +200,7 @@ func start_round():
 		bubbles.emitting = false
 
 	# Speed and tolerance increase per round
-	var round_speed_bonus = (current_round - 1) * 0.3
+	var round_speed_bonus = (current_round - 1) * 0.1
 	target_line_speed = _base_speed() + round_speed_bonus
 	tolerance = max(0.05, _base_tolerance() - (current_round - 1) * 0.02)
 
@@ -215,10 +215,10 @@ func start_round():
 func _base_speed() -> float:
 	match difficulty_stage:
 		0: return 1.0
-		1: return 1.5
-		2: return 2.0
-		3: return 2.5
-		4: return 3.5
+		1: return 1.4
+		2: return 1.8
+		3: return 2.2
+		4: return 2.6
 	return 1.0
 
 func _base_tolerance() -> float:
@@ -226,8 +226,8 @@ func _base_tolerance() -> float:
 		0: return 0.15
 		1: return 0.12
 		2: return 0.10
-		3: return 0.08
-		4: return 0.05
+		3: return 0.10
+		4: return 0.10
 	return 0.15
 
 func _physics_process(delta):

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://id3h28w18psl"]
 
-[ext_resource type="Script" path="res://scripts/minigames/DrinkPour.gd" id="1_dp"]
+[ext_resource type="Script" uid="uid://b0asw2ugqc36q" path="res://scripts/minigames/DrinkPour.gd" id="1_dp"]
 
-[node name="DrinkPour" type="Control"]
+[node name="DrinkPour" type="Control" unique_id=686592368]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dp")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1251599605]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05, 0.02, 0.08, 0.7)
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=878359707]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -34,7 +34,7 @@ theme_override_font_sizes/font_size = 28
 text = "POUR THE DRINK"
 horizontal_alignment = 1
 
-[node name="RoundLabel" type="Label" parent="."]
+[node name="RoundLabel" type="Label" parent="." unique_id=1849123083]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -48,7 +48,8 @@ theme_override_font_sizes/font_size = 20
 text = "Round 1 / 3"
 horizontal_alignment = 1
 
-[node name="DrinkTypeLabel" type="Label" parent="."]
+[node name="DrinkTypeLabel" type="Label" parent="." unique_id=1712567884]
+modulate = Color(1, 1, 1, 0.6)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -61,25 +62,28 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 16
 text = "PINT"
 horizontal_alignment = 1
-modulate = Color(1, 1, 1, 0.6)
 
-[node name="LivesLabel" type="Label" parent="."]
+[node name="LivesLabel" type="Label" parent="." unique_id=1497056014]
 layout_mode = 1
 anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 50.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 22
 text = "❤ ❤ ❤"
 
-[node name="PourStream" type="ColorRect" parent="."]
+[node name="PourStream" type="ColorRect" parent="." unique_id=1270939341]
 visible = false
 layout_mode = 0
-size = Vector2(12, 100)
+offset_right = 12.0
+offset_bottom = 100.0
 color = Color(0.9, 0.6, 0.1, 0.7)
 
-[node name="Glass" type="ColorRect" parent="."]
+[node name="Glass" type="ColorRect" parent="." unique_id=1937068208]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -92,18 +96,17 @@ offset_right = 80.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.9, 1.0, 0.15)
+color = Color(0.8, 0.9, 1, 0.15)
 
-[node name="Liquid" type="ColorRect" parent="Glass"]
+[node name="Liquid" type="ColorRect" parent="Glass" unique_id=226524560]
 layout_mode = 0
 offset_right = 160.0
 color = Color(0.9, 0.6, 0.1, 0.85)
 
-[node name="Bubbles" type="CPUParticles2D" parent="Glass"]
+[node name="Bubbles" type="CPUParticles2D" parent="Glass" unique_id=34477479]
 emitting = false
 amount = 12
 lifetime = 1.8
-explosiveness = 0.0
 randomness = 1.0
 direction = Vector2(0, -1)
 spread = 20.0
@@ -114,23 +117,23 @@ scale_amount_min = 2.0
 scale_amount_max = 5.0
 color = Color(1, 1, 1, 0.4)
 
-[node name="TargetLine" type="Line2D" parent="Glass"]
+[node name="TargetLine" type="Line2D" parent="Glass" unique_id=1466471149]
 points = PackedVector2Array(0, 160, 160, 160)
 width = 5.0
 default_color = Color(1, 0.2, 0.2, 1)
 
-[node name="GlassLabel" type="Label" parent="Glass"]
+[node name="GlassLabel" type="Label" parent="Glass" unique_id=1258853351]
+modulate = Color(1, 1, 1, 0.4)
 layout_mode = 0
-offset_left = 0.0
 offset_top = -22.0
 offset_right = 160.0
 offset_bottom = -2.0
 theme_override_font_sizes/font_size = 12
 text = "PINT"
 horizontal_alignment = 1
-modulate = Color(1, 1, 1, 0.4)
 
-[node name="PourIndicator" type="Label" parent="."]
+[node name="PourIndicator" type="Label" parent="." unique_id=1059087114]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,9 +149,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "▼ POURING ▼"
 horizontal_alignment = 1
-modulate = Color(1, 1, 1, 0)
 
-[node name="FeedbackLabel" type="Label" parent="."]
+[node name="FeedbackLabel" type="Label" parent="." unique_id=1988458835]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -163,11 +165,11 @@ offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 28
-text = ""
 horizontal_alignment = 1
 
-[node name="VictoryLabel" type="Label" parent="."]
+[node name="VictoryLabel" type="Label" parent="." unique_id=2009562070]
 visible = false
+modulate = Color(1, 0.85, 0.2, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -177,15 +179,13 @@ anchor_bottom = 0.5
 offset_left = -300.0
 offset_top = -60.0
 offset_right = 300.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 52
 text = "PERFECT POUR!"
 horizontal_alignment = 1
-modulate = Color(1, 0.85, 0.2, 0)
 
-[node name="Confetti" type="CPUParticles2D" parent="."]
+[node name="Confetti" type="CPUParticles2D" parent="." unique_id=679601382]
 position = Vector2(576, 0)
 emitting = false
 amount = 80
@@ -202,10 +202,9 @@ scale_amount_min = 4.0
 scale_amount_max = 10.0
 color = Color(1, 0.85, 0.2, 1)
 
-[node name="InstructionLabel" type="Label" parent="."]
+[node name="InstructionLabel" type="Label" parent="." unique_id=1229710752]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.0
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -217,7 +216,7 @@ theme_override_font_sizes/font_size = 16
 text = "Hold SPACEBAR to pour — release when the liquid reaches the red line!"
 horizontal_alignment = 1
 
-[node name="TutorialOverlay" type="ColorRect" parent="."]
+[node name="TutorialOverlay" type="ColorRect" parent="." unique_id=661693870]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,7 +225,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.82)
 
-[node name="TutorialPanel" type="VBoxContainer" parent="TutorialOverlay"]
+[node name="TutorialPanel" type="VBoxContainer" parent="TutorialOverlay" unique_id=1909760560]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -241,32 +240,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="HowToLabel" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="HowToLabel" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=1660246182]
+layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "HOW TO PLAY"
 horizontal_alignment = 1
 
-[node name="Divider" type="HSeparator" parent="TutorialOverlay/TutorialPanel"]
+[node name="Divider" type="HSeparator" parent="TutorialOverlay/TutorialPanel" unique_id=1187804872]
+layout_mode = 2
 
-[node name="Step1" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step1" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=1753556432]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "[ SPACE ]   Hold to pour the drink"
 horizontal_alignment = 1
 
-[node name="Step2" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step2" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=592356973]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "[ RELEASE ]   Stop when liquid hits the red line"
 horizontal_alignment = 1
 
-[node name="Step3" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="Step3" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=1592076493]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "3 rounds — 3 lives — don't spill!"
 horizontal_alignment = 1
 
-[node name="Divider2" type="HSeparator" parent="TutorialOverlay/TutorialPanel"]
+[node name="Divider2" type="HSeparator" parent="TutorialOverlay/TutorialPanel" unique_id=1278081272]
+layout_mode = 2
 
-[node name="StartPrompt" type="Label" parent="TutorialOverlay/TutorialPanel"]
+[node name="StartPrompt" type="Label" parent="TutorialOverlay/TutorialPanel" unique_id=2108371197]
+modulate = Color(1, 1, 1, 0.7)
+layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Press any key to start..."
 horizontal_alignment = 1
-modulate = Color(1, 1, 1, 0.7)
