@@ -173,6 +173,9 @@ func win_minigame():
 
 func lose_minigame():
 	is_active = false
+	$Path2D2.play_arc_animation()
+	await get_tree().create_timer(2.0).timeout
+	$Path2D3.play_arc_animation()
 	print("Beer Pong LOST! Alcohol +1")
 	emit_signal("minigame_lost")
 	
