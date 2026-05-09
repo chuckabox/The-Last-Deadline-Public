@@ -507,82 +507,81 @@ vertical_alignment = 1
 
 [node name="BarFrame" type="TileMapLayer" parent="." unique_id=259905234]
 z_index = 2
-position = Vector2(1.4999999, 195.99997)
+position = Vector2(1.4999999, -44.000015)
 rotation = 1.5707964
 scale = Vector2(5, 5)
 tile_map_data = PackedByteArray(0, 0, 3, 0, 254, 255, 1, 0, 30, 0, 12, 0, 0, 0, 3, 0, 255, 255, 1, 0, 30, 0, 13, 0, 0, 0, 4, 0, 254, 255, 1, 0, 31, 0, 12, 0, 0, 0, 4, 0, 255, 255, 1, 0, 31, 0, 13, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="BarFrame2" type="TileMapLayer" parent="." unique_id=808795347]
-position = Vector2(4.385, 212.42001)
+position = Vector2(4.385, -27.579987)
 rotation = 1.5707964
 scale = Vector2(3.76, 5)
 tile_map_data = PackedByteArray(0, 0, 5, 0, 254, 255, 1, 0, 33, 0, 8, 0, 0, 0, 5, 0, 255, 255, 1, 0, 33, 0, 9, 0, 0, 0, 4, 0, 254, 255, 1, 0, 32, 0, 8, 0, 0, 0, 4, 0, 255, 255, 1, 0, 32, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="1st" type="TileMapLayer" parent="." unique_id=108036769]
-position = Vector2(-16, 184)
+position = Vector2(-16, -56)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="2nd" type="TileMapLayer" parent="." unique_id=1671202245]
-position = Vector2(-16, 169)
+position = Vector2(-16, -71)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="3rd" type="TileMapLayer" parent="." unique_id=1136330786]
-position = Vector2(-16, 154)
+position = Vector2(-16, -86)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="4th" type="TileMapLayer" parent="." unique_id=1029955096]
-position = Vector2(-16, 139)
+position = Vector2(-16, -101)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="5th" type="TileMapLayer" parent="." unique_id=697968123]
-position = Vector2(-16, 123)
+position = Vector2(-16, -117)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="6th" type="TileMapLayer" parent="." unique_id=316647486]
-position = Vector2(-16, 108)
+position = Vector2(-16, -132)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="7th" type="TileMapLayer" parent="." unique_id=2061307546]
-position = Vector2(-16, 93)
+position = Vector2(-16, -147)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="8th" type="TileMapLayer" parent="." unique_id=1384285343]
-position = Vector2(-16, 78)
+position = Vector2(-16, -162)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockFrame" type="TileMapLayer" parent="." unique_id=716494234]
-position = Vector2(-64, 0)
+position = Vector2(-444, 0)
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray(0, 0, 15, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 15, 0, 1, 0, 1, 0, 30, 0, 9, 0, 0, 0, 16, 0, 0, 0, 1, 0, 31, 0, 8, 0, 0, 0, 16, 0, 1, 0, 1, 0, 31, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockLabel" type="Label" parent="." unique_id=221180680]
 texture_filter = 1
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -48.0
+offset_left = -55.0
 offset_top = 48.0
-offset_right = 48.0
+offset_right = 64.0
 offset_bottom = 78.769226
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
