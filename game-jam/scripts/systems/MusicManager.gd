@@ -69,6 +69,14 @@ func play_track(track_name: String, fade: bool = true):
 	is_locked_to_track = true
 	var path = ""
 	
+	if track_name == "bar":
+		unlock_music()
+		return
+		
+	if track_name == "bar":
+		unlock_music()
+		return
+		
 	if track_name == "disco":
 		path = disco_playlist[randi() % disco_playlist.size()]
 	elif track_library.has(track_name):

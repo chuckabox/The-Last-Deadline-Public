@@ -69,7 +69,7 @@ func _setup_speech_bubble():
 	if npc_id in special_npcs:
 		var bubble = AnimatedSprite2D.new()
 		bubble.name = "SpeechBubble"
-		bubble.position = Vector2(0, -45)
+		bubble.position = Vector2(0, -20)
 		bubble.z_index = 100
 		add_child(bubble)
 		speech_bubble = bubble
