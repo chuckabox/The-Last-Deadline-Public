@@ -22,7 +22,7 @@ signal dialogue_closed()
 
 func _ready():
 	# Get references (assuming standard paths from the .tscn)
-	speaker_label = get_node_or_null("Content/UpperLayout/DialogueContent/SpeakerLabel")
+	speaker_label = get_node_or_null("Content/UpperLayout/DialogueContent/SpeakerNameBox/SpeakerLabel")
 	dialogue_text = get_node_or_null("Content/UpperLayout/DialogueContent/DialogueText")
 	portrait_rect = get_node_or_null("Content/UpperLayout/PortraitRect")
 	options_container = get_node_or_null("Content/OptionsContainer")

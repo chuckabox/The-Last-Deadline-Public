@@ -574,10 +574,10 @@ tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockLabel" type="Label" parent="." unique_id=221180680]
 texture_filter = 1
-offset_left = 965.0
-offset_top = 44.0
-offset_right = 1056.5386
-offset_bottom = 74.769226
+offset_left = 975.0
+offset_top = 48.0
+offset_right = 1071.0
+offset_bottom = 78.769226
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 32
 text = "11:00 PM"
