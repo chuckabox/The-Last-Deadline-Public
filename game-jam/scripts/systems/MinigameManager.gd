@@ -5,7 +5,7 @@ extends Node
 ## Dialogue/NPC code calls launch(id) and listens for `minigame_finished`.
 
 signal minigame_started(minigame_id: String)
-signal minigame_finished(minigame_id: String, won: bool, cash: int)
+signal minigame_finished(minigame_id: String, won: bool)
 
 const MINIGAME_SCENES := {
 	"beer_pong":        "res://scenes/minigames/BeerPong.tscn",
@@ -55,22 +55,16 @@ func launch(minigame_id: String, parent: Node = null) -> bool:
 	minigame_started.emit(minigame_id)
 	return true
 
-func _on_won(cash_reward: int = 0) -> void:
-	_finish(true, cash_reward)
+func _on_won(_cash_reward: int = 0) -> void:
+	_finish(true)
 
 func _on_lost() -> void:
-	_finish(false, 0)
+	_finish(false)
 
-func _finish(won: bool, cash: int) -> void:
+func _finish(won: bool) -> void:
 	var finished_id := current_id
 	if is_instance_valid(current_instance):
 		current_instance.queue_free()
 	current_instance = null
 	current_id = ""
-
-	if won and cash > 0:
-		var gm := get_node_or_null("/root/GameManager")
-		if gm and gm.has_method("add_cash"):
-			gm.add_cash(cash)
-
-	minigame_finished.emit(finished_id, won, cash)
+	minigame_finished.emit(finished_id, won)
