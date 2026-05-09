@@ -52,35 +52,15 @@ func generate_sequence():
 	player_sequence = []
 	current_sequence = []
 	
-	# 3 stages of drink counts: 4 / 6 / 8
-	var stage_drink_counts = [4, 6, 8]
-	var count_index = mini(difficulty_stage, stage_drink_counts.size() - 1)
-	var sequence_length = stage_drink_counts[count_index]
-	
-	# Base display time scales down per stage: 3.0 / 2.5 / 2.0
-	ticket_display_time = max(2.0, 3.0 - (difficulty_stage * 0.5))
-	
-	# Stage 1+: 10% faster display per stage
-	if difficulty_stage >= 1:
-		ticket_display_time *= 0.9
+	var sequence_length = 4 + difficulty_stage  # 4, 5, 6, 7, 8 drinks
+	ticket_display_time = max(1.0, 3.0 - (difficulty_stage * 0.5)) # 3.0, 2.5, 2.0, 1.5, 1.0
 	
 	for i in range(sequence_length):
 		current_sequence.append(drinks[randi() % drinks.size()])
 	
-	# Build display sequence (may differ from actual sequence for stage 3 swaps)
-	var display_sequence = current_sequence.duplicate()
-	
-	# Stage 3: Every 3rd icon swaps to a random different drink on the ticket
-	if difficulty_stage >= 3:
-		for i in range(display_sequence.size()):
-			if (i + 1) % 3 == 0:
-				var swap_options = drinks.filter(func(d): return d != display_sequence[i])
-				if swap_options.size() > 0:
-					display_sequence[i] = swap_options[randi() % swap_options.size()]
-	
 	# Display sequence
 	var sequence_text = ""
-	for drink in display_sequence:
+	for drink in current_sequence:
 		if difficulty_stage >= 4:
 			# Stage 4: labels gibberish
 			var gibberish = ""
@@ -97,24 +77,12 @@ func generate_sequence():
 	if ticket_label:
 		ticket_label.text = sequence_text
 		
-		# Reset visual state
-		ticket_label.rotation_degrees = 0.0
-		ticket_label.modulate.a = 1.0
-		ticket_label.remove_theme_color_override("font_color")
-		ticket_label.remove_theme_color_override("font_shadow_color")
-		ticket_label.remove_theme_constant_override("shadow_offset_x")
-		ticket_label.remove_theme_constant_override("shadow_offset_y")
-		
-		# Stage 1+: Shake the ticket
-		if difficulty_stage >= 1:
-			_shake_ticket()
-		
-		# Stage 2+: Visual distortion (rotation)
+		# Difficulty visual adjustments
 		if difficulty_stage >= 2:
+			# Stage 2: Visual distortion (rotation)
 			ticket_label.rotation_degrees = randf_range(-15.0, 15.0)
-		
-		# Stage 3+: Blurred text (simulate with transparent color and shadow)
 		if difficulty_stage >= 3:
+			# Stage 3: Blurred text (simulate with transparent color and shadow)
 			ticket_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.3))
 			ticket_label.add_theme_color_override("font_shadow_color", Color(1, 1, 1, 0.2))
 			ticket_label.add_theme_constant_override("shadow_offset_x", 4)
@@ -134,30 +102,10 @@ func generate_sequence():
 	if instruction_label:
 		instruction_label.text = "Remember this order!"
 
-func _shake_ticket():
-	if not ticket_panel:
-		return
-	var base_pos = ticket_panel.position
-	var shake_tween = create_tween()
-	shake_tween.set_loops(3)
-	shake_tween.tween_property(ticket_panel, "position", base_pos + Vector2(4, 0), 0.05)
-	shake_tween.tween_property(ticket_panel, "position", base_pos + Vector2(-4, 0), 0.05)
-	shake_tween.tween_property(ticket_panel, "position", base_pos + Vector2(0, 3), 0.05)
-	shake_tween.tween_property(ticket_panel, "position", base_pos + Vector2(0, -3), 0.05)
-	shake_tween.tween_property(ticket_panel, "position", base_pos, 0.05)
-
 func show_ticket_timer():
 	await get_tree().create_timer(ticket_display_time).timeout
 	if ticket_panel:
-		# Stage 2+: Fade out the ticket instead of instantly hiding
-		if difficulty_stage >= 2:
-			var fade_tween = create_tween()
-			fade_tween.tween_property(ticket_panel, "modulate:a", 0.0, 0.5)
-			await fade_tween.finished
-			ticket_panel.hide()
-			ticket_panel.modulate.a = 1.0
-		else:
-			ticket_panel.hide()
+		ticket_panel.hide()
 	if instruction_label:
 		instruction_label.text = "Click the drinks in order!"
 
