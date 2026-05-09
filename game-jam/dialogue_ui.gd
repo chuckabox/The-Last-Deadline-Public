@@ -2,9 +2,9 @@ extends Control
 
 # Reference the nodes we just created
 @onready var text_label = $DialogueBox/DialogueText
-@onready var btn_stop = $DialogueBox/VBoxContainer/OptionStop
-@onready var btn_drunk = $DialogueBox/VBoxContainer/OptionGibberish
-@onready var btn_next = $DialogueBox/VBoxContainer/OptionProgress
+@onready var btn_stop = $DialogueBox/OptionsContainer/OptionStop
+@onready var btn_drunk = $DialogueBox/OptionsContainer/OptionGibberish
+@onready var btn_next = $DialogueBox/OptionsContainer/OptionProgress
 
 var drunk_lines = ["I... I love you, man.", "Where's the floor?", "Is that a cat?"]
 
