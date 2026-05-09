@@ -177,7 +177,7 @@ func _build_text_screen_display() -> void:
 	_text_screen_container.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_text_screen_container.grow_vertical = Control.GROW_DIRECTION_BOTH
 	_text_screen_container.alignment = BoxContainer.ALIGNMENT_CENTER
-	_text_screen_container.theme_override_constants_separation = 20
+	_text_screen_container.add_theme_constant_override("separation", 20)
 	_text_screen_overlay.add_child(_text_screen_container)
 	
 	# Add the click indicator to this too
@@ -645,6 +645,12 @@ func _on_cutscene_clicked() -> void:
 			show_text_screen(lines, func(): em.perform_transition(ending_id, "", ""))
 		return
 
+	if next_node == "exit" or next_node == "":
+		close_dialogue()
+	else:
+		current_node_name = next_node
+		display_node()
+
 func _get_ending_text_lines(ending_id: String) -> Array:
 	match ending_id:
 		"blackout":
@@ -683,12 +689,6 @@ func _get_ending_text_lines(ending_id: String) -> Array:
 				"You did it."
 			]
 	return ["You reached an ending. Can you get them all?"]
-
-	if next_node == "exit" or next_node == "":
-		close_dialogue()
-	else:
-		current_node_name = next_node
-		display_node()
 
 func close_dialogue():
 	_stop_bust()
