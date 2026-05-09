@@ -11419,3 +11419,12 @@ script = ExtResource("22_door")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BarDoor" unique_id=999000444]
 shape = SubResource("RectangleShape2D_door")
+
+[node name="VIPDoor" type="Area2D" parent="." unique_id=999000555]
+z_index = 10
+position = Vector2(1080, 100)
+script = ExtResource("22_door")
+target_room = "vip"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VIPDoor" unique_id=999000666]
+shape = SubResource("RectangleShape2D_door")
