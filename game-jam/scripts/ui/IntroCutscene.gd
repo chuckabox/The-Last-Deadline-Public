@@ -66,8 +66,8 @@ func _run() -> void:
 
 	await get_tree().create_timer(1.6).timeout
 
-	# Dim the ambient text so it sits behind the dialogue panel.
-	create_tween().tween_property(ambient_label, "modulate:a", 0.25, 0.4)
+	# Fade out the ambient text so it doesn't overlap with the dialogue.
+	create_tween().tween_property(ambient_label, "modulate:a", 0.0, 0.4)
 
 	if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
 		dialogue_ui.dialogue_closed.connect(_on_dialogue_closed, CONNECT_ONE_SHOT)
