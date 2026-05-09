@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dqs52as6cntg7"]
+[gd_scene format=4 uid="uid://d14eeqx72um8u"]
 
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="1_va8kr"]
 [ext_resource type="Texture2D" uid="uid://ptgfxkqk2ar1" path="res://assets/tilesets/bar/2.png" id="2_u30at"]
@@ -8,17 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://q1at76dkcoju" path="res://assets/tilesets/bar/6.png" id="6_7fquq"]
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="7_suddt"]
 [ext_resource type="Texture2D" uid="uid://6fl4sa72uukf" path="res://assets/kenney_particle-pack/PNG (Transparent)/smoke_05.png" id="8_2s5rb"]
-[ext_resource type="Script" path="res://scenes/point_light_2d.gd" id="9_imjrb"]
-[ext_resource type="Script" path="res://scenes/point_light_2d_2.gd" id="10_c7qf2"]
-[ext_resource type="Script" path="res://scenes/point_light_2d_4.gd" id="12_1rojm"]
-[ext_resource type="Script" path="res://scenes/point_light_2d_6.gd" id="14_gcwxk"]
+[ext_resource type="Script" uid="uid://dbps5oyorlwgh" path="res://scenes/point_light_2d.gd" id="9_imjrb"]
+[ext_resource type="Script" uid="uid://b6yau14arbl4h" path="res://scenes/point_light_2d_2.gd" id="10_c7qf2"]
+[ext_resource type="Script" uid="uid://cgn7jiehhjyyw" path="res://scenes/point_light_2d_4.gd" id="12_1rojm"]
+[ext_resource type="Script" uid="uid://4qwu3uyi5rpf" path="res://scenes/point_light_2d_6.gd" id="14_gcwxk"]
 [ext_resource type="Texture2D" uid="uid://dc8lhu4hskof7" path="res://assets/kenney_particle-pack/PNG (Transparent)/star_05.png" id="15_imjrb"]
 [ext_resource type="Script" path="res://scenes/point_light_2d_12.gd" id="16_k421b"]
 [ext_resource type="Script" path="res://scenes/point_light_2d_13.gd" id="17_1rojm"]
-[ext_resource type="PackedScene" path="res://scenes/zain.tscn" id="18_1rojm"]
-[ext_resource type="PackedScene" path="res://scenes/DJ.tscn" id="19_v1lo0"]
-[ext_resource type="PackedScene" path="res://scenes/tyreese.tscn" id="20_gcwxk"]
-[ext_resource type="PackedScene" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
+[ext_resource type="PackedScene" uid="uid://basfcys1bolx8" path="res://scenes/zain.tscn" id="18_1rojm"]
+[ext_resource type="PackedScene" uid="uid://dsdsf1prci8fl" path="res://scenes/DJ.tscn" id="19_v1lo0"]
+[ext_resource type="PackedScene" uid="uid://c10kwm2oxdcit" path="res://scenes/tyreese.tscn" id="20_gcwxk"]
+[ext_resource type="PackedScene" uid="uid://cbu4a1vh76l0h" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
 texture = ExtResource("1_va8kr")
@@ -11382,7 +11382,8 @@ scale = Vector2(1.3, 1.3)
 
 [node name="DJ" parent="." unique_id=1338150573 instance=ExtResource("19_v1lo0")]
 z_index = 5
-position = Vector2(998, 355.93222)
+position = Vector2(1003.00006, 344.96506)
+scale = Vector2(1.3, 1.3)
 
 [node name="CharacterBody2D" parent="." unique_id=1031433549 instance=ExtResource("21_uf5x5")]
 z_index = 1
