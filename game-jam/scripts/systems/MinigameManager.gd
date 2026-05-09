@@ -11,7 +11,6 @@ const MINIGAME_SCENES := {
 	"beer_pong":        "res://scenes/minigames/BeerPong.tscn",
 	"drink_pour":       "res://scenes/minigames/DrinkPour.tscn",
 	"dance_rhythm":     "res://scenes/minigames/DanceRhythm.tscn",
-	"champaigne_pop":   "res://scenes/minigames/ChampaignePop.tscn",
 	"bartender_memory": "res://scenes/minigames/BartenderMemory.tscn",
 }
 
