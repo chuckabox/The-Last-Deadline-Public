@@ -12,7 +12,7 @@ var start_hour: int = 11
 var start_minute: int = 50
 
 # 10 minutes total (11:50 to 12:00)
-var warning_yellow_time: float = 8.0 * 60.0  # 11:58 PM
+var warning_yellow_time: float = 5.0 * 60.0  # 11:55 PM
 var warning_red_time: float = 9.0 * 60.0     # 11:59 PM
 var deadline_time: float = 10.0 * 60.0       # 12:00 AM
 

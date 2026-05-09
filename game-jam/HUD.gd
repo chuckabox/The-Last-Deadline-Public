@@ -122,19 +122,38 @@ func _apply_stage_effects(new_stage: int) -> void:
 	if new_stage == 4:
 		warning_control.show()
 
+var _clock_tween: Tween
+var _clock_base_pos: Vector2
+
 func _on_time_updated(time_string: String):
 	clock_label.text = time_string
+	if _clock_base_pos == Vector2.ZERO:
+		_clock_base_pos = clock_label.position
 
 func _on_warning_yellow():
 	clock_label.add_theme_color_override("font_color", Color.YELLOW)
+	if _clock_tween:
+		_clock_tween.kill()
+	_clock_tween = create_tween()
+	_clock_tween.set_loops()
+	_clock_tween.tween_property(clock_label, "scale", Vector2(1.1, 1.1), 0.5).set_trans(Tween.TRANS_SINE)
+	_clock_tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.5).set_trans(Tween.TRANS_SINE)
 
 func _on_warning_red():
 	clock_label.add_theme_color_override("font_color", Color.RED)
-	# Add pulse animation
-	var tween = create_tween()
-	tween.set_loops()
-	tween.tween_property(clock_label, "scale", Vector2(1.2, 1.2), 0.3)
-	tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.3)
+	if _clock_tween:
+		_clock_tween.kill()
+	clock_label.scale = Vector2(1.0, 1.0)
+	
+	_clock_tween = create_tween()
+	_clock_tween.set_loops()
+	var base_pos = _clock_base_pos if _clock_base_pos != Vector2.ZERO else clock_label.position
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(3, 3), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(-3, -2), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(2, -3), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(-2, 3), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos, 0.05)
+	_clock_tween.tween_interval(0.1)
 
 func _current_alcohol_value() -> float:
 	if alcohol_system and "alcohol" in alcohol_system:
