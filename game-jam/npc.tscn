@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ccmunje7y7jkc"]
+
+[ext_resource type="Script" uid="uid://dxgx4cdgl5ubp" path="res://scripts/npcs/NPCBase.gd" id="1_ideak"]
+
+[node name="Node2D" type="Node2D" unique_id=1171251560]
+script = ExtResource("1_ideak")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=583212716]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713354425]
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=697040003]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1789403056]
+
+[node name="IconLabel" type="Label" parent="." unique_id=1559629547]
+offset_right = 40.0
+offset_bottom = 23.0
