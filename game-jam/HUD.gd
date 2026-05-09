@@ -11,6 +11,10 @@ const STAGE_COLORS := {
 	4: Color.BLACK
 }
 
+# Tick mark positions (fraction of bar width) — match AlcoholSystem stage entry
+# thresholds: Buzz 0.25, Tunnel 0.50, Spin 0.75, Blackout 0.90.
+const STAGE_TICK_THRESHOLDS: Array[float] = [0.25, 0.50, 0.75, 0.90]
+
 # References
 var alcohol_meter: ProgressBar
 var alcohol_stage_label: Label
@@ -56,10 +60,36 @@ func _ready():
 	_fill_style.bg_color = STAGE_COLORS[0]
 	alcohol_meter.add_theme_stylebox_override("fill", _fill_style)
 
+	_build_stage_ticks()
+
 	# Initial fill is instant — no animation on game start.
 	_set_meter_value(_current_alcohol_value(), false)
 
 	print("HUD initialized")
+
+## Replaces the legacy evenly-spaced VSeparator row (which landed at the wrong
+## fractions) with thin vertical tick marks at the actual stage entry thresholds.
+func _build_stage_ticks() -> void:
+	if not alcohol_meter:
+		return
+
+	var legacy := get_node_or_null("Container/AlcoholMeterPanel/HBoxContainer")
+	if legacy:
+		legacy.visible = false
+
+	for t: float in STAGE_TICK_THRESHOLDS:
+		var tick := ColorRect.new()
+		tick.color = Color(1, 1, 1, 0.5)
+		tick.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		tick.anchor_left = t
+		tick.anchor_right = t
+		tick.anchor_top = 0.0
+		tick.anchor_bottom = 1.0
+		tick.offset_left = -1.0
+		tick.offset_right = 1.0
+		tick.offset_top = 0.0
+		tick.offset_bottom = 0.0
+		alcohol_meter.add_child(tick)
 
 func _on_alcohol_changed(value: float, _stage: int) -> void:
 	# Meter fills first (animated). Stage effects come later in _on_stage_changed.
