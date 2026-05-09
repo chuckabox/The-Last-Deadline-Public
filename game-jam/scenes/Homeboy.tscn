@@ -89,7 +89,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1340862067]
+[node name="Homeboy" type="CharacterBody2D" unique_id=1340862067]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=61515323]
 position = Vector2(0, 5)
