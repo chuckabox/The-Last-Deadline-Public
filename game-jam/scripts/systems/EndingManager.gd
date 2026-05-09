@@ -61,6 +61,11 @@ func trigger_ending(ending_id: String) -> void:
 	var time_manager = get_node_or_null("/root/TimeManager")
 	if time_manager and time_manager.has_method("pause_time"):
 		time_manager.pause_time()
+		
+	# Clear drunk visual effects
+	var alcohol_system = get_node_or_null("/root/AlcoholSystem")
+	if alcohol_system and alcohol_system.has_method("reset"):
+		alcohol_system.reset()
 	
 	# If no dialogue is open, we can show it immediately via DialogueUI
 	var dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
@@ -88,22 +93,22 @@ func trigger_ending(ending_id: String) -> void:
 			
 		ENDING_BLACKOUT:
 			title = "The Blackout"
-			description = "You woke up on a lawn at 8:00 AM with 50 missed calls."
+			description = "You woke up on a lawn at 8:00 AM with 16 missed calls."
 			perform_transition(ending_id, title, description)
 			
 		ENDING_DRINK:
 			title = "The Drink Branch"
-			description = "Everything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone."
+			description = "Everything went fuzzy. You woke up at 2:00AM on the streets. The deadline is gone."
 			perform_transition(ending_id, title, description)
 			
 		ENDING_JOB:
 			title = "The Job Offer"
-			description = "You become the new Floor Manager. You have money, but your degree is abandoned."
+			description = "You take the Job offer. This is objectively the worst ending."
 			perform_transition(ending_id, title, description)
 			
 		ENDING_ACADEMIC:
 			title = "Academic Weapon"
-			description = "Assignment 2 due in 6 hours."
+			description = "After successfully submitting your assignment despite all the odds, you head to the real club... Your room."
 			perform_transition(ending_id, title, description)
 	
 	ending_triggered.emit(ending_id, title, description)

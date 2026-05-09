@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bfxtccebhjypl"]
 
-[ext_resource type="Script" path="res://scenes/endings/blackout_ending/Ending_Blackout.gd" id="1_eb"]
+[ext_resource type="Script" uid="uid://bfxtccebhjypm" path="res://scenes/endings/blackout_ending/Ending_Blackout.gd" id="1_eb"]
+[ext_resource type="Texture2D" uid="uid://bu1gf21k4hlr7" path="res://assets/endings/blackout.png" id="2_img"]
 
-[node name="Ending_Blackout" type="Control"]
+[node name="Ending_Blackout" type="Control" unique_id=255771528]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eb")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1252832037]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,20 +21,33 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextLabel" type="Label" parent="."]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2091675097]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
+anchors_preset = -1
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -100.0
-offset_right = 400.0
-offset_bottom = 100.0
-grow_horizontal = 2
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -323.0
+offset_right = 581.0
+offset_bottom = 325.0
 grow_vertical = 2
+texture = ExtResource("2_img")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextLabel" type="Label" parent="." unique_id=1218580]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -226.0
+offset_top = -311.0
+offset_right = 350.0
+offset_bottom = -111.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 26
 text = "Everything went black.
 
@@ -41,3 +55,29 @@ text = "Everything went black.
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=525139833]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -200.0
+offset_right = -100.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Buttons" unique_id=321425307]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Retry Night"
+
+[node name="MainMenuButton" type="Button" parent="Buttons" unique_id=1640568937]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Return to Main Menu"
