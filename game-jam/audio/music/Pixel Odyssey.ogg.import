@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cixdylhbsgycj"
+path="res://.godot/imported/Pixel Odyssey.ogg-ff1d00f3c1fc4a0f2750263b73fb3676.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Pixel Odyssey.ogg"
+dest_files=["res://.godot/imported/Pixel Odyssey.ogg-ff1d00f3c1fc4a0f2750263b73fb3676.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

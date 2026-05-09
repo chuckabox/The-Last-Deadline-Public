@@ -6,19 +6,32 @@ extends AudioStreamPlayer
 const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 
 
-# Music tracks by stage
+# Music tracks by stage (dynamic alcohol system)
 @export var music_by_stage: Dictionary = {
 	0: "res://audio/music/Pixel Magic.ogg",
-	1: "res://audio/music/stage_1_buzz.ogg",
-	2: "res://audio/music/stage_2_hype.ogg",
-	3: "res://audio/music/stage_3_chaos.ogg",
-	4: "res://audio/music/stage_4_distorted.ogg"
+	1: "res://audio/music/Pixelate.ogg",
+	2: "res://audio/music/Pixel Heart.ogg",
+	3: "res://audio/music/Pixel Odyssey.ogg",
+	4: "res://audio/music/30 Null and Void.ogg"
+}
+
+# Specific tracks for rooms/endings
+@export var track_library: Dictionary = {
+	"main_menu": "res://audio/music/Pixel Breeze.ogg",
+	"disco": "res://audio/music/Pixel Pulse.ogg",
+	"vip": "res://audio/music/Pixel Soundscape.ogg",
+	"academic_weapon": "res://audio/music/Victory Arc.ogg",
+	"blackout": "res://audio/music/30 Null and Void.ogg",
+	"procrastinator": "res://audio/music/29 Tyrant_s Bounty.ogg",
+	"job_offer": "res://audio/music/Epic Quest.ogg",
+	"credits": "res://audio/music/Credits Theme.ogg"
 }
 
 # References
 var alcohol_system: Node
 var current_stage = -1
 var is_crossfading = false
+var is_locked_to_track = false
 
 # Crossfade settings
 @export var crossfade_duration: float = 1.5
@@ -40,9 +53,51 @@ func _ready():
 	print("MusicManager initialized")
 
 func _on_stage_changed(new_stage: int):
-	if new_stage != current_stage:
+	if new_stage != current_stage and not is_locked_to_track:
 		# Trigger the transition to the new stage's theme
 		crossfade_to_stage(new_stage)
+
+func play_track(track_name: String, fade: bool = true):
+	if not track_library.has(track_name):
+		print("ERROR: Track '%s' not found in library" % track_name)
+		return
+	
+	is_locked_to_track = true
+	var path = track_library[track_name]
+	
+	if fade:
+		_fade_to_path(path)
+	else:
+		_play_path(path)
+
+func unlock_music():
+	is_locked_to_track = false
+	play_music_for_stage(current_stage)
+
+func _fade_to_path(path: String):
+	if is_crossfading: return
+	is_crossfading = true
+	
+	var tween_out = create_tween()
+	tween_out.tween_property(self, "volume_db", -80.0, crossfade_duration / 2.0)
+	await tween_out.finished
+	
+	_play_path(path)
+	
+	volume_db = -80.0
+	var tween_in = create_tween()
+	tween_in.tween_property(self, "volume_db", -10.0, crossfade_duration / 2.0)
+	await tween_in.finished
+	is_crossfading = false
+
+func _play_path(path: String):
+	var track_path := _resolve_audio_path(path)
+	if track_path == "": return
+	
+	var audio_file = load(track_path)
+	if audio_file:
+		stream = audio_file
+		play()
 
 func crossfade_to_stage(stage: int):
 	if is_crossfading:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bthjjpk4ll1x1"
+path="res://.godot/imported/Victory Arc.ogg-284c1df4617a794617a2dddcfb7999c5.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Victory Arc.ogg"
+dest_files=["res://.godot/imported/Victory Arc.ogg-284c1df4617a794617a2dddcfb7999c5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

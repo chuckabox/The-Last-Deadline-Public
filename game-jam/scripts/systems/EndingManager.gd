@@ -67,6 +67,16 @@ func trigger_ending(ending_id: String) -> void:
 	if dialogue_ui and not dialogue_ui.visible:
 		dialogue_ui.show_ending_cutscene(ending_id)
 		
+	# Play ending music
+	var music = get_node_or_null("/root/MusicManager")
+	if music:
+		match ending_id:
+			ENDING_PROCRASTINATOR: music.play_track("procrastinator")
+			ENDING_BLACKOUT: music.play_track("blackout")
+			ENDING_DRINK: music.play_track("blackout") # Use blackout for drink failure
+			ENDING_JOB: music.play_track("job_offer")
+			ENDING_ACADEMIC: music.play_track("academic_weapon")
+		
 	var title = ""
 	var description = ""
 	

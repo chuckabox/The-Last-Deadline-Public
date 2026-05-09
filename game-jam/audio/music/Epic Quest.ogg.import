@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bkcdq6bqg8d37"
+path="res://.godot/imported/Epic Quest.ogg-111f7f1cd158d885709ded87013da74b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Epic Quest.ogg"
+dest_files=["res://.godot/imported/Epic Quest.ogg-111f7f1cd158d885709ded87013da74b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
