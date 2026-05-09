@@ -7,6 +7,14 @@ var perfect_zone_width = 0.15
 var is_released = false
 var difficulty_stage = 0
 
+# Difficulty effect state
+var zone_target = 0.7  # For random zone movement (stage 2)
+var zone_move_cooldown = 0.0
+var shake_intensity = 0.0
+var transparent_timer = 0.0
+var is_transparent_pulse = false
+var base_position: Vector2
+
 # References
 var bottle_sprite: Sprite2D
 var pressure_fill: ColorRect
@@ -36,16 +44,49 @@ func _ready():
 	
 	if instruction_label:
 		instruction_label.text = "SPAM SPACEBAR to build pressure, release in the green zone!"
+	
+	# Store base position for shake effects
+	if meter_panel:
+		base_position = meter_panel.position
+	
 	print("Champagne Pop mini-game started")
 
 func _physics_process(delta):
 	if is_released:
 		return
 		
-	# Update perfect zone position (moves/shakes based on time)
-	# Difficulty: moves faster at higher alcohol stages
-	var zone_speed = 0.005 + (difficulty_stage * 0.003)
-	perfect_zone_position = 0.65 + sin(Time.get_ticks_msec() * zone_speed) * 0.2
+	# Update perfect zone position based on difficulty stage
+	if difficulty_stage == 0:
+		# Stage 0: Steady, wide, centered zone
+		perfect_zone_position = 0.7
+	elif difficulty_stage == 1:
+		# Stage 1: Slow sinusoidal movement
+		var zone_speed = 0.005
+		perfect_zone_position = 0.65 + sin(Time.get_ticks_msec() * zone_speed) * 0.15
+	elif difficulty_stage >= 2:
+		# Stage 2+: Zone moves randomly (lerp toward random targets)
+		zone_move_cooldown -= delta
+		if zone_move_cooldown <= 0:
+			zone_target = randf_range(0.45, 0.85)
+			zone_move_cooldown = randf_range(0.6, 1.5)
+		var lerp_speed = 2.0 + difficulty_stage * 0.5
+		perfect_zone_position = lerpf(perfect_zone_position, zone_target, lerp_speed * delta)
+	
+	# Stage 1+: UI shake
+	if difficulty_stage >= 1 and meter_panel:
+		shake_intensity = 2.0 + difficulty_stage * 1.0
+		# Stage 4: Violent shake
+		if difficulty_stage >= 4:
+			shake_intensity = 8.0
+		meter_panel.position = base_position + Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
+	
+	# Stage 4: UI pulses transparent
+	if difficulty_stage >= 4:
+		transparent_timer -= delta
+		if transparent_timer <= 0:
+			is_transparent_pulse = not is_transparent_pulse
+			transparent_timer = randf_range(0.3, 0.7)
+		modulate.a = 0.3 if is_transparent_pulse else 1.0
 	
 	# Update meter visuals
 	update_meter()
@@ -60,8 +101,9 @@ func _input(event):
 		return
 	
 	if event.is_action_pressed("ui_select"): # Spacebar
-		# Mash adds pressure (slightly less gain at higher difficulty)
-		var pressure_gain = max(0.03, 0.09 - (difficulty_stage * 0.01))
+		# Mash adds pressure
+		# Stage 1+: 10% more mashes needed (reduce gain by ~10% per stage)
+		var pressure_gain = max(0.02, 0.09 - (difficulty_stage * 0.009))
 		pressure = min(1.0, pressure + pressure_gain)
 		if status_label:
 			status_label.text = "Pressure: %.0f%%" % (pressure * 100)
