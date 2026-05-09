@@ -62,6 +62,10 @@ func trigger_global_event(event_name: String) -> void:
 	match event_name:
 		"increaseAlcohol":
 			increase_alcohol(0.25) # Default penalty for dialogue choices/losses
+		"transitionToOffice":
+			var rtm = get_node_or_null("/root/RoomTransitionManager")
+			if rtm and rtm.has_method("change_room_iris"):
+				rtm.change_room_iris("office")
 		_:
 			if event_name in _ENDING_IDS:
 				_trigger_ending(event_name)

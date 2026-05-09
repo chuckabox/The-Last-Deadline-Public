@@ -47,9 +47,9 @@
         ]
       },
       "pourWin": {
-        "text": "Great pour. Hey, I'm feeling generous. Sit. Drink this champagne with us. Grab a bottle from the bar.",
+        "text": "Great pour. Hey, I'm feeling generous. Grab that bottle on the table and pour yourself a glass. Let's see how steady your hands are.",
         "options": [
-          { "text": "[Go to bar & return]", "next": "exit" }
+          { "text": "Alright.", "next": "exit" }
         ]
       },
       "pourLose": {
@@ -67,9 +67,9 @@
         ]
       },
       "popWin": {
-        "text": "Hell of a pop! You've got style. Bouncer! Take this guy to see the Boss.",
+        "text": "Hell of a pop! You've got style. Go on back and see the Boss.",
         "options": [
-          { "text": "[Follow Bouncer]", "next": "exit" }
+          { "text": "[Go to Office]", "next": "exit", "triggerGlobal": "transitionToOffice" }
         ]
       },
       "popLose": {
