@@ -53,8 +53,11 @@ func _ready():
 	_setup_prompt()
 	
 	# Check if quest already completed
-	if game_manager and "npc_completed" in game_manager:
-		has_completed_quest = game_manager.npc_completed.get(npc_id, false)
+	if game_manager:
+		if game_manager.has_method("is_npc_completed"):
+			has_completed_quest = game_manager.is_npc_completed(npc_id)
+		elif "npc_completed_status" in game_manager:
+			has_completed_quest = game_manager.npc_completed_status.get(npc_id, false)
 	
 	print("NPC '%s' initialized" % npc_id)
 
