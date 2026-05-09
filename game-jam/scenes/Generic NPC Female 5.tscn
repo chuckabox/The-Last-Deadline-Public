@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bgne0uufdausf"]
+
+[ext_resource type="Texture2D" uid="uid://db74ls5pf3lkb" path="res://assets/npc/genericNPCs/genericFemaleFive.png" id="1_c2v2j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_prid0"]
+radius = 17.0
+height = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_864ki"]
+atlas = ExtResource("1_c2v2j")
+region = Rect2(0, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvign"]
+atlas = ExtResource("1_c2v2j")
+region = Rect2(64, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u80id"]
+atlas = ExtResource("1_c2v2j")
+region = Rect2(128, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da7q7"]
+atlas = ExtResource("1_c2v2j")
+region = Rect2(192, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dehf"]
+atlas = ExtResource("1_c2v2j")
+region = Rect2(256, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1cvj"]
+atlas = ExtResource("1_c2v2j")
+region = Rect2(320, 768, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1klxs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_864ki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvign")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u80id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da7q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dehf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1cvj")
+}],
+"loop": true,
+"name": &"dance",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1077800405]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1309625039]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_prid0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1771851677]
+sprite_frames = SubResource("SpriteFrames_1klxs")
+animation = &"new_animation"
