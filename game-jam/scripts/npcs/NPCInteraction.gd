@@ -14,7 +14,7 @@ var can_interact = true
 var is_interacting = false
 var has_completed_quest = false
 var prompt_sprite: Sprite2D
-var speech_bubble: Label
+var speech_bubble: CanvasItem
 
 # References
 var dialogue_ui: Panel
@@ -62,16 +62,27 @@ func _setup_speech_bubble():
 	if has_node("SpeechBubble"):
 		return
 	
-	var bubble = Label.new()
-	bubble.name = "SpeechBubble"
-	bubble.text = "〜〜〜"
-	bubble.position = Vector2(-24, -90)
-	bubble.z_index = 100
-	bubble.add_theme_font_size_override("font_size", 16)
-	bubble.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-	add_child(bubble)
-	speech_bubble = bubble
-	speech_bubble.z_index = 100
+	var special_npcs = ["bartender", "dj", "fat_chud", "frat_bro", "boss"]
+	
+	if npc_id in special_npcs:
+		var bubble = Sprite2D.new()
+		bubble.name = "SpeechBubble"
+		bubble.texture = load("res://game-jam/assets/npc/tiny-speech-indicators/exclamation.gif")
+		bubble.position = Vector2(0, -70)
+		bubble.scale = Vector2(2, 2)
+		bubble.z_index = 100
+		add_child(bubble)
+		speech_bubble = bubble
+	else:
+		var bubble = Label.new()
+		bubble.name = "SpeechBubble"
+		bubble.text = "〜〜〜"
+		bubble.position = Vector2(-24, -90)
+		bubble.z_index = 100
+		bubble.add_theme_font_size_override("font_size", 16)
+		bubble.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+		add_child(bubble)
+		speech_bubble = bubble
 
 func _setup_prompt():
 	if has_node("InteractionPrompt"):
