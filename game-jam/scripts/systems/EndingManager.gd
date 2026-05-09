@@ -74,22 +74,22 @@ func trigger_ending(ending_id: String) -> void:
 		ENDING_PROCRASTINATOR:
 			title = "The Procrastinator"
 			description = "Grade: 0% - Feedback: Late submission not accepted"
-			_perform_transition(ending_id, title, description)
+			perform_transition(ending_id, title, description)
 			
 		ENDING_BLACKOUT:
 			title = "The Blackout"
 			description = "You woke up on a lawn at 8:00 AM with 50 missed calls."
-			_perform_transition(ending_id, title, description)
+			perform_transition(ending_id, title, description)
 			
 		ENDING_DRINK:
 			title = "The Drink Branch"
 			description = "Everything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone."
-			_perform_transition(ending_id, title, description)
+			perform_transition(ending_id, title, description)
 			
 		ENDING_JOB:
 			title = "The Job Offer"
 			description = "You become the new Floor Manager. You have money, but your degree is abandoned."
-			_perform_transition(ending_id, title, description)
+			perform_transition(ending_id, title, description)
 			
 		ENDING_ACADEMIC:
 			title = "Academic Weapon"
