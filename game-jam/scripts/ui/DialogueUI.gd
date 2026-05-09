@@ -295,6 +295,22 @@ func _apply_option(option: Dictionary) -> void:
 		if global_state:
 			global_state.set_flags_from_dict(option["setFlag"])
 
+	# Handle difficulty-based alcohol increases
+	var option_text = option.get("text", "")
+	if "(EASY)" in option_text:
+		# EASY = no alcohol
+		pass
+	elif "(MEDIUM)" in option_text:
+		# MEDIUM = 1 alcohol
+		var alcohol_system = get_node_or_null("/root/AlcoholSystem")
+		if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+			alcohol_system.drink_alcohol(0.2)
+	elif "(HARD)" in option_text:
+		# HARD = 2 alcohol
+		var alcohol_system = get_node_or_null("/root/AlcoholSystem")
+		if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+			alcohol_system.drink_alcohol(0.4)
+
 	if option.has("triggerGlobal"):
 		var global_state = get_node_or_null("/root/GlobalStateManager")
 		if global_state:
