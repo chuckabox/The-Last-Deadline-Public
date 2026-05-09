@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cbsk7ns78oh02"]
+
+[ext_resource type="Script" uid="uid://cl53k05d14jel" path="res://dialogue_ui.gd" id="1_njptv"]
+
+[node name="DialogueUI" type="Control" unique_id=507712020]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_njptv")
+
+[node name="DialogueBox" type="TextureRect" parent="." unique_id=856145615]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=1396347081]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=954123424]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionStop" type="Button" parent="VBoxContainer" unique_id=818132771]
+layout_mode = 2
+
+[node name="OptionGibberish" type="Button" parent="VBoxContainer" unique_id=1233763413]
+layout_mode = 2
+text = "tt"
+
+[node name="OptionProgress" type="Button" parent="VBoxContainer" unique_id=680632637]
+layout_mode = 2

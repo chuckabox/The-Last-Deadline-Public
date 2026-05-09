@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dp6ex4ugy17bt" path="res://scripts/npcs/NPC_FratBro.gd" id="1_7myf5"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_7myf5"]
+
 [node name="Node2D" type="Node2D" unique_id=1855459020]
 script = ExtResource("1_7myf5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1418262877]
+sprite_frames = SubResource("SpriteFrames_7myf5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1315320222]
 
