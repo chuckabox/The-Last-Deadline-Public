@@ -96,7 +96,7 @@ func _resolve_audio_path(base_path: String) -> String:
 	if FileAccess.file_exists(base_path):
 		return base_path
 	var stem := base_path.get_basename()
-	for ext in SUPPORTED_AUDIO_EXTENSIONS:
+	for ext: String in SUPPORTED_AUDIO_EXTENSIONS:
 		var candidate := stem + ext
 		if FileAccess.file_exists(candidate):
 			return candidate
