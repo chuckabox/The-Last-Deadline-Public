@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d8lupj7lvdmf"
-path="res://.godot/imported/Screenshot_2026-5-8_221842139.png-07ec583ca18980f888b9f1ba46037ea2.ctex"
+uid="uid://cbx7bctv7urqk"
+path="res://.godot/imported/character-spritesheet.png-7d092f819f8899c1fd42b4d1d306d117.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/club_boss/bust/Screenshot_2026-5-8_221842139.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_221842139.png-07ec583ca18980f888b9f1ba46037ea2.ctex"]
+source_file="res://assets/npc/boss/sprite_sheet/character-spritesheet.png"
+dest_files=["res://.godot/imported/character-spritesheet.png-7d092f819f8899c1fd42b4d1d306d117.ctex"]
 
 [params]
 

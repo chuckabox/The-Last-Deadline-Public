@@ -10,13 +10,37 @@ extends Panel
 const BUST_ROOT := "res://assets/npc/"
 const BUST_SUBPATH := "/bust/"
 const BUST_EXTENSIONS: Array[String] = [".png", ".jpg", ".jpeg", ".webp"]
-const BUST_FRAME_INTERVAL := 0.15  # seconds per frame
-# Dialogue NPC id (what's passed to show_dialogue) -> assets/npc/<folder> name.
-# Anything not listed falls back to using the npc_id itself.
-const BUST_FOR_NPC := {
-	"friend": "homeboy",
-	"boss": "club_boss",
-}
+# Optional override: dialogue NPC id -> assets/npc/<folder> name when the
+# folder name doesn't match the NPC id. Empty by default — folder names match.
+const BUST_FOR_NPC := {}
+
+# ----- BUST DISPLAY (editor-tunable) -----
+## Width / height (px) of the bust area centred above the dialogue panel.
+## Default is large enough to fill most of the screen above the panel.
+@export var bust_size: Vector2 = Vector2(720, 800):
+	set(v):
+		bust_size = v
+		_apply_bust_layout()
+
+## Gap (px) between the bust's bottom edge and the dialogue panel's top edge.
+## Default 0 = the bust touches the dialogue panel directly.
+@export var bust_gap_above_panel: float = 0.0:
+	set(v):
+		bust_gap_above_panel = v
+		_apply_bust_layout()
+
+## Horizontal nudge (px) — positive moves the bust right of centre.
+@export var bust_offset_x: float = 0.0:
+	set(v):
+		bust_offset_x = v
+		_apply_bust_layout()
+
+## Seconds per frame while cycling the bust to fake a talking animation.
+@export var bust_frame_interval: float = 0.15:
+	set(v):
+		bust_frame_interval = v
+		if _bust_timer:
+			_bust_timer.wait_time = max(0.01, v)
 
 # References
 var speaker_label: Label
@@ -73,25 +97,34 @@ func _build_bust_display() -> void:
 	bust_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bust_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	bust_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# Centred horizontally on the panel; sits above the panel's top edge.
+	# Anchored to the panel's top-centre; size driven by bust_size / bust_gap_above_panel.
 	bust_rect.anchor_left = 0.5
 	bust_rect.anchor_right = 0.5
 	bust_rect.anchor_top = 0.0
 	bust_rect.anchor_bottom = 0.0
-	bust_rect.offset_left = -140.0
-	bust_rect.offset_right = 140.0
-	bust_rect.offset_top = -300.0
-	bust_rect.offset_bottom = -20.0
 	add_child(bust_rect)
 	bust_rect.hide()
 
 	_bust_timer = Timer.new()
 	_bust_timer.name = "BustTimer"
-	_bust_timer.wait_time = BUST_FRAME_INTERVAL
+	_bust_timer.wait_time = max(0.01, bust_frame_interval)
 	_bust_timer.one_shot = false
 	_bust_timer.autostart = false
 	_bust_timer.timeout.connect(_advance_bust_frame)
 	add_child(_bust_timer)
+
+	_apply_bust_layout()
+
+## Applies bust_size / bust_gap_above_panel / bust_offset_x to the TextureRect.
+## Called whenever any of the @export setters fires, so live edits update.
+func _apply_bust_layout() -> void:
+	if not bust_rect:
+		return
+	var half_w := bust_size.x * 0.5
+	bust_rect.offset_left = -half_w + bust_offset_x
+	bust_rect.offset_right = half_w + bust_offset_x
+	bust_rect.offset_top = -(bust_size.y + bust_gap_above_panel)
+	bust_rect.offset_bottom = -bust_gap_above_panel
 
 ## Main entry point to start a conversation
 func show_dialogue(npc_name: String, start_node: String = "start"):
