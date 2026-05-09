@@ -110,7 +110,6 @@ autowrap_mode = 2
 [node name="OptionsContainer" type="HBoxContainer" parent="Content"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_constants/separation = 40
 alignment = 1
 
