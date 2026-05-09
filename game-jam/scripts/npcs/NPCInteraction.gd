@@ -67,7 +67,7 @@ func _setup_speech_bubble():
 	var special_npcs = ["bartender", "dj", "fat_chud", "frat_bro", "boss"]
 	
 	if npc_id in special_npcs:
-		var bubble = Sprite2D.new()
+		var bubble = AnimatedSprite2D.new()
 		bubble.name = "SpeechBubble"
 		bubble.position = Vector2(0, -70)
 		bubble.z_index = 100
@@ -86,18 +86,33 @@ func _setup_speech_bubble():
 		speech_bubble = bubble
 
 func _update_speech_bubble_icon():
-	if not speech_bubble or not (speech_bubble is Sprite2D):
+	if not speech_bubble or not (speech_bubble is AnimatedSprite2D):
 		return
 	
+	var frames = SpriteFrames.new()
+	
 	if has_completed_quest:
-		speech_bubble.texture = load("res://assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
-		speech_bubble.region_enabled = true
-		speech_bubble.region_rect = Rect2(11, 0, 11, 11)
+		frames.add_animation("default")
+		var tex = load("res://assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
+		var atlas = AtlasTexture.new()
+		atlas.atlas = tex
+		atlas.region = Rect2(11, 0, 11, 11)
+		frames.add_frame("default", atlas)
+		speech_bubble.sprite_frames = frames
 		speech_bubble.scale = Vector2(2, 2)
 	else:
-		speech_bubble.texture = load("res://assets/npc/tiny-speech-indicators/exclamation.gif")
-		speech_bubble.region_enabled = false
+		frames.add_animation("default")
+		frames.add_frame("default", load("res://assets/npc/tiny-speech-indicators/exclamation-7x8.png"))
+		speech_bubble.sprite_frames = frames
 		speech_bubble.scale = Vector2(2, 2)
+	
+	speech_bubble.play("default")
+	
+	# Add a procedural bobbing animation to make it feel "animated"
+	var base_pos = Vector2(0, -70)
+	var t = create_tween().set_loops()
+	t.tween_property(speech_bubble, "position", base_pos + Vector2(0, -5), 0.6).set_trans(Tween.TRANS_SINE)
+	t.tween_property(speech_bubble, "position", base_pos, 0.6).set_trans(Tween.TRANS_SINE)
 
 func _setup_prompt():
 	if has_node("InteractionPrompt"):
