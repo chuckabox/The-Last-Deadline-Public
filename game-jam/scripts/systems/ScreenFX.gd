@@ -31,8 +31,8 @@ var _master_base_db: float = 0.0
 var _vignette_tween: Tween
 
 # Stage 3 blur: 1.5s build + 1.5s decay = 3s period; peak strength at 0.6.
-const BLUR_CYCLE_PERIOD := 3.0
-const BLUR_PEAK := 0.6
+const BLUR_CYCLE_PERIOD := 6.0
+const BLUR_PEAK := 0.25
 
 # Stage 4 pulse: alpha ramps up over 0.3s, decays over 1.0s, repeats.
 const PULSE_RAMP_UP := 0.3

@@ -34,6 +34,7 @@ var _stage_token: int = 0
 
 # Tween tracking for the effects
 var _effects_tween: Tween
+var _pulse_tween: Tween
 
 func _ready():
 	# Get HUD container
@@ -126,6 +127,12 @@ func _setup_screen_shader():
 	"""
 	mat.shader = shader
 	screen_effects.material = mat
+	
+	# Explicitly initialize parameters to avoid Nil return values from get_shader_parameter
+	mat.set_shader_parameter("vignette_intensity", 0.0)
+	mat.set_shader_parameter("blur_amount", 0.0)
+	mat.set_shader_parameter("pulse_intensity", 0.0)
+	
 	screen_effects.show()
 
 func _on_alcohol_changed(value: float, stage: int) -> void:
@@ -175,30 +182,42 @@ func _apply_stage_effects(new_stage: int) -> void:
 
 	# Apply Screen Shaders via Tween for smoothness
 	if not screen_effects or not screen_effects.material: return
+	
 	if _effects_tween: _effects_tween.kill()
+	if _pulse_tween: _pulse_tween.kill()
+	
 	_effects_tween = create_tween()
 	
 	var mat = screen_effects.material as ShaderMaterial
 	
 	# Vignette (Stage 2+)
 	var vig = 0.6 if new_stage >= 2 else 0.0
+	var cur_vig = mat.get_shader_parameter("vignette_intensity")
+	if cur_vig == null: cur_vig = 0.0
 	_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("vignette_intensity", v), 
-		mat.get_shader_parameter("vignette_intensity"), vig, 1.0)
+		cur_vig, vig, 1.0)
 		
 	# Blur (Stage 3+)
 	var blur = 2.0 if new_stage >= 3 else 0.0
+	var cur_blur = mat.get_shader_parameter("blur_amount")
+	if cur_blur == null: cur_blur = 0.0
 	_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("blur_amount", v), 
-		mat.get_shader_parameter("blur_amount"), blur, 1.0)
+		cur_blur, blur, 1.0)
 		
 	# Blackout Pulse (Stage 4)
+	var cur_pulse = mat.get_shader_parameter("pulse_intensity")
+	if cur_pulse == null: cur_pulse = 0.0
+	
 	if new_stage == 4:
-		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.0, 0.4, 0.5).set_loops()
-		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.4, 0.0, 0.5)
+		# Start a pulsing loop on a separate tween so it doesn't loop the vignette/blur
+		_pulse_tween = create_tween().set_loops()
+		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
+			cur_pulse, 0.4, 0.5)
+		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
+			0.4, 0.1, 1.0)
 	else:
 		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			mat.get_shader_parameter("pulse_intensity"), 0.0, 1.0)
+			cur_pulse, 0.0, 1.0)
 
 var _clock_tween: Tween
 var _clock_base_pos: Vector2

@@ -9,8 +9,8 @@ const FRICTION_SOBER := 4000.0
 const FRICTION_DRUNK := 200.0    # slides on stop
 
 # Sway: perpendicular drift added to velocity while moving
-const SWAY_AMPLITUDE := 60.0     # px/s peak
-const SWAY_FREQ := 1.6           # Hz
+const SWAY_AMPLITUDE := 30.0     # px/s peak (Reduced from 60)
+const SWAY_FREQ := 0.8           # Hz (Reduced from 1.6)
 
 # Turn overshoot: input direction is rotated by up to JITTER_MAX radians
 const JITTER_MAX := 0.15
