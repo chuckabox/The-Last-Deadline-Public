@@ -61,9 +61,6 @@ func _process(_delta):
 
 func _on_start_pressed():
 	_play_select_sfx()
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.4)
-	await tween.finished
 	_launch_game()
 
 func _launch_game() -> void:
@@ -72,28 +69,36 @@ func _launch_game() -> void:
 	var current_scene_node := get_tree().root.get_node_or_null("Main/CurrentScene")
 	if current_scene_node == null:
 		push_error("MainMenu: /root/Main/CurrentScene not found; falling back to full scene swap.")
-		get_tree().change_scene_to_file("res://bar.tscn")
+		get_tree().change_scene_to_file("res://scenes/rooms/room_1_bar.tscn")
 		return
 
 	var hud := get_tree().root.get_node_or_null("Main/HUD") as CanvasLayer
 	if hud:
 		hud.visible = true
 
-	var bar_scene: PackedScene = load("res://bar.tscn")
+	# Instantiate bar and intro behind the menu for a smooth fade
+	var bar_scene: PackedScene = load("res://scenes/rooms/room_1_bar.tscn")
 	if bar_scene:
-		current_scene_node.add_child(bar_scene.instantiate())
+		var bar_instance = bar_scene.instantiate()
+		current_scene_node.add_child(bar_instance)
+		current_scene_node.move_child(bar_instance, 0) # Put behind menu
 
 	var intro_scene: PackedScene = load("res://scenes/ui/IntroCutscene.tscn")
 	if intro_scene:
-		current_scene_node.add_child(intro_scene.instantiate())
+		var intro_instance = intro_scene.instantiate()
+		current_scene_node.add_child(intro_instance)
+		# Intro cutscene should probably be on top of the bar but behind the menu during fade
+		current_scene_node.move_child(intro_instance, 1)
 
+	# Now fade out the menu
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.5)
+	await tween.finished
 	queue_free()
 
 func _on_quit_pressed():
 	_play_select_sfx()
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.2)
-	await tween.finished
+	# Just quit immediately to avoid revealing the grey background during a fade
 	get_tree().quit()
 
 func _on_button_hover():

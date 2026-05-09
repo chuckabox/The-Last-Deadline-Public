@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cnsqelstaj1hl"]
+[gd_scene format=4 uid="uid://b6vhenxqur5hc"]
 
 [ext_resource type="Script" uid="uid://btxqss4oraelx" path="res://bar.gd" id="1_qyha7"]
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="2_fhoit"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://q1at76dkcoju" path="res://assets/tilesets/bar/6.png" id="7_5pmlc"]
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="8_luqre"]
 [ext_resource type="Texture2D" uid="uid://duy7yl01rdj63" path="res://assets/kenney_particle-pack/PNG (Transparent)/magic_05.png" id="9_47nkn"]
-[ext_resource type="PackedScene" uid="uid://dacfmp7skn3w4" path="res://scenes/frat bro.tscn" id="10_d3clh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9397,7 +9396,3 @@ position = Vector2(943.99994, 362.00006)
 scale = Vector2(1.9901123, 1.735503)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
 texture = ExtResource("9_47nkn")
-
-[node name="fratbro" parent="." unique_id=1908960888 instance=ExtResource("10_d3clh")]
-position = Vector2(1076, 294)
-scale = Vector2(1.5, 1.5)
