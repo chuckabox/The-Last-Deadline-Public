@@ -26,6 +26,14 @@ func _ready() -> void:
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 
 func _physics_process(delta: float) -> void:
+	# Disable movement during dialogue
+	var dialogue_ui = get_tree().root.get_node_or_null("Main/HUD/DialogueUI")
+	if dialogue_ui and dialogue_ui.visible:
+		velocity = Vector2.ZERO
+		$AnimatedSprite2D.play("Idle")
+		move_and_slide()
+		return
+
 	_drunk = lerpf(_drunk, _target_drunkness(), delta * DRUNK_LERP_RATE)
 	_sway_phase += delta * SWAY_FREQ * TAU
 
