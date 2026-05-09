@@ -2,5 +2,5 @@ extends NPCInteraction
 
 func _ready():
 	npc_name = "Homeboy"
-	npc_id = "friend"
+	npc_id = "Homeboy"
 	super._ready()

@@ -7,72 +7,39 @@
       "talk": {
         "variants": [
           {
-            "condition": {
-              "flag": "hasSpokenToFriend",
-              "is": false
-            },
-            "text": "Cheers! What a great way to celebrate finishing our assignment. Don't drink too much though, you could black out...",
+            "condition": { "flag": "hasSpokenToFriend", "is": false },
+            "text": "Cheers! To finishing the semester. Slow down, man—you're hitting that cup hard. Watch the BAC, yeah? Don't want another New Year's incident.",
             "options": [
-              {
-                "text": "[Stop drinking] It's fine broo.",
-                "next": "phoneTrigger"
-              },
-              {
-                "text": "[Drink] Nah chill ",
-                "next": "phoneTrigger"
-              },
-              {
-                "text": "I need some air.",
-                "next": "exit"
-              }
+              { "text": "[Stop drinking] I'm pacing myself.", "next": "phoneTrigger" },
+              { "text": "Is the... floor... supposed to be blue?", "next": "phoneTrigger" },
+              { "text": "I need some air.", "next": "exit" }
             ]
           },
           {
-            "condition": {
-              "flag": "friendStage3",
-              "is": true
-            },
+            "condition": { "flag": "friendStage3", "is": true },
             "text": "zzz... bro... is that a unicorn... lemme just close my eyes for a sec...",
             "options": [
-              {
-                "text": "Wake up!",
-                "next": "exit"
-              }
+              { "text": "Wake up!", "next": "exit" }
             ]
           },
           {
-            "condition": {
-              "flag": "friendStage2",
-              "is": true
-            },
+            "condition": { "flag": "friendStage2", "is": true },
             "text": "Bro, you shhtill here? The bartendr... go t' him. Tell 'im I shent ya. *hic*",
             "options": [
-              {
-                "text": "Hang in there.",
-                "next": "exit"
-              }
+              { "text": "Hang in there.", "next": "exit" }
             ]
           },
           {
-            "condition": {
-              "flag": "friendStage1",
-              "is": true
-            },
+            "condition": { "flag": "friendStage1", "is": true },
             "text": "Hey, tick-tock, man. The clock is eating you alive. Bartender. NOW. Go!",
             "options": [
-              {
-                "text": "Going.",
-                "next": "exit"
-              }
+              { "text": "Going.", "next": "exit" }
             ]
           },
           {
             "text": "Go talk to the Bartender, move it!",
             "options": [
-              {
-                "text": "Right.",
-                "next": "exit"
-              }
+              { "text": "Right.", "next": "exit" }
             ]
           }
         ]
@@ -80,28 +47,16 @@
       "phoneTrigger": {
         "text": "[PHONE NOTIFICATION: DUE IN 55 MINUTES. STATUS: NOT SUBMITTED]\n\nAnyway, did you actually submit that final CSSE project? The big one?",
         "options": [
-          {
-            "text": "What? Isn't that due tomorrow?",
-            "next": "panic"
-          }
+          { "text": "What? Isn't that due tomorrow?", "next": "panic" }
         ]
       },
       "panic": {
         "text": "Nah, man. 12:00 AM tonight. Look at your phone. Your laptop is still on the kitchen table... you need to get out of here. Talk to the Bartender—he knows who has the floor keys.",
         "options": [
-          {
-            "text": "I gotta go!",
-            "next": "exit",
-            "setFlag": {
-              "hasSpokenToFriend": true
-            }
-          }
+          { "text": "I gotta go!", "next": "exit", "setFlag": { "hasSpokenToFriend": true } }
         ]
       },
-      "exit": {
-        "text": null,
-        "options": []
-      }
+      "exit": { "text": null, "options": [] }
     }
   }
 }

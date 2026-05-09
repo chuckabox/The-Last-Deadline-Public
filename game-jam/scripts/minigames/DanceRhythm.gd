@@ -271,6 +271,10 @@ func check_milestone(old_val: float, new_val: float):
 	for t in thresholds:
 		if old_val < t and new_val >= t:
 			spawn_milestone_ring()
+	var thresholds2 = [0.4,0.6,0.8]
+	for t in thresholds2:
+		if old_val < t and new_val >= t:
+			adjust_difficulty()
 
 func spawn_milestone_ring():
 	var ring = MilestoneRing.new()

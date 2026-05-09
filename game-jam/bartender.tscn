@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byxhgxjh7egsr"]
 
-[ext_resource type="Script" path="res://scripts/npcs/NPC_Bartender.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ivgof4wwdat" path="res://assets/npc/bartender/sprite_sheet/character-spritesheet (2).png" id="1_2scdx"]
+[ext_resource type="Script" uid="uid://dllf5qvx3imvc" path="res://scripts/npcs/NPC_Bartender.gd" id="1_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpjrc"]
 atlas = ExtResource("1_2scdx")
