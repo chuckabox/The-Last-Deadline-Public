@@ -16,7 +16,7 @@ const STAGE_COLORS := {
 const STAGE_TICK_THRESHOLDS: Array[float] = [0.25, 0.50, 0.75, 0.90]
 
 # References
-var alcohol_meter: TextureProgressBar
+var bar_points: Array[Node] = []
 var alcohol_stage_label: Label
 var bac_label: Label
 var clock_label: Label
@@ -31,19 +31,25 @@ var time_manager: Node
 # Debounce: rapid stage changes only run the latest scheduled effect.
 var _stage_token: int = 0
 
-# Tween tracking for the meter fill animation
-var _meter_tween: Tween
+# Tween tracking for the effects
 var _effects_tween: Tween
 
 func _ready():
-	# Get references
-	alcohol_meter = get_node("Container/AlcoholMeterPanel/AlcoholMeter")
-	alcohol_stage_label = get_node("Container/AlcoholMeterPanel/AlcoholStageLabel")
-	bac_label = get_node("Container/AlcoholMeterPanel/BACLabel")
-	clock_label = get_node("Container/TopRight/ClockLabel")
-	warning_label = get_node("Container/WarningText/WarningLabel")
-	warning_control = get_node("Container/WarningText")
-	screen_effects = get_node("Container/ScreenEffects")
+	# Get bar point references (1st to 8th)
+	var point_names = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"]
+	for p_name in point_names:
+		var node = get_node_or_null(p_name)
+		if node:
+			bar_points.append(node)
+			node.hide()
+
+	# Get other references
+	alcohol_stage_label = get_node_or_null("Container/AlcoholMeterPanel/AlcoholStageLabel")
+	bac_label = get_node_or_null("Container/AlcoholMeterPanel/BACLabel")
+	clock_label = get_node_or_null("Container/TopRight/ClockLabel")
+	warning_label = get_node_or_null("Container/WarningText/WarningLabel")
+	warning_control = get_node_or_null("Container/WarningText")
+	screen_effects = get_node_or_null("Container/ScreenEffects")
 
 	# Get system references
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
@@ -62,8 +68,8 @@ func _ready():
 	# Setup Screen Effects Shader
 	_setup_screen_shader()
 
-	# Initial fill is instant
-	_set_meter_value(_current_alcohol_value(), false)
+	# Initial state
+	_update_bar_points(_current_stage())
 	_update_bac_text(_current_alcohol_value())
 
 	# Explicitly set clock baseline
@@ -72,9 +78,10 @@ func _ready():
 		clock_label.scale = Vector2(1.0, 1.0)
 		clock_label.pivot_offset = clock_label.size / 2.0
 
-	print("HUD initialized")
+	print("HUD initialized with discrete bar points")
 
 func _setup_screen_shader():
+	if not screen_effects: return
 	var mat = ShaderMaterial.new()
 	var shader = Shader.new()
 	shader.code = """
@@ -109,9 +116,23 @@ func _setup_screen_shader():
 	screen_effects.material = mat
 	screen_effects.show()
 
-func _on_alcohol_changed(value: float, _stage: int) -> void:
-	_set_meter_value(value, true)
+func _on_alcohol_changed(value: float, stage: int) -> void:
+	_update_bar_points(stage)
 	_update_bac_text(value)
+
+func _update_bar_points(stage: int):
+	# Spec: each alcohol stage is 2 bar points.
+	# Stage 0: 0 points
+	# Stage 1: 2 points
+	# Stage 2: 4 points
+	# Stage 3: 6 points
+	# Stage 4: 8 points
+	var points_to_show = stage * 2
+	for i in range(bar_points.size()):
+		if i < points_to_show:
+			bar_points[i].show()
+		else:
+			bar_points[i].hide()
 
 func _update_bac_text(value: float):
 	# Max BAC is 0.40% (blackout territory)
@@ -122,26 +143,26 @@ func _update_bac_text(value: float):
 func _on_stage_changed(new_stage: int) -> void:
 	_stage_token += 1
 	var token := _stage_token
-	await get_tree().create_timer(METER_FILL_DURATION + STAGE_EFFECT_DELAY).timeout
+	# Delay for visual impact
+	await get_tree().create_timer(STAGE_EFFECT_DELAY).timeout
 	if token != _stage_token:
 		return
 	_apply_stage_effects(new_stage)
 
 func _apply_stage_effects(new_stage: int) -> void:
-	# Update bar tint
-	if STAGE_COLORS.has(new_stage):
-		alcohol_meter.tint_progress = STAGE_COLORS[new_stage]
-
 	if alcohol_system and alcohol_system.has_method("get_stage_name"):
-		alcohol_stage_label.text = alcohol_system.get_stage_name()
-		alcohol_stage_label.add_theme_color_override("font_color", STAGE_COLORS[new_stage])
+		if alcohol_stage_label:
+			alcohol_stage_label.text = alcohol_system.get_stage_name()
+			if STAGE_COLORS.has(new_stage):
+				alcohol_stage_label.add_theme_color_override("font_color", STAGE_COLORS[new_stage])
 
 	if new_stage == 4:
-		warning_control.show()
+		if warning_control: warning_control.show()
 	else:
-		warning_control.hide()
+		if warning_control: warning_control.hide()
 
 	# Apply Screen Shaders via Tween for smoothness
+	if not screen_effects or not screen_effects.material: return
 	if _effects_tween: _effects_tween.kill()
 	_effects_tween = create_tween()
 	
@@ -171,11 +192,13 @@ var _clock_tween: Tween
 var _clock_base_pos: Vector2
 
 func _on_time_updated(time_string: String):
+	if not clock_label: return
 	clock_label.text = time_string
 	if _clock_base_pos == Vector2.ZERO:
 		_clock_base_pos = clock_label.position
 
 func _on_warning_yellow():
+	if not clock_label: return
 	clock_label.add_theme_color_override("font_color", Color.YELLOW)
 	if _clock_tween: _clock_tween.kill()
 	_clock_tween = create_tween().set_loops()
@@ -183,6 +206,7 @@ func _on_warning_yellow():
 	_clock_tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.5).set_trans(Tween.TRANS_SINE)
 
 func _on_warning_red():
+	if not clock_label: return
 	clock_label.add_theme_color_override("font_color", Color.RED)
 	if _clock_tween: _clock_tween.kill()
 	clock_label.scale = Vector2(1.0, 1.0)
@@ -201,17 +225,7 @@ func _current_alcohol_value() -> float:
 		return alcohol_system.alcohol
 	return 0.0
 
-func _set_meter_value(value: float, animated: bool) -> void:
-	alcohol_meter.max_value = 1.0
-	alcohol_meter.step = 0.001
-	if _meter_tween and _meter_tween.is_valid():
-		_meter_tween.kill()
-	if animated:
-		_meter_tween = get_tree().create_tween()
-		_meter_tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION) \
-			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		var flash_tween = get_tree().create_tween()
-		flash_tween.tween_property(alcohol_meter, "modulate", Color(2, 2, 2, 1), 0.1)
-		flash_tween.tween_property(alcohol_meter, "modulate", Color.WHITE, 0.4)
-	else:
-		alcohol_meter.value = value
+func _current_stage() -> int:
+	if alcohol_system and "current_stage" in alcohol_system:
+		return alcohol_system.current_stage
+	return 0
