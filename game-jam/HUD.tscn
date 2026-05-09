@@ -565,11 +565,11 @@ tile_set = SubResource("TileSet_ne771")
 [node name="8th" type="TileMapLayer" parent="." unique_id=1384285343]
 position = Vector2(-16, -162)
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockFrame" type="TileMapLayer" parent="." unique_id=716494234]
-position = Vector2(-444, 0)
+position = Vector2(-904, 0)
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray(0, 0, 15, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 15, 0, 1, 0, 1, 0, 30, 0, 9, 0, 0, 0, 16, 0, 0, 0, 1, 0, 31, 0, 8, 0, 0, 0, 16, 0, 1, 0, 1, 0, 31, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
@@ -579,9 +579,9 @@ texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -55.0
+offset_left = -515.0
 offset_top = 48.0
-offset_right = 64.0
+offset_right = -396.0
 offset_bottom = 78.769226
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
