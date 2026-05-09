@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const METER_FILL_DURATION := 0.4
+const METER_FILL_DURATION := 0.6
 const STAGE_EFFECT_DELAY := 0.7
 
 const STAGE_COLORS := {
@@ -31,6 +31,9 @@ var _stage_token: int = 0
 
 # Stylebox driving the ProgressBar's actual fill color (not modulate).
 var _fill_style: StyleBoxFlat
+
+# Tween tracking for the meter fill animation
+var _meter_tween: Tween
 
 func _ready():
 	# Get references
@@ -64,6 +67,12 @@ func _ready():
 
 	# Initial fill is instant — no animation on game start.
 	_set_meter_value(_current_alcohol_value(), false)
+
+	# Explicitly set clock baseline to white and steady
+	if clock_label:
+		clock_label.add_theme_color_override("font_color", Color.WHITE)
+		clock_label.scale = Vector2(1.0, 1.0)
+		clock_label.pivot_offset = clock_label.size / 2.0
 
 	print("HUD initialized")
 
@@ -116,19 +125,38 @@ func _apply_stage_effects(new_stage: int) -> void:
 	if new_stage == 4:
 		warning_control.show()
 
+var _clock_tween: Tween
+var _clock_base_pos: Vector2
+
 func _on_time_updated(time_string: String):
 	clock_label.text = time_string
+	if _clock_base_pos == Vector2.ZERO:
+		_clock_base_pos = clock_label.position
 
 func _on_warning_yellow():
 	clock_label.add_theme_color_override("font_color", Color.YELLOW)
+	if _clock_tween:
+		_clock_tween.kill()
+	_clock_tween = create_tween()
+	_clock_tween.set_loops()
+	_clock_tween.tween_property(clock_label, "scale", Vector2(1.1, 1.1), 0.5).set_trans(Tween.TRANS_SINE)
+	_clock_tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.5).set_trans(Tween.TRANS_SINE)
 
 func _on_warning_red():
 	clock_label.add_theme_color_override("font_color", Color.RED)
-	# Add pulse animation
-	var tween = create_tween()
-	tween.set_loops()
-	tween.tween_property(clock_label, "scale", Vector2(1.2, 1.2), 0.3)
-	tween.tween_property(clock_label, "scale", Vector2(1.0, 1.0), 0.3)
+	if _clock_tween:
+		_clock_tween.kill()
+	clock_label.scale = Vector2(1.0, 1.0)
+	
+	_clock_tween = create_tween()
+	_clock_tween.set_loops()
+	var base_pos = _clock_base_pos if _clock_base_pos != Vector2.ZERO else clock_label.position
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(3, 3), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(-3, -2), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(2, -3), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos + Vector2(-2, 3), 0.05)
+	_clock_tween.tween_property(clock_label, "position", base_pos, 0.05)
+	_clock_tween.tween_interval(0.1)
 
 func _current_alcohol_value() -> float:
 	if alcohol_system and "alcohol" in alcohol_system:
@@ -137,8 +165,17 @@ func _current_alcohol_value() -> float:
 
 func _set_meter_value(value: float, animated: bool) -> void:
 	alcohol_meter.max_value = 1.0
+	alcohol_meter.step = 0.001  # Prevent snapping to discrete increments
+	if _meter_tween and _meter_tween.is_valid():
+		_meter_tween.kill()
 	if animated:
-		var tween := create_tween()
-		tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION)
+		print("HUD: Animating meter from %.2f to %.2f" % [alcohol_meter.value, value])
+		_meter_tween = get_tree().create_tween()
+		_meter_tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION) \
+			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		# Flash the meter bar on fill
+		var flash_tween = get_tree().create_tween()
+		flash_tween.tween_property(alcohol_meter, "modulate", Color(2, 2, 2, 1), 0.1)
+		flash_tween.tween_property(alcohol_meter, "modulate", Color.WHITE, 0.4)
 	else:
 		alcohol_meter.value = value
