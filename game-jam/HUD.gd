@@ -40,7 +40,6 @@ func _ready():
 	alcohol_meter = get_node("Container/AlcoholMeterPanel/AlcoholMeter")
 	alcohol_stage_label = get_node("Container/AlcoholMeterPanel/AlcoholStageLabel")
 	bac_label = get_node("Container/AlcoholMeterPanel/BACLabel")
-	score_label = get_node("Container/TopRight/ScoreLabel")
 	clock_label = get_node("Container/TopRight/ClockLabel")
 	warning_label = get_node("Container/WarningText/WarningLabel")
 	warning_control = get_node("Container/WarningText")
