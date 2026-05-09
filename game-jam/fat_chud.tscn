@@ -1,13 +1,65 @@
 [gd_scene format=3 uid="uid://g0jsptpanouy"]
 
 [ext_resource type="Script" uid="uid://c81un7qj5ao2b" path="res://scripts/npcs/NPC_FatChud.gd" id="1_654sp"]
+[ext_resource type="Texture2D" uid="uid://d254syxtf37xc" path="res://assets/npc/fat_chud/sprite_sheet/character-spritesheet (4).png" id="2_yt0jd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp5ym"]
+atlas = ExtResource("2_yt0jd")
+region = Rect2(64, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwkpm"]
+atlas = ExtResource("2_yt0jd")
+region = Rect2(128, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fl2u"]
+atlas = ExtResource("2_yt0jd")
+region = Rect2(192, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl4yj"]
+atlas = ExtResource("2_yt0jd")
+region = Rect2(256, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld74x"]
+atlas = ExtResource("2_yt0jd")
+region = Rect2(0, 1216, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51dn6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp5ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwkpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fl2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl4yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld74x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3c6if"]
+radius = 14.0
+height = 50.0
 
 [node name="Node2D" type="Node2D" unique_id=1791480477]
 script = ExtResource("1_654sp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=809915270]
+sprite_frames = SubResource("SpriteFrames_51dn6")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1441751306]
+position = Vector2(-1, 6)
+shape = SubResource("CapsuleShape2D_3c6if")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=5962255]
 
