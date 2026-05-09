@@ -14,6 +14,10 @@ var room_transition_manager: Node
 var dialogue_ui: Panel
 var audio_manager: Node
 
+# Interaction State
+var player_in_range: bool = false
+var prompt_sprite: Sprite2D
+
 func _ready():
 	# Get references safely
 	game_manager = get_node_or_null("/root/GameManager")
@@ -21,14 +25,73 @@ func _ready():
 	dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
 	audio_manager = get_node_or_null("/root/AudioManager")
 	
-	# Connect signal
-	area_entered.connect(_on_area_entered)
+	# Connect signals
+	if not area_entered.is_connected(_on_area_entered):
+		area_entered.connect(_on_area_entered)
+	if not area_exited.is_connected(_on_area_exited):
+		area_exited.connect(_on_area_exited)
+	
+	# Also connect body signals for backup
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+	if not body_exited.is_connected(_on_body_exited):
+		body_exited.connect(_on_body_exited)
+	
+	# Create interaction prompt
+	_setup_prompt()
 	
 	print("Door trigger ready - Target: %s, Locked: %s" % [target_room, is_locked])
 
-func _on_area_entered(area):
-	if area.name == "PlayerCollision":
+func _setup_prompt():
+	prompt_sprite = Sprite2D.new()
+	prompt_sprite.name = "InteractionPrompt"
+	prompt_sprite.texture = load("res://assets/ui/Keyboard Letters and Symbols.png")
+	prompt_sprite.region_enabled = true
+	# 'E' key is at 64, 32 in the 16x16 grid
+	prompt_sprite.region_rect = Rect2(64, 32, 16, 16)
+	prompt_sprite.position = Vector2(0, -50)
+	prompt_sprite.scale = Vector2(1.5, 1.5)
+	prompt_sprite.hide()
+	prompt_sprite.z_index = 10
+	add_child(prompt_sprite)
+
+func _input(event):
+	if player_in_range and event.is_action_pressed("ui_interact"):
+		print("DoorTrigger: Interaction key 'E' pressed!")
 		attempt_transition()
+
+func _on_area_entered(area):
+	print("DoorTrigger: Area entered: ", area.name)
+	if area.name == "PlayerCollision" or area.get_parent().name == "Player":
+		_set_player_in_range(true)
+
+func _on_area_exited(area):
+	if area.name == "PlayerCollision" or area.get_parent().name == "Player":
+		_set_player_in_range(false)
+
+func _on_body_entered(body):
+	print("DoorTrigger: Body entered: ", body.name)
+	if body.name == "Player":
+		_set_player_in_range(true)
+
+func _on_body_exited(body):
+	if body.name == "Player":
+		_set_player_in_range(false)
+
+func _set_player_in_range(value: bool):
+	if player_in_range == value: return
+	
+	player_in_range = value
+	print("DoorTrigger: Player in range = ", value)
+	
+	if prompt_sprite:
+		if player_in_range:
+			prompt_sprite.show()
+			prompt_sprite.scale = Vector2.ZERO
+			var t = create_tween()
+			t.tween_property(prompt_sprite, "scale", Vector2(1.5, 1.5), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		else:
+			prompt_sprite.hide()
 
 func attempt_transition():
 	# Check if locked

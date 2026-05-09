@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://q1at76dkcoju" path="res://assets/tilesets/bar/6.png" id="7_2g0h2"]
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="8_y7rkj"]
 [ext_resource type="Texture2D" uid="uid://b6a0p7gwy3mnc" path="res://assets/kenney_particle-pack/PNG (Black background)/circle_05.png" id="9_pyscc"]
+[ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="10_door"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(64, 128)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_brpfv"]
 texture = ExtResource("2_e1bg1")
@@ -10244,3 +10248,11 @@ position = Vector2(868.09937, 344.4975)
 scale = Vector2(2.6302307, 2.6302307)
 color = Color(0.9484015, 0.63353103, 0.30545434, 1)
 texture = ExtResource("9_pyscc")
+
+[node name="ReturnDoor" type="Area2D" parent="." unique_id=999000333]
+position = Vector2(50, 300)
+script = ExtResource("10_door")
+target_room = "bar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnDoor" unique_id=999000444]
+shape = SubResource("RectangleShape2D_door")

@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://b6vhenxqur5hc"]
+[gd_scene format=4 uid="uid://dv4vsj3gpbnfn"]
 
 [ext_resource type="Script" uid="uid://btxqss4oraelx" path="res://bar.gd" id="1_qyha7"]
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="2_fhoit"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://duy7yl01rdj63" path="res://assets/kenney_particle-pack/PNG (Transparent)/magic_05.png" id="9_47nkn"]
 [ext_resource type="PackedScene" uid="uid://dacfmp7skn3w4" path="res://scenes/frat bro.tscn" id="10_y8qx1"]
 [ext_resource type="PackedScene" uid="uid://kur2hkw6plru" path="res://scenes/Homeboy.tscn" id="11_cur4r"]
+[ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="12_door"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9293,6 +9294,9 @@ distance = 14.0
 normal = Vector2(-1, 0)
 distance = -1131.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(64, 128)
+
 [node name="Bar" type="Node2D" unique_id=330961735]
 y_sort_enabled = true
 script = ExtResource("1_qyha7")
@@ -9407,3 +9411,13 @@ scale = Vector2(1.3, 1.3)
 z_index = 1
 position = Vector2(376, 163)
 scale = Vector2(1.3, 1.3)
+
+[node name="DiscoDoor" type="Area2D" parent="." unique_id=999000111]
+z_index = 10
+position = Vector2(274, 136)
+scale = Vector2(1.5359972, 1)
+script = ExtResource("12_door")
+target_room = "disco"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiscoDoor" unique_id=999000222]
+shape = SubResource("RectangleShape2D_door")
