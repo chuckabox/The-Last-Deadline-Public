@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dyosisjh4h1l2"
+path="res://.godot/imported/Pixel Magic.ogg-88d54980f585debe42b56a9e57e467d0.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Pixel Magic.ogg"
+dest_files=["res://.godot/imported/Pixel Magic.ogg-88d54980f585debe42b56a9e57e467d0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

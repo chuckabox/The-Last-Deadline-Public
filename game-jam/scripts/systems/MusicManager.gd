@@ -8,7 +8,7 @@ const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 
 # Music tracks by stage
 @export var music_by_stage: Dictionary = {
-	0: "res://audio/music/stage_0_chill.ogg",
+	0: "res://audio/music/Pixel Magic.ogg",
 	1: "res://audio/music/stage_1_buzz.ogg",
 	2: "res://audio/music/stage_2_hype.ogg",
 	3: "res://audio/music/stage_3_chaos.ogg",

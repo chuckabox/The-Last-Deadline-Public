@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bopw01bquevs6"
+path="res://.godot/imported/28 Towering Blues.ogg-eae59b61e9cf9545212d27def34bb116.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/28 Towering Blues.ogg"
+dest_files=["res://.godot/imported/28 Towering Blues.ogg-eae59b61e9cf9545212d27def34bb116.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
