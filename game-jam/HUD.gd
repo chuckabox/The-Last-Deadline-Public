@@ -165,14 +165,16 @@ func _current_alcohol_value() -> float:
 
 func _set_meter_value(value: float, animated: bool) -> void:
 	alcohol_meter.max_value = 1.0
+	alcohol_meter.step = 0.001  # Prevent snapping to discrete increments
 	if _meter_tween and _meter_tween.is_valid():
 		_meter_tween.kill()
 	if animated:
-		_meter_tween = create_tween()
+		print("HUD: Animating meter from %.2f to %.2f" % [alcohol_meter.value, value])
+		_meter_tween = get_tree().create_tween()
 		_meter_tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION) \
 			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		# Flash the meter bar on fill
-		var flash_tween = create_tween()
+		var flash_tween = get_tree().create_tween()
 		flash_tween.tween_property(alcohol_meter, "modulate", Color(2, 2, 2, 1), 0.1)
 		flash_tween.tween_property(alcohol_meter, "modulate", Color.WHITE, 0.4)
 	else:
