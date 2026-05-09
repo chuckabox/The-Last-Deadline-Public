@@ -104,7 +104,7 @@ func start_stage(stage: int):
 	elif current_stage == 2:
 		lives = 2
 	else:
-		lives = 1
+		lives = 2
 		
 	difficulty_stage = current_stage
 	adjust_difficulty()
@@ -230,14 +230,14 @@ func adjust_difficulty():
 	
 	# Stage 2: Zone shrinks 30%
 	if difficulty_stage >= 2:
-		target_zone_width *= 0.70  # 0.20 → 0.14
-		base_slider_speed = 1.3
+		target_zone_width *= 0.85  # 0.20 → 0.14
+		base_slider_speed = 1.1
 	
 	if difficulty_stage >= 3:
-		base_slider_speed = 1.5
+		base_slider_speed = 1.2
 	
 	if difficulty_stage >= 4:
-		base_slider_speed = 1.7
+		base_slider_speed = 1.4
 		target_zone_width *= 0.85  # Shrink a bit more
 	
 	slider_speed = base_slider_speed
@@ -246,7 +246,7 @@ func adjust_difficulty():
 
 func win_minigame():
 	is_active = false
-	var cash_reward = 100 + (difficulty_stage * 50)
+	var cash_reward = 0
 	print("Beer Pong WON! Cash: $%d" % cash_reward)
 	var path_node = get_node_or_null("Path2D")
 	if path_node and path_node.has_method("play_arc_animation"):
