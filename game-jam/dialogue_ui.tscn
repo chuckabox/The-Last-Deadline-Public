@@ -56,22 +56,16 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
 text = "Leave"
-autowrap_mode = 3
 
 [node name="OptionGibberish" type="Button" parent="DialogueBox/OptionsContainer" unique_id=1233763413]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
 text = "???"
-autowrap_mode = 3
 
 [node name="OptionProgress" type="Button" parent="DialogueBox/OptionsContainer" unique_id=680632637]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
 text = "Talk"
-autowrap_mode = 3

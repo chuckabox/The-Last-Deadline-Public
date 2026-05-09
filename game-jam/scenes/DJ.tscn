@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dsdsf1prci8fl"]
 
 [ext_resource type="Texture2D" uid="uid://beigesp3d5off" path="res://assets/npc/dj/sprite-sheet/character-spritesheet (6).png" id="1_i1vau"]
+[ext_resource type="Script" path="res://scripts/npcs/NPC_DJ.gd" id="2_dj_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_py2fc"]
 atlas = ExtResource("1_i1vau")
@@ -115,7 +116,11 @@ animations = [{
 radius = 13.0
 height = 60.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1338150573]
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact_dj"]
+radius = 40.0
+
+[node name="DJ" type="CharacterBody2D" unique_id=1338150573]
+script = ExtResource("2_dj_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2136918032]
 sprite_frames = SubResource("SpriteFrames_e3a8m")
@@ -126,3 +131,8 @@ frame_progress = 0.5819687
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1859748333]
 position = Vector2(1, 4)
 shape = SubResource("CapsuleShape2D_qi46l")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=999001001]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=999001002]
+shape = SubResource("CircleShape2D_interact_dj")
