@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dv4vsj3gpbnfn"]
+[gd_scene format=4 uid="uid://b6vhenxqur5hc"]
 
 [ext_resource type="Script" uid="uid://btxqss4oraelx" path="res://bar.gd" id="1_qyha7"]
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="2_fhoit"]
@@ -13,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://kur2hkw6plru" path="res://scenes/Homeboy.tscn" id="11_cur4r"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="12_door"]
 [ext_resource type="PackedScene" uid="uid://byxhgxjh7egsr" path="res://bartender.tscn" id="13_gscmp"]
-[ext_resource type="PackedScene" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
+[ext_resource type="PackedScene" uid="uid://bgne0uufdausf" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
 [ext_resource type="PackedScene" uid="uid://bkvjfrmltbncd" path="res://assets/Generic Male 1.tscn" id="15_mysuo"]
 [ext_resource type="PackedScene" uid="uid://cfwm1lrtem38c" path="res://assets/Generic Male 3.tscn" id="16_breos"]
 [ext_resource type="PackedScene" uid="uid://g0jsptpanouy" path="res://fat_chud.tscn" id="17_w5ken"]
+[ext_resource type="PackedScene" uid="uid://d0k54nkbk6b01" path="res://Generic Female 6.tscn" id="18_7xtpk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9451,4 +9452,9 @@ scale = Vector2(1.3, 1.3)
 [node name="Node2D" parent="." unique_id=1791480477 instance=ExtResource("17_w5ken")]
 z_index = 2
 position = Vector2(1105, 219)
+scale = Vector2(1.3, 1.3)
+
+[node name="Generic Female 6" parent="." unique_id=1990341780 instance=ExtResource("18_7xtpk")]
+z_index = 6
+position = Vector2(614, 583)
 scale = Vector2(1.3, 1.3)

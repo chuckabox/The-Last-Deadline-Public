@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d0k54nkbk6b01"]
+
+[ext_resource type="Texture2D" uid="uid://d2i3tdjs7kcrt" path="res://assets/npc/genericNPCs/genericFemaleSix.png" id="1_lsvwn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au5ub"]
+radius = 6.007053
+height = 49.9987
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8wtt"]
+atlas = ExtResource("1_lsvwn")
+region = Rect2(128, 1984, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uupro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8wtt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1990341780]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=363795639]
+position = Vector2(-1, 23.000002)
+rotation = -1.5635874
+shape = SubResource("CapsuleShape2D_au5ub")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1077615167]
+sprite_frames = SubResource("SpriteFrames_uupro")
