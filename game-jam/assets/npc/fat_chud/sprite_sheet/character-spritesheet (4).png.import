@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0hdnr0fesw8j"
-path="res://.godot/imported/character-spritesheet (3).png-a6fc37653e3e1987b6f9cc11d30a8871.ctex"
+uid="uid://d254syxtf37xc"
+path="res://.godot/imported/character-spritesheet (4).png-1a56c7d19d5c71cedbbdb8112af4f282.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/fat_chud/sprite_sheet/character-spritesheet (3).png"
-dest_files=["res://.godot/imported/character-spritesheet (3).png-a6fc37653e3e1987b6f9cc11d30a8871.ctex"]
+source_file="res://assets/npc/fat_chud/sprite_sheet/character-spritesheet (4).png"
+dest_files=["res://.godot/imported/character-spritesheet (4).png-1a56c7d19d5c71cedbbdb8112af4f282.ctex"]
 
 [params]
 
