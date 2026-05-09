@@ -25,6 +25,9 @@ var time_manager: Node
 # Debounce: rapid stage changes only run the latest scheduled effect.
 var _stage_token: int = 0
 
+# Stylebox driving the ProgressBar's actual fill color (not modulate).
+var _fill_style: StyleBoxFlat
+
 func _ready():
 	# Get references
 	alcohol_meter = get_node("Container/AlcoholMeterPanel/AlcoholMeter")
@@ -47,6 +50,12 @@ func _ready():
 		time_manager.warning_yellow.connect(_on_warning_yellow)
 		time_manager.warning_red.connect(_on_warning_red)
 
+	# Drive the bar's actual fill color via a stylebox override so we don't
+	# tint the entire control (which `modulate` would do).
+	_fill_style = StyleBoxFlat.new()
+	_fill_style.bg_color = STAGE_COLORS[0]
+	alcohol_meter.add_theme_stylebox_override("fill", _fill_style)
+
 	# Initial fill is instant — no animation on game start.
 	_set_meter_value(_current_alcohol_value(), false)
 
@@ -68,8 +77,8 @@ func _on_stage_changed(new_stage: int) -> void:
 	_apply_stage_effects(new_stage)
 
 func _apply_stage_effects(new_stage: int) -> void:
-	if STAGE_COLORS.has(new_stage):
-		alcohol_meter.modulate = STAGE_COLORS[new_stage]
+	if STAGE_COLORS.has(new_stage) and _fill_style:
+		_fill_style.bg_color = STAGE_COLORS[new_stage]
 
 	if alcohol_system and alcohol_system.has_method("get_stage_name"):
 		alcohol_stage_label.text = alcohol_system.get_stage_name()
