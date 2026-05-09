@@ -45,6 +45,7 @@ func _setup_effects():
 	AudioServer.set_bus_effect_enabled(master_bus_idx, 3, false)
 
 func _process(delta):
+	return # TEMP DISABLE
 	# Oscillate pitch if in Stage 3 (Warble)
 	if alcohol_system and alcohol_system.get("current_stage") == 3:
 		time_passed += delta
@@ -52,6 +53,7 @@ func _process(delta):
 		pitch_shift.pitch_scale = 1.0 + (sin(time_passed * 2.0) * 0.05)
 
 func _on_alcohol_changed(_amount: float, stage: int):
+	return # TEMP DISABLE
 	# Reset all first
 	for i in range(4):
 		AudioServer.set_bus_effect_enabled(master_bus_idx, i, false)
