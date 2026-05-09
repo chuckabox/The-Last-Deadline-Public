@@ -55,10 +55,6 @@ func drink_alcohol(amount: float = 0.25) -> void:
 	alcohol_changed.emit(alcohol, current_stage)
 
 ## Decreases alcohol level (e.g. drinking water)
-func drink_water() -> void:
-	alcohol = max(0.0, alcohol - 0.125)  # 1/8 reduction
-	update_stage()
-	alcohol_changed.emit(alcohol, current_stage)
 
 ## Recalculates current stage and emits signals if it changed
 func update_stage() -> void:
