@@ -1,6 +1,12 @@
 extends Node
 
 
+# Extensions Godot can natively import (in resolution order: smallest+streaming
+# preferred, then PCM, then mp3). Drop any of these with a matching basename
+# and the manager will find it regardless of the path configured below.
+const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
+
+
 # SFX library
 @export var sfx_library: Dictionary = {
 	# Player
@@ -58,12 +64,11 @@ func play_sfx(sfx_name: String, volume_db: float = 0.0, pitch_scale: float = 1.0
 		print("WARNING: SFX '%s' not found in library" % sfx_name)
 		return
 	
-	var track_path = sfx_library[sfx_name]
-	
-	# Check for file existence to avoid crashing if assets aren't yet added
-	if not FileAccess.file_exists(track_path):
+	var track_path := _resolve_audio_path(sfx_library[sfx_name])
+	if track_path == "":
+		# No supported audio file found at this basename — silent no-op.
 		return
-		
+
 	var audio_file = load(track_path)
 	if not audio_file:
 		print("ERROR: Could not load SFX: %s" % sfx_name)
@@ -74,6 +79,20 @@ func play_sfx(sfx_name: String, volume_db: float = 0.0, pitch_scale: float = 1.0
 	player.volume_db = volume_db
 	player.pitch_scale = pitch_scale
 	player.play()
+
+## Resolves a configured audio path to the first existing sibling whose
+## extension is supported by Godot. Drop .ogg / .wav / .mp3 with the same
+## basename and it will be picked up regardless of what's configured above.
+func _resolve_audio_path(base_path: String) -> String:
+	if FileAccess.file_exists(base_path):
+		return base_path
+	var stem := base_path.get_basename()
+	for ext in SUPPORTED_AUDIO_EXTENSIONS:
+		var candidate := stem + ext
+		if FileAccess.file_exists(candidate):
+			return candidate
+	return ""
+
 
 func get_available_player() -> AudioStreamPlayer:
 	# Find a player that isn't currently busy
