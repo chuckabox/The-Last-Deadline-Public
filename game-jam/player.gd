@@ -48,14 +48,26 @@ func _physics_process(delta: float) -> void:
 		var perp := Vector2(-velocity.y, velocity.x).normalized()
 		velocity += perp * sin(_sway_phase) * SWAY_AMPLITUDE * _drunk
 
-	if velocity.length() > 0:
-		$AnimatedSprite2D.play("Walk")
-		if velocity.x < 0:
-			$AnimatedSprite2D.flip_h = true
-		elif velocity.x > 0:
-			$AnimatedSprite2D.flip_h = false
+	# --- ANIMATION LOGIC START ---
+	if velocity.length() > 10.0: # Use a small threshold to avoid jitter
+		# Check if vertical movement is stronger than horizontal
+		if abs(velocity.y) > abs(velocity.x):
+			if velocity.y < 0:
+				$AnimatedSprite2D.play("Walk_up")
+			else:
+				$AnimatedSprite2D.play("Walk_down")
+		else:
+			# Horizontal movement is stronger
+			$AnimatedSprite2D.play("Walk_side")
+			
+			# Flip horizontal based on velocity
+			if velocity.x < 0:
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
 	else:
 		$AnimatedSprite2D.play("Idle")
+	# --- ANIMATION LOGIC END ---
 
 	move_and_slide()
 
