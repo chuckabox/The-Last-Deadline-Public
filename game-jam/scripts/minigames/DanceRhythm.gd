@@ -253,7 +253,7 @@ func lose_minigame():
 	
 	# Increase alcohol penalty
 	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
-		alcohol_system.drink_alcohol(20) # Forced shot
+		alcohol_system.drink_alcohol(0.2) # Forced shot
 	
 	print("Dance Rhythm LOST! Alcohol +1 stage potential")
 	emit_signal("minigame_lost")

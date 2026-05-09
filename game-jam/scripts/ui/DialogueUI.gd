@@ -50,8 +50,9 @@ func show_dialogue(npc_name: String, start_node: String = "start"):
 	if not parser: return
 		
 	current_dialogue_data = parser.load_dialogue(npc_name)
-	current_node_name = start_node
-	
+	var entry = start_node if start_node != "" else \
+		current_dialogue_data.get("dialogue", {}).get("start", "talk")
+	current_node_name = entry
 	dialogue_opened.emit()
 	display_node()
 	show()

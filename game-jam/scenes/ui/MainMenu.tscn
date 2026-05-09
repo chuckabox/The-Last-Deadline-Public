@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm6u8q7l0qjk"]
+[gd_scene format=3 uid="uid://dm6u8q7l0qjk"]
 
 [ext_resource type="Script" path="res://scripts/ui/MainMenu.gd" id="1"]
 [ext_resource type="FontFile" path="res://assets/fonts/Fibberish v1.0/fibberish.ttf" id="2"]

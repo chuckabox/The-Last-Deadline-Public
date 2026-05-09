@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://djqprw71kh4rf"]
+[gd_scene format=3 uid="uid://b3ug6m2v7kg2k"]
 
-[ext_resource type="Script" path="res://scripts/minigames/DanceRhythm.gd" id="1_dr"]
+[ext_resource type="Script" uid="uid://rssk8rmqvy6j" path="res://scripts/minigames/DanceRhythm.gd" id="1_dr"]
 
-[node name="DanceRhythm" type="Control"]
+[node name="DanceRhythm" type="Control" unique_id=1599512113]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dr")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=273735278]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0, 0.117647, 1)
 
-[node name="HitZone" type="ColorRect" parent="."]
+[node name="HitZone" type="ColorRect" parent="." unique_id=1546164667]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -32,9 +32,9 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 1, 0, 0.3)
 
-[node name="ArrowContainer" type="Node2D" parent="."]
+[node name="ArrowContainer" type="Node2D" parent="." unique_id=2045576857]
 
-[node name="CrowdEnergyBar" type="ProgressBar" parent="."]
+[node name="CrowdEnergyBar" type="ProgressBar" parent="." unique_id=787711265]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -45,9 +45,8 @@ offset_right = 200.0
 offset_bottom = 50.0
 grow_horizontal = 2
 max_value = 1.0
-step = 0.01
 
-[node name="ComboLabel" type="Label" parent="."]
+[node name="ComboLabel" type="Label" parent="." unique_id=1515588264]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,7 +63,7 @@ theme_override_font_sizes/font_size = 24
 text = "Combo: 0"
 horizontal_alignment = 1
 
-[node name="InstructionLabel" type="Label" parent="."]
+[node name="InstructionLabel" type="Label" parent="." unique_id=1847239118]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -77,7 +76,7 @@ grow_horizontal = 2
 text = "Press arrow keys to match the falling arrows!"
 horizontal_alignment = 1
 
-[node name="PulseOverlay" type="ColorRect" parent="."]
+[node name="PulseOverlay" type="ColorRect" parent="." unique_id=908398854]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
