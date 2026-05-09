@@ -24,7 +24,8 @@ const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 	"blackout": "res://audio/music/30 Null and Void.ogg",
 	"procrastinator": "res://audio/music/29 Tyrant_s Bounty.ogg",
 	"job_offer": "res://audio/music/Epic Quest.ogg",
-	"credits": "res://audio/music/Credits Theme.ogg"
+	"credits": "res://audio/music/Credits Theme.ogg",
+	"dance_minigame": "res://audio/music/Pixel Magic.ogg"
 }
 
 # Playlist for the Disco (randomized)
