@@ -19,7 +19,6 @@ const STAGE_TICK_THRESHOLDS: Array[float] = [0.25, 0.50, 0.75, 0.90]
 var alcohol_meter: TextureProgressBar
 var alcohol_stage_label: Label
 var bac_label: Label
-var score_label: Label
 var clock_label: Label
 var warning_label: Label
 var warning_control: Control
@@ -28,7 +27,6 @@ var screen_effects: ColorRect
 # References to systems
 var alcohol_system: Node
 var time_manager: Node
-var game_manager: Node
 
 # Debounce: rapid stage changes only run the latest scheduled effect.
 var _stage_token: int = 0
@@ -51,7 +49,6 @@ func _ready():
 	# Get system references
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	time_manager = get_node_or_null("/root/TimeManager")
-	game_manager = get_node_or_null("/root/GameManager")
 
 	# Connect signals
 	if alcohol_system:
@@ -62,10 +59,6 @@ func _ready():
 		time_manager.time_updated.connect(_on_time_updated)
 		time_manager.warning_yellow.connect(_on_warning_yellow)
 		time_manager.warning_red.connect(_on_warning_red)
-
-	if game_manager:
-		game_manager.cash_changed.connect(_on_cash_changed)
-		_on_cash_changed(game_manager.total_cash)
 
 	# Setup Screen Effects Shader
 	_setup_screen_shader()
@@ -126,14 +119,6 @@ func _update_bac_text(value: float):
 	var bac = value * 0.40
 	if bac_label:
 		bac_label.text = "BAC: %.2f%%" % bac
-
-func _on_cash_changed(new_total: int):
-	if score_label:
-		score_label.text = "Cash: $%d" % new_total
-		# Quick punch animation
-		var t = create_tween()
-		t.tween_property(score_label, "scale", Vector2(1.2, 1.2), 0.1)
-		t.tween_property(score_label, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _on_stage_changed(new_stage: int) -> void:
 	_stage_token += 1
