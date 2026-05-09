@@ -8,7 +8,7 @@ var current_room_scene: Node = null
 var room_paths = {
 	"main_menu": "res://scenes/ui/MainMenu.tscn",
 	"bar": "res://scenes/rooms/room_1_bar.tscn",
-	"disco": "res://scenes/rooms/room_2_disco.tscn",
+	"disco": "res://scenes/dancefloor.tscn",
 	"vip": "res://scenes/rooms/room_3_vip.tscn"
 }
 
