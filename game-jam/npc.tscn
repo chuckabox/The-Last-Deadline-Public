@@ -4,6 +4,8 @@
 
 [node name="Node2D" type="Node2D" unique_id=1171251560]
 script = ExtResource("1_ideak")
+npc_name = null
+npc_id = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=583212716]
 
