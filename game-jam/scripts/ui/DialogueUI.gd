@@ -48,6 +48,13 @@ var _cutscene_overlay: TextureRect
 var _click_indicator: TextureRect
 var _click_tween: Tween
 
+var _is_showing_text_screen = false
+var _text_screen_overlay: ColorRect
+var _text_screen_label: Label
+var _text_screen_lines: Array = []
+var _text_screen_index: int = 0
+var _text_screen_callback: Callable
+
 # Signals
 signal dialogue_opened()
 signal dialogue_closed()
@@ -150,7 +157,41 @@ func _build_cutscene_display() -> void:
 	_click_indicator.hide()
 	_cutscene_overlay.add_child(_click_indicator)
 	
+	_build_text_screen_display()
+	
 	add_child(_cutscene_overlay)
+
+func _build_text_screen_display() -> void:
+	_text_screen_overlay = ColorRect.new()
+	_text_screen_overlay.name = "TextScreenOverlay"
+	_text_screen_overlay.color = Color.BLACK
+	_text_screen_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_text_screen_overlay.top_level = true
+	_text_screen_overlay.z_index = 300 # Above everything including cutscenes
+	_text_screen_overlay.hide()
+	
+	_text_screen_label = Label.new()
+	_text_screen_label.name = "TextLabel"
+	_text_screen_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_text_screen_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_text_screen_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_text_screen_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_text_screen_label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
+	_text_screen_label.add_theme_font_size_override("font_size", 48)
+	_text_screen_overlay.add_child(_text_screen_label)
+	
+	# Add the click indicator to this too
+	var indicator = TextureRect.new()
+	indicator.texture = load("res://assets/ui/icons/Lucid V1.2/PNG/Flat/64/Chevron-Arrow-Right.png")
+	indicator.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	indicator.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	indicator.size = Vector2(48, 48)
+	indicator.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	indicator.offset_left = -80
+	indicator.offset_top = -80
+	_text_screen_overlay.add_child(indicator)
+	
+	add_child(_text_screen_overlay)
 
 ## Main entry point to start a conversation
 func show_dialogue(npc_name: String, start_node: String = ""):
@@ -477,6 +518,39 @@ func show_ending_cutscene(ending_id: String) -> void:
 		var em = get_node_or_null("/root/EndingManager")
 		if em: em.perform_transition(ending_id, "", "")
 
+func show_text_screen(lines: Array, callback: Callable = Callable()) -> void:
+	_is_showing_text_screen = true
+	_text_screen_lines = lines
+	_text_screen_index = 0
+	_text_screen_callback = callback
+	
+	_text_screen_overlay.show()
+	_text_screen_overlay.modulate.a = 0
+	var t = create_tween()
+	t.tween_property(_text_screen_overlay, "modulate:a", 1.0, 0.5)
+	
+	_advance_text_screen()
+
+func _advance_text_screen() -> void:
+	if _text_screen_index < _text_screen_lines.size():
+		_text_screen_label.text = _text_screen_lines[_text_screen_index]
+		_text_screen_label.modulate.a = 0
+		var t = create_tween()
+		t.tween_property(_text_screen_label, "modulate:a", 1.0, 0.3)
+		_text_screen_index += 1
+	else:
+		_close_text_screen()
+
+func _close_text_screen() -> void:
+	_is_showing_text_screen = false
+	var t = create_tween()
+	t.tween_property(_text_screen_overlay, "modulate:a", 0.0, 0.5)
+	await t.finished
+	_text_screen_overlay.hide()
+	
+	if _text_screen_callback.is_valid():
+		_text_screen_callback.call()
+
 func _show_cutscene(node_data: Dictionary) -> void:
 	_is_showing_cutscene = true
 	_current_cutscene_node_data = node_data
@@ -531,8 +605,48 @@ func _on_cutscene_clicked() -> void:
 		var em = get_node_or_null("/root/EndingManager")
 		if em:
 			var ending_id = em.pending_ending
-			em.perform_transition(ending_id, "", "")
+			var lines = _get_ending_text_lines(ending_id)
+			show_text_screen(lines, func(): em.perform_transition(ending_id, "", ""))
 		return
+
+func _get_ending_text_lines(ending_id: String) -> Array:
+	match ending_id:
+		"blackout":
+			return [
+				"You took one drink too many.",
+				"You woke up on a lawn at 8:00 AM.",
+				"You missed 50 calls from your friend.",
+				"You failed the assignment."
+			]
+		"procrastinator":
+			return [
+				"You waited too long.",
+				"You watched the clock strike midnight.",
+				"You never made it out of the bar.",
+				"You failed the assignment."
+			]
+		"drink":
+			return [
+				"You let the Boss convince you to 'relax'.",
+				"You woke up at 8:00 AM in a bush.",
+				"You were stupid.",
+				"You failed the assignment and life."
+			]
+		"job":
+			return [
+				"You accepted the offer.",
+				"You abandoned your degree for a paycheck.",
+				"You became the new Floor Manager.",
+				"You traded your future for tonight."
+			]
+		"academic":
+			return [
+				"You burst through the doors.",
+				"You hit submit just in time.",
+				"You became an Academic Weapon.",
+				"You did it."
+			]
+	return ["You reached an ending. Can you get them all?"]
 
 	if next_node == "exit" or next_node == "":
 		close_dialogue()
@@ -563,8 +677,15 @@ func close_dialogue():
 		time_manager.resume_time()
 
 func _input(event):
-	if not visible: return
+	if not visible and not _is_showing_text_screen: return
 	
+	if _is_showing_text_screen:
+		if event is InputEventMouseButton and event.pressed:
+			_advance_text_screen()
+		elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_interact"):
+			_advance_text_screen()
+		return
+
 	if _is_showing_cutscene:
 		if event is InputEventMouseButton and event.pressed:
 			_on_cutscene_clicked()
