@@ -21,14 +21,16 @@ const DRUNK_LERP_RATE := 2.0
 var alcohol_system: Node
 var _drunk: float = 0.0
 var _sway_phase: float = 0.0
+var can_move: bool = true
 
 func _ready() -> void:
+	add_to_group("player")
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 
 func _physics_process(delta: float) -> void:
-	# Disable movement during dialogue
+	# Disable movement during dialogue, intro cutscene, or if manually frozen
 	var dialogue_ui = get_tree().root.get_node_or_null("Main/HUD/DialogueUI")
-	if dialogue_ui and dialogue_ui.visible:
+	if not can_move or (dialogue_ui and dialogue_ui.visible):
 		velocity = Vector2.ZERO
 		$AnimatedSprite2D.play("Idle")
 		move_and_slide()
