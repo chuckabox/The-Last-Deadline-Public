@@ -36,17 +36,12 @@ func _ready():
 	
 	print("RoomTransitionManager initialized")
 
-func change_room(room_name: String) -> bool:
-	# Prevent concurrent transitions
-	if is_transitioning:
-		print("Already transitioning, cannot change rooms")
-		return false
-	
-	# Verify room exists
+func change_room(room_name: String, spawn_pos: Vector2 = Vector2.ZERO) -> bool:
+	if is_transitioning: return false
 	if not room_paths.has(room_name):
-		print("ERROR: Room '%s' does not exist" % room_name)
+		print("ERROR: Room '%s' not found in room_paths!" % room_name)
 		return false
-	
+		
 	is_transitioning = true
 	emit_signal("transition_started")
 	
@@ -80,6 +75,24 @@ func change_room(room_name: String) -> bool:
 		var main_node = get_node_or_null("/root/Main")
 		if main_node:
 			main_node.add_child(current_room_scene)
+	
+	# Handle Player Spawning
+	if spawn_pos != Vector2.ZERO:
+		# Search for player in the new scene
+		var player = null
+		if current_room_scene.name == "Player":
+			player = current_room_scene
+		else:
+			# Look for a child named "Player" or in group "player"
+			player = current_room_scene.find_child("Player", true, false)
+			if not player:
+				var players = get_tree().get_nodes_in_group("player")
+				if players.size() > 0:
+					player = players[0]
+		
+		if player:
+			player.global_position = spawn_pos
+			print("Spawned player at: ", spawn_pos)
 	
 	# Update current room state
 	current_room = room_name

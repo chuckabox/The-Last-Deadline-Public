@@ -9423,6 +9423,7 @@ position = Vector2(274, 136)
 scale = Vector2(1.5359972, 1)
 script = ExtResource("12_door")
 target_room = "disco"
+spawn_position = Vector2(98, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DiscoDoor" unique_id=999000222]
 shape = SubResource("RectangleShape2D_door")

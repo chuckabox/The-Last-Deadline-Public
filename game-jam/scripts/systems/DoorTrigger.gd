@@ -7,6 +7,7 @@ class_name DoorTrigger
 @export var is_locked: bool = false
 @export var lock_message: String = "You need something to unlock this door"
 @export var requires_flag: String = ""  # e.g., "dj_completed"
+@export var spawn_position: Vector2 = Vector2.ZERO # Where to spawn player in target room
 
 # References
 var game_manager: Node
@@ -137,7 +138,7 @@ func attempt_transition():
 	
 	# Attempt transition
 	if room_transition_manager and room_transition_manager.has_method("change_room"):
-		var success = await room_transition_manager.change_room(target_room)
+		var success = await room_transition_manager.change_room(target_room, spawn_position)
 		if success and audio_manager:
 			audio_manager.play_sfx("door_unlock")
 	else:
