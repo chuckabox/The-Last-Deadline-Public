@@ -35,7 +35,8 @@ const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 	"stage_transition": "res://audio/sfx/stage_transition.ogg",
 	
 	# Environment
-	"door_unlock": "res://audio/sfx/door_unlock.ogg"
+	"door_unlock": "res://audio/sfx/door_unlock.ogg",
+	"crowd_cheer": "res://audio/sfx/crowd_cheer.ogg"
 }
 
 # Audio player pool

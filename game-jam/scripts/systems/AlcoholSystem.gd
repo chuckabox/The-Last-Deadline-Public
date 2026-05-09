@@ -53,6 +53,12 @@ func drink_alcohol(amount: float = 0.25) -> void:
 	alcohol = min(1.0, alcohol + amount)
 	update_stage()
 	alcohol_changed.emit(alcohol, current_stage)
+	
+	# Play crowd cheer with rising pitch per stage
+	var sfx = get_node_or_null("/root/SFXManager")
+	if sfx and sfx.has_method("play_sfx"):
+		var pitch = 1.0 + current_stage * 0.1  # Gets more intense each stage
+		sfx.play_sfx("crowd_cheer", 0.0, pitch)
 
 ## Decreases alcohol level (e.g. drinking water)
 
