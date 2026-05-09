@@ -160,6 +160,8 @@
       },
       "phoneCutscene": {
         "image": "res://assets/endings/start.jpg",
+        "sound": "boom",
+        "pitch": 0.5,
         "next": "panic"
       },
       "panic": {

@@ -425,6 +425,14 @@ func _show_cutscene(node_data: Dictionary) -> void:
 	if tex:
 		_cutscene_overlay.texture = tex
 		_cutscene_overlay.show()
+		
+		# Play cutscene sound if specified
+		if node_data.has("sound"):
+			var sfx = get_node_or_null("/root/SFXManager")
+			if sfx and sfx.has_method("play_sfx"):
+				var pitch = node_data.get("pitch", 1.0)
+				sfx.play_sfx(node_data["sound"], 0.0, pitch)
+		
 		# Hide the main dialogue box during cutscene
 		get_node("SpeakerNameBox").hide()
 		get_node("Content").hide()

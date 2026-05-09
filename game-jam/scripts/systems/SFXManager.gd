@@ -39,7 +39,8 @@ const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 	
 	# Environment
 	"door_unlock": "res://audio/sfx/door_unlock.ogg",
-	"crowd_cheer": "res://audio/sfx/crowd_cheer.ogg"
+	"crowd_cheer": "res://audio/sfx/crowd_cheer.ogg",
+	"boom": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Error 2 (Square).ogg"
 }
 
 # Audio player pool
