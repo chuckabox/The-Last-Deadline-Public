@@ -372,6 +372,10 @@ func _apply_disabled_state(btn: Button, option: Dictionary) -> void:
 				btn.disabled = true
 
 func _on_option_pressed(index: int):
+	var sfx = get_node_or_null("/root/SFXManager")
+	if sfx and sfx.has_method("play_sfx"):
+		sfx.play_sfx("menu_select")
+		
 	var button = option_buttons[index]
 	if not button.has_meta("option_index"):
 		close_dialogue()
