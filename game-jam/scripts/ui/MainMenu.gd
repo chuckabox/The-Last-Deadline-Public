@@ -64,7 +64,30 @@ func _on_start_pressed():
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.4)
 	await tween.finished
-	get_tree().change_scene_to_file("res://bar.tscn")
+	_launch_game()
+
+func _launch_game() -> void:
+	# Swap MainMenu out of Main/CurrentScene for the bar room + intro cutscene
+	# overlay, keeping Main.tscn (and its persistent HUD/DialogueUI) loaded.
+	var current_scene_node := get_tree().root.get_node_or_null("Main/CurrentScene")
+	if current_scene_node == null:
+		push_error("MainMenu: /root/Main/CurrentScene not found; falling back to full scene swap.")
+		get_tree().change_scene_to_file("res://bar.tscn")
+		return
+
+	var hud := get_tree().root.get_node_or_null("Main/HUD") as CanvasLayer
+	if hud:
+		hud.visible = true
+
+	var bar_scene: PackedScene = load("res://bar.tscn")
+	if bar_scene:
+		current_scene_node.add_child(bar_scene.instantiate())
+
+	var intro_scene: PackedScene = load("res://scenes/ui/IntroCutscene.tscn")
+	if intro_scene:
+		current_scene_node.add_child(intro_scene.instantiate())
+
+	queue_free()
 
 func _on_quit_pressed():
 	_play_select_sfx()
