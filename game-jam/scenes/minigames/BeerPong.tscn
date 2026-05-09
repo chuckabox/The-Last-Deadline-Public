@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ded6x0r31ha67" path="res://scripts/minigames/BeerPong.gd" id="1_bp"]
 [ext_resource type="Texture2D" uid="uid://beuclyrcjc0q4" path="res://assets/minigames/beer pong/Beer pong ball.png" id="2_s4wfp"]
-[ext_resource type="Texture2D" uid="uid://by3f6ifa61w3b" path="res://assets/minigames/beer pong/blue_cup.png" id="2_ts4dy"]
-[ext_resource type="Texture2D" uid="uid://bmcoiai5oy7j" path="res://assets/minigames/beer pong/red_cup.png" id="3_jwfiy"]
+[ext_resource type="Texture2D" uid="uid://bgq3sqesmd6p" path="res://assets/minigames/beer pong/Beer pong blue.png" id="2_ts4dy"]
+[ext_resource type="Texture2D" uid="uid://c6gj8iywc5njd" path="res://assets/minigames/beer pong/Beer pong red.png" id="3_jwfiy"]
 [ext_resource type="Script" uid="uid://qiy5r2n7xh4" path="res://scenes/minigames/path_2d.gd" id="4_jsnjn"]
 [ext_resource type="Script" uid="uid://c5tpj815y01in" path="res://scenes/minigames/path_2d_2.gd" id="6_ibg7q"]
 [ext_resource type="Script" uid="uid://b6jsn3vrjyc74" path="res://scenes/minigames/path_2d_3.gd" id="7_kjmng"]
@@ -170,14 +170,14 @@ horizontal_alignment = 1
 
 [node name="BeerPongBlue" type="Sprite2D" parent="." unique_id=291562417]
 z_index = 1
-position = Vector2(990, 281)
-scale = Vector2(3.85, 3)
+position = Vector2(998, 275)
+scale = Vector2(0.4, 0.289)
 texture = ExtResource("2_ts4dy")
 
 [node name="BeerPongRed" type="Sprite2D" parent="." unique_id=1295508018]
 z_index = 1
-position = Vector2(164, 278.00003)
-scale = Vector2(3.939, 3)
+position = Vector2(177.00002, 290)
+scale = Vector2(0.41248786, 0.31415686)
 texture = ExtResource("3_jwfiy")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1352688463]
@@ -203,7 +203,7 @@ script = ExtResource("6_ibg7q")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2" unique_id=1955859506]
 position = Vector2(-7, 156)
-rotation = -2.0394945
+rotation = -2.0394943
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D2/PathFollow2D" unique_id=167044427]
 position = Vector2(7.6293945e-06, 9.536743e-06)
@@ -237,10 +237,10 @@ texture = ExtResource("9_jwfiy")
 
 [node name="YOU" type="Label" parent="." unique_id=1661634700]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 375.0
-offset_right = 282.0
-offset_bottom = 458.0
+offset_left = 248.0
+offset_top = 566.0
+offset_right = 375.0
+offset_bottom = 649.0
 theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
 theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
@@ -270,10 +270,10 @@ text = "First to one wins!"
 
 [node name="FRAT BRO" type="Label" parent="." unique_id=1123665476]
 layout_mode = 0
-offset_left = 877.0
-offset_top = 360.0
-offset_right = 1073.0
-offset_bottom = 443.0
+offset_left = 796.0
+offset_top = 581.0
+offset_right = 992.0
+offset_bottom = 664.0
 theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
 theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
