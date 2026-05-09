@@ -49,7 +49,6 @@ const DIRECTION_FRAMES = {
 	3: 2
 }
 
-# Active silhouettes: { node, direction, distance, is_ghost }
 var active_silhouettes = []
 
 # References
@@ -150,8 +149,7 @@ func _physics_process(delta):
 		# Missed — passed through player
 		if s["distance"] <= 0:
 			to_remove.append(s)
-			if not s.get("is_ghost", false):
-				miss_silhouette()
+			miss_silhouette()
 
 	for s in to_remove:
 		active_silhouettes.erase(s)
@@ -178,34 +176,30 @@ func check_hit(direction: int):
 				closest = s
 
 	if closest and closest_dist <= HIT_DISTANCE:
-		if closest.get("is_ghost", false):
-			miss_silhouette()
-			active_silhouettes.erase(closest)
-			closest["node"].queue_free()
-		else:
-			combo += 1
-			var old_energy = crowd_energy
-			crowd_energy = min(1.0, crowd_energy + 0.015 + (combo * 0.001)) # Harder energy gain
 
-			if player_sprite:
-				player_sprite.frame = DIRECTION_FRAMES[direction]
+		combo += 1
+		var old_energy = crowd_energy
+		crowd_energy = min(1.0, crowd_energy + 0.015 + (combo * 0.001)) # Harder energy gain
 
-			if sfx_manager:
-				sfx_manager.play_sfx("pose_match")
-				
-			trigger_success_pulse()
-			check_milestone(old_energy, crowd_energy)
+		if player_sprite:
+			player_sprite.frame = DIRECTION_FRAMES[direction]
 
-			active_silhouettes.erase(closest)
-			closest["node"].queue_free()
+		if sfx_manager:
+			sfx_manager.play_sfx("pose_match")
+			
+		trigger_success_pulse()
+		check_milestone(old_energy, crowd_energy)
 
-			# Return to idle after short delay
-			var tween = create_tween()
-			tween.tween_interval(0.2)
-			tween.tween_callback(func(): if player_sprite: player_sprite.frame = 0)
+		active_silhouettes.erase(closest)
+		closest["node"].queue_free()
 
-			if crowd_energy >= 1.0:
-				win_minigame()
+		# Return to idle after short delay
+		var tween = create_tween()
+		tween.tween_interval(0.2)
+		tween.tween_callback(func(): if player_sprite: player_sprite.frame = 0)
+
+		if crowd_energy >= 1.0:
+			win_minigame()
 	else:
 		miss_silhouette()
 
@@ -226,10 +220,6 @@ func spawn_silhouette():
 
 	var direction = randi() % 4
 
-	var is_ghost = false
-	if difficulty_stage >= 3 and randf() < 0.15:
-		is_ghost = true
-
 	var silhouette = Sprite2D.new()
 
 	if player_sprite and player_sprite.sprite_frames:
@@ -238,8 +228,8 @@ func spawn_silhouette():
 			var frame_index = DIRECTION_FRAMES[direction]
 			silhouette.texture = frames.get_frame_texture("default", frame_index)
 
-	var max_alpha = 0.7 if is_ghost else 0.85
-	silhouette.modulate = Color(1, 0, 0, 0.0) if is_ghost else Color(0.15, 0.15, 0.15, 0.0)
+	var max_alpha = 0.85
+	silhouette.modulate = Color(0.15, 0.15, 0.15, 0.0)
 	silhouette.scale = Vector2(1.5, 1.5)
 
 	var rail_names = ["RailUp", "RailDown", "RailLeft", "RailRight"]
@@ -257,7 +247,6 @@ func spawn_silhouette():
 		"node": silhouette,
 		"direction": direction,
 		"distance": RAIL_DISTANCE,
-		"is_ghost": is_ghost,
 		"max_alpha": max_alpha
 	})
 
@@ -271,11 +260,14 @@ func check_milestone(old_val: float, new_val: float):
 	for t in thresholds:
 		if old_val < t and new_val >= t:
 			spawn_milestone_ring()
-	var thresholds2 = [0.4,0.6,0.8]
+	var thresholds2 = [0.3,0.5,0.7]
 	for t in thresholds2:
 		if old_val < t and new_val >= t:
-			adjust_difficulty()
+			up_difficulty()
 
+func up_difficulty():
+	difficulty_stage+=1
+	
 func spawn_milestone_ring():
 	var ring = MilestoneRing.new()
 	ring.position = Vector2(576, 324)
