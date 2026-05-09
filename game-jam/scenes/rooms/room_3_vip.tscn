@@ -10190,7 +10190,6 @@ sources/5 = SubResource("TileSetAtlasSource_y0kkm")
 
 [node name="VIProom" type="Node2D" unique_id=1061965690]
 position = Vector2(4.6569824, 21.325562)
-scale = Vector2(1.71525, 1.71525)
 script = ExtResource("1_26euq")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=704488364]

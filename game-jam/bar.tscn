@@ -9256,7 +9256,6 @@ distance = -1131.0
 
 [node name="Bar" type="Node2D" unique_id=330961735]
 y_sort_enabled = true
-scale = Vector2(1.6658928, 1.6658928)
 script = ExtResource("1_qyha7")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1915597061]
