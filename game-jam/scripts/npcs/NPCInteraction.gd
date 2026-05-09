@@ -63,8 +63,6 @@ func _on_area_exited(area):
 func interact():
 	if has_completed_quest:
 		print("NPC '%s' quest already completed" % npc_id)
-		# We can still talk, but we return early if you want to block repeat interaction
-		# return 
 	
 	is_interacting = true
 	emit_signal("interaction_started", npc_id)
@@ -72,36 +70,26 @@ func interact():
 	# Play talk animation
 	play_animation("talk")
 	
-	# Show dialogue UI
+	# Find DialogueUI if not already set
+	if not dialogue_ui:
+		dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
+	
 	if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
 		dialogue_ui.show_dialogue(npc_id)
-		if not dialogue_ui.option_selected.is_connected(_on_dialogue_complete):
-			dialogue_ui.option_selected.connect(_on_dialogue_complete)
+		if not dialogue_ui.dialogue_closed.is_connected(_on_dialogue_complete):
+			dialogue_ui.dialogue_closed.connect(_on_dialogue_complete)
 	else:
-		# Fallback just in case dialogue_ui wasn't ready at _ready
-		dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
-		if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
-			dialogue_ui.show_dialogue(npc_id)
-			if not dialogue_ui.option_selected.is_connected(_on_dialogue_complete):
-				dialogue_ui.option_selected.connect(_on_dialogue_complete)
-		else:
-			print("ERROR: Dialogue UI not found!")
+		print("ERROR: Dialogue UI not found at /root/DialogueUI")
 	
 	if audio_manager:
 		audio_manager.play_sfx("notification_ping")
 
-func _on_dialogue_complete(option_index: int, next_node: String):
+func _on_dialogue_complete():
 	is_interacting = false
 	emit_signal("dialogue_ended")
-	
-	# Clean up signal connection
-	if dialogue_ui and dialogue_ui.option_selected.is_connected(_on_dialogue_complete):
-		dialogue_ui.option_selected.disconnect(_on_dialogue_complete)
-	
-	# If dialogue ended (no next node), mark quest as potential completion
-	if next_node == "" or next_node == "exit":
-		# Subclass can override to determine actual completion
-		check_quest_completion()
+	if dialogue_ui and dialogue_ui.dialogue_closed.is_connected(_on_dialogue_complete):
+		dialogue_ui.dialogue_closed.disconnect(_on_dialogue_complete)
+	check_quest_completion()
 
 func check_quest_completion():
 	# Override in subclass to implement specific quest logic
