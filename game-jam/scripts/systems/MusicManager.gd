@@ -27,6 +27,13 @@ const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 	"credits": "res://audio/music/Credits Theme.ogg"
 }
 
+# Playlist for the Disco (randomized)
+@export var disco_playlist: Array = [
+	"res://audio/music/Pixel Pulse.ogg",
+	"res://audio/music/Pixel Heart.ogg",
+	"res://audio/music/Pixel Odyssey.ogg"
+]
+
 # References
 var alcohol_system: Node
 var current_stage = -1
@@ -58,12 +65,16 @@ func _on_stage_changed(new_stage: int):
 		crossfade_to_stage(new_stage)
 
 func play_track(track_name: String, fade: bool = true):
-	if not track_library.has(track_name):
+	is_locked_to_track = true
+	var path = ""
+	
+	if track_name == "disco":
+		path = disco_playlist[randi() % disco_playlist.size()]
+	elif track_library.has(track_name):
+		path = track_library[track_name]
+	else:
 		print("ERROR: Track '%s' not found in library" % track_name)
 		return
-	
-	is_locked_to_track = true
-	var path = track_library[track_name]
 	
 	if fade:
 		_fade_to_path(path)
