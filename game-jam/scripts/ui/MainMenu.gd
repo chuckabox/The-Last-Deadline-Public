@@ -103,7 +103,8 @@ func _launch_game() -> void:
 	queue_free()
 
 func _on_quit_pressed():
-	_play_select_sfx()
+	if sfx_manager:
+		sfx_manager.play_sfx("menu_cancel")
 	# Just quit immediately to avoid revealing the grey background during a fade
 	get_tree().quit()
 

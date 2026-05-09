@@ -14,11 +14,14 @@ const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
 	"footsteps_club": "res://audio/sfx/footsteps_club.ogg",
 	"phone_vibrate": "res://audio/sfx/phone_vibrate.ogg",
 	
-	# UI
-	"menu_select": "res://audio/sfx/menu_select.ogg",
-	"menu_scroll": "res://audio/sfx/menu_scroll.ogg",
-	"notification_ping": "res://audio/sfx/notification_ping.ogg",
-	"error": "res://audio/sfx/error.ogg",
+	# UI (JDSherbert Pixel UI SFX Pack — Square variants for punchy 8-bit feel)
+	"menu_select": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Select 1 (Square).ogg",
+	"menu_scroll": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Cursor 1 (Square).ogg",
+	"menu_cancel": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Cancel 1 (Square).ogg",
+	"notification_ping": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Cursor 3 (Square).ogg",
+	"error": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Error 1 (Square).ogg",
+	"ui_popup_open": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Popup Open 1 (Square).ogg",
+	"ui_popup_close": "res://audio/jd/ogg/JDSherbert - Pixel UI SFX Pack - Popup Close 1 (Square).ogg",
 	
 	# Mini-games
 	"sequence_correct": "res://audio/sfx/sequence_correct.ogg",

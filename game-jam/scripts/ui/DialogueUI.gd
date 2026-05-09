@@ -115,6 +115,10 @@ func show_dialogue(npc_name: String, start_node: String = "start"):
 
 	_set_bust_for(npc_name)
 
+	var sfx = get_node_or_null("/root/SFXManager")
+	if sfx and sfx.has_method("play_sfx"):
+		sfx.play_sfx("ui_popup_open")
+
 	dialogue_opened.emit()
 	display_node()
 	show()
@@ -334,6 +338,11 @@ func close_dialogue():
 	if bust_rect:
 		bust_rect.hide()
 	hide()
+
+	var sfx = get_node_or_null("/root/SFXManager")
+	if sfx and sfx.has_method("play_sfx"):
+		sfx.play_sfx("ui_popup_close")
+
 	dialogue_closed.emit()
 
 	var time_manager = get_node_or_null("/root/TimeManager")
