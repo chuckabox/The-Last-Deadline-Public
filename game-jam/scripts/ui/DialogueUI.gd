@@ -50,7 +50,7 @@ var _click_tween: Tween
 
 var _is_showing_text_screen = false
 var _text_screen_overlay: ColorRect
-var _text_screen_label: Label
+var _text_screen_container: VBoxContainer
 var _text_screen_lines: Array = []
 var _text_screen_index: int = 0
 var _text_screen_callback: Callable
@@ -170,15 +170,14 @@ func _build_text_screen_display() -> void:
 	_text_screen_overlay.z_index = 300 # Above everything including cutscenes
 	_text_screen_overlay.hide()
 	
-	_text_screen_label = Label.new()
-	_text_screen_label.name = "TextLabel"
-	_text_screen_label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_text_screen_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_text_screen_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_text_screen_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_text_screen_label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
-	_text_screen_label.add_theme_font_size_override("font_size", 48)
-	_text_screen_overlay.add_child(_text_screen_label)
+	_text_screen_container = VBoxContainer.new()
+	_text_screen_container.name = "TextContainer"
+	_text_screen_container.set_anchors_preset(Control.PRESET_CENTER)
+	_text_screen_container.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_text_screen_container.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_text_screen_container.alignment = BoxContainer.ALIGNMENT_CENTER
+	_text_screen_container.theme_override_constants_separation = 20
+	_text_screen_overlay.add_child(_text_screen_container)
 	
 	# Add the click indicator to this too
 	var indicator = TextureRect.new()
@@ -533,10 +532,18 @@ func show_text_screen(lines: Array, callback: Callable = Callable()) -> void:
 
 func _advance_text_screen() -> void:
 	if _text_screen_index < _text_screen_lines.size():
-		_text_screen_label.text = _text_screen_lines[_text_screen_index]
-		_text_screen_label.modulate.a = 0
+		var line_label = Label.new()
+		line_label.text = _text_screen_lines[_text_screen_index]
+		line_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		line_label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
+		line_label.add_theme_font_size_override("font_size", 48)
+		line_label.modulate.a = 0
+		
+		_text_screen_container.add_child(line_label)
+		
 		var t = create_tween()
-		t.tween_property(_text_screen_label, "modulate:a", 1.0, 0.3)
+		t.tween_property(line_label, "modulate:a", 1.0, 0.6).set_trans(Tween.TRANS_SINE)
+		
 		_text_screen_index += 1
 	else:
 		_close_text_screen()
@@ -547,6 +554,10 @@ func _close_text_screen() -> void:
 	t.tween_property(_text_screen_overlay, "modulate:a", 0.0, 0.5)
 	await t.finished
 	_text_screen_overlay.hide()
+	
+	# Clear the container for next time
+	for child in _text_screen_container.get_children():
+		child.queue_free()
 	
 	if _text_screen_callback.is_valid():
 		_text_screen_callback.call()
