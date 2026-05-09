@@ -1,15 +1,3 @@
 [gd_scene format=3 uid="uid://bvip456"]
 
-[node name="VIPRoom" type="Node2D"]
-
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.2, 0.0, 0.1, 1)
-
-[node name="Label" type="Label" parent="."]
-offset_left = 500.0
-offset_top = 300.0
-offset_right = 652.0
-offset_bottom = 326.0
-text = "VIP AREA (Stub)"
+[node name="VIProom" type="Node2D" unique_id=1061965690]
