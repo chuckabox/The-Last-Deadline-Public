@@ -234,9 +234,6 @@ func _on_drink_clicked(button_name: String):
 			lives -= 1
 			update_ui()
 
-			if alcohol_system and alcohol_system.has_method("drink_alcohol"):
-				alcohol_system.drink_alcohol(0.2)
-
 			await get_tree().create_timer(1.2).timeout
 
 			if lives <= 0:
@@ -314,6 +311,8 @@ func lose_minigame():
 	is_active = false
 	_set_buttons_locked(true)
 	print("Bartender Memory LOST!")
+	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+		alcohol_system.drink_alcohol(0.2)
 	emit_signal("minigame_lost")
 	if game_manager:
 		game_manager.minigame_lost.emit()

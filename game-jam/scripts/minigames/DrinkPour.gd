@@ -349,8 +349,6 @@ func check_accuracy():
 		lives -= 1
 		if sfx_manager:
 			sfx_manager.play_sfx("spill_splash")
-		if alcohol_system and alcohol_system.has_method("drink_alcohol"):
-			alcohol_system.drink_alcohol(0.2)
 
 		if feedback_label:
 			feedback_label.show()
@@ -461,6 +459,8 @@ func win_minigame():
 
 func lose_minigame():
 	print("Drink Pour LOST!")
+	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+		alcohol_system.drink_alcohol(0.2)
 	emit_signal("minigame_lost")
 	if game_manager:
 		game_manager.minigame_lost.emit()

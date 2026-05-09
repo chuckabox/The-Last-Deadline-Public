@@ -263,6 +263,8 @@ func lose_minigame():
 	if path3_node and path3_node.has_method("play_arc_animation"):
 		path3_node.play_arc_animation()
 	print("Beer Pong LOST! Alcohol +1")
+	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+		alcohol_system.drink_alcohol(0.2)
 	emit_signal("minigame_lost")
 	
 	# Notify GameManager for global ending checks
