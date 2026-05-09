@@ -34,6 +34,7 @@ RoomTransitionManager="*res://scripts/systems/RoomTransitionManager.gd"
 MinigameManager="*res://scripts/systems/MinigameManager.gd"
 FriendTimeDegradation="*res://scripts/npcs/FriendTimeDegradation.gd"
 ScreenFX="*res://scripts/systems/ScreenFX.gd"
+AudioFilterManager="*res://scripts/systems/AudioFilterManager.gd"
 
 [dotnet]
 
