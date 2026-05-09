@@ -9,8 +9,7 @@ var room_paths = {
 	"main_menu": "res://scenes/ui/MainMenu.tscn",
 	"bar": "res://scenes/rooms/room_1_bar.tscn",
 	"disco": "res://scenes/rooms/room_2_disco.tscn",
-	"vip": "res://scenes/rooms/room_3_vip.tscn",
-	"office": "res://scenes/rooms/room_4_office.tscn"
+	"vip": "res://scenes/rooms/room_3_vip.tscn"
 }
 
 # Transition state

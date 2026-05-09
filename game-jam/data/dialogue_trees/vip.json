@@ -1,81 +1,57 @@
 {
-  "id": "VIP",
-  "name": "The VIP",
+  "id": "Boss",
+  "name": "The Owner",
   "dialogue": {
     "start": "talk",
     "nodes": {
       "talk": {
         "variants": [
           {
-            "condition": { "flag": "vipDefeated", "is": true },
-            "text": "Best waiter I've seen all night. Leave the bottle and go find the Boss.",
-            "options": [
-              { "text": "Will do.", "next": "exit" }
-            ]
-          },
-          {
             "condition": { "flag": "djDefeated", "is": false },
-            "text": "I don't remember ordering a 'random guy' to my table. Go back to the common area before I call security.",
+            "text": "Who let you in here? This area is for people who know how to vibe. Go back to the floor.",
             "options": [
-              { "text": "Alright.", "next": "exit" }
-            ]
-          },
-          {
-            "condition": { "flag": "vipPoured", "is": true },
-            "text": "Alright, let's see some fireworks. Pop that cork!",
-            "options": [
-              { "text": "[Pop the Bottle]", "next": "popGame" }
+              { "text": "My apologies.", "next": "exit" }
             ]
           },
           {
             "condition": { "flag": "djDefeated", "is": true },
-            "text": "Hey! Waiter! My glass is empty. Fill it up, and I'll make it worth your while.",
+            "text": "Sit down. Do you know why those doors are locked? ARPU. Average Revenue Per User. If you can't leave, you spend. But you... you've been doing everything but spending. I've been watching you on the monitors. You fixed the DJ's tech, calmed down the crowd, and didn't break a single glass.",
             "options": [
-              { "text": "Coming right up.", "next": "pourGame" },
-              { "text": "Zzz... the assignment... it's made of cheese...", "next": "exit" },
-              { "text": "I'm busy.", "next": "exit" }
+              { "text": "I just need to leave.", "next": "offer" }
             ]
           }
         ]
       },
-      "pourGame": {
-        "text": "[Triggers Drink Pour Minigame]",
-        "minigame": "drink_pour",
+      "offer": {
+        "text": "You've caused quite a stir tonight, kid. Relax. The night is young. Have a drink with me before you head out into the cold.",
         "options": [
-          { "text": "[Win]", "next": "pourWin", "setFlag": { "vipPoured": true } },
-          { "text": "[Lose]", "next": "pourLose" }
+          { "text": "Sure, just one.", "next": "drinkBranch" },
+          { "text": "No thanks, I'm in a hurry.", "next": "jobBranch" }
         ]
       },
-      "pourWin": {
-        "text": "Great pour. Hey, I'm feeling generous. Grab that bottle on the table and pour yourself a glass. Let's see how steady your hands are.",
+      "drinkBranch": {
+        "text": "[FADE TO BLACK]\n\nEverything went fuzzy. You woke up at 3:00 AM on the VIP sofa. The deadline is gone. You failed.",
         "options": [
-          { "text": "Alright.", "next": "exit" }
+          { "text": "...", "next": "exit", "triggerGlobal": "drink" }
         ]
       },
-      "pourLose": {
-        "text": "You're spilling the good stuff! If you're going to be this shaky, you might as well just join the party. Drink up.",
+      "jobBranch": {
+        "text": "Direct. I like that. Honestly, probably for the best. I usually keep that bottle for people who don't know when to leave. I need a Floor Manager. Someone who can handle the chaos. Stay here, run the floor, and I'll double whatever your future career pays.",
         "options": [
-          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+          { "text": "I'll take the job.", "next": "averageEnding" },
+          { "text": "I have to get out. Immediately.", "next": "successEnding" }
         ]
       },
-      "popGame": {
-        "text": "[Triggers Champagne Pop Minigame]",
-        "minigame": "champaigne_pop",
+      "averageEnding": {
+        "text": "You become the new Floor Manager. You have money, but your degree is abandoned.",
         "options": [
-          { "text": "[Win]", "next": "popWin", "setFlag": { "vipDefeated": true } },
-          { "text": "[Lose]", "next": "popLose" }
+          { "text": "...", "next": "exit", "triggerGlobal": "job" }
         ]
       },
-      "popWin": {
-        "text": "Hell of a pop! You've got style. Go on back and see the Boss.",
+      "successEnding": {
+        "text": "The Owner respects the hustle and hands you the keys. You burst out the VIP exit.",
         "options": [
-          { "text": "[Go to Office]", "next": "exit", "triggerGlobal": "transitionToOffice" }
-        ]
-      },
-      "popLose": {
-        "text": "That was the saddest 'pop' I've ever heard. It didn't even fizz! Drink the rest of this failure.",
-        "options": [
-          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+          { "text": "...", "next": "exit", "triggerGlobal": "academic" }
         ]
       },
       "exit": { "text": null, "options": [] }

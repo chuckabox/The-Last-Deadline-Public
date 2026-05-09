@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://16c08j5vvnq" path="res://HUD.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://2wltnxim28nh" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Spritesheets/Spritesheet_UI_Flat.png" id="2_efote"]
+[ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_vow1y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vow1y"]
 texture = ExtResource("2_efote")
@@ -461,6 +462,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+metadata/_edit_group_ = true
 
 [node name="TopRight" type="VBoxContainer" parent="Container" unique_id=807004908]
 z_index = 5
@@ -468,17 +470,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_top = 62.0
-offset_right = -122.0
-offset_bottom = 100.0
+offset_left = -259.0
+offset_top = 63.0
+offset_right = -178.70587
+offset_bottom = 84.0
 grow_horizontal = 0
-
-[node name="ClockLabel" type="Label" parent="Container/TopRight" unique_id=221180680]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "11:00 PM"
-horizontal_alignment = 2
+scale = Vector2(1.7, 1.7)
 
 [node name="WarningText" type="Control" parent="Container" unique_id=158525695]
 visible = false
@@ -523,62 +520,67 @@ tile_map_data = PackedByteArray(0, 0, 5, 0, 254, 255, 1, 0, 33, 0, 8, 0, 0, 0, 5
 tile_set = SubResource("TileSet_ne771")
 
 [node name="1st" type="TileMapLayer" parent="." unique_id=108036769]
-visible = false
 position = Vector2(-17.5, -12)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="2nd" type="TileMapLayer" parent="." unique_id=1671202245]
-visible = false
 position = Vector2(-17.5, -27)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="3rd" type="TileMapLayer" parent="." unique_id=1136330786]
-visible = false
 position = Vector2(-17.5, -42)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="4th" type="TileMapLayer" parent="." unique_id=1029955096]
-visible = false
 position = Vector2(-17.5, -57)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="5th" type="TileMapLayer" parent="." unique_id=697968123]
-visible = false
 position = Vector2(-17.5, -73)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="6th" type="TileMapLayer" parent="." unique_id=316647486]
-visible = false
 position = Vector2(-17.5, -88)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="7th" type="TileMapLayer" parent="." unique_id=2061307546]
-visible = false
 position = Vector2(-17.5, -103)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="8th" type="TileMapLayer" parent="." unique_id=1384285343]
-visible = false
 position = Vector2(-17.5, -118)
 scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockFrame" type="TileMapLayer" parent="." unique_id=716494234]
-scale = Vector2(5, 5)
-tile_map_data = PackedByteArray(0, 0, 11, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 11, 0, 1, 0, 1, 0, 30, 0, 9, 0, 0, 0, 12, 0, 1, 0, 1, 0, 31, 0, 9, 0, 0, 0, 12, 0, 0, 0, 1, 0, 31, 0, 8, 0, 0, 0)
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray(0, 0, 15, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 15, 0, 1, 0, 1, 0, 30, 0, 9, 0, 0, 0, 16, 0, 0, 0, 1, 0, 31, 0, 8, 0, 0, 0, 16, 0, 1, 0, 1, 0, 31, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
+
+[node name="ClockLabel" type="Label" parent="." unique_id=221180680]
+texture_filter = 1
+offset_left = 965.0
+offset_top = 44.0
+offset_right = 1056.5386
+offset_bottom = 74.769226
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+text = "11:00 PM"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_group_ = true
