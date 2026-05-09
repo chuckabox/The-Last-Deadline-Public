@@ -83,6 +83,24 @@ func _ready():
 	game_manager = get_node_or_null("/root/GameManager")
 	sfx_manager = get_node_or_null("/root/SFXManager")
 
+<<<<<<< HEAD
+=======
+	var dancefloor_scene = load("res://scenes/dancefloor.tscn")
+	if dancefloor_scene:
+		var dancefloor = dancefloor_scene.instantiate()
+		
+		# Remove gameplay nodes so we only get the background and lights
+		var unwanted_nodes = ["Player", "Tyreese", "Zain", "DJ", "EastWall", "WestWall", "SouthWall"]
+		for node_name in unwanted_nodes:
+			var node = dancefloor.get_node_or_null(node_name)
+			if node:
+				dancefloor.remove_child(node)
+				node.queue_free()
+				
+		add_child(dancefloor)
+		move_child(dancefloor, 0) # Place it behind everything else
+
+>>>>>>> 0751f34 (Strange extra file)
 	if alcohol_system and "current_stage" in alcohol_system:
 		difficulty_stage = alcohol_system.current_stage
 
