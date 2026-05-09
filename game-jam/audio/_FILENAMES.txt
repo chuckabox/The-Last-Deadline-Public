@@ -1,0 +1,59 @@
+DROP AUDIO FILES HERE — THE GAME WILL PICK THEM UP AUTOMATICALLY
+================================================================
+
+Folder layout:
+  audio/
+    music/   <- five looping stage tracks
+    sfx/     <- one-shot sound effects
+
+If a filename is missing on disk, the game just runs without that sound
+(no crash). Add files at any time, restart the scene, they'll play.
+
+You can rename or repath any of these in the Godot editor by selecting the
+MusicManager / SFXManager autoload nodes and editing the @export dictionary
+in the inspector — but using the names below means zero config.
+
+----------------------------------------------------------------
+MUSIC — audio/music/   (referenced by scripts/systems/MusicManager.gd)
+----------------------------------------------------------------
+  stage_0_chill.ogg       Stage 0  Normal       (alcohol 0.00 - 0.24)
+  stage_1_buzz.ogg        Stage 1  Buzz         (alcohol 0.25 - 0.49)
+  stage_2_hype.ogg        Stage 2  Tunnel       (alcohol 0.50 - 0.74)
+  stage_3_chaos.ogg       Stage 3  Spin         (alcohol 0.75 - 0.89)
+  stage_4_distorted.ogg   Stage 4  Blackout     (alcohol 0.90 - 1.00)
+
+----------------------------------------------------------------
+SFX — audio/sfx/   (referenced by scripts/systems/SFXManager.gd)
+----------------------------------------------------------------
+Player
+  footsteps_tile.ogg      walking on hard floor
+  footsteps_club.ogg      walking on dance floor
+  phone_vibrate.ogg       intro phone notification
+
+UI
+  menu_select.ogg         button confirm
+  menu_scroll.ogg         button focus / dialogue option focus
+  notification_ping.ogg   NPC interact prompt, alerts
+  error.ogg               wrong input / minigame fail tap
+
+Minigames
+  sequence_correct.ogg    bartender memory: right drink
+  sequence_wrong.ogg      bartender memory: wrong drink
+  cup_sink.ogg            beer pong: cup sunk
+  rim_bounce.ogg          beer pong: missed
+  liquid_pour.ogg         drink pour: pouring loop
+  cork_pop.ogg            champagne: successful pop
+  pose_match.ogg          dance rhythm: arrow hit
+
+Alcohol
+  drink_gulp.ogg           drinking penalty
+  water_refresh.ogg        water sober-up (if used)
+  stage_transition.ogg     crossing into a new alcohol stage
+
+Environment
+  door_unlock.ogg          door / room transition
+
+================================================================
+Format: any Godot-supported audio (.ogg recommended, .wav also works).
+.ogg gives smaller files and better looping for the music tracks.
+================================================================
