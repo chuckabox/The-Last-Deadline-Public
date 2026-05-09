@@ -14,16 +14,16 @@
             "text": "Cheers! To finishing the CSSE1001 assignment. But slow down dude, you really don't want to black out...",
             "options": [
               {
-                "text": "[Stop drinking (0 ALCOHOL)] You right bro.",
+                "text": "[Stop drinking (EASY)] You right bro.",
                 "next": "phoneTrigger"
               },
               {
-                "text": "[Keep drinking (+1 ALCOHOL)] I love me some alcohol.",
+                "text": "[Keep drinking (MEDIUM)] I love alcohol.",
                 "next": "phoneTrigger",
                 "triggerGlobal": "increaseAlcohol"
               },
               {
-                "text": "[Chug (+2 ALCOHOL)] Nah bro, I'm him.",
+                "text": "[Chug (HARD)] Nah bro, I'm him.",
                 "next": "phoneTrigger",
                 "triggerGlobal": "increaseAlcohol"
               }

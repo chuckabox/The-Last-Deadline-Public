@@ -215,18 +215,25 @@ func display_node():
 		else:
 			other_options.append(opt)
 
-	# Left button: Play Game (if exists)
+	# Left button: Play Game (if exists), otherwise first other option
 	if play_game_option:
 		option_buttons[0].text = play_game_option.get("text", "...")
 		option_buttons[0].show()
 		_apply_disabled_state(option_buttons[0], play_game_option)
 		option_buttons[0].set_meta("option_index", json_options.find(play_game_option))
+	elif other_options.size() > 0:
+		var left_option = other_options[0]
+		option_buttons[0].text = left_option.get("text", "...")
+		option_buttons[0].show()
+		_apply_disabled_state(option_buttons[0], left_option)
+		option_buttons[0].set_meta("option_index", json_options.find(left_option))
 	else:
 		option_buttons[0].hide()
 
-	# Center button: First other option (if exists)
-	if other_options.size() > 0:
-		var center_option = other_options[0]
+	# Center button: Second other option (if exists and no play game), otherwise nothing
+	var center_idx = 1 if not play_game_option else 0
+	if other_options.size() > center_idx:
+		var center_option = other_options[center_idx]
 		option_buttons[1].text = center_option.get("text", "...")
 		option_buttons[1].show()
 		_apply_disabled_state(option_buttons[1], center_option)
@@ -234,20 +241,22 @@ func display_node():
 	else:
 		option_buttons[1].hide()
 
-	# Right button: Exit (if exists), otherwise second other option
+	# Right button: Exit (if exists), otherwise third other option
 	if exit_option:
 		option_buttons[2].text = exit_option.get("text", "Exit")
 		option_buttons[2].show()
 		_apply_disabled_state(option_buttons[2], exit_option)
 		option_buttons[2].set_meta("option_index", json_options.find(exit_option))
-	elif other_options.size() > 1:
-		var right_option = other_options[1]
-		option_buttons[2].text = right_option.get("text", "...")
-		option_buttons[2].show()
-		_apply_disabled_state(option_buttons[2], right_option)
-		option_buttons[2].set_meta("option_index", json_options.find(right_option))
 	else:
-		option_buttons[2].hide()
+		var right_idx = 2 if not play_game_option else 1
+		if other_options.size() > right_idx:
+			var right_option = other_options[right_idx]
+			option_buttons[2].text = right_option.get("text", "...")
+			option_buttons[2].show()
+			_apply_disabled_state(option_buttons[2], right_option)
+			option_buttons[2].set_meta("option_index", json_options.find(right_option))
+		else:
+			option_buttons[2].hide()
 	
 	# Default focus for keyboard navigation
 	option_buttons[0].grab_focus()
