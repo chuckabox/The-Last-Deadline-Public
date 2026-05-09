@@ -80,7 +80,8 @@ height = 54.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1847524151]
 sprite_frames = SubResource("SpriteFrames_mgead")
 animation = &"dance"
-frame_progress = 0.38462496
+autoplay = "dance"
+frame_progress = 0.36956263
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1554087171]
 shape = SubResource("CapsuleShape2D_jw6ek")
