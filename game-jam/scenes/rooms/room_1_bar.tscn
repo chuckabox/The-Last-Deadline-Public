@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dv4vsj3gpbnfn"]
+[gd_scene format=4 uid="uid://b6vhenxqur5hc"]
 
 [ext_resource type="Script" uid="uid://btxqss4oraelx" path="res://bar.gd" id="1_qyha7"]
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="2_fhoit"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dacfmp7skn3w4" path="res://scenes/frat bro.tscn" id="10_y8qx1"]
 [ext_resource type="PackedScene" uid="uid://kur2hkw6plru" path="res://scenes/Homeboy.tscn" id="11_cur4r"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="12_door"]
+[ext_resource type="PackedScene" uid="uid://byxhgxjh7egsr" path="res://bartender.tscn" id="13_gscmp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9404,12 +9405,12 @@ color = Color(0.85336787, 0.6058732, 0.24513799, 1)
 texture = ExtResource("9_47nkn")
 
 [node name="fratbro" parent="." unique_id=1908960888 instance=ExtResource("10_y8qx1")]
-position = Vector2(999, 286)
+position = Vector2(845.00006, 382)
 scale = Vector2(1.3, 1.3)
 
 [node name="Homeboy" parent="." unique_id=1340862067 instance=ExtResource("11_cur4r")]
 z_index = 1
-position = Vector2(376, 163)
+position = Vector2(163.00003, 253.00002)
 scale = Vector2(1.3, 1.3)
 
 [node name="DiscoDoor" type="Area2D" parent="." unique_id=999000111]
@@ -9421,3 +9422,8 @@ target_room = "disco"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DiscoDoor" unique_id=999000222]
 shape = SubResource("RectangleShape2D_door")
+
+[node name="Bartender" parent="." unique_id=351301306 instance=ExtResource("13_gscmp")]
+z_index = 3
+position = Vector2(83, 261)
+scale = Vector2(1.3, 1.3)
