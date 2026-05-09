@@ -198,37 +198,56 @@ func display_node():
 	speaker_label.text = current_dialogue_data.get("name", "NPC")
 	dialogue_text.text = node_data.get("text", "")
 	
-	# Setup the 3 buttons
+	# Setup the 3 buttons - organize by option type
 	var json_options = node_data.get("options", [])
-	
-	# 1. OPTION 1 (LEFT) - From JSON Index 0
-	if json_options.size() > 0:
-		option_buttons[0].text = json_options[0].get("text", "...")
+
+	# Categorize options
+	var play_game_option = null
+	var exit_option = null
+	var other_options = []
+
+	for opt in json_options:
+		var text = opt.get("text", "")
+		if "[Play Game]" in text:
+			play_game_option = opt
+		elif "[Exit]" in text:
+			exit_option = opt
+		else:
+			other_options.append(opt)
+
+	# Left button: Play Game (if exists)
+	if play_game_option:
+		option_buttons[0].text = play_game_option.get("text", "...")
 		option_buttons[0].show()
-		_apply_disabled_state(option_buttons[0], json_options[0])
+		_apply_disabled_state(option_buttons[0], play_game_option)
+		option_buttons[0].set_meta("option_index", json_options.find(play_game_option))
 	else:
 		option_buttons[0].hide()
-		
-	# 2. OPTION 2 (CENTER) - RANDOM GIBBERISH
-	_populate_gibberish_option()
-	var center_mapped_idx = 1 if json_options.size() > 2 else 0
-	if json_options.size() > 0:
-		_apply_disabled_state(option_buttons[1], json_options[center_mapped_idx])
-	
-	# 3. OPTION 3 (RIGHT)
-	if json_options.size() > 2:
-		option_buttons[2].text = json_options[2].get("text", "Exit")
-		option_buttons[2].show()
-		_apply_disabled_state(option_buttons[2], json_options[2])
-	elif json_options.size() > 1:
-		option_buttons[2].text = json_options[1].get("text", "Exit")
-		option_buttons[2].show()
-		_apply_disabled_state(option_buttons[2], json_options[1])
+
+	# Center button: First other option (if exists)
+	if other_options.size() > 0:
+		var center_option = other_options[0]
+		option_buttons[1].text = center_option.get("text", "...")
+		option_buttons[1].show()
+		_apply_disabled_state(option_buttons[1], center_option)
+		option_buttons[1].set_meta("option_index", json_options.find(center_option))
 	else:
-		# If no second option, use a default "Exit" or hide
-		option_buttons[2].text = "..."
+		option_buttons[1].hide()
+
+	# Right button: Exit (if exists), otherwise second other option
+	if exit_option:
+		option_buttons[2].text = exit_option.get("text", "Exit")
 		option_buttons[2].show()
-		option_buttons[2].disabled = false
+		_apply_disabled_state(option_buttons[2], exit_option)
+		option_buttons[2].set_meta("option_index", json_options.find(exit_option))
+	elif other_options.size() > 1:
+		var right_option = other_options[1]
+		option_buttons[2].text = right_option.get("text", "...")
+		option_buttons[2].show()
+		_apply_disabled_state(option_buttons[2], right_option)
+		option_buttons[2].set_meta("option_index", json_options.find(right_option))
+	else:
+		option_buttons[2].hide()
 	
 	# Default focus for keyboard navigation
 	option_buttons[0].grab_focus()
@@ -243,41 +262,16 @@ func _apply_disabled_state(btn: Button, option: Dictionary) -> void:
 			if global_state.check_flag(cond["flag"]) == cond["is"]:
 				btn.disabled = true
 
-func _populate_gibberish_option():
-	var g_db = get_node_or_null("/root/GibberishDatabase")
-	var alcohol_system = get_node_or_null("/root/AlcoholSystem")
-	
-	if g_db and alcohol_system:
-		var stage = alcohol_system.get("current_stage") if "current_stage" in alcohol_system else 0
-		option_buttons[1].text = g_db.get_random_line(stage)
-		option_buttons[1].show()
-	else:
-		option_buttons[1].hide()
-
 func _on_option_pressed(index: int):
+	var button = option_buttons[index]
+	if not button.has_meta("option_index"):
+		close_dialogue()
+		return
+
+	var json_index = button.get_meta("option_index")
 	var parser = get_node_or_null("/root/DialogueParser")
 	var node_data = parser.get_variant_node(current_dialogue_data, current_node_name)
 	var json_options = node_data.get("options", [])
-
-	var json_index = 0
-
-	if index == 0:
-		json_index = 0
-	elif index == 1:
-		# Center (Gibberish) maps to index 1 if there are 3 options, otherwise maps to index 0 (Progress)
-		if json_options.size() > 2:
-			json_index = 1
-		else:
-			json_index = 0
-	elif index == 2:
-		# Right maps to index 2 if there are 3 options, index 1 if there are 2, otherwise closes
-		if json_options.size() > 2:
-			json_index = 2
-		elif json_options.size() > 1:
-			json_index = 1
-		else:
-			close_dialogue()
-			return
 
 	if json_index >= json_options.size():
 		close_dialogue()
