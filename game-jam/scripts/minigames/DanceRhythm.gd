@@ -13,7 +13,7 @@ class MilestoneRing extends Node2D:
 
 # Game State
 var combo = 0
-var crowd_energy = 0.5
+var crowd_energy = 0.2
 var is_active = true
 var difficulty_stage = 0
 var bpm = 110
@@ -82,12 +82,6 @@ func _ready():
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	game_manager = get_node_or_null("/root/GameManager")
 	sfx_manager = get_node_or_null("/root/SFXManager")
-
-	var dancefloor_scene = load("res://scenes/dancefloor.tscn")
-	if dancefloor_scene:
-		var dancefloor = dancefloor_scene.instantiate()
-		add_child(dancefloor)
-		move_child(dancefloor, 0) # Place it behind everything else
 
 	if alcohol_system and "current_stage" in alcohol_system:
 		difficulty_stage = alcohol_system.current_stage
@@ -273,7 +267,7 @@ func trigger_success_pulse():
 		pulse_overlay.modulate.a = 0.3
 
 func check_milestone(old_val: float, new_val: float):
-	var thresholds = [0.25, 0.50, 0.75, 1.0]
+	var thresholds = [0.2, 0.3, 0.4,0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 	for t in thresholds:
 		if old_val < t and new_val >= t:
 			spawn_milestone_ring()
