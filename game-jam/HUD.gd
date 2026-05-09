@@ -176,7 +176,14 @@ func _apply_stage_effects(new_stage: int) -> void:
 				alcohol_stage_label.add_theme_color_override("font_color", STAGE_COLORS[new_stage])
 
 	if new_stage == 4:
-		if warning_control: warning_control.show()
+		if warning_control: 
+			warning_control.show()
+			# Disappear after 5 seconds (Safety check for tree)
+			if is_inside_tree():
+				get_tree().create_timer(5.0).timeout.connect(func(): 
+					if is_inside_tree() and is_instance_valid(warning_control) and _current_stage() == 4: 
+						warning_control.hide()
+				)
 	else:
 		if warning_control: warning_control.hide()
 
@@ -210,11 +217,12 @@ func _apply_stage_effects(new_stage: int) -> void:
 	
 	if new_stage == 4:
 		# Start a pulsing loop on a separate tween so it doesn't loop the vignette/blur
+		# SLOWER PULSE: 0.8s build, 2.2s decay
 		_pulse_tween = create_tween().set_loops()
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			cur_pulse, 0.4, 0.5)
+			cur_pulse, 0.45, 0.8)
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.4, 0.1, 1.0)
+			0.45, 0.05, 2.2)
 	else:
 		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
 			cur_pulse, 0.0, 1.0)

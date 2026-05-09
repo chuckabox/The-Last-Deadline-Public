@@ -41,8 +41,9 @@ func _physics_process(delta: float) -> void:
 
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-	# Turn overshoot: rotate input off-axis when drunk
-	if _drunk > 0.0 and input_dir != Vector2.ZERO:
+	# Turn overshoot: rotate input off-axis when drunk (Disabled for Stage 4)
+	var current_stage = alcohol_system.current_stage if alcohol_system else 0
+	if _drunk > 0.0 and current_stage < 4 and input_dir != Vector2.ZERO:
 		input_dir = input_dir.rotated(sin(_sway_phase * 1.7) * JITTER_MAX * _drunk)
 
 	var accel: float = lerpf(ACCEL_SOBER, ACCEL_DRUNK, _drunk)
@@ -54,7 +55,8 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 	# Sway: small perpendicular drift while moving
-	if _drunk > 0.0 and velocity.length() > 1.0:
+	# Only apply sway if there's active input to prevent sliding while stationary
+	if _drunk > 0.0 and input_dir != Vector2.ZERO and velocity.length() > 1.0:
 		var perp := Vector2(-velocity.y, velocity.x).normalized()
 		velocity += perp * sin(_sway_phase) * SWAY_AMPLITUDE * _drunk
 
@@ -83,5 +85,7 @@ func _physics_process(delta: float) -> void:
 
 func _target_drunkness() -> float:
 	if alcohol_system and "current_stage" in alcohol_system:
-		return clampf(float(alcohol_system.current_stage) / 4.0, 0.0, 1.0)
+		var stage = float(alcohol_system.current_stage)
+		if stage > 3.0: stage = 3.0 # Physics intensity caps at stage 3
+		return clampf(stage / 4.0, 0.0, 0.75)
 	return 0.0
