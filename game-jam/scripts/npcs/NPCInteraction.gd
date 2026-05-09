@@ -69,7 +69,7 @@ func _setup_speech_bubble():
 	if npc_id in special_npcs:
 		var bubble = AnimatedSprite2D.new()
 		bubble.name = "SpeechBubble"
-		bubble.position = Vector2(0, -20)
+		bubble.position = Vector2(0, -35)
 		bubble.z_index = 100
 		add_child(bubble)
 		speech_bubble = bubble
@@ -111,7 +111,7 @@ func _update_speech_bubble_icon():
 	speech_bubble.play("default")
 	
 	# Add a procedural bobbing animation to make it feel "alive"
-	var base_pos = Vector2(0, -45)
+	var base_pos = Vector2(0, -35)
 	var t = create_tween().set_loops()
 	t.tween_property(speech_bubble, "position", base_pos + Vector2(0, -3), 0.8).set_trans(Tween.TRANS_SINE)
 	t.tween_property(speech_bubble, "position", base_pos, 0.8).set_trans(Tween.TRANS_SINE)
@@ -125,7 +125,7 @@ func _setup_prompt():
 	prompt_sprite.texture = load("res://assets/ui/Keyboard Letters and Symbols.png")
 	prompt_sprite.region_enabled = true
 	prompt_sprite.region_rect = Rect2(64, 32, 16, 16)
-	prompt_sprite.position = Vector2(0, -50)
+	prompt_sprite.position = Vector2(0, -30)
 	prompt_sprite.scale = Vector2(1.5, 1.5)
 	prompt_sprite.hide()
 	prompt_sprite.z_index = 10
