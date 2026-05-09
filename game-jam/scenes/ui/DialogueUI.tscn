@@ -5,8 +5,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0, 0, 0, 1)
-border_width_top = 2
-border_color = Color(0, 0.8, 1, 0.5)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 shadow_color = Color(0, 0, 0, 0.5)
@@ -56,10 +54,9 @@ expand_margin_left = 10.0
 expand_margin_right = 10.0
 
 [node name="DialoguePanel" type="Panel"]
-anchors_preset = 7
-anchor_left = 0.166
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.833
+anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -220.0
 grow_horizontal = 2
@@ -113,6 +110,7 @@ autowrap_mode = 2
 [node name="OptionsContainer" type="HBoxContainer" parent="Content"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 40
 alignment = 1
 
