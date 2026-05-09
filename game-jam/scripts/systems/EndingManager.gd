@@ -55,6 +55,11 @@ func trigger_ending(ending_id: String) -> void:
 		return # Already triggered an ending
 		
 	current_ending = ending_id
+	
+	var time_manager = get_node_or_null("/root/TimeManager")
+	if time_manager and time_manager.has_method("pause_time"):
+		time_manager.pause_time()
+		
 	var title = ""
 	var description = ""
 	

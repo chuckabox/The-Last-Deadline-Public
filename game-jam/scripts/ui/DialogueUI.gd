@@ -53,6 +53,10 @@ func show_dialogue(npc_name: String, start_node: String = "start"):
 	var entry = start_node if start_node != "" else \
 		current_dialogue_data.get("dialogue", {}).get("start", "talk")
 	current_node_name = entry
+	var time_manager = get_node_or_null("/root/TimeManager")
+	if time_manager and time_manager.has_method("pause_time"):
+		time_manager.pause_time()
+		
 	dialogue_opened.emit()
 	display_node()
 	show()
@@ -217,6 +221,10 @@ func _on_minigame_finished(_minigame_id: String, won: bool, node_data: Dictionar
 func close_dialogue():
 	hide()
 	dialogue_closed.emit()
+	
+	var time_manager = get_node_or_null("/root/TimeManager")
+	if time_manager and time_manager.has_method("resume_time"):
+		time_manager.resume_time()
 
 func _input(event):
 	if not visible: return
