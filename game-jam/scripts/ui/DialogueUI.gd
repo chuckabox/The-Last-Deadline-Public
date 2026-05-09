@@ -45,6 +45,8 @@ var _is_showing_cutscene = false
 var _is_ending_cutscene = false
 var _current_cutscene_node_data = {}
 var _cutscene_overlay: TextureRect
+var _click_indicator: TextureRect
+var _click_tween: Tween
 
 # Signals
 signal dialogue_opened()
@@ -131,6 +133,22 @@ func _build_cutscene_display() -> void:
 	label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
 	label.add_theme_font_size_override("font_size", 32)
 	_cutscene_overlay.add_child(label)
+	
+	# Add hovering arrow indicator in bottom right
+	_click_indicator = TextureRect.new()
+	_click_indicator.name = "ClickIndicator"
+	_click_indicator.texture = load("res://assets/ui/icons/Lucid V1.2/PNG/Flat/64/Chevron-Arrow-Right.png")
+	_click_indicator.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_click_indicator.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_click_indicator.size = Vector2(64, 64)
+	_click_indicator.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	_click_indicator.offset_left = -100
+	_click_indicator.offset_top = -100
+	_click_indicator.offset_right = -36
+	_click_indicator.offset_bottom = -36
+	_click_indicator.modulate = Color.WHITE
+	_click_indicator.hide()
+	_cutscene_overlay.add_child(_click_indicator)
 	
 	add_child(_cutscene_overlay)
 
@@ -476,6 +494,14 @@ func _show_cutscene(node_data: Dictionary) -> void:
 				var pitch = node_data.get("pitch", 1.0)
 				sfx.play_sfx(node_data["sound"], 0.0, pitch)
 		
+		# Animate the click indicator
+		if _click_tween: _click_tween.kill()
+		_click_indicator.show()
+		_click_tween = create_tween().set_loops()
+		var base_pos = _click_indicator.position
+		_click_tween.tween_property(_click_indicator, "position:x", base_pos.x + 10, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		_click_tween.tween_property(_click_indicator, "position:x", base_pos.x, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		
 		# Hide the main dialogue box during cutscene
 		get_node("SpeakerNameBox").hide()
 		get_node("Content").hide()
@@ -490,6 +516,8 @@ func _on_cutscene_clicked() -> void:
 	_is_showing_cutscene = false
 	_is_ending_cutscene = false
 	_cutscene_overlay.hide()
+	_click_indicator.hide()
+	if _click_tween: _click_tween.kill()
 	
 	# Restore UI
 	get_node("SpeakerNameBox").show()
