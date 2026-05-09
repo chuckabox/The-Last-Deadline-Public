@@ -119,7 +119,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
 theme_override_font_sizes/font_size = 24
-text = "DON'T LET THE NIGHT END"
+text = "A game of pints, panic, and passing grades."
 horizontal_alignment = 1
 
 [node name="MenuContainer" type="VBoxContainer" parent="UILayer" unique_id=517128846]
