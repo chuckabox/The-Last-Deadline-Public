@@ -1,14 +1,14 @@
 {
   "id": "VIP_Door",
-  "name": "Bouncer",
+  "name": "Velvet Rope",
   "dialogue": {
     "start": "talk",
     "nodes": {
       "talk": {
-        "text": "The bouncer blocks the velvet rope. 'VIPs only beyond this point. Pass?'",
+        "text": "The velvet rope blocks the way to the VIP lounge. You need a pass to enter.",
         "options": [
           {
-            "text": "Show VIP Pass & Enter",
+            "text": "Use VIP Pass & Enter",
             "next": "enter",
             "disabled_if": { "flag": "djDefeated", "is": false }
           },
@@ -19,7 +19,7 @@
         ]
       },
       "enter": {
-        "text": "He nods and unhooks the rope. 'Enjoy your night.'",
+        "text": "You unhook the rope and step through.",
         "options": [
           { "text": "[Enter VIP Room]", "next": "exit", "triggerGlobal": "transitionToVIP" }
         ]
