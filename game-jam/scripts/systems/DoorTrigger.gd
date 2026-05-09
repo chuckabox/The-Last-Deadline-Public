@@ -109,10 +109,15 @@ func _set_player_in_range(value: bool):
 func attempt_transition():
 	# Check if locked
 	if is_locked:
-		if requires_flag and game_manager and "npc_completed" in game_manager:
-			if not game_manager.npc_completed.get(requires_flag, false):
-				show_locked_message()
-				return
+		if requires_flag and game_manager:
+			if game_manager.has_method("is_npc_completed"):
+				if not game_manager.is_npc_completed(requires_flag):
+					show_locked_message()
+					return
+			elif "npc_completed_status" in game_manager:
+				if not game_manager.npc_completed_status.get(requires_flag, false):
+					show_locked_message()
+					return
 		elif requires_flag == "":
 			# Generic lock
 			show_locked_message()
@@ -122,14 +127,6 @@ func attempt_transition():
 			show_locked_message()
 			return
 			
-	# Intercept VIP door
-	if target_room == "vip":
-		if not dialogue_ui:
-			dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
-		if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
-			dialogue_ui.show_dialogue("vip_door")
-			return
-	
 	# Check room access rules
 	if not is_room_accessible():
 		show_access_denied()
@@ -144,7 +141,7 @@ func attempt_transition():
 		print("ERROR: RoomTransitionManager not found or change_room method missing!")
 
 func is_room_accessible() -> bool:
-	if not game_manager or not "npc_completed" in game_manager:
+	if not game_manager:
 		return true # Allow transition if game manager isn't ready for testing
 		
 	# Room-specific access checks
@@ -156,13 +153,21 @@ func is_room_accessible() -> bool:
 		
 		"vip":
 			# Must complete DJ quest
-			if not game_manager.npc_completed.get("dj", false):
-				return false
+			if game_manager.has_method("is_npc_completed"):
+				if not game_manager.is_npc_completed("dj"):
+					return false
+			elif "npc_completed_status" in game_manager:
+				if not game_manager.npc_completed_status.get("dj", false):
+					return false
 		
 		"office":
 			# Must complete champagne pop
-			if not game_manager.npc_completed.get("champagne_pop", false):
-				return false
+			if game_manager.has_method("is_npc_completed"):
+				if not game_manager.is_npc_completed("champagne_pop"):
+					return false
+			elif "npc_completed_status" in game_manager:
+				if not game_manager.npc_completed_status.get("champagne_pop", false):
+					return false
 	
 	return true
 
