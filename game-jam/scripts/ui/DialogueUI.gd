@@ -430,6 +430,24 @@ func show_ending_cutscene(ending_id: String) -> void:
 			"sound": "boom",
 			"pitch": 0.3,
 			"next": "FINISH_ENDING"
+		},
+		"drink": {
+			"image": "res://assets/endings/bad.png",
+			"sound": "boom",
+			"pitch": 0.3,
+			"next": "FINISH_ENDING"
+		},
+		"job": {
+			"image": "res://assets/endings/job.png",
+			"sound": "boom",
+			"pitch": 0.3,
+			"next": "FINISH_ENDING"
+		},
+		"academic": {
+			"image": "res://assets/endings/academic_weapon.png",
+			"sound": "boom",
+			"pitch": 0.3,
+			"next": "FINISH_ENDING"
 		}
 	}
 	
