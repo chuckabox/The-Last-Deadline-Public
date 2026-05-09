@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cx4x6l0e0qja"]
 
-[ext_resource type="Script" path="res://scripts/minigames/BartenderMemory.gd" id="1_bm"]
+[ext_resource type="Script" uid="uid://c1dpddheneh8o" path="res://scripts/minigames/BartenderMemory.gd" id="1_bm"]
+[ext_resource type="PackedScene" uid="uid://oj47nyfbfkpc" path="res://assets/drinks/Rum.tscn" id="2_6yfvo"]
+[ext_resource type="Texture2D" uid="uid://culoiehhw3dxv" path="res://assets/drinks/Tequila.png" id="3_xxj88"]
+[ext_resource type="Texture2D" uid="uid://b6niqoolxsxj0" path="res://assets/drinks/Vodka.png" id="4_3bbui"]
 
-[node name="BartenderMemory" type="Control"]
+[node name="BartenderMemory" type="Control" unique_id=506268808]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bm")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1398667885]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.8)
 
-[node name="InstructionLabel" type="Label" parent="."]
+[node name="InstructionLabel" type="Label" parent="." unique_id=2109572658]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -33,7 +36,7 @@ grow_horizontal = 2
 text = "Remember the order!"
 horizontal_alignment = 1
 
-[node name="TicketPanel" type="Panel" parent="."]
+[node name="TicketPanel" type="Panel" parent="." unique_id=1718240908]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,7 +50,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TicketLabel" type="Label" parent="TicketPanel"]
+[node name="TicketLabel" type="Label" parent="TicketPanel" unique_id=181795774]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,7 +63,11 @@ Rum"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DrinkButtons" type="HBoxContainer" parent="."]
+[node name="Sprite2D" parent="TicketPanel" unique_id=69686100 instance=ExtResource("2_6yfvo")]
+position = Vector2(206.99997, 322)
+scale = Vector2(0.18063588, 0.16434263)
+
+[node name="DrinkButtons" type="HBoxContainer" parent="." unique_id=1192844859]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -76,22 +83,22 @@ grow_vertical = 0
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="VodkaButton" type="Button" parent="DrinkButtons"]
+[node name="VodkaButton" type="Button" parent="DrinkButtons" unique_id=369557324]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vodka"
 
-[node name="TequilaButton" type="Button" parent="DrinkButtons"]
+[node name="TequilaButton" type="Button" parent="DrinkButtons" unique_id=489913733]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Tequila"
 
-[node name="RumButton" type="Button" parent="DrinkButtons"]
+[node name="RumButton" type="Button" parent="DrinkButtons" unique_id=1896213513]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Rum"
 
-[node name="FeedbackLabel" type="Label" parent="."]
+[node name="FeedbackLabel" type="Label" parent="." unique_id=717588531]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,3 +114,13 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Tequila" type="Sprite2D" parent="." unique_id=1335603354]
+position = Vector2(575, 498)
+scale = Vector2(0.16613938, 0.1661394)
+texture = ExtResource("3_xxj88")
+
+[node name="Vodka" type="Sprite2D" parent="." unique_id=199900350]
+position = Vector2(468, 510)
+scale = Vector2(0.15116276, 0.15116274)
+texture = ExtResource("4_3bbui")
