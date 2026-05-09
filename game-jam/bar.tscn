@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://celjiokbbp24g" path="res://assets/tilesets/bar/5.png" id="6_84vuo"]
 [ext_resource type="Texture2D" uid="uid://q1at76dkcoju" path="res://assets/tilesets/bar/6.png" id="7_5pmlc"]
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="8_luqre"]
-[ext_resource type="Texture2D" uid="uid://duy7yl01rdj63" path="res://assets/kenney_particle-pack/PNG (Transparent)/magic_05.png" id="9_47nkn"]
+[ext_resource type="Texture2D" uid="uid://kxcx0kten0ij" path="res://assets/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="9_d3clh"]
 [ext_resource type="PackedScene" uid="uid://dacfmp7skn3w4" path="res://scenes/frat bro.tscn" id="10_d3clh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
@@ -9308,58 +9308,46 @@ shape = SubResource("WorldBoundaryShape2D_d3clh")
 color = Color(0.34781694, 0.34781697, 0.3478169, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="CanvasModulate" unique_id=586180406]
-position = Vector2(285, 114)
-scale = Vector2(1.534912, 1.3967872)
+position = Vector2(35.437195, 266.01227)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
-[node name="PointLight2D2" type="PointLight2D" parent="CanvasModulate" unique_id=839870554]
-position = Vector2(442, 540)
-scale = Vector2(1.9901123, 1.735503)
+[node name="PointLight2D2" type="PointLight2D" parent="CanvasModulate" unique_id=10623402]
+position = Vector2(8.542938, 523.39685)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
-[node name="PointLight2D3" type="PointLight2D" parent="CanvasModulate" unique_id=1192988551]
-position = Vector2(712, 140.00006)
-scale = Vector2(1.9901123, 1.735503)
+[node name="PointLight2D3" type="PointLight2D" parent="CanvasModulate" unique_id=300650449]
+position = Vector2(314.6627, 269.17035)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
-[node name="PointLight2D4" type="PointLight2D" parent="CanvasModulate" unique_id=560735158]
-position = Vector2(1107, 142.00006)
-scale = Vector2(1.9901123, 1.735503)
+[node name="PointLight2D4" type="PointLight2D" parent="CanvasModulate" unique_id=1995233089]
+position = Vector2(234.771, 558.9254)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
-[node name="PointLight2D5" type="PointLight2D" parent="CanvasModulate" unique_id=41342019]
-position = Vector2(702, 558.00006)
-scale = Vector2(1.9901123, 1.735503)
+[node name="PointLight2D5" type="PointLight2D" parent="CanvasModulate" unique_id=116490290]
+position = Vector2(557.5019, 263.6437)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
-[node name="PointLight2D6" type="PointLight2D" parent="CanvasModulate" unique_id=176891399]
-position = Vector2(958, 548.00006)
-scale = Vector2(1.9901123, 1.735503)
+[node name="PointLight2D6" type="PointLight2D" parent="CanvasModulate" unique_id=1728646438]
+position = Vector2(938.76733, 239.95801)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
-[node name="PointLight2D7" type="PointLight2D" parent="CanvasModulate" unique_id=2113570310]
-position = Vector2(438.99997, 341.00006)
-scale = Vector2(1.9901123, 1.735503)
+[node name="PointLight2D7" type="PointLight2D" parent="CanvasModulate" unique_id=1956169901]
+position = Vector2(806.6691, 461.81396)
+scale = Vector2(2.0586452, 1.8733902)
 color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
-
-[node name="PointLight2D8" type="PointLight2D" parent="CanvasModulate" unique_id=970539412]
-position = Vector2(695, 363)
-scale = Vector2(1.4169312, 1.235653)
-color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
-
-[node name="PointLight2D9" type="PointLight2D" parent="CanvasModulate" unique_id=480451492]
-position = Vector2(943.99994, 362.00006)
-scale = Vector2(1.9901123, 1.735503)
-color = Color(0.85336787, 0.6058732, 0.24513799, 1)
-texture = ExtResource("9_47nkn")
+texture = ExtResource("9_d3clh")
 
 [node name="fratbro" parent="." unique_id=1908960888 instance=ExtResource("10_d3clh")]
 position = Vector2(1076, 294)
