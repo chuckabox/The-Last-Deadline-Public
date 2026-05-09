@@ -133,6 +133,10 @@ func _on_quit_pressed():
 	get_tree().quit()
 
 func _on_button_hover():
+	# Only play sound and animate if the menu is actually visible
+	if menu_container.modulate.a < 0.5:
+		return
+		
 	if sfx_manager:
 		sfx_manager.play_sfx("menu_scroll")
 
