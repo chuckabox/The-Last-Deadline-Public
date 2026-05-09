@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bt5p2sns48wld" path="res://scripts/systems/AlcoholSystem.gd" id="3_as"]
 [ext_resource type="Script" uid="uid://dxcsaw80aalps" path="res://scripts/systems/TimeManager.gd" id="4_tm"]
 [ext_resource type="Script" uid="uid://dp7pjc43d48vl" path="res://scripts/systems/DialogueSystem.gd" id="5_ds"]
-[ext_resource type="Script" uid="uid://f27ff4mn5y05" path="res://scripts/ui/HUD.gd" id="6_hud"]
+[ext_resource type="PackedScene" uid="uid://dplclcwunao6" path="res://HUD.tscn" id="6_hud"]
 [ext_resource type="PackedScene" uid="uid://dm6u8q7l0qjk" path="res://scenes/ui/MainMenu.tscn" id="7_mm"]
 [ext_resource type="PackedScene" uid="uid://djk3iadjxcbxa" path="res://scenes/ui/DialogueUI.tscn" id="8_trn2v"]
 
@@ -37,8 +37,7 @@ script = ExtResource("5_ds")
 [node name="MainMenu" parent="CurrentScene" unique_id=142613987 instance=ExtResource("7_mm")]
 script = null
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=49930898]
+[node name="HUD" parent="." unique_id=49930898 instance=ExtResource("6_hud")]
 visible = false
-script = ExtResource("6_hud")
 
-[node name="DialoguePanel" parent="HUD" unique_id=562428956 instance=ExtResource("8_trn2v")]
+[node name="DialogueUI" parent="HUD" unique_id=562428956 instance=ExtResource("8_trn2v")]
