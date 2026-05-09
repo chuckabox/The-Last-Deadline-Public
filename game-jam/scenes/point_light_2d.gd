@@ -2,7 +2,7 @@ extends PointLight2D
 
 # Controls for the Inspector
 @export_group("Movement Settings")
-@export var radius: float = 300.0      # How far it wanders
+@export var radius: float = 200.0      # How far it wanders
 @export var move_speed: float = 3.0    # Speed of wandering
 @export var rotate_speed: float = 0.2  # Speed of rotation
 
