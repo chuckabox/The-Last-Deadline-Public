@@ -11,10 +11,10 @@
               "flag": "djDefeated",
               "is": true
             },
-            "text": "Got the card, kid. Now go. I've got a set to finish.",
+            "text": "You got the VIP card, kid. Now go. I've got a set to finish.",
             "options": [
               {
-                "text": "Peace.",
+                "text": "[Exit] Peace.",
                 "next": "exit"
               }
             ]
@@ -24,10 +24,10 @@
               "flag": "bartenderDefeated",
               "is": false
             },
-            "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
+            "text": "Look at this floor. It's a graveyard. Go help the bartender serve some people drinks, I'm not handing out VIP passes in a dead club.",
             "options": [
               {
-                "text": "My bad.",
+                "text": "[Exit] My bad.",
                 "next": "exit"
               }
             ]
@@ -37,10 +37,23 @@
               "flag": "fratBroDefeated",
               "is": false
             },
-            "text": "Vibe's dead, man. Go get some people moving or something. I'm not handing out passes for nothing.",
+            "text": "Vibe's dead, man. Go chat with the club Frat Bro, get some advice.",
             "options": [
               {
-                "text": "My bad.",
+                "text": "[Exit] My bad.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "condition": {
+              "flag": "fatChudDefeated",
+              "is": false
+            },
+            "text": "Crowd's dead. Go see Fat Chud and get bro livid before you talk to me.",
+            "options": [
+              {
+                "text": "[Exit] My bad.",
                 "next": "exit"
               }
             ]
@@ -53,15 +66,15 @@
             "text": "Vibe's dead, man. I need some energy in here or I'm packing it in. You think you can move?",
             "options": [
               {
-                "text": "[Hype] Watch this.",
+                "text": "[Help Them] Watch this.",
                 "next": "floorPrompt"
               },
               {
-                "text": "[Stall] Maybe in a minute.",
+                "text": "[Help Them] You ain't know me son.",
                 "next": "floorPrompt"
               },
               {
-                "text": "Nevermind.",
+                "text": "[Exit] Nevermind.",
                 "next": "exit"
               }
             ]
@@ -69,14 +82,14 @@
         ]
       },
       "floorPrompt": {
-        "text": "Alright. Get on the floor. Hit the beat, sell it to the crowd, and the VIP pass is yours. Miss a step and you're drinking penalty shots.",
+        "text": "Alright. Get on the floor. Hit the beat, sell it to the crowd, and the VIP pass is yours. Miss a step and you're drinking shots.",
         "options": [
           {
-            "text": "[Step onto the floor]",
+            "text": "[Play Game] Let's do it",
             "next": "danceGame"
           },
           {
-            "text": "Forget it.",
+            "text": "[Exit] Forget it.",
             "next": "exit"
           }
         ]
@@ -99,10 +112,10 @@
         ]
       },
       "passedGame": {
-        "text": "Ayyy! That's what I'm talking about! You saved the set. Take this VIP pass—The Owner's in the lounge.",
+        "text": "Ayyy! That's what I'm talking about! You saved the set. Take this VIP pass and chat with the boss.",
         "options": [
           {
-            "text": "Thanks.",
+            "text": "[Exit] Thanks.",
             "next": "exit"
           }
         ]
@@ -111,7 +124,7 @@
         "text": "You've got the rhythm of a wet noodle. You're killing the vibe! Here, take a shot—maybe it'll loosen you up.",
         "options": [
           {
-            "text": "[Drink]",
+            "text": "[Drink] Aw man...",
             "next": "exit",
             "triggerGlobal": "increaseAlcohol"
           }

@@ -2,61 +2,178 @@
   "id": "Friend",
   "name": "The Friend",
   "dialogue": {
-	"start": "talk",
-	"nodes": {
-	  "talk": {
-		"variants": [
-		  {
-			"condition": { "flag": "hasSpokenToFriend", "is": false },
-			"text": "Cheers! To finishing the semester. Slow down, man—you're hitting that cup hard. Watch the BAC, yeah? Don't want another New Year's incident.",
-			"options": [
-			  { "text": "[Stop drinking] I'm pacing myself.", "next": "phoneTrigger" },
-			  { "text": "Is the... floor... supposed to be blue?", "next": "phoneTrigger" },
-			  { "text": "I need some air.", "next": "exit" }
-			]
-		  },
-		  {
-			"condition": { "flag": "friendStage3", "is": true },
-			"text": "zzz... bro... is that a unicorn... lemme just close my eyes for a sec...",
-			"options": [
-			  { "text": "Wake up!", "next": "exit" }
-			]
-		  },
-		  {
-			"condition": { "flag": "friendStage2", "is": true },
-			"text": "Bro, you shhtill here? The bartendr... go t' him. Tell 'im I shent ya. *hic*",
-			"options": [
-			  { "text": "Hang in there.", "next": "exit" }
-			]
-		  },
-		  {
-			"condition": { "flag": "friendStage1", "is": true },
-			"text": "Hey, tick-tock, man. The clock is eating you alive. Bartender. NOW. Go!",
-			"options": [
-			  { "text": "Going.", "next": "exit" }
-			]
-		  },
-		  {
-			"text": "Go talk to the Bartender, move it!",
-			"options": [
-			  { "text": "Right.", "next": "exit" }
-			]
-		  }
-		]
-	  },
-	  "phoneTrigger": {
-		"text": "[PHONE NOTIFICATION: DUE IN 55 MINUTES. STATUS: NOT SUBMITTED]\n\nAnyway, did you actually submit that final CSSE project? The big one?",
-		"options": [
-		  { "text": "What? Isn't that due tomorrow?", "next": "panic" }
-		]
-	  },
-	  "panic": {
-		"text": "Nah, man. 12:00 AM tonight. Look at your phone. Your laptop is still on the kitchen table... you need to get out of here. Talk to the Bartender—he knows who has the floor keys.",
-		"options": [
-		  { "text": "I gotta go!", "next": "exit", "setFlag": { "hasSpokenToFriend": true } }
-		]
-	  },
-	  "exit": { "text": null, "options": [] }
-	}
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "variants": [
+          {
+            "condition": {
+              "flag": "hasSpokenToFriend",
+              "is": false
+            },
+            "text": "Cheers! To finishing the CSSE1001 assignment. But slow down dude, you really don't want to black out...",
+            "options": [
+              {
+                "text": "[Stop drinking (0 ALCOHOL)] You right bro.",
+                "next": "phoneTrigger"
+              },
+              {
+                "text": "[Keep drinking (+1 ALCOHOL)] I love me some alcohol.",
+                "next": "phoneTrigger",
+                "triggerGlobal": "increaseAlcohol"
+              },
+              {
+                "text": "[Chug (+2 ALCOHOL)] Nah bro, I'm him.",
+                "next": "phoneTrigger",
+                "triggerGlobal": "increaseAlcohol"
+              }
+            ]
+          },
+          {
+            "condition": {
+              "flag": "friendStage3",
+              "is": true
+            },
+            "text": "Who are you? You look like my... ZAIN?! zzz...",
+            "options": [
+              {
+                "text": "[Exit] Is he alive?",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "condition": {
+              "flag": "friendStage2",
+              "is": true
+            },
+            "text": "John... he knows where the snacks are... go check the...",
+            "options": [
+              {
+                "text": "[Exit] He's done for.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "condition": {
+              "flag": "bartenderDefeated",
+              "is": false
+            },
+            "text": "What are you still doing here? I heard the Bartender knows the layout of this place. Go see if he can help!",
+            "options": [
+              {
+                "text": "[Exit] Right.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "conditions": [
+              {
+                "flag": "fratBroDefeated",
+                "is": false
+              },
+              {
+                "flag": "fatChudDefeated",
+                "is": false
+              }
+            ],
+            "text": "Okay, the Bartender vouched for you. I overheard someone saying the Frat Bro at the pong table or the big dude by the taps might know the floor codes.",
+            "options": [
+              {
+                "text": "[Exit] On it.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "conditions": [
+              {
+                "flag": "fratBroDefeated",
+                "is": true
+              },
+              {
+                "flag": "fatChudDefeated",
+                "is": false
+              }
+            ],
+            "text": "Nice job with the pong guy! But I heard you also need to talk to the big guy by the taps... Fat Chud, I think? Hurry up!",
+            "options": [
+              {
+                "text": "[Exit] Got it.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "conditions": [
+              {
+                "flag": "fratBroDefeated",
+                "is": false
+              },
+              {
+                "flag": "fatChudDefeated",
+                "is": true
+              }
+            ],
+            "text": "Okay, you handled the big guy, but a rumor's going around that the Frat Bro at the pong table has the rest of the info. Get over there!",
+            "options": [
+              {
+                "text": "[Exit] Got it.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "condition": {
+              "flag": "djDefeated",
+              "is": false
+            },
+            "text": "You got the info from both of them! Word is, the DJ controls access to the back rooms. Get to the dance floor and see what he wants.",
+            "options": [
+              {
+                "text": "[Exit] Going.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "text": "You actually got the VIP pass?! I heard the Boss is chilling in the VIP lounge... that's gotta be the way out. What are you waiting for?!",
+            "options": [
+              {
+                "text": "[Exit] Right, sorry!",
+                "next": "exit"
+              }
+            ]
+          }
+        ]
+      },
+      "phoneTrigger": {
+        "text": "Anyway, how did you do on that CSSE1001 assignment?",
+        "options": [
+          {
+            "text": "[Uh Oh] What? Isn't that due tomorrow?",
+            "next": "panic"
+          }
+        ]
+      },
+      "panic": {
+        "text": "Nah, man. 12:00 AM tonight. You're in trouble. The front doors are locked for Power Hour. Talk to the Bartender, he knows how to reach the back exit.",
+        "options": [
+          {
+            "text": "[Exit] I gotta go!",
+            "next": "exit",
+            "setFlag": {
+              "hasSpokenToFriend": true
+            }
+          }
+        ]
+      },
+      "exit": {
+        "text": null,
+        "options": []
+      }
+    }
   }
 }

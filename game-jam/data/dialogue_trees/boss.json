@@ -7,23 +7,10 @@
       "talk": {
         "variants": [
           {
-            "condition": {
-              "flag": "djDefeated",
-              "is": false
-            },
-            "text": "I don't talk to anyone who hasn't earned a VIP pass. Come back when you've impressed the DJ.",
+            "text": "Wondering why the front door is locked? Well, the more people stay, the more money I get. That's power hour rules.",
             "options": [
               {
-                "text": "Understood.",
-                "next": "exit"
-              }
-            ]
-          },
-          {
-            "text": "Sit down. Do you know why those doors are locked? ARPU. Average Revenue Per User. If you can't leave, you spend. But you... you've been doing everything but spending. I've been watching you on the monitors.",
-            "options": [
-              {
-                "text": "[Push back] I just need to leave.",
+                "text": "[Push Back] I just need to leave.",
                 "next": "offer"
               },
               {
@@ -31,7 +18,7 @@
                 "next": "offer"
               },
               {
-                "text": "Not interested.",
+                "text": "[Exit] Not interested.",
                 "next": "exit"
               }
             ]
@@ -42,17 +29,17 @@
         "text": "You've caused quite a stir tonight, kid. Relax. The night is young. Have a drink with me before you head out into the cold.",
         "options": [
           {
-            "text": "Sure, just one.",
+            "text": "[Take Drink] Sure, just one.",
             "next": "drinkBranch"
           },
           {
-            "text": "No thanks, I'm in a hurry.",
+            "text": "[Decline Drink] No thanks, I'm in a hurry.",
             "next": "jobBranch"
           }
         ]
       },
       "drinkBranch": {
-        "text": "[FADE TO BLACK]\n\nEverything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone. You failed.",
+        "text": "Everything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone. You failed.",
         "options": [
           {
             "text": "...",
@@ -62,14 +49,14 @@
         ]
       },
       "jobBranch": {
-        "text": "Direct. I like that. Honestly, probably for the best. I usually keep that bottle for people who don't know when to leave. I need a Floor Manager. Someone who can handle the chaos. Stay here, run the floor, and I'll double whatever your future career pays.",
+        "text": "Direct. I like that. Honestly, I usually keep that bottle for stupid people. Hmm... I do need a Floor Manager. Join me.",
         "options": [
           {
-            "text": "I'll take the job.",
+            "text": "[Accept Job] I'll take the job.",
             "next": "averageEnding"
           },
           {
-            "text": "I have to get out. Immediately.",
+            "text": "[Decline Job] No. I have to graduate.",
             "next": "successEnding"
           }
         ]

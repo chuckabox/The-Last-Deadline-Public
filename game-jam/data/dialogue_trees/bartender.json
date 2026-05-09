@@ -11,23 +11,10 @@
               "flag": "bartenderDefeated",
               "is": true
             },
-            "text": "You've got your info. Now move along, I've got a line behind you.",
+            "text": "You've got your info. Now move along to Frat Bro or Fat Chud, I'm a busy bee.",
             "options": [
               {
-                "text": "Cheers.",
-                "next": "exit"
-              }
-            ]
-          },
-          {
-            "condition": {
-              "flag": "hasSpokenToFriend",
-              "is": false
-            },
-            "text": "Don't just stand there staring. Check your phone or buy a drink. I'm busy.",
-            "options": [
-              {
-                "text": "Sorry.",
+                "text": "[Exit] Cheers.",
                 "next": "exit"
               }
             ]
@@ -40,15 +27,15 @@
             "text": "Look, kid, I'm slammed. You want my help? Help me with these orders first.",
             "options": [
               {
-                "text": "[Help] Lay it on me.",
+                "text": "[Help Them] Lay it on me.",
                 "next": "ordersPrompt"
               },
               {
-                "text": "[Wait] Give me a sec.",
+                "text": "[Help Them] Sure.",
                 "next": "ordersPrompt"
               },
               {
-                "text": "I'll be back later.",
+                "text": "[Exit] I'll be back later.",
                 "next": "exit"
               }
             ]
@@ -56,14 +43,14 @@
         ]
       },
       "ordersPrompt": {
-        "text": "Three drinks, three customers, no mistakes. Memorize the order or I'm pouring this swill down your throat instead.",
+        "text": "Three drinks, three customers, no mistakes. Memorise the order or I'm pouring this swill down your throat instead.",
         "options": [
           {
-            "text": "[Take the challenge]",
+            "text": "[Play Game] I got this.",
             "next": "bartenderGame"
           },
           {
-            "text": "Forget it.",
+            "text": "[Exit] Forget it.",
             "next": "exit"
           }
         ]
@@ -89,19 +76,19 @@
         ]
       },
       "passedGame": {
-        "text": "Decent work. You've got a steady hand. Go find the Frat Bro at the pong table or Fat Chud by the taps. They know the floor.",
+        "text": "Decent work. You've got a steady hand. Go find the Frat Bro at a table or Fat Chud being lazy. They know the floor.",
         "options": [
           {
-            "text": "Thanks.",
+            "text": "[Exit] Thanks.",
             "next": "exit"
           }
         ]
       },
       "failedGame": {
-        "text": "You're useless. Clearly you've had enough. Drink this and get out of the way.",
+        "text": "You're useless. You need to relax and get out of the way.",
         "options": [
           {
-            "text": "[Drink]",
+            "text": "[Drink] Aw man...",
             "next": "exit",
             "triggerGlobal": "increaseAlcohol"
           }

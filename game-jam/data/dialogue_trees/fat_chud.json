@@ -7,14 +7,39 @@
       "talk": {
         "variants": [
           {
-            "condition": {
-              "flag": "fatChudDefeated",
-              "is": true
-            },
-            "text": "My cup is full and your time is running out. Get to the dance floor already!",
+            "conditions": [
+              {
+                "flag": "fatChudDefeated",
+                "is": true
+              },
+              {
+                "flag": "fratBroDefeated",
+                "is": false
+              }
+            ],
+            "text": "My cup is... *hic* full, but you're... you're not done yet. Go talk to the pong guy... the Frat Bro. He knows stuff.",
             "options": [
               {
-                "text": "Okay.",
+                "text": "[Exit] Right.",
+                "next": "exit"
+              }
+            ]
+          },
+          {
+            "conditions": [
+              {
+                "flag": "fatChudDefeated",
+                "is": true
+              },
+              {
+                "flag": "fratBroDefeated",
+                "is": true
+              }
+            ],
+            "text": "My cup's full... *hic* and your clock is ticking, man. Get to the... the dance floor already! Shhhake it!",
+            "options": [
+              {
+                "text": "[Exit] Okay.",
                 "next": "exit"
               }
             ]
@@ -24,10 +49,10 @@
               "flag": "bartenderDefeated",
               "is": false
             },
-            "text": "Beat it. I don't talk to people the Bartender hasn't vouched for.",
+            "text": "Beat it, kid. *hic* I don't talk to nobodies unless the Bartender says you're... you're cool. So back off.",
             "options": [
               {
-                "text": "Alright.",
+                "text": "[Exit] Chill dude.",
                 "next": "exit"
               }
             ]
@@ -37,18 +62,18 @@
               "flag": "bartenderDefeated",
               "is": true
             },
-            "text": "I'm too shaky to pour my own drink. You think you can do better? Prove it, or you're drinking the spill off the counter!",
+            "text": "Look at this mess... *hic*. I'm too shaky to pour my own stuff right now. Think you can do better? Prove it. Drop one drop... and you're licking it off the counter!",
             "options": [
               {
-                "text": "[Brag] Easy.",
+                "text": "[Help Them] Easy.",
                 "next": "pourPrompt"
               },
               {
-                "text": "[Hesitate] I'll try.",
+                "text": "[Help Them] I'll try.",
                 "next": "pourPrompt"
               },
               {
-                "text": "Not right now.",
+                "text": "[Exit] Not right now.",
                 "next": "exit"
               }
             ]
@@ -56,14 +81,14 @@
         ]
       },
       "pourPrompt": {
-        "text": "Bottle in hand, glass on the bar. Fill it to the line—not over, not under. Mess it up and you're licking it off the floor.",
+        "text": "Alright, alright. Bottle in hand... glass on the bar. Fill it right to the line... *hic* not over. Not under. Don't mess up my shoes...",
         "options": [
           {
-            "text": "[Pick up the bottle]",
+            "text": "[Play Game] Pick up the bottle",
             "next": "pourGame"
           },
           {
-            "text": "Changed my mind.",
+            "text": "[Exit] Changed my mind.",
             "next": "exit"
           }
         ]
@@ -95,10 +120,10 @@
               "flag": "fratBroDefeated",
               "is": false
             },
-            "text": "Steady hands. I like that. Now go talk to the Frat Bro at the pong table. He's got the other half of the info.",
+            "text": "Whoa... steady hands. I like that. *hic* You're alright. Now go bug the Frat Bro at the pong table. He's got the rest of the... the info thing.",
             "options": [
               {
-                "text": "Thanks.",
+                "text": "[Exit] Thanks.",
                 "next": "exit"
               }
             ]
@@ -108,7 +133,7 @@
               "flag": "fratBroDefeated",
               "is": true
             },
-            "text": "Perfect pour. Alright, I'm satisfied. The DJ has the VIP pass—go show him some moves and get that card.",
+            "text": "[Exit] Perfection... *hic*. Alright, I'm happy. The DJ... the guy with the headphones... he has the VIP pass. Go show him some moves...",
             "options": [
               {
                 "text": "Let's go.",
@@ -119,10 +144,10 @@
         ]
       },
       "failedGame": {
-        "text": "Whoops! Most of that ended up on my shoes. Here, finish the bottle since you can't aim for the glass.",
+        "text": "Hey! Watch the shoes! *hic* Most of that ended up on my sneakers, you amateur! Here, finish the bottle... clearly you need the practice.",
         "options": [
           {
-            "text": "[Drink]",
+            "text": "[Drink] Aw man...",
             "next": "exit",
             "triggerGlobal": "increaseAlcohol"
           }

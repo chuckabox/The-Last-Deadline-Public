@@ -7,113 +7,72 @@
       "talk": {
         "variants": [
           {
-            "condition": {
-              "flag": "fratBroDefeated",
-              "is": true
-            },
-            "text": "I already told you everything I know. Go see the DJ and get out of here!",
+            "conditions": [
+              { "flag": "fratBroDefeated", "is": true },
+              { "flag": "fatChudDefeated", "is": false }
+            ],
+            "text": "Sick shots earlier, bro! Now stop stalling and go find Fat Chud over by the taps.",
             "options": [
-              {
-                "text": "Right.",
-                "next": "exit"
-              }
+              { "text": "[Exit] Right.", "next": "exit" }
             ]
           },
           {
-            "condition": {
-              "flag": "bartenderDefeated",
-              "is": false
-            },
-            "text": "Who are you? I only talk to regulars or anyone the Bartender vouches for.",
+            "conditions": [
+              { "flag": "fratBroDefeated", "is": true },
+              { "flag": "fatChudDefeated", "is": true }
+            ],
+            "text": "I already told you everything I know, man! Go see the DJ and get out of here before the deadline hits!",
             "options": [
-              {
-                "text": "Fine.",
-                "next": "exit"
-              }
+              { "text": "[Exit] Okay.", "next": "exit" }
             ]
           },
           {
-            "condition": {
-              "flag": "bartenderDefeated",
-              "is": true
-            },
-            "text": "In a rush? Beat me at pong and I'll tell you what the DJ dropped. Otherwise... bottoms up, loser!",
+            "condition": { "flag": "bartenderDefeated", "is": false },
+            "text": "Whoa, who are you? I only talk to regulars or anyone the Bartender vouches for. Step back, bro.",
             "options": [
-              {
-                "text": "[Accept] You're on!",
-                "next": "pongPrompt"
-              },
-              {
-                "text": "[Trash talk] Easy money.",
-                "next": "pongPrompt"
-              },
-              {
-                "text": "Maybe later.",
-                "next": "exit"
-              }
+              { "text": "[Exit] Fine.", "next": "exit" }
+            ]
+          },
+          {
+            "condition": { "flag": "bartenderDefeated", "is": true },
+            "text": "In a rush, huh? Beat me at pong and I'll tell you what the DJ dropped. Otherwise... bottoms up, loser!",
+            "options": [
+              { "text": "[Help Them] You're on!", "next": "pongPrompt" },
+              { "text": "[Help Them] Easy money.", "next": "pongPrompt" },
+              { "text": "[Exit] Maybe later.", "next": "exit" }
             ]
           }
         ]
       },
       "pongPrompt": {
-        "text": "House rules. Three cups, three shots. Sink 'em or sink suds, your call. Step up to the table when you're ready.",
+        "text": "House rules. Three cups, three shots. Sink 'em or sink suds, your call. Step up to the table when you're ready to get schooled.",
         "options": [
-          {
-            "text": "[Step up to the table]",
-            "next": "pongGame"
-          },
-          {
-            "text": "Back out.",
-            "next": "exit"
-          }
+          { "text": "[Play Game] Step up to the table.", "next": "pongGame" },
+          { "text": "[Exit] Back out.", "next": "exit" }
         ]
       },
       "pongGame": {
         "text": "[Triggers Beer Pong Minigame]",
         "minigame": "beer_pong",
         "options": [
-          {
-            "text": "[Win]",
-            "next": "victoryCheck",
-            "setFlag": {
-              "fratBroDefeated": true
-            }
-          },
-          {
-            "text": "[Lose]",
-            "next": "failedGame",
-            "setFlag": {
-              "fratGuyFailed": true
-            }
-          }
+          { "text": "[Win]", "next": "victoryCheck", "setFlag": { "fratBroDefeated": true } },
+          { "text": "[Lose]", "next": "failedGame", "setFlag": { "fratGuyFailed": true } }
         ]
       },
       "victoryCheck": {
         "variants": [
           {
-            "condition": {
-              "flag": "fatChudDefeated",
-              "is": false
-            },
-            "text": "Sick shots! Go find that big guy over by the taps—Fat Chud. He's the only one who knows the code for the floor gate.",
+            "condition": { "flag": "fatChudDefeated", "is": false },
+            "text": "Sick shots! Alright, I respect it. Go find that big guy over by the taps—Fat Chud. He's the only one who knows the code for the floor gate.",
             "options": [
-              {
-                "text": "Thanks.",
-                "next": "exit"
-              }
+              { "text": "[Exit] Thanks.", "next": "exit" }
             ]
           },
           {
-            "condition": {
-              "flag": "fatChudDefeated",
-              "is": true
-            },
-            "text": "Unbelievable! You're a legend. The DJ has the VIP keycard. Go show him some moves before the deadline hits!",
+            "condition": { "flag": "fatChudDefeated", "is": true },
+            "text": "Unbelievable! You're a legend, bro. The DJ has the VIP keycard. Go show him some moves before your deadline hits!",
             "options": [
-              {
-                "text": "On it.",
-                "next": "exit"
-              }
+              { "text": "[Exit] On it.", "next": "exit" }
             ]
           }
         ]
@@ -121,11 +80,7 @@
       "failedGame": {
         "text": "Airball! That's pathetic, man. House rules: you miss, you chug. Down it!",
         "options": [
-          {
-            "text": "[Drink]",
-            "next": "exit",
-            "triggerGlobal": "increaseAlcohol"
-          }
+          { "text": "[Drink] Ugh, fine.", "next": "exit", "triggerGlobal": "increaseAlcohol" }
         ]
       },
       "exit": {
