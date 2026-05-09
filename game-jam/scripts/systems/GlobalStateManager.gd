@@ -66,6 +66,10 @@ func trigger_global_event(event_name: String) -> void:
 			var rtm = get_node_or_null("/root/RoomTransitionManager")
 			if rtm and rtm.has_method("change_room_iris"):
 				rtm.change_room_iris("office")
+		"transitionToVIP":
+			var rtm = get_node_or_null("/root/RoomTransitionManager")
+			if rtm and rtm.has_method("change_room"):
+				rtm.change_room("vip")
 		_:
 			if event_name in _ENDING_IDS:
 				_trigger_ending(event_name)
