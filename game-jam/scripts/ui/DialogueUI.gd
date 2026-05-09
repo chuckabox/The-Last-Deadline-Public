@@ -51,6 +51,7 @@ var _click_tween: Tween
 var _is_showing_text_screen = false
 var _text_screen_overlay: ColorRect
 var _text_screen_container: VBoxContainer
+var _text_screen_click_indicator: TextureRect
 var _text_screen_lines: Array = []
 var _text_screen_index: int = 0
 var _text_screen_callback: Callable
@@ -180,15 +181,18 @@ func _build_text_screen_display() -> void:
 	_text_screen_overlay.add_child(_text_screen_container)
 	
 	# Add the click indicator to this too
-	var indicator = TextureRect.new()
-	indicator.texture = load("res://assets/ui/icons/Lucid V1.2/PNG/Flat/64/Chevron-Arrow-Right.png")
-	indicator.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	indicator.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	indicator.size = Vector2(48, 48)
-	indicator.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
-	indicator.offset_left = -80
-	indicator.offset_top = -80
-	_text_screen_overlay.add_child(indicator)
+	_text_screen_click_indicator = TextureRect.new()
+	_text_screen_click_indicator.name = "ClickIndicator"
+	_text_screen_click_indicator.texture = load("res://assets/ui/icons/Lucid V1.2/PNG/Flat/64/Chevron-Arrow-Right.png")
+	_text_screen_click_indicator.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_text_screen_click_indicator.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_text_screen_click_indicator.size = Vector2(48, 48)
+	_text_screen_click_indicator.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	_text_screen_click_indicator.offset_left = -80
+	_text_screen_click_indicator.offset_top = -80
+	_text_screen_click_indicator.modulate = Color.WHITE
+	_text_screen_click_indicator.hide()
+	_text_screen_overlay.add_child(_text_screen_click_indicator)
 	
 	add_child(_text_screen_overlay)
 
@@ -545,11 +549,32 @@ func _advance_text_screen() -> void:
 		t.tween_property(line_label, "modulate:a", 1.0, 0.6).set_trans(Tween.TRANS_SINE)
 		
 		_text_screen_index += 1
+		
+		# If this was the last line, show the click indicator
+		if _text_screen_index == _text_screen_lines.size():
+			_show_text_screen_indicator()
 	else:
 		_close_text_screen()
 
+func _show_text_screen_indicator() -> void:
+	if _click_tween: _click_tween.kill() # Reuse the same tween variable
+	_text_screen_click_indicator.show()
+	_text_screen_click_indicator.modulate.a = 0
+	
+	_click_tween = create_tween().set_loops()
+	_click_tween.set_parallel(true)
+	_click_tween.tween_property(_text_screen_click_indicator, "modulate:a", 1.0, 0.5)
+	
+	var base_pos = _text_screen_click_indicator.position
+	var bounce_tween = create_tween().set_loops()
+	bounce_tween.tween_property(_text_screen_click_indicator, "position:x", base_pos.x + 10, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	bounce_tween.tween_property(_text_screen_click_indicator, "position:x", base_pos.x, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 func _close_text_screen() -> void:
 	_is_showing_text_screen = false
+	_text_screen_click_indicator.hide()
+	if _click_tween: _click_tween.kill()
+	
 	var t = create_tween()
 	t.tween_property(_text_screen_overlay, "modulate:a", 0.0, 0.5)
 	await t.finished
