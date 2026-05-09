@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c6ygq1shs5ln7"]
+[gd_scene format=3 uid="uid://dplclcwunao6"]
 
 [ext_resource type="Script" uid="uid://16c08j5vvnq" path="res://HUD.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://2wltnxim28nh" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Spritesheets/Spritesheet_UI_Flat.png" id="2_efote"]
@@ -569,16 +569,22 @@ tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0,
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockFrame" type="TileMapLayer" parent="." unique_id=716494234]
+position = Vector2(-64, 0)
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray(0, 0, 15, 0, 0, 0, 1, 0, 30, 0, 8, 0, 0, 0, 15, 0, 1, 0, 1, 0, 30, 0, 9, 0, 0, 0, 16, 0, 0, 0, 1, 0, 31, 0, 8, 0, 0, 0, 16, 0, 1, 0, 1, 0, 31, 0, 9, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockLabel" type="Label" parent="." unique_id=221180680]
 texture_filter = 1
-offset_left = 975.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
 offset_top = 48.0
-offset_right = 1071.0
+offset_right = 48.0
 offset_bottom = 78.769226
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 32
 text = "11:00 PM"
