@@ -1,63 +1,89 @@
 extends Node
 
-## Intro Cutscene Manager
-## Handles the opening sequence: Bar ambiance -> Friend Dialogue -> Phone Notification -> Panic.
+## Intro Cutscene
+## Pauses the clock, fades in over a dim ambient bar backdrop, runs the friend
+## dialogue chain (talk -> phoneTrigger -> panic), fades out, and hands control
+## to gameplay via GameManager.start_game().
+##
+## Expects to be added as a child of /root/Main/CurrentScene with the HUD
+## (and DialogueUI) already present at /root/Main/HUD/DialogueUI.
 
-# References
 var dialogue_ui: Control
-var phone_ui: Control # We will build this in a later step
 var time_manager: Node
 var game_manager: Node
 
-func _ready():
-	# Initial references
-	dialogue_ui = get_tree().root.get_node_or_null("Main/HUD/DialoguePanel")
+# Visuals (built in code so the .tscn stays minimal)
+var visuals: CanvasLayer
+var ambient_label: Label
+var fade_overlay: ColorRect
+
+func _ready() -> void:
+	dialogue_ui = get_tree().root.get_node_or_null("Main/HUD/DialogueUI")
 	time_manager = get_node_or_null("/root/TimeManager")
 	game_manager = get_node_or_null("/root/GameManager")
-	
-	# Make sure time is paused during intro
+
 	if time_manager:
 		time_manager.pause_time()
-	
-	# Wait for a brief moment of bar ambiance
-	await get_tree().create_timer(2.0).timeout
-	start_sequence()
 
-func start_sequence():
-	# 1. Start dialogue with Friend (Intro part)
-	if dialogue_ui:
-		# The "talk" node in friend.json sets up the scene
+	_build_visuals()
+	_run()
+
+func _build_visuals() -> void:
+	visuals = CanvasLayer.new()
+	# Layer 0 = world canvas, sits above bar.tscn but below the HUD (layer 1)
+	# so the DialogueUI renders on top of our backdrop.
+	visuals.layer = 0
+	add_child(visuals)
+
+	var bg := ColorRect.new()
+	bg.color = Color(0.04, 0.02, 0.08, 0.85)
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	visuals.add_child(bg)
+
+	ambient_label = Label.new()
+	ambient_label.text = "the music is loud.\nthe bass is thumping.\nyou take another sip..."
+	ambient_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ambient_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	ambient_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	ambient_label.modulate.a = 0.0
+	visuals.add_child(ambient_label)
+
+	fade_overlay = ColorRect.new()
+	fade_overlay.color = Color.BLACK
+	fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	visuals.add_child(fade_overlay)
+
+func _run() -> void:
+	# Fade in from black; ambient flavor text appears.
+	var t := create_tween().set_parallel(true)
+	t.tween_property(fade_overlay, "modulate:a", 0.0, 1.2)
+	t.tween_property(ambient_label, "modulate:a", 1.0, 1.4).set_delay(0.4)
+	await t.finished
+
+	await get_tree().create_timer(1.6).timeout
+
+	# Dim the ambient text so it sits behind the dialogue panel.
+	create_tween().tween_property(ambient_label, "modulate:a", 0.25, 0.4)
+
+	if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
+		dialogue_ui.dialogue_closed.connect(_on_dialogue_closed, CONNECT_ONE_SHOT)
 		dialogue_ui.show_dialogue("friend", "talk")
-		
-		# Connect to when the dialogue closes to trigger the phone event
-		# Note: The 'friend.json' logic might lead to 'phoneTrigger' automatically, 
-		# but we want to ensure the phone UI pops up.
-		dialogue_ui.dialogue_closed.connect(_on_intro_finished, CONNECT_ONE_SHOT)
 	else:
-		push_error("IntroCutscene: DialogueUI not found!")
-		_on_intro_finished()
+		push_error("IntroCutscene: DialogueUI not found at /root/Main/HUD/DialogueUI")
+		_finish()
 
-func _on_intro_finished():
-	# 2. Check if we need to show the phone notification manually
-	# The friend.json 'talk' node ends by going to 'phoneTrigger'.
-	# We'll wait a split second for the next part of dialogue to start or for the player to react.
-	
-	# In our implementation, we'll let the Dialogue system handle the flow, 
-	# but we use this script to manage the 'Control' handover and Clock start.
-	
-	# We listen for the FINAL exit of the friend's intro dialogue
-	# which happens after the "I gotta go!" option in 'panic' node.
-	dialogue_ui.dialogue_closed.connect(_on_panic_finished, CONNECT_ONE_SHOT)
+func _on_dialogue_closed() -> void:
+	_finish()
 
-func _on_panic_finished():
-	# 3. Start the Clock
-	print("Intro Cutscene Finished. Starting the countdown!")
+func _finish() -> void:
+	# Fade back to black before handing over to gameplay.
+	var t := create_tween()
+	t.tween_property(fade_overlay, "modulate:a", 1.0, 0.6)
+	await t.finished
+
 	if time_manager:
 		time_manager.resume_time()
-	
-	# 4. Enable player movement/interaction
-	if game_manager:
-		game_manager.is_game_started = true
-	
-	# 5. Clean up cutscene controller
+	if game_manager and game_manager.has_method("start_game"):
+		game_manager.start_game()
+
 	queue_free()
