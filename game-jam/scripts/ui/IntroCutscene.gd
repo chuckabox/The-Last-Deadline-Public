@@ -80,11 +80,7 @@ func _on_dialogue_closed() -> void:
 	_finish()
 
 func _finish() -> void:
-	# Fade back to black before handing over to gameplay.
-	var t := create_tween()
-	t.tween_property(fade_overlay, "modulate:a", 1.0, 0.6)
-	await t.finished
-
+	# Transition instantly to gameplay without fading back to black
 	if time_manager:
 		time_manager.resume_time()
 	if game_manager and game_manager.has_method("start_game"):
