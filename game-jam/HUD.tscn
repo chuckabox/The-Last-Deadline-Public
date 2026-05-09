@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dplclcwunao6"]
 
 [ext_resource type="Script" uid="uid://16c08j5vvnq" path="res://HUD.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://dmf6n1ksi5yoc" path="res://BAC level under.tres" id="2_vow1y"]
+[ext_resource type="Texture2D" uid="uid://bibdu6v7tctca" path="res://BAC level over.tres" id="3_ne771"]
 
 [node name="HUD" type="CanvasLayer" unique_id=948569939]
 script = ExtResource("1_hud")
@@ -10,6 +12,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 13.0
+offset_right = -5.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -104,3 +110,14 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "One more drink and I'll black out!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2115443515]
+offset_left = -8.0
+offset_top = 341.0
+offset_right = 5.0
+offset_bottom = 380.0
+scale = Vector2(6.2446957, -7.16177)
+step = 20.0
+fill_mode = 3
+texture_under = ExtResource("2_vow1y")
+texture_over = ExtResource("3_ne771")
