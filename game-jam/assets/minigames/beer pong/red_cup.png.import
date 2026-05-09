@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgq3sqesmd6p"
-path="res://.godot/imported/Beer pong blue.png-0895fdea6de453dc54dbd68278f1d501.ctex"
+uid="uid://bmcoiai5oy7j"
+path="res://.godot/imported/red_cup.png-c15f89aadae2da4001bef650bcdf41bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/minigames/beer pong/Beer pong blue.png"
-dest_files=["res://.godot/imported/Beer pong blue.png-0895fdea6de453dc54dbd68278f1d501.ctex"]
+source_file="res://assets/minigames/beer pong/red_cup.png"
+dest_files=["res://.godot/imported/red_cup.png-c15f89aadae2da4001bef650bcdf41bc.ctex"]
 
 [params]
 
