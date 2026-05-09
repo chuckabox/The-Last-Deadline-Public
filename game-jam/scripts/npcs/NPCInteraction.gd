@@ -90,12 +90,12 @@ func _update_speech_bubble_icon():
 		return
 	
 	if has_completed_quest:
-		speech_bubble.texture = load("res://game-jam/assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
+		speech_bubble.texture = load("res://assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
 		speech_bubble.region_enabled = true
 		speech_bubble.region_rect = Rect2(11, 0, 11, 11)
 		speech_bubble.scale = Vector2(2, 2)
 	else:
-		speech_bubble.texture = load("res://game-jam/assets/npc/tiny-speech-indicators/exclamation.gif")
+		speech_bubble.texture = load("res://assets/npc/tiny-speech-indicators/exclamation.gif")
 		speech_bubble.region_enabled = false
 		speech_bubble.scale = Vector2(2, 2)
 
