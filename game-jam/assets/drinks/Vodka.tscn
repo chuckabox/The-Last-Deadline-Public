@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bdpviqi2pfqb6"]
+
+[ext_resource type="Texture2D" uid="uid://b6niqoolxsxj0" path="res://assets/drinks/Vodka.png" id="1_iecaw"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1803671233]
+position = Vector2(1, 0.9999981)
+scale = Vector2(0.8895349, 0.8925)
+texture = ExtResource("1_iecaw")

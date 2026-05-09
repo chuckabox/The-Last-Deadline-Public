@@ -15,17 +15,16 @@
           },
           {
             "condition": { "flag": "bartenderDefeated", "is": false },
-            "text": "Beat it, kid. The Bartender hasn't vouched for you, and I don't talk to strangers when I'm this thirsty.",
+            "text": "Beat it. I don't talk to people the Bartender hasn't vouched for.",
             "options": [
               { "text": "Alright.", "next": "exit" }
             ]
           },
           {
             "condition": { "flag": "bartenderDefeated", "is": true },
-            "text": "Look at this mess... I'm too shaky to pour my own drink. You think you can do better? Prove it, or you're drinking the spill off the counter!",
+            "text": "I'm too shaky to pour my own drink. You think you can do better? Prove it, or you're drinking the spill off the counter!",
             "options": [
               { "text": "I can do it.", "next": "pourGame" },
-              { "text": "Why is your face doing that? You know... the thing?", "next": "exit" },
               { "text": "Not right now.", "next": "exit" }
             ]
           }
@@ -43,14 +42,14 @@
         "variants": [
           {
             "condition": { "flag": "fratBroDefeated", "is": false },
-            "text": "Steady hands. I like that. Now go talk to the Frat Bro at the pong table. He's got the other half of the info you need.",
+            "text": "Steady hands. I like that. Now go talk to the Frat Bro at the pong table. He's got the other half of the info.",
             "options": [
               { "text": "Thanks.", "next": "exit" }
             ]
           },
           {
             "condition": { "flag": "fratBroDefeated", "is": true },
-            "text": "Perfect pour. Alright, I'm satisfied. You're ready for the big leagues. The DJ has the VIP pass-go shake a leg on the dance floor and get that card.",
+            "text": "Perfect pour. Alright, I'm satisfied. The DJ has the VIP pass—go show him some moves and get that card.",
             "options": [
               { "text": "Let's go.", "next": "exit" }
             ]

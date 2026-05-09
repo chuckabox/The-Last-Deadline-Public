@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://n75tpiomf11b"]
+
+[ext_resource type="Texture2D" uid="uid://culoiehhw3dxv" path="res://assets/drinks/Tequila.png" id="1_tvdkh"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=877666771]
+texture = ExtResource("1_tvdkh")

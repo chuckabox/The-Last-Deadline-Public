@@ -168,6 +168,7 @@ func win_minigame():
 	is_active = false
 	var cash_reward = 100 + (difficulty_stage * 50)
 	print("Beer Pong WON! Cash: $%d" % cash_reward)
+	$Path2D.play_arc_animation()
 	emit_signal("minigame_won", cash_reward)
 
 func lose_minigame():
