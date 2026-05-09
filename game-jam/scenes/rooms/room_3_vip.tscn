@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://celjiokbbp24g" path="res://assets/tilesets/bar/5.png" id="6_xnoai"]
 [ext_resource type="Texture2D" uid="uid://q1at76dkcoju" path="res://assets/tilesets/bar/6.png" id="7_2g0h2"]
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="8_y7rkj"]
+[ext_resource type="Texture2D" uid="uid://b6a0p7gwy3mnc" path="res://assets/kenney_particle-pack/PNG (Black background)/circle_05.png" id="9_pyscc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_brpfv"]
 texture = ExtResource("2_e1bg1")
@@ -10189,6 +10190,7 @@ sources/5 = SubResource("TileSetAtlasSource_y0kkm")
 
 [node name="VIProom" type="Node2D" unique_id=1061965690]
 position = Vector2(4.6569824, 21.325562)
+scale = Vector2(1.71525, 1.71525)
 script = ExtResource("1_26euq")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=704488364]
@@ -10216,14 +10218,30 @@ tile_set = SubResource("TileSet_jvqct")
 
 [node name="Greenery_and_carts" type="TileMapLayer" parent="." unique_id=730040294]
 z_index = 1
-tile_map_data = PackedByteArray("AAAaAAwAAQASACAAAAARAAwAAQASACAAAAASABQABAASABgAAQAYABQABAASABgAAAAQAB8ABAAYAB4AAAATAB8ABAAbAB4AAAAYAB8ABAAeAB4AAAA0AAYAAAAYAAwAAAAZACIAAAAPACoAAAAQACIAAAAPACoAAAATACIAAAAPACoAAAAWACIAAAAPACoAAAAsAAcAAAASACUAAAA8AAcAAAAVACQAAAA8AA0AAAAqABMAAAAsABQAAAAnABQAAAA8ABUAAAAVACQAAAApABcAAAAbACQAAAA8AB0AAwAhACEAAAA4AB8AAwAMACEAAAAsAAsAAQAMACQAAAAsABEAAQAMACQAAAA8ABEAAQAMACQAAAA8AAsAAQAMACQAAAAsABYAAQAMACQAAAAlABgAAQAMACQAAAA2AB8AAQAMACQAAAAvACAAAQAMACQAAAAnACAAAQAMACQAAAA8ABkAAQAMACQAAAAFACAABAAPAAwAAAAIABwABAAkAB4AAAAIABMABAAqAB4AAAAdAB8ABAAqAB4AAAA=")
+tile_map_data = PackedByteArray("AAAaAAwAAQASACAAAAARAAwAAQASACAAAAASABQABAASABgAAQAYABQABAASABgAAAAQAB8ABAAYAB4AAAATAB8ABAAbAB4AAAAYAB8ABAAeAB4AAAA0AAYAAAAYAAwAAAAZACIAAAAPACoAAAAQACIAAAAPACoAAAATACIAAAAPACoAAAAWACIAAAAPACoAAAAsAAcAAAASACUAAAA8AAcAAAAVACQAAAAsAAsAAQAMACQAAAA8AAsAAQAMACQAAAAFACAABAAPAAwAAAAIABwABAAkAB4AAAAIABMABAAqAB4AAAAdAB8ABAAqAB4AAAA=")
 tile_set = SubResource("TileSet_jvqct")
 
 [node name="Food_and_table_items" type="TileMapLayer" parent="." unique_id=1372700442]
 z_index = 2
-tile_map_data = PackedByteArray("AAATABMAAAAPABgAAAAUABMAAAAMABgAAAAXABMAAAAVABsAAAAXAB4ABAAYACcAAAASAB4ABAAcACcAAAAUABwAAQAcAA8AAAAUAB0AAQAcABAAAAAUAB4AAQAcABEAAAAGAAwAAQAfAA8AAAAGAA0AAQAfABAAAAAFAAwAAQAlAA8AAAAFAA0AAQAlABAAAAA=")
+tile_map_data = PackedByteArray("AAATABMAAAAPABgAAAAUABMAAAAMABgAAAAXABMAAAAVABsAAAAXAB4ABAAYACcAAAASAB4ABAAcACcAAAAUABwAAQAcAA8AAAAUAB0AAQAcABAAAAAUAB4AAQAcABEAAAAGAAwAAQAfAA8AAAAGAA0AAQAfABAAAAAFAAwAAQAlAA8AAAAFAA0AAQAlABAAAAAwAAoAAAASABsAAAA4AAoAAAASABsAAAAxAAcAAAAMABsAAAA3AAcAAAAMABsAAAA=")
 tile_set = SubResource("TileSet_jvqct")
 
 [node name="Player" parent="." unique_id=702286683 instance=ExtResource("8_y7rkj")]
 z_index = 10
 position = Vector2(88, 120)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=359948426]
+visible = false
+color = Color(0.3180198, 0.31801978, 0.31801975, 1)
+
+[node name="PointLight2D7" type="PointLight2D" parent="CanvasModulate" unique_id=1259892901]
+position = Vector2(397.62888, 347.06842)
+scale = Vector2(2.6302307, 2.6302307)
+color = Color(0.9484015, 0.63353103, 0.30545434, 1)
+texture = ExtResource("9_pyscc")
+
+[node name="PointLight2D8" type="PointLight2D" parent="CanvasModulate" unique_id=667891224]
+position = Vector2(868.09937, 344.4975)
+scale = Vector2(2.6302307, 2.6302307)
+color = Color(0.9484015, 0.63353103, 0.30545434, 1)
+texture = ExtResource("9_pyscc")

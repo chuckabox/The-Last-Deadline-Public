@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://du7mc1i12qx3h" path="res://scenes/point_light_2d_12.gd" id="16_k421b"]
 [ext_resource type="Script" uid="uid://cc0ot2stbq3e3" path="res://scenes/point_light_2d_13.gd" id="17_1rojm"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2s5rb"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
 texture = ExtResource("1_va8kr")
 0:0/0 = 0
 1:0/0 = 0
@@ -2111,7 +2111,7 @@ texture = ExtResource("1_va8kr")
 24:18/size_in_atlas = Vector2i(3, 6)
 24:18/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_imjrb"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1rojm"]
 texture = ExtResource("2_u30at")
 0:0/0 = 0
 1:0/0 = 0
@@ -3898,7 +3898,7 @@ texture = ExtResource("2_u30at")
 43:47/0 = 0
 44:47/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c7qf2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1lo0"]
 texture = ExtResource("3_s8h67")
 4:0/0 = 0
 5:0/0 = 0
@@ -5955,7 +5955,7 @@ texture = ExtResource("3_s8h67")
 34:20/0 = 0
 34:19/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcwxk"]
 texture = ExtResource("4_mqu6h")
 4:0/0 = 0
 5:0/0 = 0
@@ -7896,7 +7896,7 @@ texture = ExtResource("4_mqu6h")
 36:36/0 = 0
 36:29/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1rojm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uf5x5"]
 texture = ExtResource("5_gfdo5")
 0:0/0 = 0
 1:0/0 = 0
@@ -9786,7 +9786,7 @@ texture = ExtResource("5_gfdo5")
 24:30/size_in_atlas = Vector2i(3, 6)
 24:30/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1lo0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7n8xg"]
 texture = ExtResource("6_7fquq")
 1:0/0 = 0
 4:0/0 = 0
@@ -11226,12 +11226,12 @@ texture = ExtResource("6_7fquq")
 
 [sub_resource type="TileSet" id="TileSet_gcwxk"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_2s5rb")
-sources/1 = SubResource("TileSetAtlasSource_imjrb")
-sources/2 = SubResource("TileSetAtlasSource_c7qf2")
-sources/3 = SubResource("TileSetAtlasSource_k421b")
-sources/4 = SubResource("TileSetAtlasSource_1rojm")
-sources/5 = SubResource("TileSetAtlasSource_v1lo0")
+sources/0 = SubResource("TileSetAtlasSource_k421b")
+sources/1 = SubResource("TileSetAtlasSource_1rojm")
+sources/2 = SubResource("TileSetAtlasSource_v1lo0")
+sources/3 = SubResource("TileSetAtlasSource_gcwxk")
+sources/4 = SubResource("TileSetAtlasSource_uf5x5")
+sources/5 = SubResource("TileSetAtlasSource_7n8xg")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uf5x5"]
 normal = Vector2(-0.99999875, -0.0016129011)
