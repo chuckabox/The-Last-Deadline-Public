@@ -1,26 +1,26 @@
 [gd_scene format=3 uid="uid://c7h8p8y6lgiap"]
 
-[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd"]
-[ext_resource type="Texture2D" uid="uid://c5hckj0gwxm3f" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button02a_1.png"]
-[ext_resource type="Texture2D" uid="uid://bd5lqq5wvvlcbk" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button02a_2.png"]
-[ext_resource type="Texture2D" uid="uid://bbdwhwbvbqvvs" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button02a_3.png"]
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="1_pause_script"]
+[ext_resource type="Texture2D" uid="uid://c5hckj0gwxm3f" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button02a_1.png" id="2_btn1"]
+[ext_resource type="Texture2D" uid="uid://bd5lqq5wvvlcbk" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button02a_2.png" id="3_btn2"]
+[ext_resource type="Texture2D" uid="uid://bbdwhwbvbqvvs" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button02a_3.png" id="4_btn3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u7s8n"]
-texture = ExtResource("uid://c5hckj0gwxm3f")
+texture = ExtResource("2_btn1")
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 4.0
 margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8j8c8"]
-texture = ExtResource("uid://bd5lqq5wvvlcbk")
+texture = ExtResource("3_btn2")
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 4.0
 margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yqjfk5"]
-texture = ExtResource("uid://bbdwhwbvbqvvs")
+texture = ExtResource("4_btn3")
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 4.0
@@ -32,7 +32,7 @@ anchors_left = 0.0
 anchors_top = 0.0
 anchors_right = 1.0
 anchors_bottom = 1.0
-script = ExtResource("uid://c7h8p8y6lgh9p")
+script = ExtResource("1_pause_script")
 
 [node name="DimOverlay" type="ColorRect" parent="."]
 anchors_left = 0.0
