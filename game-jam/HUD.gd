@@ -65,6 +65,12 @@ func _ready():
 	# Initial fill is instant — no animation on game start.
 	_set_meter_value(_current_alcohol_value(), false)
 
+	# Explicitly set clock baseline to white and steady
+	if clock_label:
+		clock_label.add_theme_color_override("font_color", Color.WHITE)
+		clock_label.scale = Vector2(1.0, 1.0)
+		clock_label.pivot_offset = clock_label.size / 2.0
+
 	print("HUD initialized")
 
 ## Replaces the legacy evenly-spaced VSeparator row (which landed at the wrong
