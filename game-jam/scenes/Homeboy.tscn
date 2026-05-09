@@ -1,49 +1,53 @@
 [gd_scene format=3 uid="uid://kur2hkw6plru"]
 
-[ext_resource type="Texture2D" uid="uid://rpbhnqvmvhrm" path="res://assets/npc/friend/sprite_sheet/character-spritesheet (8).png" id="1_agi71"]
+[ext_resource type="Script" uid="uid://drnel835ryhob" path="res://scripts/npcs/NPC_Friend.gd" id="1_h35v6"]
+[ext_resource type="Texture2D" uid="uid://rpbhnqvmvhrm" path="res://assets/npc/friend/sprite_sheet/character-spritesheet (8).png" id="2_agi71"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk0ku"]
 radius = 13.0
 height = 48.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ue0j6"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(0, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p50xe"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(64, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uk5mg"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(128, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0fxv"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(192, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcp4p"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(448, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_auy51"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(384, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3f4yf"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(320, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qard7"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(256, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpcbm"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(0, 1472, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gufff"]
-atlas = ExtResource("1_agi71")
+atlas = ExtResource("2_agi71")
 region = Rect2(64, 1472, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qdsp7"]
@@ -90,6 +94,7 @@ animations = [{
 }]
 
 [node name="Homeboy" type="CharacterBody2D" unique_id=1340862067]
+script = ExtResource("1_h35v6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=61515323]
 position = Vector2(0, 5)
@@ -100,3 +105,8 @@ sprite_frames = SubResource("SpriteFrames_qdsp7")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.13636415
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=999000777]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=999000888]
+shape = SubResource("CircleShape2D_interact")

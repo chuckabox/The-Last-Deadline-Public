@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://dacfmp7skn3w4"]
 
-[ext_resource type="Texture2D" uid="uid://dwtqvlnl52cri" path="res://assets/npc/frat_bro/sprite_sheet/character-spritesheet (7).png" id="1_g1k7f"]
+[ext_resource type="Script" uid="uid://dp6ex4ugy17bt" path="res://scripts/npcs/NPC_FratBro.gd" id="1_7myf5"]
+[ext_resource type="Texture2D" uid="uid://dwtqvlnl52cri" path="res://assets/npc/frat_bro/sprite_sheet/character-spritesheet (7).png" id="2_g1k7f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmr52"]
-atlas = ExtResource("1_g1k7f")
+atlas = ExtResource("2_g1k7f")
 region = Rect2(0, 1536, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io5u7"]
-atlas = ExtResource("1_g1k7f")
+atlas = ExtResource("2_g1k7f")
 region = Rect2(64, 1536, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1k7f"]
@@ -48,6 +52,7 @@ radius = 14.0
 height = 56.0
 
 [node name="fratbro" type="CharacterBody2D" unique_id=1908960888]
+script = ExtResource("1_7myf5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=512516477]
 sprite_frames = SubResource("SpriteFrames_67cph")
@@ -58,3 +63,8 @@ frame_progress = 0.025658475
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1803089809]
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_jtmey")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=999000555]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=999000666]
+shape = SubResource("CircleShape2D_interact")
