@@ -20,6 +20,7 @@ var bar_points: Array[Node] = []
 var alcohol_stage_label: Label
 var bac_label: Label
 var clock_label: Label
+var warning_label: Label
 var warning_control: Control
 var screen_effects: ColorRect
 var hud_container: Control
