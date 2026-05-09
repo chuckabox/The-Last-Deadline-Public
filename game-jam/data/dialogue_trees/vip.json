@@ -40,6 +40,7 @@
       },
       "pourGame": {
         "text": "[Triggers Drink Pour Minigame]",
+        "minigame": "drink_pour",
         "options": [
           { "text": "[Win]", "next": "pourWin", "setFlag": { "vipPoured": true } },
           { "text": "[Lose]", "next": "pourLose" }
@@ -59,6 +60,7 @@
       },
       "popGame": {
         "text": "[Triggers Champagne Pop Minigame]",
+        "minigame": "champaigne_pop",
         "options": [
           { "text": "[Win]", "next": "popWin", "setFlag": { "vipDefeated": true } },
           { "text": "[Lose]", "next": "popLose" }

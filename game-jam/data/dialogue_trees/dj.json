@@ -40,6 +40,7 @@
       },
       "danceGame": {
         "text": "[Triggers Dance Rhythm Minigame]",
+        "minigame": "dance_rhythm",
         "options": [
           { "text": "[Win]", "next": "passedGame", "setFlag": { "djDefeated": true } },
           { "text": "[Lose]", "next": "failedGame" }

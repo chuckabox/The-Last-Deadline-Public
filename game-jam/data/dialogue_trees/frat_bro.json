@@ -33,6 +33,7 @@
       },
       "pongGame": {
         "text": "[Triggers Beer Pong Minigame]",
+        "minigame": "beer_pong",
         "options": [
           { "text": "[Win]", "next": "victoryCheck", "setFlag": { "fratBroDefeated": true } },
           { "text": "[Lose]", "next": "failedGame" }

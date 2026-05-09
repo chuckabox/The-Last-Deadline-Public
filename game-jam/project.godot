@@ -31,6 +31,7 @@ DialogueParser="*res://scripts/systems/DialogueParser.gd"
 MusicManager="*res://scripts/systems/MusicManager.gd"
 SFXManager="*res://scripts/systems/SFXManager.gd"
 RoomTransitionManager="*res://scripts/systems/RoomTransitionManager.gd"
+MinigameManager="*res://scripts/systems/MinigameManager.gd"
 
 [dotnet]
 

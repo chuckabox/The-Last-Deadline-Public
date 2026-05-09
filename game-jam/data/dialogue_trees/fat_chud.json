@@ -33,6 +33,7 @@
       },
       "pourGame": {
         "text": "[Triggers Drink Pour Minigame]",
+        "minigame": "drink_pour",
         "options": [
           { "text": "[Win]", "next": "victoryCheck", "setFlag": { "fatChudDefeated": true } },
           { "text": "[Lose]", "next": "failedGame" }
