@@ -103,8 +103,10 @@ func _launch_game() -> void:
 		get_tree().change_scene_to_file("res://scenes/rooms/room_1_bar.tscn")
 		return
 
-	var hud := get_tree().root.get_node_or_null("Main/HUD") as CanvasLayer
-	if hud:
+	var hud := get_tree().root.get_node_or_null("Main/HUD")
+	if hud and hud.has_method("fade_in"):
+		hud.fade_in(1.5)
+	elif hud:
 		hud.visible = true
 
 	# Instantiate bar
