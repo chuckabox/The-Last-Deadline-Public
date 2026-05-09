@@ -1,9 +1,8 @@
 extends Node2D
-class_name NPC
 
 # NPC Property
-@export var npc_name = ""
-@export var npc_id = ""
+@export var npc_name = "Homeboy"
+@export var npc_id = "friend"
 var can_interact = true
 var is_in_range = false
 
