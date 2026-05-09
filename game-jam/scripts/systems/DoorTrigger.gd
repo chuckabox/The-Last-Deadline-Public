@@ -50,7 +50,12 @@ func _setup_prompt():
 	# 'E' key is at 64, 32 in the 16x16 grid
 	prompt_sprite.region_rect = Rect2(64, 32, 16, 16)
 	prompt_sprite.position = Vector2(0, -50)
-	prompt_sprite.scale = Vector2(1.5, 1.5)
+	
+	# Compensate for parent scale to keep the prompt uniform
+	var base_scale = 1.5
+	var comp_x = base_scale / abs(scale.x) if scale.x != 0 else base_scale
+	var comp_y = base_scale / abs(scale.y) if scale.y != 0 else base_scale
+	prompt_sprite.scale = Vector2(comp_x, comp_y)
 	prompt_sprite.hide()
 	prompt_sprite.z_index = 10
 	add_child(prompt_sprite)
@@ -87,9 +92,17 @@ func _set_player_in_range(value: bool):
 	if prompt_sprite:
 		if player_in_range:
 			prompt_sprite.show()
+			
+			# Use compensated scale for the tween
+			var base_scale = 1.5
+			var target_scale = Vector2(
+				base_scale / abs(scale.x) if scale.x != 0 else base_scale,
+				base_scale / abs(scale.y) if scale.y != 0 else base_scale
+			)
+			
 			prompt_sprite.scale = Vector2.ZERO
 			var t = create_tween()
-			t.tween_property(prompt_sprite, "scale", Vector2(1.5, 1.5), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			t.tween_property(prompt_sprite, "scale", target_scale, 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		else:
 			prompt_sprite.hide()
 
