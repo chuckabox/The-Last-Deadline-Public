@@ -9256,6 +9256,7 @@ distance = -1131.0
 
 [node name="Bar" type="Node2D" unique_id=330961735]
 y_sort_enabled = true
+scale = Vector2(1, 1.0018797)
 script = ExtResource("1_qyha7")
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1915597061]
@@ -9286,6 +9287,9 @@ z_index = 5
 y_sort_enabled = true
 position = Vector2(292, 193)
 scale = Vector2(1.3, 1.3)
+
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1033254810]
+zoom = Vector2(3, 3)
 
 [node name="SouthWall" type="StaticBody2D" parent="." unique_id=1284331005]
 
