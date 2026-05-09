@@ -14,26 +14,10 @@ const BUST_EXTENSIONS: Array[String] = [".png", ".jpg", ".jpeg", ".webp"]
 # folder name doesn't match the NPC id. Empty by default — folder names match.
 const BUST_FOR_NPC := {}
 
-# ----- BUST DISPLAY (editor-tunable) -----
-## Width / height (px) of the bust area centred above the dialogue panel.
-## Default is large enough to fill most of the screen above the panel.
-@export var bust_size: Vector2 = Vector2(720, 800):
-	set(v):
-		bust_size = v
-		_apply_bust_layout()
-
-## Gap (px) between the bust's bottom edge and the dialogue panel's top edge.
-## Default 0 = the bust touches the dialogue panel directly.
-@export var bust_gap_above_panel: float = 0.0:
-	set(v):
-		bust_gap_above_panel = v
-		_apply_bust_layout()
-
-## Horizontal nudge (px) — positive moves the bust right of centre.
-@export var bust_offset_x: float = 0.0:
-	set(v):
-		bust_offset_x = v
-		_apply_bust_layout()
+# ----- BUST DISPLAY -----
+# Layout (size / position) is edited directly on the BustRect node in
+# DialogueUI.tscn — drag it in the 2D editor or tweak its anchors/offsets in
+# the Inspector. Only runtime-only knobs are exported here.
 
 ## Seconds per frame while cycling the bust to fake a talking animation.
 @export var bust_frame_interval: float = 0.15:
@@ -88,43 +72,33 @@ func _ready():
 	hide()
 	print("DialogueUI initialized with 3-button system")
 
-## Builds a centred TextureRect that sits above the dialogue panel and shows
-## the speaker's bust. The bust cycles through frames on a Timer to fake a
-## talking animation. Populated by `_set_bust_for` on each show_dialogue call.
+## Looks up the BustRect / BustTimer nodes from the scene. Falls back to
+## creating them programmatically if they're missing (defensive — they should
+## already exist in DialogueUI.tscn).
 func _build_bust_display() -> void:
-	bust_rect = TextureRect.new()
-	bust_rect.name = "BustRect"
-	bust_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	bust_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	bust_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	# Anchored to the panel's top-centre; size driven by bust_size / bust_gap_above_panel.
-	bust_rect.anchor_left = 0.5
-	bust_rect.anchor_right = 0.5
-	bust_rect.anchor_top = 0.0
-	bust_rect.anchor_bottom = 0.0
-	add_child(bust_rect)
+	bust_rect = get_node_or_null("BustRect") as TextureRect
+	if bust_rect == null:
+		bust_rect = TextureRect.new()
+		bust_rect.name = "BustRect"
+		bust_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		bust_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		bust_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		bust_rect.anchor_left = 0.5
+		bust_rect.anchor_right = 0.5
+		bust_rect.anchor_top = 0.0
+		bust_rect.anchor_bottom = 0.0
+		add_child(bust_rect)
 	bust_rect.hide()
 
-	_bust_timer = Timer.new()
-	_bust_timer.name = "BustTimer"
+	_bust_timer = get_node_or_null("BustTimer") as Timer
+	if _bust_timer == null:
+		_bust_timer = Timer.new()
+		_bust_timer.name = "BustTimer"
+		_bust_timer.one_shot = false
+		_bust_timer.autostart = false
+		add_child(_bust_timer)
 	_bust_timer.wait_time = max(0.01, bust_frame_interval)
-	_bust_timer.one_shot = false
-	_bust_timer.autostart = false
 	_bust_timer.timeout.connect(_advance_bust_frame)
-	add_child(_bust_timer)
-
-	_apply_bust_layout()
-
-## Applies bust_size / bust_gap_above_panel / bust_offset_x to the TextureRect.
-## Called whenever any of the @export setters fires, so live edits update.
-func _apply_bust_layout() -> void:
-	if not bust_rect:
-		return
-	var half_w := bust_size.x * 0.5
-	bust_rect.offset_left = -half_w + bust_offset_x
-	bust_rect.offset_right = half_w + bust_offset_x
-	bust_rect.offset_top = -(bust_size.y + bust_gap_above_panel)
-	bust_rect.offset_bottom = -bust_gap_above_panel
 
 ## Main entry point to start a conversation
 func show_dialogue(npc_name: String, start_node: String = "start"):

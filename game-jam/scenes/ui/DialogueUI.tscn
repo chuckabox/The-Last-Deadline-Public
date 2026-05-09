@@ -40,6 +40,25 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
 script = ExtResource("1_dialogue")
 
+[node name="BustRect" type="TextureRect" parent="."]
+clip_contents = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -360.0
+offset_top = -800.0
+offset_right = 360.0
+offset_bottom = 0.0
+grow_horizontal = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BustTimer" type="Timer" parent="."]
+wait_time = 0.15
+
 [node name="SpeakerNameBox" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(180, 45)
 layout_mode = 0
