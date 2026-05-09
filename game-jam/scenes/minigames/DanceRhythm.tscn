@@ -1,8 +1,52 @@
-[gd_scene format=3 uid="uid://b3ug6m2v7kg2k"]
+[gd_scene format=3 uid="uid://pxbyctgdclra"]
 
 [ext_resource type="Script" uid="uid://rssk8rmqvy6j" path="res://scripts/minigames/DanceRhythm.gd" id="1_dr"]
+[ext_resource type="Texture2D" uid="uid://cj4c6v7sq3gum" path="res://assets/npc/main character/sprite_sheet/character-spritesheet (9).png" id="2_sprite"]
 
-[node name="DanceRhythm" type="Control" unique_id=1599512113]
+[sub_resource type="AtlasTexture" id="AtlasTexture_64fau"]
+atlas = ExtResource("2_sprite")
+region = Rect2(320, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q38ot"]
+atlas = ExtResource("2_sprite")
+region = Rect2(320, 1088, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypse2"]
+atlas = ExtResource("2_sprite")
+region = Rect2(384, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x3vk"]
+atlas = ExtResource("2_sprite")
+region = Rect2(320, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7rc6"]
+atlas = ExtResource("2_sprite")
+region = Rect2(256, 1280, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_64fau"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64fau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q38ot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypse2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x3vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7rc6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DanceRhythm" type="Control" unique_id=2038406101]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dr")
 
-[node name="Background" type="ColorRect" parent="." unique_id=273735278]
+[node name="Background" type="ColorRect" parent="." unique_id=295479668]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,65 +64,132 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0, 0.117647, 1)
 
-[node name="HitZone" type="ColorRect" parent="." unique_id=1546164667]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -100.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 1, 0, 0.3)
+[node name="Rails" type="Node2D" parent="." unique_id=121953355]
+position = Vector2(576, 324)
 
-[node name="ArrowContainer" type="Node2D" parent="." unique_id=2045576857]
+[node name="RailUp" type="Node2D" parent="Rails" unique_id=1317575074]
 
-[node name="CrowdEnergyBar" type="ProgressBar" parent="." unique_id=787711265]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 30.0
-offset_right = 200.0
-offset_bottom = 50.0
-grow_horizontal = 2
-max_value = 1.0
+[node name="RailDown" type="Node2D" parent="Rails" unique_id=2133432540]
 
-[node name="ComboLabel" type="Label" parent="." unique_id=1515588264]
+[node name="RailLeft" type="Node2D" parent="Rails" unique_id=1310374471]
+
+[node name="RailRight" type="Node2D" parent="Rails" unique_id=361290034]
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1351666790]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_64fau")
+
+[node name="HitZoneVisual" type="ColorRect" parent="." unique_id=1507053052]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -13.0
-offset_right = 50.0
-offset_bottom = 13.0
+offset_left = -60.0
+offset_top = -48.0
+offset_right = 60.0
+offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Combo: 0"
+color = Color(1, 1, 1, 0.05)
+
+[node name="PoseIndicators" type="Node2D" parent="." unique_id=934275432]
+position = Vector2(576, 324)
+
+[node name="UpIndicator" type="Label" parent="PoseIndicators" unique_id=450942580]
+offset_left = -16.0
+offset_top = -110.0
+offset_right = -16.0
+offset_bottom = -110.0
+theme_override_font_sizes/font_size = 32
+text = "↑"
 horizontal_alignment = 1
 
-[node name="InstructionLabel" type="Label" parent="." unique_id=1847239118]
-layout_mode = 1
+[node name="DownIndicator" type="Label" parent="PoseIndicators" unique_id=412824102]
+offset_left = -16.0
+offset_top = 90.0
+offset_right = -16.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 32
+text = "↓"
+horizontal_alignment = 1
+
+[node name="LeftIndicator" type="Label" parent="PoseIndicators" unique_id=26758849]
+offset_left = -130.0
+offset_top = -16.0
+offset_right = -98.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 32
+text = "←"
+horizontal_alignment = 1
+
+[node name="RightIndicator" type="Label" parent="PoseIndicators" unique_id=1737490626]
+offset_left = 90.0
+offset_top = -16.0
+offset_right = 90.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 32
+text = "→"
+horizontal_alignment = 1
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1199190315]
+
+[node name="CrowdEnergyLabel" type="Label" parent="UI" unique_id=279171952]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = 60.0
+offset_top = 10.0
 offset_right = 200.0
-offset_bottom = 86.0
+offset_bottom = 32.0
 grow_horizontal = 2
-text = "Press arrow keys to match the falling arrows!"
+text = "CROWD ENERGY"
 horizontal_alignment = 1
 
-[node name="PulseOverlay" type="ColorRect" parent="." unique_id=908398854]
+[node name="CrowdEnergyBar" type="ProgressBar" parent="UI" unique_id=1064813332]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 34.0
+offset_right = 200.0
+offset_bottom = 57.0
+grow_horizontal = 2
+max_value = 1.0
+value = 0.5
+
+[node name="ComboLabel" type="Label" parent="UI" unique_id=681415892]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "COMBO: 0"
+horizontal_alignment = 2
+
+[node name="InstructionLabel" type="Label" parent="UI" unique_id=1991329477]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Match the pose! Press the arrow key when the silhouette reaches you!"
+horizontal_alignment = 1
+
+[node name="PulseOverlay" type="ColorRect" parent="UI" unique_id=1117899850]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
