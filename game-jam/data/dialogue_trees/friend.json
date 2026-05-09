@@ -154,12 +154,16 @@
         "options": [
           {
             "text": "[Uh Oh] What? Isn't that due tomorrow?",
-            "next": "panic"
+            "next": "phoneCutscene"
           }
         ]
       },
+      "phoneCutscene": {
+        "image": "res://assets/endings/start.jpg",
+        "next": "panic"
+      },
       "panic": {
-        "text": "Nah, man. 12:00 AM tonight. You're in trouble. The front doors are locked for Power Hour. Talk to the Bartender, she knows how to reach the back exit.",
+        "text": "Oh that doesn't look good, man. You're in trouble. The front doors are locked for Power Hour. Talk to the Bartender, she knows how to reach the back exit.",
         "options": [
           {
             "text": "[Exit] I gotta go!",

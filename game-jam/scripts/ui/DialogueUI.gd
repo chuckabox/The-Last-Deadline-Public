@@ -41,6 +41,9 @@ var _bust_timer: Timer
 var current_dialogue_data = {}
 var current_node_name = ""
 var selected_option_index = 0
+var _is_showing_cutscene = false
+var _current_cutscene_node_data = {}
+var _cutscene_overlay: TextureRect
 
 # Signals
 signal dialogue_opened()
@@ -67,6 +70,7 @@ func _ready():
 			option_buttons[i].pressed.connect(_on_option_pressed.bind(i))
 
 	_build_bust_display()
+	_build_cutscene_display()
 
 	# Initial state
 	hide()
@@ -99,6 +103,35 @@ func _build_bust_display() -> void:
 		add_child(_bust_timer)
 	_bust_timer.wait_time = max(0.01, bust_frame_interval)
 	_bust_timer.timeout.connect(_advance_bust_frame)
+
+func _build_cutscene_display() -> void:
+	_cutscene_overlay = TextureRect.new()
+	_cutscene_overlay.name = "CutsceneOverlay"
+	_cutscene_overlay.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_cutscene_overlay.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_cutscene_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_cutscene_overlay.top_level = true
+	_cutscene_overlay.z_index = 200 # Above everything
+	_cutscene_overlay.hide()
+	
+	# Add a dark background behind the image if it doesn't fill the screen
+	var bg = ColorRect.new()
+	bg.color = Color.BLACK
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg.show_behind_parent = true
+	_cutscene_overlay.add_child(bg)
+	
+	# Add a "Click to continue" label
+	var label = Label.new()
+	label.text = "[ Click to continue ]"
+	label.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	label.offset_bottom = -50
+	label.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
+	label.add_theme_font_size_override("font_size", 32)
+	_cutscene_overlay.add_child(label)
+	
+	add_child(_cutscene_overlay)
 
 ## Main entry point to start a conversation
 func show_dialogue(npc_name: String, start_node: String = ""):
@@ -183,6 +216,10 @@ func display_node():
 	if not parser: return
 
 	var node_data = parser.get_variant_node(current_dialogue_data, current_node_name)
+
+	if node_data.has("image"):
+		_show_cutscene(node_data)
+		return
 
 	if node_data.is_empty() or node_data.get("text") == null:
 		close_dialogue()
@@ -379,6 +416,41 @@ func _on_minigame_finished(_minigame_id: String, won: bool, node_data: Dictionar
 	else:
 		close_dialogue()
 
+func _show_cutscene(node_data: Dictionary) -> void:
+	_is_showing_cutscene = true
+	_current_cutscene_node_data = node_data
+	
+	var img_path = node_data["image"]
+	var tex = load(img_path)
+	if tex:
+		_cutscene_overlay.texture = tex
+		_cutscene_overlay.show()
+		# Hide the main dialogue box during cutscene
+		get_node("SpeakerNameBox").hide()
+		get_node("Content").hide()
+		get_node("BustRect").hide()
+		self.self_modulate.a = 0 # Hide panel background
+	else:
+		push_error("DialogueUI: Failed to load cutscene image: %s" % img_path)
+		_on_cutscene_clicked()
+
+func _on_cutscene_clicked() -> void:
+	_is_showing_cutscene = false
+	_cutscene_overlay.hide()
+	
+	# Restore UI
+	get_node("SpeakerNameBox").show()
+	get_node("Content").show()
+	get_node("BustRect").show()
+	self.self_modulate.a = 1
+	
+	var next_node = _current_cutscene_node_data.get("next", "exit")
+	if next_node == "exit" or next_node == "":
+		close_dialogue()
+	else:
+		current_node_name = next_node
+		display_node()
+
 func close_dialogue():
 	_stop_bust()
 	if bust_rect:
@@ -398,6 +470,13 @@ func close_dialogue():
 func _input(event):
 	if not visible: return
 	
+	if _is_showing_cutscene:
+		if event is InputEventMouseButton and event.pressed:
+			_on_cutscene_clicked()
+		elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_interact"):
+			_on_cutscene_clicked()
+		return
+
 	# Tab/Arrow cycling support
 	if event.is_action_pressed("ui_focus_next"):
 		selected_option_index = (selected_option_index + 1) % 3
