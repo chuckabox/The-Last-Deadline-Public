@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="12_door"]
 [ext_resource type="PackedScene" uid="uid://byxhgxjh7egsr" path="res://bartender.tscn" id="13_gscmp"]
 [ext_resource type="PackedScene" uid="uid://bgne0uufdausf" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
+[ext_resource type="PackedScene" uid="uid://bkvjfrmltbncd" path="res://assets/Generic Male 1.tscn" id="15_mysuo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9433,4 +9434,9 @@ script = null
 [node name="CharacterBody2D" parent="." unique_id=1077800405 instance=ExtResource("14_j0dyg")]
 z_index = 2
 position = Vector2(841, 441.00003)
+scale = Vector2(1.3, 1.3)
+
+[node name="Generic Male 1" parent="." unique_id=1426017410 instance=ExtResource("15_mysuo")]
+z_index = 1
+position = Vector2(285, 440)
 scale = Vector2(1.3, 1.3)

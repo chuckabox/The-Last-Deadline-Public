@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cbu4a1vh76l0h"]
+
+[ext_resource type="Texture2D" uid="uid://c8v6xvfnbdml7" path="res://assets/npc/genericNPCs/genericMaleTwo.png" id="1_85l0s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxik8"]
+atlas = ExtResource("1_85l0s")
+region = Rect2(192, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ganbn"]
+atlas = ExtResource("1_85l0s")
+region = Rect2(256, 1280, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daa4u"]
+atlas = ExtResource("1_85l0s")
+region = Rect2(320, 1280, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83dev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxik8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ganbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daa4u")
+}],
+"loop": true,
+"name": &"dance",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85l0s"]
+radius = 22.0
+height = 46.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1031433549]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=662545832]
+sprite_frames = SubResource("SpriteFrames_83dev")
+animation = &"dance"
+autoplay = "dance"
+frame_progress = 0.18212062
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1675659358]
+position = Vector2(1, 13)
+shape = SubResource("CapsuleShape2D_85l0s")
