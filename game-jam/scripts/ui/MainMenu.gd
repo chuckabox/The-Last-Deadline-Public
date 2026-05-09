@@ -98,9 +98,7 @@ func _launch_game() -> void:
 
 func _on_quit_pressed():
 	_play_select_sfx()
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.2)
-	await tween.finished
+	# Just quit immediately to avoid revealing the grey background during a fade
 	get_tree().quit()
 
 func _on_button_hover():
