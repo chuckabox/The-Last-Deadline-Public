@@ -33,7 +33,6 @@ RoomTransitionManager="*res://scripts/systems/RoomTransitionManager.gd"
 MinigameManager="*res://scripts/systems/MinigameManager.gd"
 FriendTimeDegradation="*res://scripts/npcs/FriendTimeDegradation.gd"
 ScreenFX="*res://scripts/systems/ScreenFX.gd"
-DialogueSystem="*res://scripts/systems/DialogueSystem.gd"
 AudioFilterManager="*res://scripts/systems/AudioFilterManager.gd"
 
 [display]
