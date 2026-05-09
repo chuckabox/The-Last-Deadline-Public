@@ -23,6 +23,12 @@ func _ready():
 	# Focus the first button
 	if start_button:
 		start_button.grab_focus()
+		start_button.pivot_offset = start_button.size / 2.0
+		start_button.resized.connect(func(): start_button.pivot_offset = start_button.size / 2.0)
+	
+	if quit_button:
+		quit_button.pivot_offset = quit_button.size / 2.0
+		quit_button.resized.connect(func(): quit_button.pivot_offset = quit_button.size / 2.0)
 	
 	# Connect signals
 	start_button.pressed.connect(_on_start_pressed)

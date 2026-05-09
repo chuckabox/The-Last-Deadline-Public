@@ -45,6 +45,10 @@ func _build_visuals() -> void:
 	ambient_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	ambient_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	ambient_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	ambient_label.add_theme_font_size_override("font_size", 48)
+	var font = load("res://assets/fonts/monogram.ttf")
+	if font:
+		ambient_label.add_theme_font_override("font", font)
 	ambient_label.modulate.a = 0.0
 	visuals.add_child(ambient_label)
 
@@ -62,8 +66,8 @@ func _run() -> void:
 
 	await get_tree().create_timer(1.6).timeout
 
-	# Dim the ambient text so it sits behind the dialogue panel.
-	create_tween().tween_property(ambient_label, "modulate:a", 0.25, 0.4)
+	# Fade out the ambient text so it doesn't overlap with the dialogue.
+	create_tween().tween_property(ambient_label, "modulate:a", 0.0, 0.4)
 
 	if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
 		dialogue_ui.dialogue_closed.connect(_on_dialogue_closed, CONNECT_ONE_SHOT)

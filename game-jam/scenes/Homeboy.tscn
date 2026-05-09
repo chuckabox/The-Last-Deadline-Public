@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kur2hkw6plru"]
 
-[ext_resource type="Texture2D" uid="uid://rpbhnqvmvhrm" path="res://assets/npc/homeboy/sprite_sheet/character-spritesheet (8).png" id="1_agi71"]
+[ext_resource type="Texture2D" uid="uid://rpbhnqvmvhrm" path="res://assets/npc/friend/sprite_sheet/character-spritesheet (8).png" id="1_agi71"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk0ku"]
 radius = 13.0

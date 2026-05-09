@@ -59,6 +59,9 @@ modulate = Color(1, 1, 1, 0.5)
 
 [node name="Room1Bar" parent="BackgroundLayer/BarBackground" unique_id=240782653 instance=ExtResource("5_bar")]
 process_mode = 4
+position = Vector2(127, 98)
+scale = Vector2(1.5315495, 1.5315495)
+metadata/_edit_group_ = true
 
 [node name="BlurOverlay" type="ColorRect" parent="." unique_id=1763185861]
 material = SubResource("ShaderMaterial_blur")
@@ -125,10 +128,13 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
+alignment = 1
 
 [node name="StartButton" type="Button" parent="MenuContainer" unique_id=1262398536]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+size_flags_horizontal = 1
+pivot_offset = Vector2(150, 30)
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -142,8 +148,10 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "START GAME"
 
 [node name="QuitButton" type="Button" parent="MenuContainer" unique_id=1710738054]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
+size_flags_horizontal = 1
+pivot_offset = Vector2(150, 30)
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)

@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3 uid="uid://bur4jismeif33"]
 
-[ext_resource type="Script" path="res://scripts/ui/DialogueUI.gd" id="1_dialogue"]
-[ext_resource type="FontFile" path="res://assets/fonts/monogram.ttf" id="2_font"]
-[ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame03a.png" id="3_frame"]
-[ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Banner03a.png" id="4_banner"]
-[ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn"]
-[ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_hover"]
+[ext_resource type="Script" uid="uid://uamb3oi1212a" path="res://scripts/ui/DialogueUI.gd" id="1_dialogue"]
+[ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://dpsaj5qlauo3e" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame03a.png" id="3_frame"]
+[ext_resource type="Texture2D" uid="uid://doaf5egnwp72p" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Banner03a.png" id="4_banner"]
+[ext_resource type="Texture2D" uid="uid://wpw4fc3dcdjb" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn"]
+[ext_resource type="Texture2D" uid="uid://h880knqxh06t" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_hover"]
+[ext_resource type="Texture2D" uid="uid://b7217qn36pxwc" path="res://assets/npc/friend/bust/Screenshot_2026-5-8_2155272.png" id="7_bust_preview"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
 texture = ExtResource("3_frame")
@@ -29,7 +30,7 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 
-[node name="DialoguePanel" type="Panel"]
+[node name="DialoguePanel" type="Panel" unique_id=366803195]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -40,7 +41,25 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
 script = ExtResource("1_dialogue")
 
-[node name="SpeakerNameBox" type="NinePatchRect" parent="."]
+[node name="BustRect" type="TextureRect" parent="." unique_id=1872223846]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -800.0
+offset_top = -940.0
+offset_right = 800.0
+offset_bottom = 140.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("7_bust_preview")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BustTimer" type="Timer" parent="." unique_id=167198442]
+wait_time = 0.25
+
+[node name="SpeakerNameBox" type="NinePatchRect" parent="." unique_id=2012769172]
 custom_minimum_size = Vector2(180, 45)
 layout_mode = 0
 offset_left = 30.0
@@ -53,7 +72,7 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="SpeakerLabel" type="Label" parent="SpeakerNameBox"]
+[node name="SpeakerLabel" type="Label" parent="SpeakerNameBox" unique_id=519600819]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,7 +86,7 @@ text = "Speaker Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=1656227816]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,26 +99,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="UpperLayout" type="HBoxContainer" parent="Content"]
+[node name="UpperLayout" type="HBoxContainer" parent="Content" unique_id=2066258795]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="PortraitRect" type="TextureRect" parent="Content/UpperLayout"]
+[node name="PortraitRect" type="TextureRect" parent="Content/UpperLayout" unique_id=1549790804]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DialogueContent" type="VBoxContainer" parent="Content/UpperLayout"]
+[node name="DialogueContent" type="VBoxContainer" parent="Content/UpperLayout" unique_id=786390648]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spacer" type="Control" parent="Content/UpperLayout/DialogueContent"]
+[node name="Spacer" type="Control" parent="Content/UpperLayout/DialogueContent" unique_id=595253621]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="DialogueText" type="Label" parent="Content/UpperLayout/DialogueContent"]
+[node name="DialogueText" type="Label" parent="Content/UpperLayout/DialogueContent" unique_id=1381360700]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
@@ -108,44 +127,44 @@ theme_override_font_sizes/font_size = 36
 text = "This is where the NPC will speak their mind. The text will wrap around multiple lines if it gets too long for the container."
 autowrap_mode = 2
 
-[node name="OptionsContainer" type="HBoxContainer" parent="Content"]
+[node name="OptionsContainer" type="HBoxContainer" parent="Content" unique_id=1309288215]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="OptionLeft" type="Button" parent="Content/OptionsContainer"]
+[node name="OptionLeft" type="Button" parent="Content/OptionsContainer" unique_id=386042057]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn_hover")
 text = "PROCEED"
 
-[node name="OptionCenter" type="Button" parent="Content/OptionsContainer"]
+[node name="OptionCenter" type="Button" parent="Content/OptionsContainer" unique_id=460499417]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn_hover")
 text = "GIBBERISH LINE"
 
-[node name="OptionRight" type="Button" parent="Content/OptionsContainer"]
+[node name="OptionRight" type="Button" parent="Content/OptionsContainer" unique_id=745235677]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn_hover")
 text = "CANCEL"

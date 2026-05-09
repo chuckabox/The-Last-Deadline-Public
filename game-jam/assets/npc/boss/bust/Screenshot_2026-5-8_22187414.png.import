@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yvnmepb677e6"
-path="res://.godot/imported/Screenshot_2026-5-8_22187414.png-0afead633bbc13be91883622f8c8eb66.ctex"
+path="res://.godot/imported/Screenshot_2026-5-8_22187414.png-e1d068d95511b561eb1a49a8c98d6bcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/club_boss/bust/Screenshot_2026-5-8_22187414.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_22187414.png-0afead633bbc13be91883622f8c8eb66.ctex"]
+source_file="res://assets/npc/boss/bust/Screenshot_2026-5-8_22187414.png"
+dest_files=["res://.godot/imported/Screenshot_2026-5-8_22187414.png-e1d068d95511b561eb1a49a8c98d6bcf.ctex"]
 
 [params]
 
