@@ -15,17 +15,16 @@
           },
           {
             "condition": { "flag": "bartenderDefeated", "is": false },
-            "text": "Who are you? Unless you've got a recommendation from the guy behind the stick, I'm not talking to 'outsiders'.",
+            "text": "Who are you? I only talk to regulars or anyone the Bartender vouches for.",
             "options": [
               { "text": "Fine.", "next": "exit" }
             ]
           },
           {
             "condition": { "flag": "bartenderDefeated", "is": true },
-            "text": "Yo! You look like you're in a rush. If you can beat me at pong, I'll tell you what I saw the DJ drop. If not... bottoms up, loser!",
+            "text": "In a rush? Beat me at pong and I'll tell you what the DJ dropped. Otherwise... bottoms up, loser!",
             "options": [
               { "text": "You're on!", "next": "pongGame" },
-              { "text": "Is it hot in here, or is it just the 400 people?", "next": "exit" },
               { "text": "Maybe later.", "next": "exit" }
             ]
           }
@@ -43,14 +42,14 @@
         "variants": [
           {
             "condition": { "flag": "fatChudDefeated", "is": false },
-            "text": "Sick shots! You're better than you look. Go find that big guy over by the taps-Fat Chud. He's the only one who knows the code for the floor gate.",
+            "text": "Sick shots! Go find that big guy over by the taps—Fat Chud. He's the only one who knows the code for the floor gate.",
             "options": [
               { "text": "Thanks.", "next": "exit" }
             ]
           },
           {
             "condition": { "flag": "fatChudDefeated", "is": true },
-            "text": "Unbelievable! You're a legend. Alright, I'm a man of my word. The DJ has the VIP keycard. Go show him some moves on the floor before the deadline hits!",
+            "text": "Unbelievable! You're a legend. The DJ has the VIP keycard. Go show him some moves before the deadline hits!",
             "options": [
               { "text": "On it.", "next": "exit" }
             ]

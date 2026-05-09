@@ -8,7 +8,7 @@
         "variants": [
           {
             "condition": { "flag": "bartenderDefeated", "is": true },
-            "text": "You've got your info. Now move along, I've got a line of people behind you.",
+            "text": "You've got your info. Now move along, I've got a line behind you.",
             "options": [
               { "text": "Cheers.", "next": "exit" }
             ]
@@ -22,10 +22,9 @@
           },
           {
             "condition": { "flag": "hasSpokenToFriend", "is": true },
-            "text": "Look, kid, I'm slammed. You want my help? Help me first. Remember these orders or get out of my face.",
+            "text": "Look, kid, I'm slammed. You want my help? Help me with these orders first. Otherwise, beat it.",
             "options": [
               { "text": "Fine, lay it on me.", "next": "bartenderGame" },
-              { "text": "I heard the back exit is through the office.", "next": "exit" },
               { "text": "I'll be back later.", "next": "exit" }
             ]
           }
@@ -40,13 +39,13 @@
         ]
       },
       "passedGame": {
-        "text": "Not bad. You got a steady hand. Talk to the Frat Bro at the Beer Pong table or Fat Chud by the taps. They know the floor.",
+        "text": "Decent work. You've got a steady hand. Go find the Frat Bro at the pong table or Fat Chud by the taps. They know the floor.",
         "options": [
           { "text": "Thanks.", "next": "exit" }
         ]
       },
       "failedGame": {
-        "text": "You're useless. Clearly you've had enough. Drink this and get out of the way so a real pro can work.",
+        "text": "You're useless. Clearly you've had enough. Drink this and get out of the way.",
         "options": [
           { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
         ]

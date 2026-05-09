@@ -8,7 +8,7 @@
         "variants": [
           {
             "condition": { "flag": "djDefeated", "is": true },
-            "text": "I gave you the card, kid! Go enjoy the high life while I keep this bass dropping.",
+            "text": "Got the card, kid. Now go. I've got a set to finish.",
             "options": [
               { "text": "Peace.", "next": "exit" }
             ]
@@ -22,24 +22,16 @@
           },
           {
             "condition": { "flag": "fratBroDefeated", "is": false },
-            "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
-            "options": [
-              { "text": "My bad.", "next": "exit" }
-            ]
-          },
-          {
-            "condition": { "flag": "fatChudDefeated", "is": false },
-            "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
+            "text": "Vibe's dead, man. Go get some people moving or something. I'm not handing out passes for nothing.",
             "options": [
               { "text": "My bad.", "next": "exit" }
             ]
           },
           {
             "condition": { "flag": "fatChudDefeated", "is": true },
-            "text": "The energy in here is mid! I can't work like this! If someone doesn't start moving, I'm staying locked in this booth all night.",
+            "text": "Vibe's dead, man. I need some energy in here or I'm packing it in.",
             "options": [
               { "text": "Watch this.", "next": "danceGame" },
-              { "text": "Don't look now, but the DJ is three toddlers in a trench coat.", "next": "exit" },
               { "text": "Nevermind.", "next": "exit" }
             ]
           }
@@ -54,13 +46,13 @@
         ]
       },
       "passedGame": {
-        "text": "Ayyy! That's what I'm talking about! You saved the set. Take this VIP pass. The Boss is in the lounge.",
+        "text": "Ayyy! That's what I'm talking about! You saved the set. Take this VIP pass—The Owner's in the lounge.",
         "options": [
           { "text": "Thanks.", "next": "exit" }
         ]
       },
       "failedGame": {
-        "text": "You've got the rhythm of a wet noodle. You're killing the vibe! Here, take a shot-maybe it'll loosen those hips.",
+        "text": "You've got the rhythm of a wet noodle. You're killing the vibe! Here, take a shot—maybe it'll loosen you up.",
         "options": [
           { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
         ]

@@ -15,7 +15,7 @@
           },
           {
             "condition": { "flag": "djDefeated", "is": true },
-            "text": "Sit down. Do you know why those doors are locked? ARPU. Average Revenue Per User. If you can't leave, you spend. But you... you've been doing everything but spending. I've been watching you on the monitors. You fixed the DJ's tech, calmed down the crowd, and didn't break a single glass.",
+            "text": "Sit down. Those doors stay locked for a reason. ARPU—Average Revenue Per User. If you can't leave, you spend. But you've been doing everything but that. Fixing the DJ's tech, calming the crowd... I've been watching you on the monitors.",
             "options": [
               { "text": "I just need to leave.", "next": "offer" }
             ]
@@ -36,7 +36,7 @@
         ]
       },
       "jobBranch": {
-        "text": "Direct. I like that. Honestly, probably for the best. I usually keep that bottle for people who don't know when to leave. I need a Floor Manager. Someone who can handle the chaos. Stay here, run the floor, and I'll double whatever your future career pays.",
+        "text": "Direct. I like that. Probably for the best—I usually save that bottle for people who don't know when to leave. I need a Floor Manager. Someone who can handle chaos. Stay here, run the floor, and I'll double whatever your future career pays.",
         "options": [
           { "text": "I'll take the job.", "next": "averageEnding" },
           { "text": "I have to get out. Immediately.", "next": "successEnding" }
