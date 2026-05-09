@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://vpcp46tlxar5"]
+
+[ext_resource type="Texture2D" uid="uid://beuclyrcjc0q4" path="res://assets/minigames/beer pong/Beer pong ball.png" id="1_a0cf4"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1560407040]
+texture = ExtResource("1_a0cf4")
