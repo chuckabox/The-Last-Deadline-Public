@@ -36,7 +36,7 @@
         "minigame": "bartender_memory",
         "options": [
           { "text": "[Win]", "next": "passedGame", "setFlag": { "bartenderDefeated": true } },
-          { "text": "[Lose]", "next": "failedGame" }
+          { "text": "[Lose]", "next": "failedGame", "setFlag": { "bartenderFailed": true } }
         ]
       },
       "passedGame": {

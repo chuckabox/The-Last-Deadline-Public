@@ -91,8 +91,11 @@ func display_node():
 	# 2. OPTION 2 (CENTER) - RANDOM GIBBERISH
 	_populate_gibberish_option()
 	
-	# 3. OPTION 3 (RIGHT) - From JSON Index 1 (if exists)
-	if json_options.size() > 1:
+	# 3. OPTION 3 (RIGHT)
+	if json_options.size() > 2:
+		option_buttons[2].text = json_options[2].get("text", "Exit")
+		option_buttons[2].show()
+	elif json_options.size() > 1:
 		option_buttons[2].text = json_options[1].get("text", "Exit")
 		option_buttons[2].show()
 	else:
@@ -116,17 +119,29 @@ func _populate_gibberish_option():
 		option_buttons[1].hide()
 
 func _on_option_pressed(index: int):
-	# CENTER OPTION (Index 1) always exits/cancels
-	if index == 1:
-		close_dialogue()
-		return
-
-	# Get the correct JSON option index (Mapping: UI 0 -> JSON 0, UI 2 -> JSON 1)
-	var json_index = 0 if index == 0 else 1
-
 	var parser = get_node_or_null("/root/DialogueParser")
 	var node_data = parser.get_variant_node(current_dialogue_data, current_node_name)
 	var json_options = node_data.get("options", [])
+
+	var json_index = 0
+
+	if index == 0:
+		json_index = 0
+	elif index == 1:
+		# Center (Gibberish) maps to index 1 if there are 3 options, otherwise maps to index 0 (Progress)
+		if json_options.size() > 2:
+			json_index = 1
+		else:
+			json_index = 0
+	elif index == 2:
+		# Right maps to index 2 if there are 3 options, index 1 if there are 2, otherwise closes
+		if json_options.size() > 2:
+			json_index = 2
+		elif json_options.size() > 1:
+			json_index = 1
+		else:
+			close_dialogue()
+			return
 
 	if json_index >= json_options.size():
 		close_dialogue()
