@@ -172,18 +172,3 @@ theme_override_font_sizes/font_size = 20
 text = "One more drink and I'll black out!"
 horizontal_alignment = 1
 vertical_alignment = 1
-<<<<<<< HEAD
-=======
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2115443515]
-offset_left = -15.0
-offset_top = 27.0
-offset_right = -2.0
-offset_bottom = 66.0
-rotation = 1.5707964
-scale = Vector2(6.2446957, -7.16177)
-step = 20.0
-fill_mode = 2
-texture_under = ExtResource("2_vow1y")
-texture_over = ExtResource("3_ne771")
->>>>>>> 89e34be6d1c654a98ff45b4b5970151edd59034c
