@@ -85,27 +85,43 @@ func display_node():
 	if json_options.size() > 0:
 		option_buttons[0].text = json_options[0].get("text", "...")
 		option_buttons[0].show()
+		_apply_disabled_state(option_buttons[0], json_options[0])
 	else:
 		option_buttons[0].hide()
 		
 	# 2. OPTION 2 (CENTER) - RANDOM GIBBERISH
 	_populate_gibberish_option()
+	var center_mapped_idx = 1 if json_options.size() > 2 else 0
+	if json_options.size() > 0:
+		_apply_disabled_state(option_buttons[1], json_options[center_mapped_idx])
 	
 	# 3. OPTION 3 (RIGHT)
 	if json_options.size() > 2:
 		option_buttons[2].text = json_options[2].get("text", "Exit")
 		option_buttons[2].show()
+		_apply_disabled_state(option_buttons[2], json_options[2])
 	elif json_options.size() > 1:
 		option_buttons[2].text = json_options[1].get("text", "Exit")
 		option_buttons[2].show()
+		_apply_disabled_state(option_buttons[2], json_options[1])
 	else:
 		# If no second option, use a default "Exit" or hide
 		option_buttons[2].text = "..."
 		option_buttons[2].show()
+		option_buttons[2].disabled = false
 	
 	# Default focus for keyboard navigation
 	option_buttons[0].grab_focus()
 	selected_option_index = 0
+
+func _apply_disabled_state(btn: Button, option: Dictionary) -> void:
+	btn.disabled = false
+	if option.has("disabled_if"):
+		var cond = option["disabled_if"]
+		var global_state = get_node_or_null("/root/GlobalStateManager")
+		if global_state and cond.has("flag") and cond.has("is"):
+			if global_state.check_flag(cond["flag"]) == cond["is"]:
+				btn.disabled = true
 
 func _populate_gibberish_option():
 	var g_db = get_node_or_null("/root/GibberishDatabase")
