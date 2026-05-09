@@ -304,10 +304,11 @@ func _apply_option(option: Dictionary) -> void:
 		current_node_name = next_node
 		display_node()
 
-## Hides the dialogue, launches the minigame, and resolves the result by
+## Hides the dialogue, launches the minigame with fade transition, and resolves the result by
 ## applying option[0] on win or option[1] on lose from the current node.
 func _launch_minigame_for_node(node_data: Dictionary) -> void:
 	var mm = get_node_or_null("/root/MinigameManager")
+	var rtm = get_node_or_null("/root/RoomTransitionManager")
 	if mm == null:
 		push_error("DialogueUI: MinigameManager autoload missing")
 		close_dialogue()
@@ -316,17 +317,42 @@ func _launch_minigame_for_node(node_data: Dictionary) -> void:
 	hide()
 	mm.minigame_finished.connect(_on_minigame_finished.bind(node_data), CONNECT_ONE_SHOT)
 
+	# Fade to black before launching minigame
+	if rtm and rtm.has_method("fade_to_black"):
+		await rtm.fade_to_black(0.3)
+
 	if not mm.launch(node_data["minigame"]):
 		push_error("DialogueUI: failed to launch minigame '%s'" % node_data["minigame"])
+
+		# Fade back from black on failure
+		if rtm and rtm.has_method("fade_from_black"):
+			await rtm.fade_from_black(0.3)
+
 		show()
 		# CONNECT_ONE_SHOT leaves the connection dangling on failure; clear it.
 		var cb := Callable(self, "_on_minigame_finished").bind(node_data)
 		if mm.minigame_finished.is_connected(cb):
 			mm.minigame_finished.disconnect(cb)
 		close_dialogue()
+		return
+
+	# Fade in from black after minigame is launched
+	if rtm and rtm.has_method("fade_from_black"):
+		await rtm.fade_from_black(0.3)
 
 func _on_minigame_finished(_minigame_id: String, won: bool, node_data: Dictionary) -> void:
+	var rtm = get_node_or_null("/root/RoomTransitionManager")
+
+	# Fade to black when minigame ends
+	if rtm and rtm.has_method("fade_to_black"):
+		await rtm.fade_to_black(0.3)
+
 	show()
+
+	# Fade back in from black
+	if rtm and rtm.has_method("fade_from_black"):
+		await rtm.fade_from_black(0.3)
+
 	var json_options = node_data.get("options", [])
 	var idx := 0 if won else 1
 	if idx < json_options.size():
