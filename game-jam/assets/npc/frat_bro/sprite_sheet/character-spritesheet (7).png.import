@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duh5dpdrgw1xx"
-path="res://.godot/imported/Screenshot_2026-5-8_234455739.png-d130b53f2c3c26690242ec0023a71571.ctex"
+uid="uid://dwtqvlnl52cri"
+path="res://.godot/imported/character-spritesheet (7).png-961d8d045b17164bbd2062848c303388.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/dj/bust/Screenshot_2026-5-8_234455739.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-8_234455739.png-d130b53f2c3c26690242ec0023a71571.ctex"]
+source_file="res://assets/npc/frat_bro/sprite_sheet/character-spritesheet (7).png"
+dest_files=["res://.godot/imported/character-spritesheet (7).png-961d8d045b17164bbd2062848c303388.ctex"]
 
 [params]
 
