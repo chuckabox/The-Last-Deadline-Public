@@ -7,19 +7,39 @@
 	  "talk": {
 		"variants": [
 		  {
-			"condition": { "flag": "hasSpokenToFriend", "is": true },
-			"text": "Go talk to the Bartender, move it!",
-			"options": [
-			  { "text": "Right.", "next": "exit" }
-			]
-		  },
-		  {
 			"condition": { "flag": "hasSpokenToFriend", "is": false },
 			"text": "Cheers! To finishing the semester. You're hitting that cup pretty hard, man. Just watch the BAC, yeah? Don't want a repeat of last New Year's.",
 			"options": [
 			  { "text": "[Stop drinking] I'm pacing myself.", "next": "phoneTrigger" },
 			  { "text": "Is the... floor... supposed to be blue?", "next": "phoneTrigger" },
 			  { "text": "I need some air.", "next": "exit" }
+			]
+		  },
+		  {
+			"condition": { "flag": "friendStage3", "is": true },
+			"text": "zzz... bro... is that a unicorn... lemme just close my eyes for a sec...",
+			"options": [
+			  { "text": "Wake up!", "next": "exit" }
+			]
+		  },
+		  {
+			"condition": { "flag": "friendStage2", "is": true },
+			"text": "Bro, you shhtill here? The bartendr... bart-end-er... go t' him. Tell 'im I shent ya. *hic*",
+			"options": [
+			  { "text": "Hang in there.", "next": "exit" }
+			]
+		  },
+		  {
+			"condition": { "flag": "friendStage1", "is": true },
+			"text": "Hey, tick-tock, man. The clock is eating you alive. Bartender. NOW. Go!",
+			"options": [
+			  { "text": "Going.", "next": "exit" }
+			]
+		  },
+		  {
+			"text": "Go talk to the Bartender, move it!",
+			"options": [
+			  { "text": "Right.", "next": "exit" }
 			]
 		  }
 		]
