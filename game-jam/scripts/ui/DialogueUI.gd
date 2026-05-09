@@ -359,7 +359,10 @@ func display_node():
 			option_buttons[2].hide()
 	
 	# Default focus for keyboard navigation
-	option_buttons[0].grab_focus()
+	for btn in option_buttons:
+		if btn.visible and not btn.disabled:
+			btn.call_deferred("grab_focus")
+			break
 	selected_option_index = 0
 
 func _apply_disabled_state(btn: Button, option: Dictionary) -> void:
