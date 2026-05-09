@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://16c08j5vvnq" path="res://HUD.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://2wltnxim28nh" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Spritesheets/Spritesheet_UI_Flat.png" id="2_efote"]
+[ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_vow1y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vow1y"]
 texture = ExtResource("2_efote")
@@ -468,14 +469,16 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_top = 62.0
-offset_right = -122.0
-offset_bottom = 100.0
+offset_left = -352.0
+offset_top = 63.0
+offset_right = -217.0
+offset_bottom = 84.0
 grow_horizontal = 0
+scale = Vector2(1.7, 1.7)
 
 [node name="ClockLabel" type="Label" parent="Container/TopRight" unique_id=221180680]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 24
 text = "11:00 PM"
 horizontal_alignment = 2
