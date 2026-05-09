@@ -12,7 +12,6 @@ func _ready():
 
 ## Loads a dialogue JSON file by NPC name
 func load_dialogue(npc_name: String) -> Dictionary:
-	dialogue_cache.clear()
 	if dialogue_cache.has(npc_name.to_lower()):
 		return dialogue_cache[npc_name.to_lower()]
 	

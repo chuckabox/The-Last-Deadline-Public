@@ -21,7 +21,10 @@ var flags: Dictionary = {
 	"bossConfronted": false,
 	"bartenderFailed": false,
 	"fratGuyFailed": false,
-	"fatChudFailed": false
+	"fatChudFailed": false,
+	"friendStage1": false,
+	"friendStage2": false,
+	"friendStage3": false
 }
 
 func _ready() -> void:
