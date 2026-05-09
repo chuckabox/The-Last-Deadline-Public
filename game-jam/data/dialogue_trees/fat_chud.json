@@ -7,26 +7,64 @@
       "talk": {
         "variants": [
           {
-            "condition": { "flag": "fatChudDefeated", "is": true },
+            "condition": {
+              "flag": "fatChudDefeated",
+              "is": true
+            },
             "text": "My cup is full and your time is running out. Get to the dance floor already!",
             "options": [
-              { "text": "Okay.", "next": "exit" }
+              {
+                "text": "Okay.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "bartenderDefeated", "is": false },
+            "condition": {
+              "flag": "bartenderDefeated",
+              "is": false
+            },
             "text": "Beat it. I don't talk to people the Bartender hasn't vouched for.",
             "options": [
-              { "text": "Alright.", "next": "exit" }
+              {
+                "text": "Alright.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "bartenderDefeated", "is": true },
+            "condition": {
+              "flag": "bartenderDefeated",
+              "is": true
+            },
             "text": "I'm too shaky to pour my own drink. You think you can do better? Prove it, or you're drinking the spill off the counter!",
             "options": [
-              { "text": "I can do it.", "next": "pourGame" },
-              { "text": "Not right now.", "next": "exit" }
+              {
+                "text": "[Brag] Easy.",
+                "next": "pourPrompt"
+              },
+              {
+                "text": "[Hesitate] I'll try.",
+                "next": "pourPrompt"
+              },
+              {
+                "text": "Not right now.",
+                "next": "exit"
+              }
             ]
+          }
+        ]
+      },
+      "pourPrompt": {
+        "text": "Bottle in hand, glass on the bar. Fill it to the line—not over, not under. Mess it up and you're licking it off the floor.",
+        "options": [
+          {
+            "text": "[Pick up the bottle]",
+            "next": "pourGame"
+          },
+          {
+            "text": "Changed my mind.",
+            "next": "exit"
           }
         ]
       },
@@ -34,24 +72,48 @@
         "text": "[Triggers Drink Pour Minigame]",
         "minigame": "drink_pour",
         "options": [
-          { "text": "[Win]", "next": "victoryCheck", "setFlag": { "fatChudDefeated": true } },
-          { "text": "[Lose]", "next": "failedGame", "setFlag": { "fatChudFailed": true } }
+          {
+            "text": "[Win]",
+            "next": "victoryCheck",
+            "setFlag": {
+              "fatChudDefeated": true
+            }
+          },
+          {
+            "text": "[Lose]",
+            "next": "failedGame",
+            "setFlag": {
+              "fatChudFailed": true
+            }
+          }
         ]
       },
       "victoryCheck": {
         "variants": [
           {
-            "condition": { "flag": "fratBroDefeated", "is": false },
+            "condition": {
+              "flag": "fratBroDefeated",
+              "is": false
+            },
             "text": "Steady hands. I like that. Now go talk to the Frat Bro at the pong table. He's got the other half of the info.",
             "options": [
-              { "text": "Thanks.", "next": "exit" }
+              {
+                "text": "Thanks.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "fratBroDefeated", "is": true },
+            "condition": {
+              "flag": "fratBroDefeated",
+              "is": true
+            },
             "text": "Perfect pour. Alright, I'm satisfied. The DJ has the VIP pass—go show him some moves and get that card.",
             "options": [
-              { "text": "Let's go.", "next": "exit" }
+              {
+                "text": "Let's go.",
+                "next": "exit"
+              }
             ]
           }
         ]
@@ -59,10 +121,17 @@
       "failedGame": {
         "text": "Whoops! Most of that ended up on my shoes. Here, finish the bottle since you can't aim for the glass.",
         "options": [
-          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+          {
+            "text": "[Drink]",
+            "next": "exit",
+            "triggerGlobal": "increaseAlcohol"
+          }
         ]
       },
-      "exit": { "text": null, "options": [] }
+      "exit": {
+        "text": null,
+        "options": []
+      }
     }
   }
 }

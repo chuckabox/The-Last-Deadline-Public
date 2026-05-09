@@ -7,26 +7,64 @@
       "talk": {
         "variants": [
           {
-            "condition": { "flag": "bartenderDefeated", "is": true },
+            "condition": {
+              "flag": "bartenderDefeated",
+              "is": true
+            },
             "text": "You've got your info. Now move along, I've got a line behind you.",
             "options": [
-              { "text": "Cheers.", "next": "exit" }
+              {
+                "text": "Cheers.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "hasSpokenToFriend", "is": false },
+            "condition": {
+              "flag": "hasSpokenToFriend",
+              "is": false
+            },
             "text": "Don't just stand there staring. Check your phone or buy a drink. I'm busy.",
             "options": [
-              { "text": "Sorry.", "next": "exit" }
+              {
+                "text": "Sorry.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "hasSpokenToFriend", "is": true },
-            "text": "Look, kid, I'm slammed. You want my help? Help me with these orders first. Otherwise, beat it.",
+            "condition": {
+              "flag": "hasSpokenToFriend",
+              "is": true
+            },
+            "text": "Look, kid, I'm slammed. You want my help? Help me with these orders first.",
             "options": [
-              { "text": "Fine, lay it on me.", "next": "bartenderGame" },
-              { "text": "I'll be back later.", "next": "exit" }
+              {
+                "text": "[Help] Lay it on me.",
+                "next": "ordersPrompt"
+              },
+              {
+                "text": "[Wait] Give me a sec.",
+                "next": "ordersPrompt"
+              },
+              {
+                "text": "I'll be back later.",
+                "next": "exit"
+              }
             ]
+          }
+        ]
+      },
+      "ordersPrompt": {
+        "text": "Three drinks, three customers, no mistakes. Memorize the order or I'm pouring this swill down your throat instead.",
+        "options": [
+          {
+            "text": "[Take the challenge]",
+            "next": "bartenderGame"
+          },
+          {
+            "text": "Forget it.",
+            "next": "exit"
           }
         ]
       },
@@ -34,23 +72,45 @@
         "text": "[Triggers Bartender Memory Game]",
         "minigame": "bartender_memory",
         "options": [
-          { "text": "[Win]", "next": "passedGame", "setFlag": { "bartenderDefeated": true } },
-          { "text": "[Lose]", "next": "failedGame", "setFlag": { "bartenderFailed": true } }
+          {
+            "text": "[Win]",
+            "next": "passedGame",
+            "setFlag": {
+              "bartenderDefeated": true
+            }
+          },
+          {
+            "text": "[Lose]",
+            "next": "failedGame",
+            "setFlag": {
+              "bartenderFailed": true
+            }
+          }
         ]
       },
       "passedGame": {
         "text": "Decent work. You've got a steady hand. Go find the Frat Bro at the pong table or Fat Chud by the taps. They know the floor.",
         "options": [
-          { "text": "Thanks.", "next": "exit" }
+          {
+            "text": "Thanks.",
+            "next": "exit"
+          }
         ]
       },
       "failedGame": {
         "text": "You're useless. Clearly you've had enough. Drink this and get out of the way.",
         "options": [
-          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+          {
+            "text": "[Drink]",
+            "next": "exit",
+            "triggerGlobal": "increaseAlcohol"
+          }
         ]
       },
-      "exit": { "text": null, "options": [] }
+      "exit": {
+        "text": null,
+        "options": []
+      }
     }
   }
 }

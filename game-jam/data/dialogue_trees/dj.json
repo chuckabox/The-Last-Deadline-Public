@@ -7,33 +7,77 @@
       "talk": {
         "variants": [
           {
-            "condition": { "flag": "djDefeated", "is": true },
+            "condition": {
+              "flag": "djDefeated",
+              "is": true
+            },
             "text": "Got the card, kid. Now go. I've got a set to finish.",
             "options": [
-              { "text": "Peace.", "next": "exit" }
+              {
+                "text": "Peace.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "bartenderDefeated", "is": false },
+            "condition": {
+              "flag": "bartenderDefeated",
+              "is": false
+            },
             "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
             "options": [
-              { "text": "My bad.", "next": "exit" }
+              {
+                "text": "My bad.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "fratBroDefeated", "is": false },
+            "condition": {
+              "flag": "fratBroDefeated",
+              "is": false
+            },
             "text": "Vibe's dead, man. Go get some people moving or something. I'm not handing out passes for nothing.",
             "options": [
-              { "text": "My bad.", "next": "exit" }
+              {
+                "text": "My bad.",
+                "next": "exit"
+              }
             ]
           },
           {
-            "condition": { "flag": "fatChudDefeated", "is": true },
-            "text": "Vibe's dead, man. I need some energy in here or I'm packing it in.",
+            "condition": {
+              "flag": "fatChudDefeated",
+              "is": true
+            },
+            "text": "Vibe's dead, man. I need some energy in here or I'm packing it in. You think you can move?",
             "options": [
-              { "text": "Watch this.", "next": "danceGame" },
-              { "text": "Nevermind.", "next": "exit" }
+              {
+                "text": "[Hype] Watch this.",
+                "next": "floorPrompt"
+              },
+              {
+                "text": "[Stall] Maybe in a minute.",
+                "next": "floorPrompt"
+              },
+              {
+                "text": "Nevermind.",
+                "next": "exit"
+              }
             ]
+          }
+        ]
+      },
+      "floorPrompt": {
+        "text": "Alright. Get on the floor. Hit the beat, sell it to the crowd, and the VIP pass is yours. Miss a step and you're drinking penalty shots.",
+        "options": [
+          {
+            "text": "[Step onto the floor]",
+            "next": "danceGame"
+          },
+          {
+            "text": "Forget it.",
+            "next": "exit"
           }
         ]
       },
@@ -41,23 +85,42 @@
         "text": "[Triggers Dance Rhythm Minigame]",
         "minigame": "dance_rhythm",
         "options": [
-          { "text": "[Win]", "next": "passedGame", "setFlag": { "djDefeated": true } },
-          { "text": "[Lose]", "next": "failedGame" }
+          {
+            "text": "[Win]",
+            "next": "passedGame",
+            "setFlag": {
+              "djDefeated": true
+            }
+          },
+          {
+            "text": "[Lose]",
+            "next": "failedGame"
+          }
         ]
       },
       "passedGame": {
         "text": "Ayyy! That's what I'm talking about! You saved the set. Take this VIP pass—The Owner's in the lounge.",
         "options": [
-          { "text": "Thanks.", "next": "exit" }
+          {
+            "text": "Thanks.",
+            "next": "exit"
+          }
         ]
       },
       "failedGame": {
         "text": "You've got the rhythm of a wet noodle. You're killing the vibe! Here, take a shot—maybe it'll loosen you up.",
         "options": [
-          { "text": "[Drink]", "next": "exit", "triggerGlobal": "increaseAlcohol" }
+          {
+            "text": "[Drink]",
+            "next": "exit",
+            "triggerGlobal": "increaseAlcohol"
+          }
         ]
       },
-      "exit": { "text": null, "options": [] }
+      "exit": {
+        "text": null,
+        "options": []
+      }
     }
   }
 }
