@@ -69,30 +69,21 @@ func _setup_speech_bubble():
 	if npc_id in special_npcs:
 		var bubble = AnimatedSprite2D.new()
 		bubble.name = "SpeechBubble"
-		bubble.position = Vector2(0, -70)
+		bubble.position = Vector2(0, -45)
 		bubble.z_index = 100
 		add_child(bubble)
 		speech_bubble = bubble
 		_update_speech_bubble_icon()
-	else:
-		var bubble = Label.new()
-		bubble.name = "SpeechBubble"
-		bubble.text = "〜〜〜"
-		bubble.position = Vector2(-24, -90)
-		bubble.z_index = 100
-		bubble.add_theme_font_size_override("font_size", 16)
-		bubble.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-		add_child(bubble)
-		speech_bubble = bubble
 
 func _update_speech_bubble_icon():
 	if not speech_bubble or not (speech_bubble is AnimatedSprite2D):
 		return
 	
 	var frames = SpriteFrames.new()
+	# SpriteFrames.new() comes with a "default" animation by default, 
+	# so we don't need to add it manually.
 	
 	if has_completed_quest:
-		frames.add_animation("default")
 		var tex = load("res://assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
 		var atlas = AtlasTexture.new()
 		atlas.atlas = tex
@@ -101,18 +92,29 @@ func _update_speech_bubble_icon():
 		speech_bubble.sprite_frames = frames
 		speech_bubble.scale = Vector2(2, 2)
 	else:
-		frames.add_animation("default")
-		frames.add_frame("default", load("res://assets/npc/tiny-speech-indicators/exclamation-7x8.png"))
+		var tex = load("res://assets/npc/tiny-speech-indicators/exclamation-7x8.png")
+		var frame_width = 7
+		var frame_height = 8
+		var total_width = tex.get_width()
+		var frame_count = floor(total_width / frame_width)
+		
+		for i in range(frame_count):
+			var atlas = AtlasTexture.new()
+			atlas.atlas = tex
+			atlas.region = Rect2(i * frame_width, 0, frame_width, frame_height)
+			frames.add_frame("default", atlas)
+		
 		speech_bubble.sprite_frames = frames
 		speech_bubble.scale = Vector2(2, 2)
+		speech_bubble.sprite_frames.set_animation_speed("default", 8.0) # Set a reasonable animation speed
 	
 	speech_bubble.play("default")
 	
-	# Add a procedural bobbing animation to make it feel "animated"
-	var base_pos = Vector2(0, -70)
+	# Add a procedural bobbing animation to make it feel "alive"
+	var base_pos = Vector2(0, -45)
 	var t = create_tween().set_loops()
-	t.tween_property(speech_bubble, "position", base_pos + Vector2(0, -5), 0.6).set_trans(Tween.TRANS_SINE)
-	t.tween_property(speech_bubble, "position", base_pos, 0.6).set_trans(Tween.TRANS_SINE)
+	t.tween_property(speech_bubble, "position", base_pos + Vector2(0, -3), 0.8).set_trans(Tween.TRANS_SINE)
+	t.tween_property(speech_bubble, "position", base_pos, 0.8).set_trans(Tween.TRANS_SINE)
 
 func _setup_prompt():
 	if has_node("InteractionPrompt"):
