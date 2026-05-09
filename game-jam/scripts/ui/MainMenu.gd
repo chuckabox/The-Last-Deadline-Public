@@ -76,27 +76,24 @@ func _launch_game() -> void:
 	if hud:
 		hud.visible = true
 
-	# Instantiate bar
+	# Instantiate bar and intro behind the menu for a smooth fade
 	var bar_scene: PackedScene = load("res://scenes/rooms/room_1_bar.tscn")
 	if bar_scene:
 		var bar_instance = bar_scene.instantiate()
 		current_scene_node.add_child(bar_instance)
 		current_scene_node.move_child(bar_instance, 0) # Put behind menu
 
+	var intro_scene: PackedScene = load("res://scenes/ui/IntroCutscene.tscn")
+	if intro_scene:
+		var intro_instance = intro_scene.instantiate()
+		current_scene_node.add_child(intro_instance)
+		# Intro cutscene should probably be on top of the bar but behind the menu during fade
+		current_scene_node.move_child(intro_instance, 1)
+
 	# Now fade out the menu
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	await tween.finished
-	
-	# Start game logic immediately
-	var gm = get_node_or_null("/root/GameManager")
-	if gm and gm.has_method("start_game"):
-		gm.start_game()
-	
-	var tm = get_node_or_null("/root/TimeManager")
-	if tm and tm.has_method("resume_time"):
-		tm.resume_time()
-		
 	queue_free()
 
 func _on_quit_pressed():
