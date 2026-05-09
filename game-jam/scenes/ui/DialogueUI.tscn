@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/DialogueUI.gd" id="1_dialogue"]
 [ext_resource type="FontFile" path="res://assets/fonts/monogram.ttf" id="2_font"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Banner03a.png" id="4_banner"]
 [ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn"]
 [ext_resource type="Texture2D" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_hover"]
+[ext_resource type="Texture2D" path="res://assets/npc/friend/bust/Screenshot_2026-5-8_2155272.png" id="7_bust_preview"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
 texture = ExtResource("3_frame")
@@ -53,6 +54,7 @@ offset_right = 360.0
 offset_bottom = 0.0
 grow_horizontal = 2
 mouse_filter = 2
+texture = ExtResource("7_bust_preview")
 expand_mode = 1
 stretch_mode = 5
 
