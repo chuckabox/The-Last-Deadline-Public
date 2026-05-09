@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://drnel835ryhob" path="res://scripts/npcs/NPC_Friend.gd" id="1_h35v6"]
 [ext_resource type="Texture2D" uid="uid://rpbhnqvmvhrm" path="res://assets/npc/friend/sprite_sheet/character-spritesheet (8).png" id="2_agi71"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
-radius = 40.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk0ku"]
 radius = 13.0
 height = 48.0
@@ -92,6 +89,9 @@ animations = [{
 "name": &"idle",
 "speed": 4.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
 
 [node name="Homeboy" type="CharacterBody2D" unique_id=1340862067]
 script = ExtResource("1_h35v6")
