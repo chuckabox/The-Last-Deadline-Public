@@ -10,21 +10,21 @@
 
 [sub_resource type="Curve2D" id="Curve2D_s4wfp"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 82, 66, 0, 0, 0, 0, 254, 16, 0, 0, 0, 0, 405, -5, 0, 0, 0, 0, 660, 19, 0, 0, 0, 0, 789, 56, 0, 0, 0, 0, 912, 114, 0, 0, 0, 0, 1014, 174, 0, 0, 0, 0, 1042, 203, 0, 0, 0, 0, 1067, 241, 0, 0, 0, 0, 1072, 254)
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, -27, -76, 0, 0, 0, 0, -53, -161, 0, 0, 0, 0, -76, -265, 0, 0, 0, 0, -92, -385, 0, 0, 0, 0, -94, -511, 0, 0, 0, 0, -85, -635, 0, 0, 0, 0, -65, -738, 0, 0, 0, 0, -40, -838, 0, 0, 0, 0, -3, -886, 0, 0, 0, 0, 54, -918, 0, 0, 0, 0, 102, -917, 0, 0, 0, 0, 141, -893, 0, 0, 0, 0, 153, -836, 0, 0, 0, 0, 149, -776)
 }
-point_count = 10
+point_count = 16
 
 [sub_resource type="Curve2D" id="Curve2D_jsnjn"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -7, 156, 0, 0, 0, 0, 125, 121, 0, 0, 0, 0, 230, 102, 0, 0, 0, 0, 322, 100, 0, 0, 0, 0, 411, 107, 0, 0, 0, 0, 511, 118, 0, 0, 0, 0, 589, 143, 0, 0, 0, 0, 667, 170, 0, 0, 0, 0, 754, 204, 0, 0, 0, 0, 832, 243, 0, 0, 0, 0, 902, 279, 0, 0, 0, 0, 920, 289, 0, 0, 0, 0, 927, 295, 0, 0, 0, 0, 910, 378, 0, 0, 0, 0, 900, 325, 0, 0, 0, 0, 886, 377, 0, 0, 0, 0, 870, 346, 0, 0, 0, 0, 863, 378, 0, 0, 0, 0, 852, 364, 0, 0, 0, 0, 841, 382)
+"points": PackedVector2Array(0, 0, 0, 0, -7, 156, 0, 0, 0, 0, -47, 77, 0, 0, 0, 0, -76, -6, 0, 0, 0, 0, -98, -101, 0, 0, 0, 0, -105, -197, 0, 0, 0, 0, -108, -306, 0, 0, 0, 0, -86, -404, 0, 0, 0, 0, -54, -507, 0, 0, 0, 0, -27, -580, 0, 0, 0, 0, 1, -624, 0, 0, 0, 0, 41, -647, 0, 0, 0, 0, 88, -660, 0, 0, 0, 0, 122, -656, 0, 0, 0, 0, 90, -710, 0, 0, 0, 0, 11, -734, 0, 0, 0, 0, -49, -742, 0, 0, 0, 0, -108, -730, 0, 0, 0, 0, -153, -698, 0, 0, 0, 0, -178, -658, 0, 0, 0, 0, -189, -615, 0, 0, 0, 0, -198, -573, 0, 0, 0, 0, -205, -529)
 }
-point_count = 20
+point_count = 22
 
 [sub_resource type="Curve2D" id="Curve2D_ibg7q"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, 2, 0, 0, 0, 0, -87, -36, 0, 0, 0, 0, -174, -57, 0, 0, 0, 0, -245, -72, 0, 0, 0, 0, -330, -77, 0, 0, 0, 0, -399, -78, 0, 0, 0, 0, -467, -79, 0, 0, 0, 0, -542, -82, 0, 0, 0, 0, -616, -69, 0, 0, 0, 0, -684, -51, 0, 0, 0, 0, -746, -33, 0, 0, 0, 0, -799, -12, 0, 0, 0, 0, -828, 6, 0, 0, 0, 0, -860, 29, 0, 0, 0, 0, -899, 61, 0, 0, 0, 0, -928, 91, 0, 0, 0, 0, -958, 119, 0, 0, 0, 0, -979, 155, 0, 0, 0, 0, -980, 173)
+"points": PackedVector2Array(0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -24, 78, 0, 0, 0, 0, -40, 163, 0, 0, 0, 0, -64, 278, 0, 0, 0, 0, -80, 432, 0, 0, 0, 0, -80, 576, 0, 0, 0, 0, -55, 683, 0, 0, 0, 0, -18, 769, 0, 0, 0, 0, 9, 839, 0, 0, 0, 0, 37, 900)
 }
-point_count = 19
+point_count = 11
 
 [node name="BeerPong" type="Control" unique_id=1776024186]
 layout_mode = 3
@@ -125,55 +125,57 @@ text = "Press SPACEBAR when slider is in the green zone!"
 horizontal_alignment = 1
 
 [node name="BeerPongBlue" type="Sprite2D" parent="." unique_id=291562417]
-position = Vector2(979, 344.00003)
-scale = Vector2(0.32007056, 0.23697186)
+z_index = 1
+position = Vector2(988.09375, 356.35)
+scale = Vector2(0.37130278, 0.28045768)
 texture = ExtResource("3_jsnjn")
 
 [node name="BeerPongRed" type="Sprite2D" parent="." unique_id=1295508018]
 z_index = 1
-position = Vector2(200.00002, 347)
+position = Vector2(999, 865)
 scale = Vector2(0.35422635, 0.27423966)
 texture = ExtResource("4_ibg7q")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1352688463]
-position = Vector2(-82, 84)
+position = Vector2(842, 1117)
 curve = SubResource("Curve2D_s4wfp")
 script = ExtResource("4_jsnjn")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1664052933]
-position = Vector2(1072, 254)
-rotation = 1.2036225
+position = Vector2(141.04535, -892.9222)
+rotation = 0.5868854
 progress = 1075.9547
 
 [node name="Ball" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=1271521214]
-position = Vector2(-1.9205017, -0.5582886)
-scale = Vector2(0.14658843, 0.14658843)
+position = Vector2(0.07080078, 0.48242188)
+scale = Vector2(0.17623274, 0.17623273)
 texture = ExtResource("2_s4wfp")
 
 [node name="Path2D2" type="Path2D" parent="." unique_id=205664058]
-position = Vector2(-12, 13)
+position = Vector2(800, 950)
 curve = SubResource("Curve2D_jsnjn")
 script = ExtResource("6_ibg7q")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2" unique_id=1955859506]
-position = Vector2(-7, 156)
-rotation = -0.2591873
+position = Vector2(-205, -529)
+rotation = 1.7285651
+progress = 1447.0562
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D2/PathFollow2D" unique_id=167044427]
-position = Vector2(1.2318535, -0.69465446)
-scale = Vector2(0.1, 0.1)
+position = Vector2(1.3438702, -0.44044495)
+scale = Vector2(0.18075085, 0.18075083)
 texture = ExtResource("2_s4wfp")
 
 [node name="Path2D3" type="Path2D" parent="." unique_id=539540048]
-position = Vector2(1185, 170)
+position = Vector2(972, -40)
 curve = SubResource("Curve2D_ibg7q")
 script = ExtResource("7_kjmng")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D3" unique_id=1624393920]
 position = Vector2(1, 2)
-rotation = -2.733961
+rotation = -2.3561945
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D3/PathFollow2D" unique_id=1704320896]
-position = Vector2(3.7550926e-06, 1.9999998)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-1.4396667, 1.710968)
+scale = Vector2(0.18639055, 0.18639055)
 texture = ExtResource("2_s4wfp")

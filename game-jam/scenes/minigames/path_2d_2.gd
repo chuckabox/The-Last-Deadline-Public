@@ -1,7 +1,7 @@
 extends Path2D
 
 # This allows you to change the speed in the Inspector window on the right
-@export var speed: float = 1.0
+@export var speed: float = 2
 
 func _ready():
 	# We hide the ball initially so it doesn't just sit at the start point
