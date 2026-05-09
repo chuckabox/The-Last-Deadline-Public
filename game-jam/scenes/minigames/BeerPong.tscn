@@ -12,19 +12,19 @@
 
 [sub_resource type="Curve2D" id="Curve2D_s4wfp"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, -27, -76, 0, 0, 0, 0, -53, -161, 0, 0, 0, 0, -76, -265, 0, 0, 0, 0, -92, -385, 0, 0, 0, 0, -94, -511, 0, 0, 0, 0, -85, -635, 0, 0, 0, 0, -65, -738, 0, 0, 0, 0, -40, -864, 0, 0, 0, 0, -3, -950, 0, 0, 0, 0, 51, -991, 0, 0, 0, 0, 94, -991, 0, 0, 0, 0, 130, -957, 0, 0, 0, 0, 140, -907, 0, 0, 0, 0, 132, -820)
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, -27, -76, 0, 0, 0, 0, -53, -161, 0, 0, 0, 0, -76, -265, 0, 0, 0, 0, -92, -385, 0, 0, 0, 0, -94, -511, 0, 0, 0, 0, -85, -635, 0, 0, 0, 0, -65, -738, 0, 0, 0, 0, -40, -864, 0, 0, 0, 0, -3, -950, 0, 0, 0, 0, 26.999954, -993, 0, 0, 0, 0, 61.999954, -1020, 0, 0, 0, 0, 104.99997, -1022)
 }
-point_count = 16
+point_count = 14
 
 [sub_resource type="Curve2D" id="Curve2D_jsnjn"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -7, 156, 0, 0, 0, 0, -47, 77, 0, 0, 0, 0, -76, -6, 0, 0, 0, 0, -98, -101, 0, 0, 0, 0, -105, -197, 0, 0, 0, 0, -108, -306, 0, 0, 0, 0, -86, -404, 0, 0, 0, 0, -54, -507, 0, 0, 0, 0, -27, -580, 0, 0, 0, 0, 1, -624, 0, 0, 0, 0, 41, -647, 0, 0, 0, 0, 90, -710, 0, 0, 0, 0, 11, -734, 0, 0, 0, 0, -49, -742, 0, 0, 0, 0, -108, -730, 0, 0, 0, 0, -153, -698, 0, 0, 0, 0, -178, -658, 0, 0, 0, 0, -189, -615, 0, 0, 0, 0, -198, -573, 0, 0, 0, 0, -205, -529)
+"points": PackedVector2Array(0, 0, 0, 0, -7, 156, 0, 0, 0, 0, -47, 77, 0, 0, 0, 0, -76, -6, 0, 0, 0, 0, -98, -101, 0, 0, 0, 0, -105, -197, 0, 0, 0, 0, -117.00002, -331, 0, 0, 0, 0, -102.00002, -476, 0, 0, 0, 0, -61.00003, -587, 0, 0, 0, 0, -24.00003, -681, 0, 0, 0, 0, 13.9999695, -749, 0, 0, 0, 0, 50.999954, -804, 0, 0, 0, 0, 77.99997, -785, 0, 0, 0, 0, 128.99997, -766)
 }
-point_count = 20
+point_count = 13
 
 [sub_resource type="Curve2D" id="Curve2D_ibg7q"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -57, 62, 0, 0, 0, 0, -99, 127, 0, 0, 0, 0, -133, 198, 0, 0, 0, 0, -153, 270, 0, 0, 0, 0, -165, 345, 0, 0, 0, 0, -170, 423, 0, 0, 0, 0, -147, 504, 0, 0, 0, 0, -112, 581, 0, 0, 0, 0, -66, 668, 0, 0, 0, 0, -15, 750, 0, 0, 0, 0, 18, 807, 0, 0, 0, 0, 34, 865)
+"points": PackedVector2Array(0, 0, 0, 0, 3, -2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -59, 167, 0, 0, 0, 0, -85.99999, 271, 0, 0, 0, 0, -115.999985, 377, 0, 0, 0, 0, -126.999985, 492, 0, 0, 0, 0, -120.999985, 581, 0, 0, 0, 0, -105.99998, 668, 0, 0, 0, 0, -94.99998, 735, 0, 0, 0, 0, -72.99997, 812, 0, 0, 0, 0, -42.99997, 878, 0, 0, 0, 0, 3.0517578e-05, 958, 0, 0, 0, 0, 34.00003, 998, 0, 0, 0, 0, 73.000046, 1012)
 }
 point_count = 14
 
@@ -128,85 +128,111 @@ horizontal_alignment = 1
 
 [node name="BeerPongBlue" type="Sprite2D" parent="." unique_id=291562417]
 z_index = 1
-position = Vector2(957, 290)
-scale = Vector2(0.45862666, 0.3491197)
+position = Vector2(990, 281)
+scale = Vector2(0.3259245, 0.2544506)
 texture = ExtResource("3_jsnjn")
 
 [node name="BeerPongRed" type="Sprite2D" parent="." unique_id=1295508018]
 z_index = 1
-position = Vector2(998.00006, 838.00006)
-scale = Vector2(0.46651146, 0.3374653)
+position = Vector2(164, 278.00003)
+scale = Vector2(0.32293156, 0.24615915)
 texture = ExtResource("4_ibg7q")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1352688463]
-position = Vector2(842, 1117)
+position = Vector2(-26, 173)
+rotation = 1.5707964
 curve = SubResource("Curve2D_s4wfp")
 script = ExtResource("4_jsnjn")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1664052933]
-position = Vector2(84.08784, -991)
-progress = 1075.9547
+position = Vector2(1, 0)
+rotation = -2.3561945
 
 [node name="Ball" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=1271521214]
-position = Vector2(-0.08782959, 0)
-scale = Vector2(0.17623274, 0.17623273)
+position = Vector2(1.4142151, 1.4142094)
+scale = Vector2(0.13705851, 0.1370585)
 texture = ExtResource("2_s4wfp")
 
 [node name="Path2D2" type="Path2D" parent="." unique_id=205664058]
-position = Vector2(800, 950)
+position = Vector2(120, 184)
+rotation = 1.5707964
 curve = SubResource("Curve2D_jsnjn")
 script = ExtResource("6_ibg7q")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D2" unique_id=1955859506]
-position = Vector2(-205, -529)
-rotation = 1.7285651
-progress = 1447.0562
+position = Vector2(-7, 156)
+rotation = -2.0394943
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D2/PathFollow2D" unique_id=167044427]
-position = Vector2(1.3438702, -0.44044495)
-scale = Vector2(0.18075085, 0.18075083)
+position = Vector2(7.6293945e-06, 9.536743e-06)
+scale = Vector2(0.14853211, 0.14853208)
 texture = ExtResource("2_s4wfp")
 
-[node name="Label" type="Label" parent="Path2D2" unique_id=1661634700]
-offset_left = -633.0
-offset_top = -398.0
-offset_right = -506.0
-offset_bottom = -315.0
-theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
-theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "YOU"
-
-[node name="Label2" type="Label" parent="Path2D2" unique_id=1123665476]
-offset_left = 731.0
-offset_top = -389.0
-offset_right = 1016.0
-offset_bottom = -306.0
-theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
-theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "FRAT BRO"
-
 [node name="Path2D3" type="Path2D" parent="." unique_id=539540048]
-position = Vector2(972, -40)
+position = Vector2(1177, 185)
+rotation = 1.5707964
 curve = SubResource("Curve2D_ibg7q")
 script = ExtResource("7_kjmng")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D3" unique_id=1624393920]
-position = Vector2(1, 2)
-rotation = -2.3561945
+position = Vector2(3, -2)
+rotation = 2.3561945
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D3/PathFollow2D" unique_id=1704320896]
-position = Vector2(-1.4396667, 1.710968)
-scale = Vector2(0.18639055, 0.18639055)
+position = Vector2(-8.322762, 8.299073)
+scale = Vector2(0.15829629, 0.15829629)
 texture = ExtResource("2_s4wfp")
 
 [node name="Main_character_bust" type="Sprite2D" parent="." unique_id=859830584]
-position = Vector2(252.00003, 827)
-scale = Vector2(-1.7068447, 1.721349)
+position = Vector2(133.46706, 512.67676)
+scale = Vector2(-0.9333455, 0.922566)
 texture = ExtResource("8_ts4dy")
 
 [node name="Frat_bro_character_bust" type="Sprite2D" parent="." unique_id=1139065705]
-position = Vector2(1678, 839)
-scale = Vector2(1.6336806, 1.6388888)
+position = Vector2(1001.84515, 511.24997)
+scale = Vector2(0.9691483, 0.9600693)
 texture = ExtResource("9_jwfiy")
+
+[node name="YOU" type="Label" parent="." unique_id=1661634700]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 375.0
+offset_right = 282.0
+offset_bottom = 458.0
+theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "YOU"
+
+[node name="VS" type="Label" parent="." unique_id=1598990283]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 481.0
+offset_right = 671.0
+offset_bottom = 564.0
+theme_override_colors/font_color = Color(0.64410675, 0.12297075, 0.56579494, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "VS"
+
+[node name="VS2" type="Label" parent="." unique_id=131610105]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 571.0
+offset_right = 663.0
+offset_bottom = 654.0
+theme_override_colors/font_color = Color(0.64410675, 0.12297075, 0.56579494, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "First to one wins!"
+
+[node name="FRAT BRO" type="Label" parent="." unique_id=1123665476]
+layout_mode = 0
+offset_left = 877.0
+offset_top = 360.0
+offset_right = 1073.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "FRAT BRO"
