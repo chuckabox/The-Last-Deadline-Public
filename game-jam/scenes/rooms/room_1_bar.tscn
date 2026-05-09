@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://byxhgxjh7egsr" path="res://bartender.tscn" id="13_gscmp"]
 [ext_resource type="PackedScene" uid="uid://bgne0uufdausf" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
 [ext_resource type="PackedScene" uid="uid://bkvjfrmltbncd" path="res://assets/Generic Male 1.tscn" id="15_mysuo"]
+[ext_resource type="PackedScene" uid="uid://cfwm1lrtem38c" path="res://assets/Generic Male 3.tscn" id="16_breos"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9439,4 +9440,9 @@ scale = Vector2(1.3, 1.3)
 [node name="Generic Male 1" parent="." unique_id=1426017410 instance=ExtResource("15_mysuo")]
 z_index = 1
 position = Vector2(285, 440)
+scale = Vector2(1.3, 1.3)
+
+[node name="CharacterBody2D2" parent="." unique_id=384858023 instance=ExtResource("16_breos")]
+z_index = 3
+position = Vector2(462, 570)
 scale = Vector2(1.3, 1.3)

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cfwm1lrtem38c"]
+
+[ext_resource type="Texture2D" uid="uid://iukx1821oau6" path="res://assets/npc/genericNPCs/genericMaleThree.png" id="1_vau8b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v8ml"]
+atlas = ExtResource("1_vau8b")
+region = Rect2(128, 2112, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11wui"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v8ml")
+}],
+"loop": true,
+"name": &"sitting",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_plaxq"]
+radius = 5.9997463
+height = 29.998734
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=384858023]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=253233206]
+sprite_frames = SubResource("SpriteFrames_11wui")
+animation = &"sitting"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=304081549]
+position = Vector2(7, 22.999998)
+rotation = -1.5799811
+shape = SubResource("CapsuleShape2D_plaxq")
