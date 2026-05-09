@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const METER_FILL_DURATION := 0.4
+const METER_FILL_DURATION := 0.6
 const STAGE_EFFECT_DELAY := 0.7
 
 const STAGE_COLORS := {
@@ -31,6 +31,9 @@ var _stage_token: int = 0
 
 # Stylebox driving the ProgressBar's actual fill color (not modulate).
 var _fill_style: StyleBoxFlat
+
+# Tween tracking for the meter fill animation
+var _meter_tween: Tween
 
 func _ready():
 	# Get references
@@ -162,8 +165,15 @@ func _current_alcohol_value() -> float:
 
 func _set_meter_value(value: float, animated: bool) -> void:
 	alcohol_meter.max_value = 1.0
+	if _meter_tween and _meter_tween.is_valid():
+		_meter_tween.kill()
 	if animated:
-		var tween := create_tween()
-		tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION)
+		_meter_tween = create_tween()
+		_meter_tween.tween_property(alcohol_meter, "value", value, METER_FILL_DURATION) \
+			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		# Flash the meter bar on fill
+		var flash_tween = create_tween()
+		flash_tween.tween_property(alcohol_meter, "modulate", Color(2, 2, 2, 1), 0.1)
+		flash_tween.tween_property(alcohol_meter, "modulate", Color.WHITE, 0.4)
 	else:
 		alcohol_meter.value = value
