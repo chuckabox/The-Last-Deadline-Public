@@ -101,7 +101,8 @@ func _build_bust_display() -> void:
 	_bust_timer.timeout.connect(_advance_bust_frame)
 
 ## Main entry point to start a conversation
-func show_dialogue(npc_name: String, start_node: String = "start"):
+func show_dialogue(npc_name: String, start_node: String = ""):
+	print("DEBUG: show_dialogue called for NPC: ", npc_name)
 	var parser = get_node_or_null("/root/DialogueParser")
 	if not parser: return
 
@@ -120,8 +121,8 @@ func show_dialogue(npc_name: String, start_node: String = "start"):
 		sfx.play_sfx("ui_popup_open")
 
 	dialogue_opened.emit()
-	display_node()
 	show()
+	display_node()
 
 ## Loads all bust frames for an NPC and starts cycling them to fake a talking
 ## animation. Hides the bust if the NPC's folder is empty or missing.

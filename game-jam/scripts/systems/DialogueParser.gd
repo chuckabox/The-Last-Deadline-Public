@@ -12,8 +12,9 @@ func _ready():
 
 ## Loads a dialogue JSON file by NPC name
 func load_dialogue(npc_name: String) -> Dictionary:
-	if dialogue_cache.has(npc_name):
-		return dialogue_cache[npc_name]
+	dialogue_cache.clear()
+	if dialogue_cache.has(npc_name.to_lower()):
+		return dialogue_cache[npc_name.to_lower()]
 	
 	var file_path = "res://data/dialogue_trees/%s.json" % npc_name.to_lower()
 	var json_string = load_file_as_text(file_path)
@@ -30,7 +31,7 @@ func load_dialogue(npc_name: String) -> Dictionary:
 		return {}
 	
 	var data = json.data
-	dialogue_cache[npc_name] = data
+	dialogue_cache[npc_name.to_lower()] = data
 	return data
 
 func load_file_as_text(file_path: String) -> String:

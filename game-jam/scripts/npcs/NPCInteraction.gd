@@ -78,6 +78,9 @@ func _setup_prompt():
 
 func _input(event):
 	if event.is_action_pressed("ui_interact") and is_in_range and can_interact and not is_interacting:
+		# Don't trigger if dialogue is already open from another NPC or cutscene
+		if dialogue_ui and dialogue_ui.visible:
+			return
 		interact()
 
 func _on_area_entered(area):
