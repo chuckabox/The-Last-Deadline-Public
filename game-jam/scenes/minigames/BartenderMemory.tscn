@@ -114,12 +114,12 @@ scale = Vector2(0.16613938, 0.1661394)
 texture = ExtResource("3_xxj88")
 
 [node name="Vodka" type="Sprite2D" parent="DrinkSprites" unique_id=199900350]
-position = Vector2(468, 510)
+position = Vector2(438, 510)
 scale = Vector2(0.15116276, 0.15116274)
 texture = ExtResource("4_3bbui")
 
 [node name="Rum" parent="DrinkSprites" unique_id=69686100 instance=ExtResource("2_6yfvo")]
-position = Vector2(683, 496)
+position = Vector2(713, 496)
 scale = Vector2(0.18063588, 0.16434263)
 
 [node name="DrinkButtons" type="HBoxContainer" parent="." unique_id=1192844859]
