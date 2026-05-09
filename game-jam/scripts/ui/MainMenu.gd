@@ -5,13 +5,13 @@ var music_manager: Node
 var sfx_manager: Node
 
 # UI Nodes
-@onready var start_button = $MenuContainer/StartButton
-@onready var quit_button = $MenuContainer/QuitButton
-@onready var title_label = $Title
-@onready var subtitle_label = $Title/Subtitle
-@onready var menu_container = $MenuContainer
-@onready var menu_camera = $MenuCamera
-@onready var fade_overlay = $FadeOverlay
+@onready var start_button = $UILayer/MenuContainer/StartButton
+@onready var quit_button = $UILayer/MenuContainer/QuitButton
+@onready var title_label = $UILayer/Title
+@onready var subtitle_label = $UILayer/Title/Subtitle
+@onready var menu_container = $UILayer/MenuContainer
+@onready var menu_camera = $World/MenuCamera
+@onready var fade_overlay = $UILayer/FadeOverlay
 
 func _ready():
 	# Ensure the dedicated menu camera is active
