@@ -63,10 +63,6 @@ Rum"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" parent="TicketPanel" unique_id=69686100 instance=ExtResource("2_6yfvo")]
-position = Vector2(206.99997, 322)
-scale = Vector2(0.18063588, 0.16434263)
-
 [node name="DrinkButtons" type="HBoxContainer" parent="." unique_id=1192844859]
 layout_mode = 1
 anchors_preset = 7
@@ -124,3 +120,7 @@ texture = ExtResource("3_xxj88")
 position = Vector2(468, 510)
 scale = Vector2(0.15116276, 0.15116274)
 texture = ExtResource("4_3bbui")
+
+[node name="Rum" parent="." unique_id=69686100 instance=ExtResource("2_6yfvo")]
+position = Vector2(683, 496)
+scale = Vector2(0.18063588, 0.16434263)

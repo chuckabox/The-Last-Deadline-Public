@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cncfo64gulf2v"]
+
+[node name="DiscoRoom" type="Node2D" unique_id=1740426018]
+
+[node name="Background" type="ColorRect" parent="." unique_id=626045247]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.1, 0.05, 0.2, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1370605499]
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 652.0
+offset_bottom = 326.0
+text = "DISCO FLOOR (Stub)"
