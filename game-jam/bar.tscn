@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="8_luqre"]
 [ext_resource type="Texture2D" uid="uid://duy7yl01rdj63" path="res://assets/kenney_particle-pack/PNG (Transparent)/magic_05.png" id="9_47nkn"]
 [ext_resource type="PackedScene" uid="uid://dacfmp7skn3w4" path="res://scenes/frat bro.tscn" id="10_d3clh"]
-[ext_resource type="PackedScene" uid="uid://basfcys1bolx8" path="res://scenes/zain.tscn" id="11_84vuo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9402,6 +9401,3 @@ texture = ExtResource("9_47nkn")
 [node name="fratbro" parent="." unique_id=1908960888 instance=ExtResource("10_d3clh")]
 position = Vector2(1076, 294)
 scale = Vector2(1.5, 1.5)
-
-[node name="Zain" parent="fratbro" unique_id=203970238 instance=ExtResource("11_84vuo")]
-position = Vector2(-98, 14)
