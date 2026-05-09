@@ -9238,7 +9238,6 @@ shape = SubResource("RectangleShape2D_door")
 z_index = 3
 position = Vector2(83, 261)
 scale = Vector2(1.3, 1.3)
-script = null
 
 [node name="CharacterBody2D" parent="." unique_id=1077800405 instance=ExtResource("14_j0dyg")]
 z_index = 6
