@@ -11,6 +11,7 @@ var sfx_manager: Node
 @onready var subtitle_label = $Title/Subtitle
 @onready var menu_container = $MenuContainer
 @onready var menu_camera = $MenuCamera
+@onready var fade_overlay = $FadeOverlay
 
 func _ready():
 	# Ensure the dedicated menu camera is active
@@ -75,11 +76,22 @@ func _on_start_pressed():
 	_launch_game()
 
 func _launch_game() -> void:
+	# 1. Fade to black first
+	if fade_overlay:
+		fade_overlay.visible = true
+		fade_overlay.modulate.a = 0.0
+		var fade_in = create_tween()
+		fade_in.tween_property(fade_overlay, "modulate:a", 1.0, 0.5)
+		await fade_in.finished
+	
+	# 2. Hold the full black screen for 1 second while we load the world in the background
+	# This ensures any stuttering or camera snaps happen while it's completely black.
+	await get_tree().create_timer(1.0).timeout
+	
 	# Swap MainMenu out of Main/CurrentScene for the bar room + intro cutscene
-	# overlay, keeping Main.tscn (and its persistent HUD/DialogueUI) loaded.
 	var current_scene_node := get_tree().root.get_node_or_null("Main/CurrentScene")
 	if current_scene_node == null:
-		push_error("MainMenu: /root/Main/CurrentScene not found; falling back to full scene swap.")
+		push_error("MainMenu: /root/Main/CurrentScene not found.")
 		get_tree().change_scene_to_file("res://scenes/rooms/room_1_bar.tscn")
 		return
 
@@ -87,24 +99,21 @@ func _launch_game() -> void:
 	if hud:
 		hud.visible = true
 
-	# Instantiate bar and intro behind the menu for a smooth fade
+	# Instantiate bar
 	var bar_scene: PackedScene = load("res://scenes/rooms/room_1_bar.tscn")
 	if bar_scene:
 		var bar_instance = bar_scene.instantiate()
 		current_scene_node.add_child(bar_instance)
-		current_scene_node.move_child(bar_instance, 0) # Put behind menu
+		current_scene_node.move_child(bar_instance, 0)
 
+	# Instantiate intro cutscene (it starts black and fades in automatically)
 	var intro_scene: PackedScene = load("res://scenes/ui/IntroCutscene.tscn")
 	if intro_scene:
 		var intro_instance = intro_scene.instantiate()
 		current_scene_node.add_child(intro_instance)
-		# Intro cutscene should probably be on top of the bar but behind the menu during fade
 		current_scene_node.move_child(intro_instance, 1)
 
-	# Now fade out the menu
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.5)
-	await tween.finished
+	# 3. Clean up the menu; the intro cutscene's own fade logic will now take over
 	queue_free()
 
 func _on_quit_pressed():
