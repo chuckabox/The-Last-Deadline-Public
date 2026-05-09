@@ -31,8 +31,8 @@ var stage_thresholds: Dictionary = {
 	0: {"min": 0.0, "max": 0.24, "name": "Normal"},
 	1: {"min": 0.25, "max": 0.49, "name": "Buzz"},
 	2: {"min": 0.50, "max": 0.74, "name": "Tunnel Vision"},
-	3: {"min": 0.75, "max": 0.89, "name": "Spin"},
-	4: {"min": 0.90, "max": 1.0, "name": "Blackout"}
+	3: {"min": 0.75, "max": 0.99, "name": "Spin"},
+	4: {"min": 1.0, "max": 1.0, "name": "Blackout"}
 }
 
 # ===== TUNING =====

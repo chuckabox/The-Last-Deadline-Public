@@ -59,7 +59,7 @@ const _ENDING_IDS := ["procrastinator", "blackout", "drink", "job", "academic"]
 func trigger_global_event(event_name: String) -> void:
 	match event_name:
 		"increaseAlcohol":
-			increase_alcohol(0.15) # Default penalty for dialogue choices/losses
+			increase_alcohol(0.25) # Default penalty for dialogue choices/losses
 		_:
 			if event_name in _ENDING_IDS:
 				_trigger_ending(event_name)
