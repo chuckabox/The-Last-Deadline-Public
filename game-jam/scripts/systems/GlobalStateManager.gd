@@ -50,25 +50,27 @@ func set_flags_from_dict(flag_dict: Dictionary) -> void:
 
 # ===== GLOBAL TRIGGERS =====
 
-## Called by DialogueUI or Minigames when a global action is required
+## Called by DialogueUI or Minigames when a global action is required.
+## Known events are handled directly; any other name is treated as an ending id
+## (matching EndingManager's "procrastinator" / "blackout" / "drink" / "job" /
+## "academic"), so dialogue trees can write `"triggerGlobal": "drink"`.
+const _ENDING_IDS := ["procrastinator", "blackout", "drink", "job", "academic"]
+
 func trigger_global_event(event_name: String) -> void:
 	match event_name:
 		"increaseAlcohol":
 			increase_alcohol(0.15) # Default penalty for dialogue choices/losses
-		"triggerBlackout":
-			_trigger_ending("blackout")
-		"triggerAverageEnding":
-			_trigger_ending("job")
-		"triggerSuccessEnding":
-			_trigger_ending("academic")
 		_:
-			push_warning("GlobalStateManager: Unknown global event triggered: ", event_name)
+			if event_name in _ENDING_IDS:
+				_trigger_ending(event_name)
+			else:
+				push_warning("GlobalStateManager: Unknown global event triggered: %s" % event_name)
 
-## Interface for the AlcoholSystem
+## Interface for the AlcoholSystem (0.0 - 1.0 range, matching the system).
 func increase_alcohol(amount: float) -> void:
 	var alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
-		alcohol_system.drink_alcohol(amount) # System uses 0-100 range
+		alcohol_system.drink_alcohol(amount)
 		alcohol_increased.emit(amount)
 	else:
 		push_error("GlobalStateManager: AlcoholSystem not found!")
