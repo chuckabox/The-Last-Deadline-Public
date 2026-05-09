@@ -10031,6 +10031,7 @@ texture = ExtResource("9_pyscc")
 [node name="ReturnDoor" type="Area2D" parent="." unique_id=999000333]
 position = Vector2(50, 300)
 script = ExtResource("10_door")
+target_room = "disco"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnDoor" unique_id=999000444]
 position = Vector2(39.159943, -226.48167)
