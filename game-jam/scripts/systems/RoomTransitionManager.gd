@@ -86,6 +86,9 @@ func change_room(room_name: String) -> bool:
 	if game_manager and "current_room" in game_manager:
 		game_manager.current_room = room_name
 	
+	if audio_manager:
+		audio_manager.play_music(room_name)
+		
 	print("Loaded room: %s" % room_name)
 	
 	# Fade from black
@@ -213,6 +216,9 @@ func change_room_iris(room_name: String) -> bool:
 	if game_manager and "current_room" in game_manager:
 		game_manager.current_room = room_name
 	
+	if audio_manager:
+		audio_manager.play_music(room_name)
+		
 	await iris_from_black(0.8)
 	
 	emit_signal("room_changed", room_name)
