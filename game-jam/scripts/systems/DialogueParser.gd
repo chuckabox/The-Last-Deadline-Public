@@ -51,14 +51,25 @@ func get_variant_node(dialogue_data: Dictionary, node_name: String) -> Dictionar
 	if not node.has("variants"):
 		return node
 	
-	# Iterate through variants and find the first one whose condition is met
+	# Iterate through variants and find the first one whose conditions are met
 	for variant in node["variants"]:
-		if not variant.has("condition"):
-			return variant # Default variant with no conditions
-			
-		if evaluate_condition(variant["condition"]):
+		# Check for "conditions" array (AND logic - all must be true)
+		if variant.has("conditions"):
+			var all_conditions_met = true
+			for condition in variant["conditions"]:
+				if not evaluate_condition(condition):
+					all_conditions_met = false
+					break
+			if all_conditions_met:
+				return variant
+		# Check for single "condition" field
+		elif variant.has("condition"):
+			if evaluate_condition(variant["condition"]):
+				return variant
+		else:
+			# Default variant with no conditions
 			return variant
-	
+
 	# Fallback: return the first variant if nothing matches
 	return node["variants"][0] if node["variants"].size() > 0 else {}
 
