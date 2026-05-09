@@ -1,6 +1,11 @@
 extends AudioStreamPlayer
 
 
+# Extensions Godot can natively import. Drop any of these with a matching
+# basename and the manager will find it regardless of the configured path.
+const SUPPORTED_AUDIO_EXTENSIONS := [".ogg", ".wav", ".mp3"]
+
+
 # Music tracks by stage
 @export var music_by_stage: Dictionary = {
 	0: "res://audio/music/stage_0_chill.ogg",
@@ -68,23 +73,34 @@ func play_music_for_stage(stage: int):
 		print("ERROR: No music track defined for stage %d" % stage)
 		return
 	
-	var track_path = music_by_stage[stage]
-	
-	# Check for file existence to avoid runtime errors if assets are missing
-	if not FileAccess.file_exists(track_path):
-		print("WARNING: Music file missing at %s. System waiting for assets..." % track_path)
+	var track_path := _resolve_audio_path(music_by_stage[stage])
+	if track_path == "":
+		print("WARNING: Music file missing for stage %d (configured: %s). System waiting for assets..." % [stage, music_by_stage[stage]])
 		current_stage = stage
 		return
-		
+
 	var audio_file = load(track_path)
-	
 	if audio_file:
 		stream = audio_file
 		play()
 		current_stage = stage
-		print("Now playing: Stage %d music" % stage)
+		print("Now playing: Stage %d music (%s)" % [stage, track_path])
 	else:
 		print("ERROR: Could not load music file: %s" % track_path)
+
+
+## Resolves a configured audio path to the first existing sibling whose
+## extension is supported by Godot. Drop .ogg / .wav / .mp3 with the same
+## basename and it will be picked up regardless of what's configured above.
+func _resolve_audio_path(base_path: String) -> String:
+	if FileAccess.file_exists(base_path):
+		return base_path
+	var stem := base_path.get_basename()
+	for ext: String in SUPPORTED_AUDIO_EXTENSIONS:
+		var candidate := stem + ext
+		if FileAccess.file_exists(candidate):
+			return candidate
+	return ""
 
 func set_music_volume(db: float):
 	volume_db = db

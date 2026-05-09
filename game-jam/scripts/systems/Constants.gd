@@ -128,9 +128,10 @@ static func get_clock_color(minutes_elapsed: int) -> Color:
 
 
 ## Converts elapsed minutes to a display string like "11:53 PM" or "12:00 AM".
+@warning_ignore("integer_division")
 static func format_game_time(minutes_elapsed: int) -> String:
 	var total_minutes := 23 * 60 + 50 + minutes_elapsed  # 11:50 PM = 23:50 in 24h
-	var hours_24 := int(total_minutes / 60) % 24
+	var hours_24 := (total_minutes / 60) % 24
 	var mins := total_minutes % 60
 	var period := "AM" if hours_24 >= 12 and hours_24 < 24 else "PM"
 	var hours_12 := hours_24 % 12

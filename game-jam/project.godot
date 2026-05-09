@@ -32,6 +32,7 @@ SFXManager="*res://scripts/systems/SFXManager.gd"
 RoomTransitionManager="*res://scripts/systems/RoomTransitionManager.gd"
 MinigameManager="*res://scripts/systems/MinigameManager.gd"
 FriendTimeDegradation="*res://scripts/npcs/FriendTimeDegradation.gd"
+ScreenFX="*res://scripts/systems/ScreenFX.gd"
 
 [dotnet]
 
