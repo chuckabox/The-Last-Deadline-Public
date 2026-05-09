@@ -7,18 +7,20 @@
 [ext_resource type="Script" uid="uid://qiy5r2n7xh4" path="res://scenes/minigames/path_2d.gd" id="4_jsnjn"]
 [ext_resource type="Script" uid="uid://c5tpj815y01in" path="res://scenes/minigames/path_2d_2.gd" id="6_ibg7q"]
 [ext_resource type="Script" uid="uid://b6jsn3vrjyc74" path="res://scenes/minigames/path_2d_3.gd" id="7_kjmng"]
+[ext_resource type="Texture2D" uid="uid://b2knwa0sbj5mb" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_ts4dy"]
+[ext_resource type="Texture2D" uid="uid://ca7wq0xjv71bh" path="res://assets/npc/frat_bro/bust/Screenshot_2026-5-8_22466573.png" id="9_jwfiy"]
 
 [sub_resource type="Curve2D" id="Curve2D_s4wfp"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, -27, -76, 0, 0, 0, 0, -53, -161, 0, 0, 0, 0, -76, -265, 0, 0, 0, 0, -92, -385, 0, 0, 0, 0, -94, -511, 0, 0, 0, 0, -85, -635, 0, 0, 0, 0, -65, -738, 0, 0, 0, 0, -40, -838, 0, 0, 0, 0, -3, -886, 0, 0, 0, 0, 54, -918, 0, 0, 0, 0, 102, -917, 0, 0, 0, 0, 141, -893, 0, 0, 0, 0, 153, -836, 0, 0, 0, 0, 149, -776)
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, -27, -76, 0, 0, 0, 0, -53, -161, 0, 0, 0, 0, -76, -265, 0, 0, 0, 0, -92, -385, 0, 0, 0, 0, -94, -511, 0, 0, 0, 0, -85, -635, 0, 0, 0, 0, -65, -738, 0, 0, 0, 0, -40, -864, 0, 0, 0, 0, -3, -950, 0, 0, 0, 0, 51, -991, 0, 0, 0, 0, 94, -991, 0, 0, 0, 0, 130, -957, 0, 0, 0, 0, 140, -907, 0, 0, 0, 0, 132, -820)
 }
 point_count = 16
 
 [sub_resource type="Curve2D" id="Curve2D_jsnjn"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -7, 156, 0, 0, 0, 0, -47, 77, 0, 0, 0, 0, -76, -6, 0, 0, 0, 0, -98, -101, 0, 0, 0, 0, -105, -197, 0, 0, 0, 0, -108, -306, 0, 0, 0, 0, -86, -404, 0, 0, 0, 0, -54, -507, 0, 0, 0, 0, -27, -580, 0, 0, 0, 0, 1, -624, 0, 0, 0, 0, 41, -647, 0, 0, 0, 0, 88, -660, 0, 0, 0, 0, 122, -656, 0, 0, 0, 0, 90, -710, 0, 0, 0, 0, 11, -734, 0, 0, 0, 0, -49, -742, 0, 0, 0, 0, -108, -730, 0, 0, 0, 0, -153, -698, 0, 0, 0, 0, -178, -658, 0, 0, 0, 0, -189, -615, 0, 0, 0, 0, -198, -573, 0, 0, 0, 0, -205, -529)
+"points": PackedVector2Array(0, 0, 0, 0, -7, 156, 0, 0, 0, 0, -47, 77, 0, 0, 0, 0, -76, -6, 0, 0, 0, 0, -98, -101, 0, 0, 0, 0, -105, -197, 0, 0, 0, 0, -108, -306, 0, 0, 0, 0, -86, -404, 0, 0, 0, 0, -54, -507, 0, 0, 0, 0, -27, -580, 0, 0, 0, 0, 1, -624, 0, 0, 0, 0, 41, -647, 0, 0, 0, 0, 90, -710, 0, 0, 0, 0, 11, -734, 0, 0, 0, 0, -49, -742, 0, 0, 0, 0, -108, -730, 0, 0, 0, 0, -153, -698, 0, 0, 0, 0, -178, -658, 0, 0, 0, 0, -189, -615, 0, 0, 0, 0, -198, -573, 0, 0, 0, 0, -205, -529)
 }
-point_count = 22
+point_count = 20
 
 [sub_resource type="Curve2D" id="Curve2D_ibg7q"]
 _data = {
@@ -126,14 +128,14 @@ horizontal_alignment = 1
 
 [node name="BeerPongBlue" type="Sprite2D" parent="." unique_id=291562417]
 z_index = 1
-position = Vector2(988.09375, 356.35)
-scale = Vector2(0.37130278, 0.28045768)
+position = Vector2(957, 290)
+scale = Vector2(0.45862666, 0.3491197)
 texture = ExtResource("3_jsnjn")
 
 [node name="BeerPongRed" type="Sprite2D" parent="." unique_id=1295508018]
 z_index = 1
-position = Vector2(999, 865)
-scale = Vector2(0.35422635, 0.27423966)
+position = Vector2(1000.00006, 873)
+scale = Vector2(0.46651146, 0.3374653)
 texture = ExtResource("4_ibg7q")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1352688463]
@@ -142,12 +144,11 @@ curve = SubResource("Curve2D_s4wfp")
 script = ExtResource("4_jsnjn")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1664052933]
-position = Vector2(141.04535, -892.9222)
-rotation = 0.5868854
+position = Vector2(84.08784, -991)
 progress = 1075.9547
 
 [node name="Ball" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=1271521214]
-position = Vector2(0.07080078, 0.48242188)
+position = Vector2(-0.08782959, 0)
 scale = Vector2(0.17623274, 0.17623273)
 texture = ExtResource("2_s4wfp")
 
@@ -179,3 +180,13 @@ rotation = -2.3561945
 position = Vector2(-1.4396667, 1.710968)
 scale = Vector2(0.18639055, 0.18639055)
 texture = ExtResource("2_s4wfp")
+
+[node name="Main_character_bust" type="Sprite2D" parent="." unique_id=859830584]
+position = Vector2(252.00003, 827)
+scale = Vector2(-1.7068447, 1.721349)
+texture = ExtResource("8_ts4dy")
+
+[node name="Frat_bro_character_bust" type="Sprite2D" parent="." unique_id=1139065705]
+position = Vector2(1678, 839)
+scale = Vector2(1.6336806, 1.6388888)
+texture = ExtResource("9_jwfiy")
