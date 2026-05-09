@@ -3,7 +3,6 @@ extends CanvasLayer
 # References
 var alcohol_meter: ProgressBar
 var alcohol_stage_label: Label
-var cash_label: Label
 var clock_label: Label
 var warning_label: Label
 var warning_control: Control
@@ -11,36 +10,32 @@ var warning_control: Control
 # References to systems
 var alcohol_system: Node
 var time_manager: Node
-var game_manager: Node
 
 func _ready():
 	# Get references
 	alcohol_meter = get_node("Container/AlcoholMeterPanel/AlcoholMeter")
 	alcohol_stage_label = get_node("Container/AlcoholMeterPanel/AlcoholStageLabel")
-	cash_label = get_node("Container/TopRight/CashLabel")
 	clock_label = get_node("Container/TopRight/ClockLabel")
 	warning_label = get_node("Container/WarningText/WarningLabel")
 	warning_control = get_node("Container/WarningText")
-	
+
 	# Get system references
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	time_manager = get_node_or_null("/root/TimeManager")
-	game_manager = get_node_or_null("/root/GameManager")
-	
+
 	# Connect signals
 	if alcohol_system:
 		alcohol_system.alcohol_changed.connect(_on_alcohol_changed)
 		alcohol_system.stage_changed.connect(_on_stage_changed)
-	
+
 	if time_manager:
 		time_manager.time_updated.connect(_on_time_updated)
 		time_manager.warning_yellow.connect(_on_warning_yellow)
 		time_manager.warning_red.connect(_on_warning_red)
-	
+
 	# Initialize visuals
 	update_alcohol_display()
-	update_cash_display()
-	
+
 	print("HUD initialized")
 
 func _on_alcohol_changed(value: float, stage: int):
@@ -86,10 +81,3 @@ func update_alcohol_display():
 		value = alcohol_system.alcohol
 	alcohol_meter.max_value = 1.0
 	alcohol_meter.value = value
-
-func update_cash_display():
-	# TODO: Get cash from GameManager
-	var cash = 0
-	if game_manager and "cash" in game_manager:
-		cash = game_manager.cash
-	cash_label.text = "Cash: $%d" % cash

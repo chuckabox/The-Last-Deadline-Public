@@ -61,13 +61,19 @@ func show_dialogue(npc_name: String, start_node: String = "start"):
 func display_node():
 	var parser = get_node_or_null("/root/DialogueParser")
 	if not parser: return
-	
+
 	var node_data = parser.get_variant_node(current_dialogue_data, current_node_name)
-	
+
 	if node_data.is_empty() or node_data.get("text") == null:
 		close_dialogue()
 		return
-	
+
+	# Minigame trigger: node has "minigame" key. Launch it and let the result
+	# pick option 0 ([Win]) or option 1 ([Lose]) automatically.
+	if node_data.has("minigame"):
+		_launch_minigame_for_node(node_data)
+		return
+
 	# Update text
 	speaker_label.text = current_dialogue_data.get("name", "NPC")
 	dialogue_text.text = node_data.get("text", "")
@@ -114,41 +120,68 @@ func _on_option_pressed(index: int):
 	if index == 1:
 		close_dialogue()
 		return
-		
+
 	# Get the correct JSON option index (Mapping: UI 0 -> JSON 0, UI 2 -> JSON 1)
 	var json_index = 0 if index == 0 else 1
-	
+
 	var parser = get_node_or_null("/root/DialogueParser")
 	var node_data = parser.get_variant_node(current_dialogue_data, current_node_name)
 	var json_options = node_data.get("options", [])
-	
+
 	if json_index >= json_options.size():
 		close_dialogue()
 		return
-		
-	var option = json_options[json_index]
-	
-	# --- PROCESS EFFECTS ---
-	
-	# 1. setFlag (Dictionary iteration)
+
+	_apply_option(json_options[json_index])
+
+## Applies an option's effects (setFlag / triggerGlobal) and navigates.
+func _apply_option(option: Dictionary) -> void:
 	if option.has("setFlag"):
 		var global_state = get_node_or_null("/root/GlobalStateManager")
 		if global_state:
 			global_state.set_flags_from_dict(option["setFlag"])
-			
-	# 2. triggerGlobal
+
 	if option.has("triggerGlobal"):
 		var global_state = get_node_or_null("/root/GlobalStateManager")
 		if global_state:
 			global_state.trigger_global_event(option["triggerGlobal"])
-			
-	# --- NAVIGATION ---
+
 	var next_node = option.get("next", "exit")
 	if next_node == "exit" or next_node == "":
 		close_dialogue()
 	else:
 		current_node_name = next_node
 		display_node()
+
+## Hides the dialogue, launches the minigame, and resolves the result by
+## applying option[0] on win or option[1] on lose from the current node.
+func _launch_minigame_for_node(node_data: Dictionary) -> void:
+	var mm = get_node_or_null("/root/MinigameManager")
+	if mm == null:
+		push_error("DialogueUI: MinigameManager autoload missing")
+		close_dialogue()
+		return
+
+	hide()
+	mm.minigame_finished.connect(_on_minigame_finished.bind(node_data), CONNECT_ONE_SHOT)
+
+	if not mm.launch(node_data["minigame"]):
+		push_error("DialogueUI: failed to launch minigame '%s'" % node_data["minigame"])
+		show()
+		# CONNECT_ONE_SHOT leaves the connection dangling on failure; clear it.
+		var cb := Callable(self, "_on_minigame_finished").bind(node_data)
+		if mm.minigame_finished.is_connected(cb):
+			mm.minigame_finished.disconnect(cb)
+		close_dialogue()
+
+func _on_minigame_finished(_minigame_id: String, won: bool, node_data: Dictionary) -> void:
+	show()
+	var json_options = node_data.get("options", [])
+	var idx := 0 if won else 1
+	if idx < json_options.size():
+		_apply_option(json_options[idx])
+	else:
+		close_dialogue()
 
 func close_dialogue():
 	hide()
