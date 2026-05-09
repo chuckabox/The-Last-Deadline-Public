@@ -20,7 +20,7 @@ const BUST_FOR_NPC := {}
 # the Inspector. Only runtime-only knobs are exported here.
 
 ## Seconds per frame while cycling the bust to fake a talking animation.
-@export var bust_frame_interval: float = 0.15:
+@export var bust_frame_interval: float = 0.25:
 	set(v):
 		bust_frame_interval = v
 		if _bust_timer:

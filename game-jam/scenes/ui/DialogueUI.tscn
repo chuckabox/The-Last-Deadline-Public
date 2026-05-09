@@ -57,7 +57,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="BustTimer" type="Timer" parent="." unique_id=167198442]
-wait_time = 0.15
+wait_time = 0.25
 
 [node name="SpeakerNameBox" type="NinePatchRect" parent="." unique_id=2012769172]
 custom_minimum_size = Vector2(180, 45)
