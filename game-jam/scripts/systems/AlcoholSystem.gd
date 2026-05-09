@@ -31,8 +31,8 @@ var stage_thresholds: Dictionary = {
 	0: {"min": 0.0, "max": 0.24, "name": "Normal"},
 	1: {"min": 0.25, "max": 0.49, "name": "Buzz"},
 	2: {"min": 0.50, "max": 0.74, "name": "Tunnel Vision"},
-	3: {"min": 0.75, "max": 0.89, "name": "Spin"},
-	4: {"min": 0.90, "max": 1.0, "name": "Blackout"}
+	3: {"min": 0.75, "max": 0.99, "name": "Spin"},
+	4: {"min": 1.0, "max": 1.0, "name": "Blackout"}
 }
 
 # ===== TUNING =====
@@ -53,12 +53,13 @@ func drink_alcohol(amount: float = 0.25) -> void:
 	alcohol = min(1.0, alcohol + amount)
 	update_stage()
 	alcohol_changed.emit(alcohol, current_stage)
+	
+	# Play crowd cheer with rising pitch per stage
+	var sfx = get_node_or_null("/root/SFXManager")
+	if sfx and sfx.has_method("play_sfx"):
+		var pitch = 1.0 + current_stage * 0.1  # Gets more intense each stage
+		sfx.play_sfx("crowd_cheer", 0.0, pitch)
 
-## Decreases alcohol level (e.g. drinking water)
-func drink_water() -> void:
-	alcohol = max(0.0, alcohol - 0.125)  # 1/8 reduction
-	update_stage()
-	alcohol_changed.emit(alcohol, current_stage)
 
 ## Recalculates current stage and emits signals if it changed
 func update_stage() -> void:

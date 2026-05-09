@@ -39,7 +39,7 @@ func _setup_effects():
 	AudioServer.add_bus_effect(master_bus_idx, low_pass, 2)
 	AudioServer.set_bus_effect_enabled(master_bus_idx, 2, false)
 	
-	distortion.mode = AudioEffectDistortion.MODE_BITCRUSH
+	distortion.mode = AudioEffectDistortion.MODE_LOFI
 	distortion.drive = 0.2
 	AudioServer.add_bus_effect(master_bus_idx, distortion, 3)
 	AudioServer.set_bus_effect_enabled(master_bus_idx, 3, false)

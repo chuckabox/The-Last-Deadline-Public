@@ -53,6 +53,10 @@ func show_dialogue(npc_name: String, start_node: String = "start"):
 	var entry = start_node if start_node != "" else \
 		current_dialogue_data.get("dialogue", {}).get("start", "talk")
 	current_node_name = entry
+	var time_manager = get_node_or_null("/root/TimeManager")
+	if time_manager and time_manager.has_method("pause_time"):
+		time_manager.pause_time()
+		
 	dialogue_opened.emit()
 	display_node()
 	show()
@@ -85,24 +89,43 @@ func display_node():
 	if json_options.size() > 0:
 		option_buttons[0].text = json_options[0].get("text", "...")
 		option_buttons[0].show()
+		_apply_disabled_state(option_buttons[0], json_options[0])
 	else:
 		option_buttons[0].hide()
 		
 	# 2. OPTION 2 (CENTER) - RANDOM GIBBERISH
 	_populate_gibberish_option()
+	var center_mapped_idx = 1 if json_options.size() > 2 else 0
+	if json_options.size() > 0:
+		_apply_disabled_state(option_buttons[1], json_options[center_mapped_idx])
 	
-	# 3. OPTION 3 (RIGHT) - From JSON Index 1 (if exists)
-	if json_options.size() > 1:
+	# 3. OPTION 3 (RIGHT)
+	if json_options.size() > 2:
+		option_buttons[2].text = json_options[2].get("text", "Exit")
+		option_buttons[2].show()
+		_apply_disabled_state(option_buttons[2], json_options[2])
+	elif json_options.size() > 1:
 		option_buttons[2].text = json_options[1].get("text", "Exit")
 		option_buttons[2].show()
+		_apply_disabled_state(option_buttons[2], json_options[1])
 	else:
 		# If no second option, use a default "Exit" or hide
 		option_buttons[2].text = "..."
 		option_buttons[2].show()
+		option_buttons[2].disabled = false
 	
 	# Default focus for keyboard navigation
 	option_buttons[0].grab_focus()
 	selected_option_index = 0
+
+func _apply_disabled_state(btn: Button, option: Dictionary) -> void:
+	btn.disabled = false
+	if option.has("disabled_if"):
+		var cond = option["disabled_if"]
+		var global_state = get_node_or_null("/root/GlobalStateManager")
+		if global_state and cond.has("flag") and cond.has("is"):
+			if global_state.check_flag(cond["flag"]) == cond["is"]:
+				btn.disabled = true
 
 func _populate_gibberish_option():
 	var g_db = get_node_or_null("/root/GibberishDatabase")
@@ -116,17 +139,29 @@ func _populate_gibberish_option():
 		option_buttons[1].hide()
 
 func _on_option_pressed(index: int):
-	# CENTER OPTION (Index 1) always exits/cancels
-	if index == 1:
-		close_dialogue()
-		return
-
-	# Get the correct JSON option index (Mapping: UI 0 -> JSON 0, UI 2 -> JSON 1)
-	var json_index = 0 if index == 0 else 1
-
 	var parser = get_node_or_null("/root/DialogueParser")
 	var node_data = parser.get_variant_node(current_dialogue_data, current_node_name)
 	var json_options = node_data.get("options", [])
+
+	var json_index = 0
+
+	if index == 0:
+		json_index = 0
+	elif index == 1:
+		# Center (Gibberish) maps to index 1 if there are 3 options, otherwise maps to index 0 (Progress)
+		if json_options.size() > 2:
+			json_index = 1
+		else:
+			json_index = 0
+	elif index == 2:
+		# Right maps to index 2 if there are 3 options, index 1 if there are 2, otherwise closes
+		if json_options.size() > 2:
+			json_index = 2
+		elif json_options.size() > 1:
+			json_index = 1
+		else:
+			close_dialogue()
+			return
 
 	if json_index >= json_options.size():
 		close_dialogue()
@@ -186,6 +221,10 @@ func _on_minigame_finished(_minigame_id: String, won: bool, node_data: Dictionar
 func close_dialogue():
 	hide()
 	dialogue_closed.emit()
+	
+	var time_manager = get_node_or_null("/root/TimeManager")
+	if time_manager and time_manager.has_method("resume_time"):
+		time_manager.resume_time()
 
 func _input(event):
 	if not visible: return

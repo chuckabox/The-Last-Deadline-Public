@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://c10kwm2oxdcit"]
+
+[ext_resource type="Texture2D" uid="uid://c56svqkbyxmfw" path="res://assets/npc/tyreese/sprite_sheet/character-spritesheet (10).png" id="1_o8lgn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsane"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(192, 1728, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73ib7"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(256, 1728, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nimqs"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(192, 1792, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpxxs"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(256, 1792, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86cn3"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(192, 1856, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31g63"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(256, 1856, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yord"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(0, 1536, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy81s"]
+atlas = ExtResource("1_o8lgn")
+region = Rect2(64, 1536, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgead"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73ib7")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_nimqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpxxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86cn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31g63")
+}],
+"loop": true,
+"name": &"dance",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yord")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy81s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jw6ek"]
+radius = 16.0
+height = 54.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=758508710]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1847524151]
+sprite_frames = SubResource("SpriteFrames_mgead")
+animation = &"dance"
+frame_progress = 0.38462496
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1554087171]
+shape = SubResource("CapsuleShape2D_jw6ek")

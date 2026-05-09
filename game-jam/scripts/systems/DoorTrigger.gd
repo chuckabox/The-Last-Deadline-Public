@@ -45,6 +45,14 @@ func attempt_transition():
 			# Fallback if systems aren't ready
 			show_locked_message()
 			return
+			
+	# Intercept VIP door
+	if target_room == "vip":
+		if not dialogue_ui:
+			dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
+		if dialogue_ui and dialogue_ui.has_method("show_dialogue"):
+			dialogue_ui.show_dialogue("vip_door")
+			return
 	
 	# Check room access rules
 	if not is_room_accessible():
@@ -66,14 +74,9 @@ func is_room_accessible() -> bool:
 	# Room-specific access checks
 	match target_room:
 		"disco":
-			# Must complete bar quests
-			var bar_complete = (
-				game_manager.npc_completed.get("bartender", false) and
-				game_manager.npc_completed.get("frat_bro", false) and
-				game_manager.npc_completed.get("fat_chud", false)
-			)
-			if not bar_complete:
-				return false
+			# Players can enter the disco room without doing minigames.
+			# The DJ will gate the VIP room.
+			pass
 		
 		"vip":
 			# Must complete DJ quest

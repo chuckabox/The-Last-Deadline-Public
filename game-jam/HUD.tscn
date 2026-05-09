@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dplclcwunao6"]
 
 [ext_resource type="Script" uid="uid://16c08j5vvnq" path="res://HUD.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://dmf6n1ksi5yoc" path="res://BAC level under.tres" id="2_vow1y"]
+[ext_resource type="Texture2D" uid="uid://bibdu6v7tctca" path="res://BAC level over.tres" id="3_ne771"]
 
 [node name="HUD" type="CanvasLayer" unique_id=948569939]
 script = ExtResource("1_hud")
@@ -13,69 +15,134 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ScreenEffects" type="ColorRect" parent="Container" unique_id=1000]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
 [node name="AlcoholMeterPanel" type="Panel" parent="Container" unique_id=82231738]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 240.0
-offset_bottom = 80.0
+offset_right = 100.0
+offset_bottom = 300.0
 
-[node name="AlcoholMeter" type="ProgressBar" parent="Container/AlcoholMeterPanel" unique_id=285683684]
-layout_mode = 0
+[node name="AlcoholMeter" type="TextureProgressBar" parent="Container/AlcoholMeterPanel" unique_id=2115443515]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = 30.0
-offset_right = 210.0
-offset_bottom = 50.0
+offset_top = 35.0
+offset_right = -10.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
 max_value = 1.0
-show_percentage = false
+step = 0.001
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_vow1y")
+texture_over = ExtResource("3_ne771")
+
+[node name="Thresholds" type="Control" parent="Container/AlcoholMeterPanel/AlcoholMeter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Line1" type="ColorRect" parent="Container/AlcoholMeterPanel/AlcoholMeter/Thresholds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.75
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.4)
+
+[node name="Line2" type="ColorRect" parent="Container/AlcoholMeterPanel/AlcoholMeter/Thresholds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.4)
+
+[node name="Line3" type="ColorRect" parent="Container/AlcoholMeterPanel/AlcoholMeter/Thresholds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.25
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.4)
+
+[node name="Line4" type="ColorRect" parent="Container/AlcoholMeterPanel/AlcoholMeter/Thresholds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.4)
 
 [node name="AlcoholStageLabel" type="Label" parent="Container/AlcoholMeterPanel" unique_id=889306956]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 5.0
-offset_right = 210.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 14
 text = "Normal"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/AlcoholMeterPanel" unique_id=255820947]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 30.0
-offset_right = 210.0
-offset_bottom = 50.0
+[node name="BACLabel" type="Label" parent="Container/AlcoholMeterPanel" unique_id=1001]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "BAC: 0.00%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="VSeparator1" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=1686417682]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VSeparator2" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=1611763403]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VSeparator3" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=510283689]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VSeparator4" type="VSeparator" parent="Container/AlcoholMeterPanel/HBoxContainer" unique_id=1060587266]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TopRight" type="HBoxContainer" parent="Container" unique_id=807004908]
+[node name="TopRight" type="VBoxContainer" parent="Container" unique_id=807004908]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -200.0
+offset_left = -250.0
 offset_top = 20.0
 offset_right = -20.0
-offset_bottom = 60.0
+offset_bottom = 100.0
 grow_horizontal = 0
 
 [node name="ClockLabel" type="Label" parent="Container/TopRight" unique_id=221180680]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "11:00"
+theme_override_font_sizes/font_size = 24
+text = "11:00 PM"
 horizontal_alignment = 2
 
 [node name="WarningText" type="Control" parent="Container" unique_id=158525695]
@@ -101,6 +168,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "One more drink and I'll black out!"
 horizontal_alignment = 1
 vertical_alignment = 1

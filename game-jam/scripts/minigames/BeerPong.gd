@@ -3,11 +3,13 @@ extends Control
 # Slider properties
 var slider_position = 0.0
 var slider_speed = 1.0  # Normalized (0.0 to 1.0) per second
+var base_slider_speed = 1.0  # Speed before per-cup scaling
 var slider_direction = 1.0
 var slider_width = 300.0
 var target_zone_start = 0.4
 var target_zone_end = 0.6
 var target_zone_width = 0.2
+var base_zone_center = 0.5  # Center of target zone before drift
 
 # Game State
 var cups_sunk = 0
@@ -18,6 +20,8 @@ var difficulty_stage = 0
 # Difficulty Effects
 var stutter_timer = 0.0
 var sway_timer = 0.0
+var drift_timer = 0.0
+var sway_tween: Tween
 
 # References
 var slider_bar: ColorRect
@@ -63,14 +67,16 @@ func _physics_process(delta):
 			stutter_timer = 0.15
 			return
 	
-	# Handle Stage 4 Sway (Variable speed)
-	var speed_multiplier = 1.0
+	# Handle Stage 4: Cups drift L/R (target zone oscillates)
 	if difficulty_stage >= 4:
-		sway_timer += delta
-		speed_multiplier = 1.0 + sin(sway_timer * 6.0) * 0.6
+		drift_timer += delta
+		var drift_offset = sin(drift_timer * 2.0) * 0.15
+		var half_width = target_zone_width / 2.0
+		target_zone_start = clampf(base_zone_center + drift_offset - half_width, 0.0, 1.0 - target_zone_width)
+		target_zone_end = target_zone_start + target_zone_width
 	
 	# Move slider
-	slider_position += (slider_speed * speed_multiplier * slider_direction * delta)
+	slider_position += (slider_speed * slider_direction * delta)
 	
 	# Bounce at edges
 	if slider_position > 1.0:
@@ -80,12 +86,17 @@ func _physics_process(delta):
 		slider_position = 0.0
 		slider_direction = 1.0
 	
+	# Stage 1+: Camera sway
+	if difficulty_stage >= 1:
+		sway_timer += delta
+		var sway_amount = sin(sway_timer * 3.0) * 3.0
+		rotation_degrees = sway_amount
+	
 	# Update visuals
 	if slider_indicator:
 		slider_indicator.position.x = slider_position * slider_width
 	
 	if target_zone:
-		# Keep target zone updated based on difficulty variables
 		target_zone.position.x = target_zone_start * slider_width
 		target_zone.size.x = (target_zone_end - target_zone_start) * slider_width
 
@@ -104,6 +115,9 @@ func check_throw():
 		if cups_label:
 			cups_label.text = "%d/%d" % [cups_sunk, max_cups]
 		play_sound("cup_sink")
+		
+		# Bar gets faster after each cup
+		slider_speed = base_slider_speed * (1.0 + cups_sunk * 0.15)
 		
 		# Visual feedback
 		if target_zone:
@@ -125,30 +139,30 @@ func check_throw():
 		lose_minigame()
 
 func adjust_difficulty():
-	# Scale by alcohol stage
-	match difficulty_stage:
-		0:
-			slider_speed = 1.0
-			target_zone_start = 0.4
-			target_zone_end = 0.6
-		1:
-			slider_speed = 1.3
-			target_zone_start = 0.4
-			target_zone_end = 0.6
-		2:
-			slider_speed = 1.5
-			target_zone_start = 0.35
-			target_zone_end = 0.55
-		3:
-			slider_speed = 1.7
-			target_zone_start = 0.35
-			target_zone_end = 0.55
-		4:
-			slider_speed = 2.0
-			target_zone_start = 0.3
-			target_zone_end = 0.45
+	# Base zone: 0.2 wide centered at 0.5
+	target_zone_width = 0.20
+	base_zone_center = 0.5
+	base_slider_speed = 1.0
 	
-	target_zone_width = target_zone_end - target_zone_start
+	# Stage 1: 15% faster
+	if difficulty_stage >= 1:
+		base_slider_speed = 1.15
+	
+	# Stage 2: Zone shrinks 30%
+	if difficulty_stage >= 2:
+		target_zone_width *= 0.70  # 0.20 → 0.14
+		base_slider_speed = 1.3
+	
+	if difficulty_stage >= 3:
+		base_slider_speed = 1.5
+	
+	if difficulty_stage >= 4:
+		base_slider_speed = 1.7
+		target_zone_width *= 0.85  # Shrink a bit more
+	
+	slider_speed = base_slider_speed
+	target_zone_start = base_zone_center - target_zone_width / 2.0
+	target_zone_end = base_zone_center + target_zone_width / 2.0
 
 func win_minigame():
 	is_active = false

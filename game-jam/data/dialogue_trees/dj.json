@@ -14,6 +14,13 @@
             ]
           },
           {
+            "condition": { "flag": "bartenderDefeated", "is": false },
+            "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
+            "options": [
+              { "text": "My bad.", "next": "exit" }
+            ]
+          },
+          {
             "condition": { "flag": "fratBroDefeated", "is": false },
             "text": "Look at this floor. It's a graveyard. Go buy some people drinks or something, I'm not handing out passes to a dead club.",
             "options": [

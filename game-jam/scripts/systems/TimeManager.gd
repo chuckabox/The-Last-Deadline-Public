@@ -12,7 +12,7 @@ var start_hour: int = 11
 var start_minute: int = 50
 
 # 10 minutes total (11:50 to 12:00)
-var warning_yellow_time: float = 8.0 * 60.0  # 11:58 PM
+var warning_yellow_time: float = 5.0 * 60.0  # 11:55 PM
 var warning_red_time: float = 9.0 * 60.0     # 11:59 PM
 var deadline_time: float = 10.0 * 60.0       # 12:00 AM
 
@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 
 # ===== METHODS =====
 
-## Returns the current time formatted as "HH:MM" (e.g. "11:55" or "12:00")
+## Returns the current time formatted as "HH:MM AM/PM" (e.g. "11:55 PM" or "12:00 AM")
 func get_time_string() -> String:
 	var total_seconds: int = int(elapsed_seconds)
 	var current_m: int = start_minute + (total_seconds / 60)
@@ -71,7 +71,13 @@ func get_time_string() -> String:
 		current_h += 1
 		current_m = current_m % 60
 	
-	return "%d:%02d" % [current_h, current_m]
+	var suffix = " PM"
+	if current_h >= 12:
+		suffix = " AM"
+		if current_h > 12:
+			current_h -= 12
+	
+	return "%d:%02d%s" % [current_h, current_m, suffix]
 
 ## Returns the number of full minutes left until deadline
 func get_minutes_remaining() -> int:

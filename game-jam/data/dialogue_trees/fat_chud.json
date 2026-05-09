@@ -36,7 +36,7 @@
         "minigame": "drink_pour",
         "options": [
           { "text": "[Win]", "next": "victoryCheck", "setFlag": { "fatChudDefeated": true } },
-          { "text": "[Lose]", "next": "failedGame" }
+          { "text": "[Lose]", "next": "failedGame", "setFlag": { "fatChudFailed": true } }
         ]
       },
       "victoryCheck": {

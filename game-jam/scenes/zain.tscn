@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://basfcys1bolx8"]
+
+[ext_resource type="Texture2D" uid="uid://cwcukb5mspmwu" path="res://assets/npc/zain/sprite sheet/character-spritesheet (13).png" id="1_o2au2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5kvg"]
+radius = 14.0
+height = 52.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b112p"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agnko"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldb1c"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(384, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjmj6"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1nen"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dxkq"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(448, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n00bm"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bexl5"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(0, 1536, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds3yj"]
+atlas = ExtResource("1_o2au2")
+region = Rect2(64, 1536, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g8fpu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b112p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agnko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldb1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjmj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1nen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dxkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n00bm")
+}],
+"loop": true,
+"name": &"dance",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bexl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds3yj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Zain" type="CharacterBody2D" unique_id=203970238]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1089379848]
+position = Vector2(1, 14)
+shape = SubResource("CapsuleShape2D_n5kvg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575470014]
+position = Vector2(2, 9)
+sprite_frames = SubResource("SpriteFrames_g8fpu")
+animation = &"dance"
+autoplay = "dance"
+frame_progress = 0.93329495
