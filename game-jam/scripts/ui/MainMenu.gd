@@ -69,7 +69,7 @@ func _launch_game() -> void:
 	var current_scene_node := get_tree().root.get_node_or_null("Main/CurrentScene")
 	if current_scene_node == null:
 		push_error("MainMenu: /root/Main/CurrentScene not found; falling back to full scene swap.")
-		get_tree().change_scene_to_file("res://bar.tscn")
+		get_tree().change_scene_to_file("res://scenes/rooms/room_1_bar.tscn")
 		return
 
 	var hud := get_tree().root.get_node_or_null("Main/HUD") as CanvasLayer
@@ -77,7 +77,7 @@ func _launch_game() -> void:
 		hud.visible = true
 
 	# Instantiate bar and intro behind the menu for a smooth fade
-	var bar_scene: PackedScene = load("res://bar.tscn")
+	var bar_scene: PackedScene = load("res://scenes/rooms/room_1_bar.tscn")
 	if bar_scene:
 		var bar_instance = bar_scene.instantiate()
 		current_scene_node.add_child(bar_instance)
