@@ -34,10 +34,11 @@ var _vignette_tween: Tween
 const BLUR_CYCLE_PERIOD := 6.0
 const BLUR_PEAK := 0.25
 
-# Stage 4 pulse: alpha ramps up over 0.3s, decays over 1.0s, repeats.
+# Stage 4 pulse: alpha ramps up over 0.3s, decays over 1.0s, then idles
+# for the rest of the 15s cycle before repeating.
 const PULSE_RAMP_UP := 0.3
 const PULSE_RAMP_DOWN := 1.0
-const PULSE_PERIOD := PULSE_RAMP_UP + PULSE_RAMP_DOWN
+const PULSE_PERIOD := 15.0
 const PULSE_PEAK_ALPHA := 1.0
 # Audio duck on the master bus: -18 dB at peak (still audible, clearly muffled).
 const AUDIO_DUCK_DB := -18.0
