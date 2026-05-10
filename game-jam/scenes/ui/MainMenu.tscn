@@ -308,9 +308,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = 40.0
+offset_top = 30.0
 offset_right = 200.0
-offset_bottom = 100.0
+offset_bottom = 90.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
 theme_override_fonts/font = ExtResource("2")
@@ -318,34 +318,49 @@ theme_override_font_sizes/font_size = 64
 text = "CREDITS"
 horizontal_alignment = 1
 
-[node name="CreditsContent" type="RichTextLabel" parent="UILayer/CreditsPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UILayer/CreditsPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -120.0
-offset_right = 400.0
-offset_bottom = 180.0
+offset_left = -450.0
+offset_top = -180.0
+offset_right = 450.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="CreditsContent" type="RichTextLabel" parent="UILayer/CreditsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("2")
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "[center]
-[color=#ffd700]UI:[/color] [url]https://crusenho.itch.io/complete-ui-essential-pack[/url]
+[color=#ffd700]--- UI & ICONS ---[/color]
+Complete UI Pack: [url]https://crusenho.itch.io/complete-ui-essential-pack[/url]
+Icons Essential: [url]https://crusenho.itch.io/icons-essential-pack-free-icons[/url]
+Keyboard Keys: [url]https://dreammixgames.itch.io/keyboard-keys-for-ui[/url]
+Progress Bars: [url]https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar[/url]
 
-[color=#ffd700]Icons:[/color] [url]https://crusenho.itch.io/icons-essential-pack-free-icons[/url]
+[color=#ffd700]--- ART & ENVIRONMENTS ---[/color]
+Portrait Generator: [url]https://cazwolf.itch.io/pixel-charagen[/url]
+NPC Characters (LPC): [url]https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/[/url]
+Bar Tileset: [url]https://comshadow.itch.io/modern-bar-nightclub-pixel-art-tileset-pack[/url]
+Light Textures: [url]https://pixelfranek.itch.io/free-textures-of-light[/url]
 
-[color=#ffd700]Character/Dialogue:[/color] [url]https://cazwolf.itch.io/pixel-charagen[/url]
+[color=#ffd700]--- AUDIO & MUSIC ---[/color]
+UI SFX Pack: [url]https://jdsherbert.itch.io/pixel-ui-sfx-pack[/url]
+Monolith OST (28- tracks): [url]https://garoslaw.itch.io/monolith-ost[/url]
+16-Bit Music Collection: [url]https://pigthewonderdog.itch.io/16-bit-retro-music-collection[/url]
+Chiptune Collection: [url]https://fatalexit.itch.io/dark-dragon-royalty-free-cca-chiptune-music-for-games[/url]
 
-[color=#ffd700]Environment/Tileset:[/color] [url]https://comshadow.itch.io/modern-bar-nightclub-pixel-art-tileset-pack[/url]
-
-[color=#ffd700]Font:[/color] [url]https://datagoblin.itch.io/monogram[/url]
-
-[color=#ffd700]In-game Characters:[/color] [url]https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/[/url]
+[color=#ffd700]--- FONTS ---[/color]
+Monogram Font: [url]https://datagoblin.itch.io/monogram[/url]
 [/center]"
 
 [node name="CreditsBackButton" type="Button" parent="UILayer/CreditsPanel"]

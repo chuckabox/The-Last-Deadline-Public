@@ -78,7 +78,7 @@ func _ready():
 		credits_back.mouse_entered.connect(_on_btn_hover.bind(credits_back))
 		credits_back.mouse_exited.connect(_on_btn_exit.bind(credits_back))
 		
-	var credits_content = get_node_or_null("UILayer/CreditsPanel/CreditsContent")
+	var credits_content = get_node_or_null("UILayer/CreditsPanel/ScrollContainer/CreditsContent")
 	if credits_content:
 		credits_content.meta_clicked.connect(_on_credits_link_clicked)
 		
