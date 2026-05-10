@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://basfcys1bolx8"]
 
 [ext_resource type="Texture2D" uid="uid://cwcukb5mspmwu" path="res://assets/npc/zain/sprite sheet/character-spritesheet (13).png" id="1_o2au2"]
+[ext_resource type="Script" path="res://scripts/npcs/NPC_Named.gd" id="2_named"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n5kvg"]
 radius = 14.0
@@ -82,7 +83,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
+
 [node name="Zain" type="CharacterBody2D" unique_id=203970238]
+script = ExtResource("2_named")
+npc_id = "zain"
+npc_display_name = "Zain"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1089379848]
 position = Vector2(1, 14)
@@ -94,3 +101,8 @@ sprite_frames = SubResource("SpriteFrames_g8fpu")
 animation = &"dance"
 autoplay = "dance"
 frame_progress = 0.93329495
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")
