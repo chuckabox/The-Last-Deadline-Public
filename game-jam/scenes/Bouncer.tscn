@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://ipt3nufplkj1"]
 
 [ext_resource type="Texture2D" uid="uid://bac1gkuj1d5j3" path="res://assets/npc/bouncer/sprite_sheet/character-spritesheet (5).png" id="1_cjx1x"]
+[ext_resource type="Script" uid="uid://cymis14yyjrnq" path="res://scripts/npcs/NPC_Bouncer.gd" id="2_script"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8qkb"]
 radius = 17.0
 height = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8os4n"]
 atlas = ExtResource("1_cjx1x")
@@ -25,6 +29,14 @@ region = Rect2(0, 1536, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pua6s"]
 atlas = ExtResource("1_cjx1x")
 region = Rect2(64, 1536, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjx1x"]
+atlas = ExtResource("1_cjx1x")
+region = Rect2(0, 1472, 66, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8qkb"]
+atlas = ExtResource("1_cjx1x")
+region = Rect2(66, 1472, 66, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e5pcq"]
 animations = [{
@@ -52,9 +64,21 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjx1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8qkb")
+}],
+"loop": true,
+"name": &"side_step",
+"speed": 5.0
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1219110755]
+script = ExtResource("2_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1382348676]
 position = Vector2(0, 8)
@@ -62,5 +86,10 @@ shape = SubResource("CapsuleShape2D_y8qkb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1027770453]
 sprite_frames = SubResource("SpriteFrames_e5pcq")
-animation = &"idle"
+animation = &"halt"
 autoplay = "idle"
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")

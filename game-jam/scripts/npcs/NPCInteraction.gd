@@ -64,7 +64,7 @@ func _setup_speech_bubble():
 	if has_node("SpeechBubble"):
 		return
 	
-	var special_npcs = ["bartender", "dj", "fat_chud", "frat_bro", "boss"]
+	var special_npcs = ["bartender", "dj", "fat_chud", "frat_bro", "boss", "bouncer"]
 	
 	if npc_id in special_npcs:
 		var bubble = AnimatedSprite2D.new()
