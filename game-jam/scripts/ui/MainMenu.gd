@@ -6,12 +6,16 @@ var sfx_manager: Node
 
 # UI Nodes
 @onready var start_button = $UILayer/MenuContainer/StartButton
+@onready var endings_button = $UILayer/MenuContainer/EndingsButton
 @onready var quit_button = $UILayer/MenuContainer/QuitButton
 @onready var title_label = $UILayer/Title
 @onready var subtitle_label = $UILayer/Title/Subtitle
 @onready var menu_container = $UILayer/MenuContainer
 @onready var menu_camera = $World/MenuCamera
 @onready var fade_overlay = $UILayer/FadeOverlay
+@onready var gallery_panel = $UILayer/GalleryPanel
+@onready var grid_container = $UILayer/GalleryPanel/ScrollContainer/GridContainer
+@onready var back_button = $UILayer/GalleryPanel/BackButton
 
 func _ready():
 	# Ensure the dedicated menu camera is active
@@ -41,9 +45,15 @@ func _ready():
 	start_button.focus_entered.connect(_on_button_hover)
 	start_button.mouse_entered.connect(_on_button_hover)
 	
+	endings_button.pressed.connect(_on_endings_pressed)
+	endings_button.focus_entered.connect(_on_button_hover)
+	endings_button.mouse_entered.connect(_on_button_hover)
+	
 	quit_button.pressed.connect(_on_quit_pressed)
 	quit_button.focus_entered.connect(_on_button_hover)
 	quit_button.mouse_entered.connect(_on_button_hover)
+	
+	back_button.pressed.connect(_on_back_pressed)
 	
 	# Entry Animation (Safe version: starts from visible and tweens properties)
 	# We don't set modulate to 0 here just in case, we do it in the tween setup
@@ -82,6 +92,53 @@ func _process(_delta):
 func _on_start_pressed():
 	_play_select_sfx()
 	_launch_game()
+
+func _on_endings_pressed():
+	_play_select_sfx()
+	_populate_gallery()
+	gallery_panel.show()
+	back_button.grab_focus()
+
+func _on_back_pressed():
+	if sfx_manager:
+		sfx_manager.play_sfx("menu_cancel")
+	gallery_panel.hide()
+	endings_button.grab_focus()
+
+func _populate_gallery():
+	# Clear previous entries
+	for child in grid_container.get_children():
+		child.queue_free()
+	
+	var endings = [
+		{"name": "Academic Weapon", "path": "res://assets/endings/academic_weapon.png"},
+		{"name": "The Blackout", "path": "res://assets/endings/blackout.png"},
+		{"name": "The Procrastinator", "path": "res://assets/endings/the_procastinator.jpg"},
+		{"name": "The Job Offer", "path": "res://assets/endings/job.png"},
+		{"name": "Drunk Mistake", "path": "res://assets/endings/bad.png"}
+	]
+	
+	for ending in endings:
+		var item = VBoxContainer.new()
+		item.custom_minimum_size = Vector2(300, 250)
+		
+		var tex_rect = TextureRect.new()
+		tex_rect.custom_minimum_size = Vector2(280, 180)
+		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		
+		if FileAccess.file_exists(ending["path"]):
+			tex_rect.texture = load(ending["path"])
+		
+		var label = Label.new()
+		label.text = ending["name"]
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
+		label.add_theme_font_size_override("font_size", 24)
+		
+		item.add_child(tex_rect)
+		item.add_child(label)
+		grid_container.add_child(item)
 
 func _launch_game() -> void:
 	# 1. Fade to black first
