@@ -42,18 +42,26 @@ func _ready():
 	
 	# Connect signals
 	start_button.pressed.connect(_on_start_pressed)
-	start_button.focus_entered.connect(_on_button_hover)
-	start_button.mouse_entered.connect(_on_button_hover)
+	start_button.mouse_entered.connect(_on_btn_hover.bind(start_button))
+	start_button.mouse_exited.connect(_on_btn_exit.bind(start_button))
+	start_button.focus_entered.connect(_on_btn_hover.bind(start_button))
+	start_button.focus_exited.connect(_on_btn_exit.bind(start_button))
 	
 	endings_button.pressed.connect(_on_endings_pressed)
-	endings_button.focus_entered.connect(_on_button_hover)
-	endings_button.mouse_entered.connect(_on_button_hover)
+	endings_button.mouse_entered.connect(_on_btn_hover.bind(endings_button))
+	endings_button.mouse_exited.connect(_on_btn_exit.bind(endings_button))
+	endings_button.focus_entered.connect(_on_btn_hover.bind(endings_button))
+	endings_button.focus_exited.connect(_on_btn_exit.bind(endings_button))
 	
 	quit_button.pressed.connect(_on_quit_pressed)
-	quit_button.focus_entered.connect(_on_button_hover)
-	quit_button.mouse_entered.connect(_on_button_hover)
+	quit_button.mouse_entered.connect(_on_btn_hover.bind(quit_button))
+	quit_button.mouse_exited.connect(_on_btn_exit.bind(quit_button))
+	quit_button.focus_entered.connect(_on_btn_hover.bind(quit_button))
+	quit_button.focus_exited.connect(_on_btn_exit.bind(quit_button))
 	
 	back_button.pressed.connect(_on_back_pressed)
+	back_button.mouse_entered.connect(_on_btn_hover.bind(back_button))
+	back_button.mouse_exited.connect(_on_btn_exit.bind(back_button))
 	
 	# Credits setup
 	var credits_btn = get_node_or_null("UILayer/CreditsButton")
@@ -61,6 +69,8 @@ func _ready():
 		credits_btn.pressed.connect(_on_credits_pressed)
 		credits_btn.mouse_entered.connect(_on_btn_hover.bind(credits_btn))
 		credits_btn.mouse_exited.connect(_on_btn_exit.bind(credits_btn))
+		credits_btn.focus_entered.connect(_on_btn_hover.bind(credits_btn))
+		credits_btn.focus_exited.connect(_on_btn_exit.bind(credits_btn))
 
 	var credits_back = get_node_or_null("UILayer/CreditsPanel/CreditsBackButton")
 	if credits_back:
@@ -71,6 +81,25 @@ func _ready():
 	var credits_content = get_node_or_null("UILayer/CreditsPanel/CreditsContent")
 	if credits_content:
 		credits_content.meta_clicked.connect(_on_credits_link_clicked)
+		
+	# Developers setup
+	var dev_btn = get_node_or_null("UILayer/DevelopersButton")
+	if dev_btn:
+		dev_btn.pressed.connect(_on_developers_pressed)
+		dev_btn.mouse_entered.connect(_on_btn_hover.bind(dev_btn))
+		dev_btn.mouse_exited.connect(_on_btn_exit.bind(dev_btn))
+		dev_btn.focus_entered.connect(_on_btn_hover.bind(dev_btn))
+		dev_btn.focus_exited.connect(_on_btn_exit.bind(dev_btn))
+
+	var dev_back = get_node_or_null("UILayer/DevelopersPanel/DevBackButton")
+	if dev_back:
+		dev_back.pressed.connect(_on_developers_back_pressed)
+		dev_back.mouse_entered.connect(_on_btn_hover.bind(dev_back))
+		dev_back.mouse_exited.connect(_on_btn_exit.bind(dev_back))
+		
+	var dev_content = get_node_or_null("UILayer/DevelopersPanel/DevContent")
+	if dev_content:
+		dev_content.meta_clicked.connect(_on_credits_link_clicked)
 	
 	# Entry Animation (Safe version: starts from visible and tweens properties)
 	# We don't set modulate to 0 here just in case, we do it in the tween setup
@@ -206,31 +235,33 @@ func _on_quit_pressed():
 	# Just quit immediately to avoid revealing the grey background during a fade
 	get_tree().quit()
 
-func _on_button_hover():
+func _on_btn_hover(btn: Button):
 	# Only play sound and animate if the menu is actually visible
-	if menu_container.modulate.a < 0.5:
+	if menu_container.modulate.a < 0.2:
 		return
 		
 	if sfx_manager:
 		sfx_manager.play_sfx("menu_scroll")
 
-	var focused = get_viewport().gui_get_focus_owner()
-	if focused is Button and focused.get_parent() == menu_container:
-		var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tween.tween_property(focused, "scale", Vector2(1.1, 1.1), 0.2)
+	btn.pivot_offset = btn.size / 2.0
+	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.2)
 
-		# Scale the text label inside the button
-		var label = focused.get_node_or_null("Label")
-		if label:
-			tween.tween_property(label, "scale", Vector2(1.1, 1.1), 0.2)
+	# Scale the text label inside the button if it exists (for main buttons)
+	var label = btn.get_node_or_null("Label")
+	if label:
+		label.pivot_offset = label.size / 2.0
+		var label_tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		label_tween.tween_property(label, "scale", Vector2(1.1, 1.1), 0.2)
 
-		for btn in menu_container.get_children():
-			if btn != focused:
-				var btn_tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-				btn_tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
-				var btn_label = btn.get_node_or_null("Label")
-				if btn_label:
-					btn_tween.tween_property(btn_label, "scale", Vector2(1.0, 1.0), 0.2)
+func _on_btn_exit(btn: Button):
+	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
+	
+	var label = btn.get_node_or_null("Label")
+	if label:
+		var label_tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		label_tween.tween_property(label, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _play_select_sfx():
 	if sfx_manager:
@@ -255,6 +286,23 @@ func _on_credits_back_pressed():
 
 func _on_credits_link_clicked(meta):
 	OS.shell_open(str(meta))
+
+func _on_developers_pressed():
+	_play_select_sfx()
+	var dev_panel = get_node_or_null("UILayer/DevelopersPanel")
+	if dev_panel:
+		dev_panel.show()
+		dev_panel.modulate.a = 0
+		var tween = create_tween()
+		tween.tween_property(dev_panel, "modulate:a", 1.0, 0.3)
+
+func _on_developers_back_pressed():
+	_play_select_sfx()
+	var dev_panel = get_node_or_null("UILayer/DevelopersPanel")
+	if dev_panel:
+		var tween = create_tween()
+		tween.tween_property(dev_panel, "modulate:a", 0.0, 0.2)
+		tween.tween_callback(dev_panel.hide)
 
 func _on_btn_hover(btn: Button):
 	if sfx_manager: sfx_manager.play_sfx("menu_scroll")
