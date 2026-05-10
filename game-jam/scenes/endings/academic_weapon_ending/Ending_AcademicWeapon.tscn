@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://00rgsw1sx1xj"]
+[gd_scene load_steps=3 format=3 uid="uid://00rgsw1sx1xj"]
 
 [ext_resource type="Script" path="res://scenes/endings/academic_weapon_ending/Ending_AcademicWeapon.gd" id="1_aw"]
+[ext_resource type="Texture2D" uid="uid://d26nj6gdw8hse" path="res://assets/endings/academic_weapon.png" id="2_img"]
 
 [node name="Ending_AcademicWeapon" type="Control"]
 layout_mode = 3
@@ -11,51 +12,72 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aw")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0117647, 0.0156863, 0.0509804, 1)
+texture = ExtResource("2_img")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="TextLabel" type="Label" parent="."]
-visible = false
+[node name="TextPanel" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -120.0
-offset_right = 350.0
-offset_bottom = 40.0
+offset_left = -560.0
+offset_top = -260.0
+offset_right = -40.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="TextLabel" type="Label" parent="TextPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 26
-text = "..."
+text = "You sprinted out the back door and hit submit just in time.
+
+Assignment 2 is due in 6 hours.
+
+You're an Academic Weapon."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ClockLabel" type="Label" parent="."]
-visible = false
+[node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = 60.0
-offset_right = 200.0
-offset_bottom = 130.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9, 0.1, 0.1, 1)
-theme_override_font_sizes/font_size = 54
-text = "11:59:55"
-horizontal_alignment = 1
-vertical_alignment = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = -90.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Main Menu"
