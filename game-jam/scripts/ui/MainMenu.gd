@@ -119,37 +119,32 @@ func _run_entry_animation():
 	title_label.position.y -= 20
 	menu_container.position.y += 20
 	
-	# Staggered Title
+	# Staggered entry
 	tween.tween_property(title_label, "modulate:a", 1.0, 1.2)
 	tween.tween_property(title_label, "position:y", original_title_y, 1.2)
+	
 	tween.tween_property(subtitle_label, "modulate:a", 1.0, 1.0).set_delay(0.5)
 	
-	# Sequential Main Buttons
-	var main_btns = menu_container.get_children()
-	for i in range(main_btns.size()):
-		var btn = main_btns[i]
-		btn.modulate.a = 0
-		var orig_y = btn.position.y
-		btn.position.y += 10
+	tween.tween_property(menu_container, "modulate:a", 1.0, 0.8).set_delay(1.0)
+	tween.tween_property(menu_container, "position:y", original_menu_y, 0.8).set_delay(1.0)
+	
+	# Extra buttons (Credits / Developers) entry - staggered after main buttons
+	var credits_btn = get_node_or_null("UILayer/CreditsButton")
+	var dev_btn = get_node_or_null("UILayer/DevelopersButton")
+	
+	if credits_btn:
+		credits_btn.modulate.a = 0
+		var orig_y = credits_btn.position.y
+		credits_btn.position.y += 15
+		tween.tween_property(credits_btn, "modulate:a", 1.0, 0.6).set_delay(1.8)
+		tween.tween_property(credits_btn, "position:y", orig_y, 0.6).set_delay(1.8)
 		
-		var delay = 1.0 + (i * 0.15)
-		tween.tween_property(btn, "modulate:a", 1.0, 0.5).set_delay(delay)
-		tween.tween_property(btn, "position:y", orig_y, 0.5).set_delay(delay)
-	
-	# Show the container itself so children are visible
-	menu_container.modulate.a = 1.0
-	
-	# Extra Buttons (Devs & Credits) after a delay
-	var extras = [get_node_or_null("UILayer/DevelopersButton"), get_node_or_null("UILayer/CreditsButton")]
-	for btn in extras:
-		if btn:
-			btn.modulate.a = 0
-			var orig_y = btn.position.y
-			btn.position.y += 15
-			
-			var delay = 1.6 # After the main buttons
-			tween.tween_property(btn, "modulate:a", 1.0, 0.6).set_delay(delay)
-			tween.tween_property(btn, "position:y", orig_y, 0.6).set_delay(delay)
+	if dev_btn:
+		dev_btn.modulate.a = 0
+		var orig_y = dev_btn.position.y
+		dev_btn.position.y += 15
+		tween.tween_property(dev_btn, "modulate:a", 1.0, 0.6).set_delay(1.8)
+		tween.tween_property(dev_btn, "position:y", orig_y, 0.6).set_delay(1.8)
 
 func _process(_delta):
 	# Subtle neon flicker
