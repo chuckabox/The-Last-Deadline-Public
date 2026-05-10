@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dhsgbjklbngt1"]
+
+[ext_resource type="Texture2D" uid="uid://ciou1k4houc3r" path="res://assets/npc/claire/sprite sheet/character-spritesheet (11).png" id="1_nl2bd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nl2bd"]
+radius = 12.0
+height = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as8j2"]
+atlas = ExtResource("1_nl2bd")
+region = Rect2(128, 1984, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkekv"]
+atlas = ExtResource("1_nl2bd")
+region = Rect2(64, 1984, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxexa"]
+atlas = ExtResource("1_nl2bd")
+region = Rect2(0, 1984, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc3qi"]
+atlas = ExtResource("1_nl2bd")
+region = Rect2(0, 2048, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jato0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as8j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkekv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxexa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc3qi")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}]
+
+[node name="Claire" type="CharacterBody2D" unique_id=645148224]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1776911402]
+position = Vector2(-1, 20)
+shape = SubResource("CapsuleShape2D_nl2bd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1913642079]
+sprite_frames = SubResource("SpriteFrames_jato0")
+animation = &"sit"
+autoplay = "sit"

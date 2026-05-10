@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://675rubexc32y"]
+
+[ext_resource type="Texture2D" uid="uid://dha3t2f63u6hg" path="res://assets/npc/ryan/sprite sheet/character-spritesheet (12).png" id="1_b2odx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm54v"]
+atlas = ExtResource("1_b2odx")
+region = Rect2(0, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45m1s"]
+atlas = ExtResource("1_b2odx")
+region = Rect2(64, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2odx"]
+atlas = ExtResource("1_b2odx")
+region = Rect2(128, 1984, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf3sx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm54v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45m1s")
+}],
+"loop": true,
+"name": &"idkle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2odx")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqnpq"]
+radius = 14.0
+
+[node name="Ryan" type="CharacterBody2D" unique_id=611142657]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1872739775]
+sprite_frames = SubResource("SpriteFrames_wf3sx")
+animation = &"sit"
+autoplay = "sit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1541210999]
+position = Vector2(-8, 16)
+shape = SubResource("CapsuleShape2D_yqnpq")

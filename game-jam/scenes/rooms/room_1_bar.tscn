@@ -13,11 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://kur2hkw6plru" path="res://scenes/Homeboy.tscn" id="11_cur4r"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="12_door"]
 [ext_resource type="PackedScene" uid="uid://byxhgxjh7egsr" path="res://bartender.tscn" id="13_gscmp"]
-[ext_resource type="PackedScene" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
-[ext_resource type="PackedScene" path="res://assets/Generic Male 1.tscn" id="15_mysuo"]
-[ext_resource type="PackedScene" path="res://assets/Generic Male 3.tscn" id="16_breos"]
+[ext_resource type="PackedScene" uid="uid://bgne0uufdausf" path="res://scenes/Generic NPC Female 5.tscn" id="14_j0dyg"]
+[ext_resource type="PackedScene" uid="uid://bkvjfrmltbncd" path="res://assets/Generic Male 1.tscn" id="15_mysuo"]
+[ext_resource type="PackedScene" uid="uid://cfwm1lrtem38c" path="res://assets/Generic Male 3.tscn" id="16_breos"]
 [ext_resource type="PackedScene" uid="uid://g0jsptpanouy" path="res://fat_chud.tscn" id="17_w5ken"]
-[ext_resource type="PackedScene" path="res://Generic Female 6.tscn" id="18_7xtpk"]
+[ext_resource type="PackedScene" uid="uid://d0k54nkbk6b01" path="res://Generic Female 6.tscn" id="18_7xtpk"]
+[ext_resource type="PackedScene" uid="uid://dhsgbjklbngt1" path="res://Claire.tscn" id="19_cntlo"]
+[ext_resource type="PackedScene" uid="uid://675rubexc32y" path="res://Ryan.tscn" id="20_ux7sg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tglx6"]
 texture = ExtResource("2_fhoit")
@@ -9220,7 +9222,7 @@ position = Vector2(794.00006, 381.00003)
 scale = Vector2(1.3, 1.3)
 
 [node name="Homeboy" parent="." unique_id=1340862067 instance=ExtResource("11_cur4r")]
-z_index = 1
+z_index = 2
 position = Vector2(163.00003, 253.00002)
 scale = Vector2(1.3, 1.3)
 
@@ -9262,4 +9264,14 @@ scale = Vector2(1.3, 1.3)
 [node name="Generic Female 6" parent="." unique_id=1990341780 instance=ExtResource("18_7xtpk")]
 z_index = 6
 position = Vector2(614, 583)
+scale = Vector2(1.3, 1.3)
+
+[node name="Claire" parent="." unique_id=645148224 instance=ExtResource("19_cntlo")]
+z_index = 4
+position = Vector2(967, 201)
+scale = Vector2(1.2, 1.2)
+
+[node name="Ryan" parent="." unique_id=611142657 instance=ExtResource("20_ux7sg")]
+z_index = 5
+position = Vector2(866, 566)
 scale = Vector2(1.3, 1.3)
