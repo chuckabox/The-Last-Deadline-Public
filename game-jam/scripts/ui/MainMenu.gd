@@ -290,18 +290,14 @@ func _on_credits_pressed():
 	var credits_panel = get_node_or_null("UILayer/CreditsPanel")
 	if credits_panel:
 		credits_panel.show()
-		credits_panel.modulate.a = 0
-		var tween = create_tween()
-		tween.tween_property(credits_panel, "modulate:a", 1.0, 0.3)
+		credits_panel.modulate.a = 1.0
 
 func _on_credits_back_pressed():
 	_play_select_sfx()
 	var credits_panel = get_node_or_null("UILayer/CreditsPanel")
 	if credits_panel:
-		var tween = create_tween()
-		tween.tween_property(credits_panel, "modulate:a", 0.0, 0.2)
-		tween.tween_callback(credits_panel.hide)
-		tween.tween_callback(start_button.grab_focus)
+		credits_panel.hide()
+		start_button.grab_focus()
 
 func _on_credits_link_clicked(meta):
 	OS.shell_open(str(meta))
@@ -311,15 +307,11 @@ func _on_developers_pressed():
 	var dev_panel = get_node_or_null("UILayer/DevelopersPanel")
 	if dev_panel:
 		dev_panel.show()
-		dev_panel.modulate.a = 0
-		var tween = create_tween()
-		tween.tween_property(dev_panel, "modulate:a", 1.0, 0.3)
+		dev_panel.modulate.a = 1.0
 
 func _on_developers_back_pressed():
 	_play_select_sfx()
 	var dev_panel = get_node_or_null("UILayer/DevelopersPanel")
 	if dev_panel:
-		var tween = create_tween()
-		tween.tween_property(dev_panel, "modulate:a", 0.0, 0.2)
-		tween.tween_callback(dev_panel.hide)
-		tween.tween_callback(start_button.grab_focus)
+		dev_panel.hide()
+		start_button.grab_focus()
