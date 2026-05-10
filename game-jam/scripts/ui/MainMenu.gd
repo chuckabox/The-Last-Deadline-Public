@@ -55,6 +55,23 @@ func _ready():
 	
 	back_button.pressed.connect(_on_back_pressed)
 	
+	# Credits setup
+	var credits_btn = get_node_or_null("UILayer/CreditsButton")
+	if credits_btn:
+		credits_btn.pressed.connect(_on_credits_pressed)
+		credits_btn.mouse_entered.connect(_on_btn_hover.bind(credits_btn))
+		credits_btn.mouse_exited.connect(_on_btn_exit.bind(credits_btn))
+
+	var credits_back = get_node_or_null("UILayer/CreditsPanel/CreditsBackButton")
+	if credits_back:
+		credits_back.pressed.connect(_on_credits_back_pressed)
+		credits_back.mouse_entered.connect(_on_btn_hover.bind(credits_back))
+		credits_back.mouse_exited.connect(_on_btn_exit.bind(credits_back))
+		
+	var credits_content = get_node_or_null("UILayer/CreditsPanel/CreditsContent")
+	if credits_content:
+		credits_content.meta_clicked.connect(_on_credits_link_clicked)
+	
 	# Entry Animation (Safe version: starts from visible and tweens properties)
 	# We don't set modulate to 0 here just in case, we do it in the tween setup
 	_run_entry_animation()
@@ -218,3 +235,33 @@ func _on_button_hover():
 func _play_select_sfx():
 	if sfx_manager:
 		sfx_manager.play_sfx("menu_select")
+
+func _on_credits_pressed():
+	_play_select_sfx()
+	var credits_panel = get_node_or_null("UILayer/CreditsPanel")
+	if credits_panel:
+		credits_panel.show()
+		credits_panel.modulate.a = 0
+		var tween = create_tween()
+		tween.tween_property(credits_panel, "modulate:a", 1.0, 0.3)
+
+func _on_credits_back_pressed():
+	_play_select_sfx()
+	var credits_panel = get_node_or_null("UILayer/CreditsPanel")
+	if credits_panel:
+		var tween = create_tween()
+		tween.tween_property(credits_panel, "modulate:a", 0.0, 0.2)
+		tween.tween_callback(credits_panel.hide)
+
+func _on_credits_link_clicked(meta):
+	OS.shell_open(str(meta))
+
+func _on_btn_hover(btn: Button):
+	if sfx_manager: sfx_manager.play_sfx("menu_scroll")
+	btn.pivot_offset = btn.size / 2.0
+	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.2)
+
+func _on_btn_exit(btn: Button):
+	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
