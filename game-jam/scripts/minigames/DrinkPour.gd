@@ -11,8 +11,8 @@ var round_active = false
 # Line (player-controlled, 0.0 = bottom, 1.0 = top of glass)
 var line_position = 0.5
 var line_velocity = 0.0
-const LINE_PUSH_FORCE = 5.0      # upward acceleration while holding SPACE (must exceed gravity)
-const LINE_GRAVITY = 3.0         # constant downward acceleration; net up while held = +2.0, fall = -3.0
+const LINE_PUSH_FORCE = 6.0      # upward acceleration while holding SPACE
+const LINE_GRAVITY = 1.5         # downward acceleration; net up while held = +4.5, fall = -1.5
 const LINE_MAX_SPEED = 1.4
 
 # Highlighted band (target, moves on its own)
