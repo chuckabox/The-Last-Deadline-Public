@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="22_door"]
 [ext_resource type="PackedScene" uid="uid://cgkihi3iptcn0" path="res://scenes/generic_female_3.tscn" id="23_hjygm"]
 [ext_resource type="PackedScene" uid="uid://cno3q4kswbg7n" path="res://scenes/generic_female_4.tscn" id="24_pncds"]
+[ext_resource type="PackedScene" uid="uid://ipt3nufplkj1" path="res://scenes/Bouncer.tscn" id="25_btks4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
 texture = ExtResource("1_va8kr")
@@ -11447,3 +11448,8 @@ scale = Vector2(1.2, 1.2)
 z_index = 2
 position = Vector2(262, 264.2074)
 scale = Vector2(1.2, 1.2)
+
+[node name="Bouncer" parent="." unique_id=1219110755 instance=ExtResource("25_btks4")]
+z_index = 6
+position = Vector2(1034.0001, 123.62911)
+scale = Vector2(1.4, 1.4)
