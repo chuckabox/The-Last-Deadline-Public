@@ -10081,8 +10081,3 @@ scale = Vector2(1.3, 1.3)
 z_index = 1
 position = Vector2(142.343, 72.67443)
 scale = Vector2(1.4, 1.4)
-
-[node name="Bouncer2" parent="." unique_id=571459855 instance=ExtResource("15_6wa16")]
-z_index = 2
-position = Vector2(918.343, 122.67444)
-scale = Vector2(1.4, 1.4)
