@@ -72,12 +72,7 @@ grow_vertical = 0
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="RetryButton" type="Button" parent="Buttons" unique_id=321425307]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Retry Night"
-
 [node name="MainMenuButton" type="Button" parent="Buttons" unique_id=1640568937]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "Return to Main Menu"
+text = "Main Menu"

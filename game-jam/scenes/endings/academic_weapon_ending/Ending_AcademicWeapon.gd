@@ -66,7 +66,18 @@ func _ready():
 		text_label.text = "You hit submit at %s %s.\n\nAssignment 2 is due in 6 hours.\n\nYou're an Academic Weapon." % [final_time_str, am_pm]
 	
 	await get_tree().create_timer(6.0).timeout
-	
-	# Victory Exit
 	print("VICTORY - Academic Weapon Ending reached.")
-	get_tree().quit()
+	_show_main_menu_button()
+
+func _show_main_menu_button():
+	var btn = Button.new()
+	btn.text = "Main Menu"
+	btn.add_theme_font_size_override("font_size", 22)
+	btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	btn.offset_left = -120
+	btn.offset_right = 120
+	btn.offset_top = -90
+	btn.offset_bottom = -40
+	add_child(btn)
+	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))
+	btn.grab_focus()
