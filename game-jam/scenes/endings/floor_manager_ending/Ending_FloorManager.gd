@@ -14,9 +14,19 @@ func _ready():
 		text_label.text = "You became the new Floor Manager.\n\nYou have money, but your degree is abandoned.\n\nA year later, you're still pouring drinks\nand wondering what could have been."
 		text_label.show()
 	
-	# Give the player more time to read this longer ending
 	await get_tree().create_timer(7.0).timeout
-	
-	# End game
 	print("Ending - Floor Manager reached.")
-	get_tree().quit()
+	_show_main_menu_button()
+
+func _show_main_menu_button():
+	var btn = Button.new()
+	btn.text = "Main Menu"
+	btn.add_theme_font_size_override("font_size", 22)
+	btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	btn.offset_left = -120
+	btn.offset_right = 120
+	btn.offset_top = -90
+	btn.offset_bottom = -40
+	add_child(btn)
+	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))
+	btn.grab_focus()

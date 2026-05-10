@@ -35,7 +35,18 @@ func _ready():
 		phone_label.text = "Grade: 0% - Late submission not accepted."
 	
 	await get_tree().create_timer(4.0).timeout
-	
-	# Ending the game
 	print("Game Over - Procrastinator Ending reached.")
-	get_tree().quit()
+	_show_main_menu_button()
+
+func _show_main_menu_button():
+	var btn = Button.new()
+	btn.text = "Main Menu"
+	btn.add_theme_font_size_override("font_size", 22)
+	btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	btn.offset_left = -120
+	btn.offset_right = 120
+	btn.offset_top = -90
+	btn.offset_bottom = -40
+	add_child(btn)
+	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))
+	btn.grab_focus()

@@ -48,18 +48,10 @@ func _ready():
 	if buttons_container:
 		buttons_container.show()
 		
-	var retry_btn = get_node_or_null("Buttons/RetryButton")
 	var menu_btn = get_node_or_null("Buttons/MainMenuButton")
-	
-	if retry_btn:
-		if not retry_btn.pressed.is_connected(_on_retry_pressed):
-			retry_btn.pressed.connect(_on_retry_pressed)
 	if menu_btn:
 		if not menu_btn.pressed.is_connected(_on_menu_pressed):
 			menu_btn.pressed.connect(_on_menu_pressed)
-
-func _on_retry_pressed():
-	get_tree().change_scene_to_file("res://Main.tscn")
 
 func _on_menu_pressed():
 	var menu_path = "res://scenes/ui/MainMenu.tscn"
