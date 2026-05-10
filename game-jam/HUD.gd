@@ -81,7 +81,7 @@ func _ready():
 
 	# Initial state
 	_update_bar_points(_current_stage())
-	_update_bac_text(_current_alcohol_value())
+	_update_bac_text(_current_stage())
 
 	# Explicitly set clock baseline
 	if clock_label:
@@ -141,7 +141,7 @@ func _setup_screen_shader():
 
 func _on_alcohol_changed(value: float, stage: int) -> void:
 	_update_bar_points(stage)
-	_update_bac_text(value)
+	_update_bac_text(stage)
 
 func _update_bar_points(stage: int):
 	# Spec: each alcohol stage is 2 bar points.
@@ -157,9 +157,10 @@ func _update_bar_points(stage: int):
 		else:
 			bar_points[i].hide()
 
-func _update_bac_text(value: float):
-	# Display as 0-100% based on normalized alcohol value
-	var percentage = int(value * 100)
+func _update_bac_text(stage: int):
+	# Display fixed percentages based on current stage
+	# Stage 0: 0%, Stage 1: 25%, Stage 2: 50%, Stage 3: 75%, Stage 4: 100%
+	var percentage = clamp(stage * 25, 0, 100)
 	if bac_label:
 		bac_label.text = "BAC: %d%%" % percentage
 

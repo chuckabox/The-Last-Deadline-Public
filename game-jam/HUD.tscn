@@ -571,13 +571,13 @@ tile_set = SubResource("TileSet_ne771")
 [node name="BACLabel" type="Label" parent="HUDContainer" unique_id=123456789]
 texture_filter = 1
 layout_mode = 1
-offset_left = 21.0
-offset_top = 348.0
-offset_right = 141.0
-offset_bottom = 379.0
+offset_left = 39.0
+offset_top = 350.0
+offset_right = 128.0
+offset_bottom = 381.0
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 32
-text = "BAC: 0.00%"
+text = "BAC: 0%"
 vertical_alignment = 1
 
 [node name="ClockFrame" type="TileMapLayer" parent="HUDContainer" unique_id=716494234]
