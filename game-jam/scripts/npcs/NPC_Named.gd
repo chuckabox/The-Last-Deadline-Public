@@ -7,8 +7,11 @@ extends NPCInteraction
 ##
 ## This script also creates an InteractionArea at runtime if one doesn't
 ## already exist, so you don't need to manually add Area2D nodes to the scene.
+## A small speech bubble animation floats above the NPC's head.
 
 @export var npc_display_name: String = ""
+
+var _named_bubble: AnimatedSprite2D
 
 func _ready():
 	# Use the display name for npc_name if set
@@ -27,6 +30,39 @@ func _ready():
 		add_child(area)
 	
 	super._ready()
+	_setup_named_bubble()
+
+func _setup_named_bubble():
+	if has_node("SpeechBubble"):
+		return
+	
+	var tex = load("res://assets/npc/tiny-speech-indicators/speech_bubble_animation-11x11.png")
+	if not tex:
+		return
+	
+	var frames = SpriteFrames.new()
+	var frame_size = 11
+	for i in range(8):
+		var atlas = AtlasTexture.new()
+		atlas.atlas = tex
+		atlas.region = Rect2(i * frame_size, 0, frame_size, frame_size)
+		frames.add_frame("default", atlas)
+	frames.set_animation_speed("default", 6.0)
+	
+	_named_bubble = AnimatedSprite2D.new()
+	_named_bubble.name = "SpeechBubble"
+	_named_bubble.sprite_frames = frames
+	_named_bubble.position = Vector2(0, -35)
+	_named_bubble.scale = Vector2(2.5, 2.5)
+	_named_bubble.z_index = 100
+	add_child(_named_bubble)
+	_named_bubble.play("default")
+	
+	# Bobbing animation
+	var t = create_tween().set_loops()
+	t.tween_property(_named_bubble, "position", Vector2(0, -38), 0.8).set_trans(Tween.TRANS_SINE)
+	t.tween_property(_named_bubble, "position", Vector2(0, -35), 0.8).set_trans(Tween.TRANS_SINE)
 
 func check_quest_completion():
 	pass
+
