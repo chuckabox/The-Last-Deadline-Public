@@ -125,18 +125,7 @@ func generate_sequence():
 	# Build ticket text
 	var sequence_text = ""
 	for drink in current_sequence:
-		if difficulty_stage >= 4:
-			# Gibberish labels
-			var gibberish = ""
-			var chars = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%"
-			for j in range(drink.length()):
-				if randf() > 0.5:
-					gibberish += chars[randi() % chars.length()]
-				else:
-					gibberish += drink[j]
-			sequence_text += gibberish + "\n"
-		else:
-			sequence_text += drink + "\n"
+		sequence_text += drink + "\n"
 
 	if ticket_label:
 		ticket_label.text = sequence_text
@@ -147,7 +136,7 @@ func generate_sequence():
 			ticket_label.rotation_degrees = randf_range(-12.0, 12.0)
 
 		if difficulty_stage >= 3:
-			ticket_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.35))
+			ticket_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.7))
 			ticket_label.add_theme_constant_override("shadow_offset_x", 4)
 			ticket_label.add_theme_constant_override("shadow_offset_y", 4)
 
