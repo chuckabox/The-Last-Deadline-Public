@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx4x6l0e0qjc"]
+[gd_scene format=3 uid="uid://cx4x6l0e0qjc"]
 
 [ext_resource type="Script" path="res://scenes/endings/procrastinator_ending/Ending_Procrastinator.gd" id="1_pe"]
-[ext_resource type="Texture2D" uid="uid://ctg8av8dd5ht" path="res://assets/endings/the_procastinator.jpg" id="2_img"]
 
 [node name="Ending_Procrastinator" type="Control"]
 layout_mode = 3
@@ -12,73 +11,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pe")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_img")
-expand_mode = 1
-stretch_mode = 6
+color = Color(0, 0, 0, 1)
 
-[node name="TextPanel" type="ColorRect" parent="."]
+[node name="TextLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = -260.0
-offset_right = -40.0
-offset_bottom = 200.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0, 0, 0, 0.65)
-
-[node name="TextLabel" type="Label" parent="TextPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 26
-text = "The clock struck midnight.
-
-You never made it out.
-
-Grade: 0%
-Late submission not accepted."
+theme_override_font_sizes/font_size = 28
+text = "The clock struck midnight."
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 
-[node name="Buttons" type="VBoxContainer" parent="."]
+[node name="PhoneLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -290.0
-offset_top = -90.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-alignment = 1
-
-[node name="MainMenuButton" type="Button" parent="Buttons"]
-layout_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-text = "Main Menu"
+text = "Grade: 0% - Late submission not accepted."
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -12,53 +12,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eb")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2091675097]
+[node name="Background" type="ColorRect" parent="." unique_id=1252832037]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2091675097]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -323.0
+offset_right = 581.0
+offset_bottom = 325.0
 grow_vertical = 2
 texture = ExtResource("2_img")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
-[node name="TextPanel" type="ColorRect" parent="." unique_id=525139832]
+[node name="TextLabel" type="Label" parent="." unique_id=1218580]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = -260.0
-offset_right = -40.0
-offset_bottom = 200.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0, 0, 0, 0.65)
-
-[node name="TextLabel" type="Label" parent="TextPanel" unique_id=1218580]
-layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = -24.0
-grow_horizontal = 2
+offset_left = -233.0
+offset_top = -195.0
+offset_right = 343.0
+offset_bottom = 5.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 26
 text = "Everything went black.
 
-You woke up on the lawn at 8:00 AM.
-Your phone showed 16 missed calls.
-
-You failed the deadline."
+..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -70,12 +63,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -290.0
-offset_top = -90.0
-offset_right = -40.0
-offset_bottom = -40.0
+offset_left = -350.0
+offset_top = -200.0
+offset_right = -100.0
+offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="MainMenuButton" type="Button" parent="Buttons" unique_id=1640568937]

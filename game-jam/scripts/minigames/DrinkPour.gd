@@ -11,9 +11,9 @@ var round_active = false
 # Line (player-controlled, 0.0 = bottom, 1.0 = top of glass)
 var line_position = 0.5
 var line_velocity = 0.0
-const LINE_PUSH_FORCE = 15.0      # Snappier upward acceleration
-const LINE_GRAVITY = 6.0         # Snappier downward fall
-const LINE_MAX_SPEED = 1.2       # Cap speed slightly lower to prevent overshooting
+const LINE_PUSH_FORCE = 6.0      # upward acceleration while holding SPACE
+const LINE_GRAVITY = 1.5         # downward acceleration; net up while held = +4.5, fall = -1.5
+const LINE_MAX_SPEED = 1.4
 
 # Highlighted band (target, moves on its own)
 var band_center = 0.5
@@ -160,10 +160,6 @@ func _physics_process(delta):
 	if holding:
 		line_velocity += LINE_PUSH_FORCE * delta
 	line_velocity -= LINE_GRAVITY * delta
-	
-	# Add a bit of damping so it stops floating as much
-	line_velocity = lerp(line_velocity, 0.0, 2.0 * delta)
-	
 	line_velocity = clamp(line_velocity, -LINE_MAX_SPEED, LINE_MAX_SPEED)
 	line_position += line_velocity * delta
 

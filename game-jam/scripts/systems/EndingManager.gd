@@ -67,13 +67,11 @@ func trigger_ending(ending_id: String) -> void:
 	if alcohol_system and alcohol_system.has_method("reset"):
 		alcohol_system.reset()
 	
-	# Close any open dialogue so we go straight to the ending scene with no
-	# intermediate black-screen cutscene or text reveal.
+	# If no dialogue is open, we can show it immediately via DialogueUI
 	var dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
-	if dialogue_ui and dialogue_ui.has_method("close_dialogue"):
-		dialogue_ui.close_dialogue()
-
-
+	if dialogue_ui and not dialogue_ui.visible:
+		dialogue_ui.show_ending_cutscene(ending_id)
+		
 	# Play ending music
 	var music = get_node_or_null("/root/MusicManager")
 	if music:

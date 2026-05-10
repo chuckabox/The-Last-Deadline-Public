@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlc5o5ehsy37j"]
+[gd_scene format=3 uid="uid://dlc5o5ehsy37j"]
 
 [ext_resource type="Script" path="res://scenes/endings/floor_manager_ending/Ending_FloorManager.gd" id="1_fe"]
-[ext_resource type="Texture2D" uid="uid://b7t8r5v7m017g" path="res://assets/endings/job.png" id="2_img"]
 
 [node name="Ending_FloorManager" type="Control"]
 layout_mode = 3
@@ -12,73 +11,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fe")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_img")
-expand_mode = 1
-stretch_mode = 6
+color = Color(0, 0, 0, 1)
 
-[node name="TextPanel" type="ColorRect" parent="."]
+[node name="TextLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = -260.0
-offset_right = -40.0
-offset_bottom = 200.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0, 0, 0, 0.65)
-
-[node name="TextLabel" type="Label" parent="TextPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_left = -350.0
+offset_top = -120.0
+offset_right = 350.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 26
-text = "You became the new Floor Manager.
-
-You have money, but your degree is abandoned.
-
-A year later, you're still pouring drinks
-and wondering what could have been."
+text = "..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="Buttons" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -290.0
-offset_top = -90.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-alignment = 1
-
-[node name="MainMenuButton" type="Button" parent="Buttons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Main Menu"

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://id3h28w18psl"]
 
 [ext_resource type="Script" uid="uid://b0asw2ugqc36q" path="res://scripts/minigames/DrinkPour.gd" id="1_dp"]
-[ext_resource type="Texture2D" uid="uid://b2knwa0sbj5mb" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_main_char"]
-[ext_resource type="Texture2D" uid="uid://1igyydp8cwqb" path="res://assets/npc/boss/bust/Screenshot_2026-5-8_22180774.png" id="9_npc"]
+[ext_resource type="Texture2D" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_main_char"]
+[ext_resource type="Texture2D" path="res://assets/npc/boss/bust/Screenshot_2026-5-8_22180774.png" id="9_npc"]
 
 [node name="DrinkPour" type="Control" unique_id=686592368]
 layout_mode = 3
@@ -111,6 +111,7 @@ color = Color(0.4, 1, 0.5, 0.35)
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 4.0
+color = Color(1, 1, 1, 1)
 
 [node name="GlassLabel" type="Label" parent="Glass" unique_id=1258853351]
 modulate = Color(1, 1, 1, 0.4)
@@ -174,17 +175,31 @@ scale_amount_min = 4.0
 scale_amount_max = 10.0
 color = Color(1, 0.85, 0.2, 1)
 
-[node name="Main_character_bust" type="Sprite2D" parent="." unique_id=826538290]
+[node name="InstructionLabel" type="Label" parent="." unique_id=1229710752]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "Hold SPACEBAR to push the line up — keep it inside the green band to fill the bar!"
+horizontal_alignment = 1
+
+[node name="Main_character_bust" type="Sprite2D" parent="."]
 position = Vector2(133.46706, 512.67676)
 scale = Vector2(-0.9333455, 0.922566)
 texture = ExtResource("8_main_char")
 
-[node name="NPC_character_bust" type="Sprite2D" parent="." unique_id=1525938882]
+[node name="NPC_character_bust" type="Sprite2D" parent="."]
 position = Vector2(1001.84515, 511.24997)
 scale = Vector2(0.9691483, 0.9600693)
 texture = ExtResource("9_npc")
 
-[node name="YOU" type="Label" parent="." unique_id=1057698421]
+[node name="YOU" type="Label" parent="."]
 layout_mode = 0
 offset_left = 248.0
 offset_top = 566.0
@@ -195,7 +210,7 @@ theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "YOU"
 
-[node name="NPC_NAME" type="Label" parent="." unique_id=726858613]
+[node name="NPC_NAME" type="Label" parent="."]
 layout_mode = 0
 offset_left = 796.0
 offset_top = 581.0
