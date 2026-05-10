@@ -363,6 +363,103 @@ theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 32
 text = "BACK"
 
+[node name="DevelopersButton" type="Button" parent="UILayer" unique_id=989899]
+custom_minimum_size = Vector2(150, 40)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -60.0
+offset_right = 180.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "DEVELOPERS"
+
+[node name="DevelopersPanel" type="Control" parent="UILayer" unique_id=77889901]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg" type="ColorRect" parent="UILayer/DevelopersPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.901961)
+
+[node name="DevTitle" type="Label" parent="UILayer/DevelopersPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 64
+text = "DEVELOPERS"
+horizontal_alignment = 1
+
+[node name="DevContent" type="RichTextLabel" parent="UILayer/DevelopersPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -120.0
+offset_right = 400.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]
+[url=https://www.linkedin.com/in/a-sreekesh/]Adin Sreekesh[/url]
+
+[url=https://www.linkedin.com/in/pascal-khosrotehrani-590243353/]Pascal Khosrotehrani[/url]
+
+[url=https://www.linkedin.com/in/peterzma/]Peter Ma[/url]
+
+[url=https://www.linkedin.com/in/rio-o-dwyer-b97628377/]Rio O'Dwyer[/url]
+[/center]"
+
+[node name="DevBackButton" type="Button" parent="UILayer/DevelopersPanel"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -80.0
+offset_right = 100.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+
 [node name="FadeOverlay" type="ColorRect" parent="UILayer" unique_id=987655]
 visible = false
 anchors_preset = 15

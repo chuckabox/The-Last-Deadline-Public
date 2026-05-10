@@ -72,6 +72,23 @@ func _ready():
 	if credits_content:
 		credits_content.meta_clicked.connect(_on_credits_link_clicked)
 	
+	# Developers setup
+	var dev_btn = get_node_or_null("UILayer/DevelopersButton")
+	if dev_btn:
+		dev_btn.pressed.connect(_on_developers_pressed)
+		dev_btn.mouse_entered.connect(_on_btn_hover.bind(dev_btn))
+		dev_btn.mouse_exited.connect(_on_btn_exit.bind(dev_btn))
+
+	var dev_back = get_node_or_null("UILayer/DevelopersPanel/DevBackButton")
+	if dev_back:
+		dev_back.pressed.connect(_on_developers_back_pressed)
+		dev_back.mouse_entered.connect(_on_btn_hover.bind(dev_back))
+		dev_back.mouse_exited.connect(_on_btn_exit.bind(dev_back))
+		
+	var dev_content = get_node_or_null("UILayer/DevelopersPanel/DevContent")
+	if dev_content:
+		dev_content.meta_clicked.connect(_on_credits_link_clicked) # Reuse the same link handler
+	
 	# Entry Animation (Safe version: starts from visible and tweens properties)
 	# We don't set modulate to 0 here just in case, we do it in the tween setup
 	_run_entry_animation()
@@ -255,6 +272,23 @@ func _on_credits_back_pressed():
 
 func _on_credits_link_clicked(meta):
 	OS.shell_open(str(meta))
+
+func _on_developers_pressed():
+	_play_select_sfx()
+	var dev_panel = get_node_or_null("UILayer/DevelopersPanel")
+	if dev_panel:
+		dev_panel.show()
+		dev_panel.modulate.a = 0
+		var tween = create_tween()
+		tween.tween_property(dev_panel, "modulate:a", 1.0, 0.3)
+
+func _on_developers_back_pressed():
+	_play_select_sfx()
+	var dev_panel = get_node_or_null("UILayer/DevelopersPanel")
+	if dev_panel:
+		var tween = create_tween()
+		tween.tween_property(dev_panel, "modulate:a", 0.0, 0.2)
+		tween.tween_callback(dev_panel.hide)
 
 func _on_btn_hover(btn: Button):
 	if sfx_manager: sfx_manager.play_sfx("menu_scroll")
