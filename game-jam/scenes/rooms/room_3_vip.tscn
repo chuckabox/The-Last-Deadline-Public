@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://br663fqdq2ekk" path="res://scenes/VIP.tscn" id="11_xnoai"]
 [ext_resource type="PackedScene" uid="uid://h3mwfg2gutpr" path="res://scenes/suvin.tscn" id="12_2g0h2"]
 [ext_resource type="PackedScene" uid="uid://oxbt86dvt5wn" path="res://Generic Male 4.tscn" id="13_brpfv"]
+[ext_resource type="PackedScene" uid="uid://skm34edw351l" path="res://scenes/boss.tscn" id="14_earwd"]
+[ext_resource type="PackedScene" uid="uid://ipt3nufplkj1" path="res://scenes/Bouncer.tscn" id="15_6wa16"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_brpfv"]
 texture = ExtResource("2_e1bg1")
@@ -10069,3 +10071,18 @@ position = Vector2(281.34302, 148.67444)
 [node name="CharacterBody2D2" parent="." unique_id=1193888606 instance=ExtResource("13_brpfv")]
 z_index = 3
 position = Vector2(778.343, 145.67444)
+
+[node name="Boss" parent="." unique_id=1943639529 instance=ExtResource("14_earwd")]
+z_index = 2
+position = Vector2(858.3431, 103.674446)
+scale = Vector2(1.3, 1.3)
+
+[node name="Bouncer" parent="." unique_id=1219110755 instance=ExtResource("15_6wa16")]
+z_index = 1
+position = Vector2(142.343, 72.67443)
+scale = Vector2(1.4, 1.4)
+
+[node name="Bouncer2" parent="." unique_id=571459855 instance=ExtResource("15_6wa16")]
+z_index = 2
+position = Vector2(918.343, 122.67444)
+scale = Vector2(1.4, 1.4)
