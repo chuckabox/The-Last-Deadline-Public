@@ -134,19 +134,9 @@ func apply_spin_effects(delta):
 	apply_tunnel_vision_effects(delta)
 
 func apply_blackout_effects(delta):
-	# Stage 4: Screen blacks out briefly once every 15s
-	var cycle_seconds = 15.0
-	var blackout_duration = 0.6
-	var t = fmod(Time.get_ticks_msec() / 1000.0, cycle_seconds)
-
-	if t < blackout_duration * 0.5:
-		blackout_intensity = lerp(0.0, 0.85, t / (blackout_duration * 0.5))
-	elif t < blackout_duration:
-		blackout_intensity = lerp(0.85, 0.0, (t - blackout_duration * 0.5) / (blackout_duration * 0.5))
-	else:
-		blackout_intensity = 0.0
-
-	blackout_rect.modulate.a = blackout_intensity
+	# Stage 4: blackout pulse is owned by ScreenFX. Keep this rect clear.
+	blackout_intensity = 0.0
+	blackout_rect.modulate.a = 0.0
 	
 	# Show warning
 	if warning_label:
