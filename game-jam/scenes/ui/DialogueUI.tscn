@@ -30,7 +30,27 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 
-[node name="DialoguePanel" type="Panel" unique_id=366803195]
+[node name="DialogueUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dialogue")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.470588)
+
+[node name="DialoguePanel" type="Panel" parent="." unique_id=366803195]
+custom_minimum_size = Vector2(0, 220)
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -39,9 +59,8 @@ offset_top = -220.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
-script = ExtResource("1_dialogue")
 
-[node name="BustRect" type="TextureRect" parent="." unique_id=1872223846]
+[node name="BustRect" type="TextureRect" parent="DialoguePanel" unique_id=1872223846]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -57,23 +76,27 @@ texture = ExtResource("7_bust_preview")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="BustTimer" type="Timer" parent="." unique_id=167198442]
+[node name="BustTimer" type="Timer" parent="DialoguePanel" unique_id=167198442]
 wait_time = 0.25
 
-[node name="SpeakerNameBox" type="NinePatchRect" parent="." unique_id=2012769172]
+[node name="SpeakerNameBox" type="NinePatchRect" parent="DialoguePanel" unique_id=2012769172]
 custom_minimum_size = Vector2(180, 45)
-layout_mode = 0
-offset_left = 30.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
 offset_top = -25.0
-offset_right = 210.0
+offset_right = 90.0
 offset_bottom = 20.0
+grow_horizontal = 2
 texture = ExtResource("4_banner")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="SpeakerLabel" type="Label" parent="SpeakerNameBox" unique_id=519600819]
+[node name="SpeakerLabel" type="Label" parent="DialoguePanel/SpeakerNameBox" unique_id=519600819]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +110,7 @@ text = "Speaker Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Content" type="VBoxContainer" parent="." unique_id=1656227816]
+[node name="Content" type="VBoxContainer" parent="DialoguePanel" unique_id=1656227816]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,41 +123,43 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="UpperLayout" type="HBoxContainer" parent="Content" unique_id=2066258795]
+[node name="UpperLayout" type="HBoxContainer" parent="DialoguePanel/Content" unique_id=2066258795]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="PortraitRect" type="TextureRect" parent="Content/UpperLayout" unique_id=1549790804]
+[node name="PortraitRect" type="TextureRect" parent="DialoguePanel/Content/UpperLayout" unique_id=1549790804]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="DialogueContent" type="VBoxContainer" parent="Content/UpperLayout" unique_id=786390648]
+[node name="DialogueContent" type="VBoxContainer" parent="DialoguePanel/Content/UpperLayout" unique_id=786390648]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spacer" type="Control" parent="Content/UpperLayout/DialogueContent" unique_id=595253621]
+[node name="Spacer" type="Control" parent="DialoguePanel/Content/UpperLayout/DialogueContent" unique_id=595253621]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="DialogueText" type="Label" parent="Content/UpperLayout/DialogueContent" unique_id=1381360700]
+[node name="DialogueText" type="Label" parent="DialoguePanel/Content/UpperLayout/DialogueContent" unique_id=1381360700]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
 text = "This is where the NPC will speak their mind. The text will wrap around multiple lines if it gets too long for the container."
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="OptionsContainer" type="HBoxContainer" parent="Content" unique_id=1309288215]
+[node name="OptionsContainer" type="HBoxContainer" parent="DialoguePanel/Content" unique_id=1309288215]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="OptionLeft" type="Button" parent="Content/OptionsContainer" unique_id=386042057]
+[node name="OptionLeft" type="Button" parent="DialoguePanel/Content/OptionsContainer" unique_id=386042057]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
@@ -149,7 +174,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn_hover")
 text = "PROCEED"
 
-[node name="OptionCenter" type="Button" parent="Content/OptionsContainer" unique_id=460499417]
+[node name="OptionCenter" type="Button" parent="DialoguePanel/Content/OptionsContainer" unique_id=460499417]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
@@ -164,7 +189,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn_hover")
 text = "GIBBERISH LINE"
 
-[node name="OptionRight" type="Button" parent="Content/OptionsContainer" unique_id=745235677]
+[node name="OptionRight" type="Button" parent="DialoguePanel/Content/OptionsContainer" unique_id=745235677]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
