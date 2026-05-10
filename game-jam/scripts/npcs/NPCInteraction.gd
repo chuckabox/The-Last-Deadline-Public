@@ -17,7 +17,7 @@ var speech_bubble: CanvasItem
 var hud: Node
 
 # References
-var dialogue_ui: Panel
+var dialogue_ui: Control
 var game_manager: Node
 var alcohol_system: Node
 var audio_manager: Node

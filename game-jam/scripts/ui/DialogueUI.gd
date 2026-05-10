@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 ## Dialogue UI Manager
 ## Manages the display of text, portraits, and the 3-option button system.
@@ -62,17 +62,17 @@ signal dialogue_closed()
 
 func _ready():
 	# Get references (assuming standard paths from the .tscn)
-	speaker_label = get_node_or_null("SpeakerNameBox/SpeakerLabel")
-	dialogue_text = get_node_or_null("Content/UpperLayout/DialogueContent/DialogueText")
-	portrait_rect = get_node_or_null("Content/UpperLayout/PortraitRect")
-	options_container = get_node_or_null("Content/OptionsContainer")
+	speaker_label = get_node_or_null("DialoguePanel/SpeakerNameBox/SpeakerLabel")
+	dialogue_text = get_node_or_null("DialoguePanel/Content/UpperLayout/DialogueContent/DialogueText")
+	portrait_rect = get_node_or_null("DialoguePanel/Content/UpperLayout/PortraitRect")
+	options_container = get_node_or_null("DialoguePanel/Content/OptionsContainer")
 	
 	# Get the 3 buttons
 	# Left = Option 0, Center = Gibberish, Right = Option 1
 	option_buttons = [
-		get_node_or_null("Content/OptionsContainer/OptionLeft"),
-		get_node_or_null("Content/OptionsContainer/OptionCenter"),
-		get_node_or_null("Content/OptionsContainer/OptionRight")
+		get_node_or_null("DialoguePanel/Content/OptionsContainer/OptionLeft"),
+		get_node_or_null("DialoguePanel/Content/OptionsContainer/OptionCenter"),
+		get_node_or_null("DialoguePanel/Content/OptionsContainer/OptionRight")
 	]
 	
 	# Connect button signals
@@ -91,7 +91,7 @@ func _ready():
 ## creating them programmatically if they're missing (defensive — they should
 ## already exist in DialogueUI.tscn).
 func _build_bust_display() -> void:
-	bust_rect = get_node_or_null("BustRect") as TextureRect
+	bust_rect = get_node_or_null("DialoguePanel/BustRect") as TextureRect
 	if bust_rect == null:
 		bust_rect = TextureRect.new()
 		bust_rect.name = "BustRect"
@@ -102,16 +102,16 @@ func _build_bust_display() -> void:
 		bust_rect.anchor_right = 0.5
 		bust_rect.anchor_top = 0.0
 		bust_rect.anchor_bottom = 0.0
-		add_child(bust_rect)
+		$DialoguePanel.add_child(bust_rect)
 	bust_rect.hide()
 
-	_bust_timer = get_node_or_null("BustTimer") as Timer
+	_bust_timer = get_node_or_null("DialoguePanel/BustTimer") as Timer
 	if _bust_timer == null:
 		_bust_timer = Timer.new()
 		_bust_timer.name = "BustTimer"
 		_bust_timer.one_shot = false
 		_bust_timer.autostart = false
-		add_child(_bust_timer)
+		$DialoguePanel.add_child(_bust_timer)
 	_bust_timer.wait_time = max(0.01, bust_frame_interval)
 	_bust_timer.timeout.connect(_advance_bust_frame)
 
@@ -617,10 +617,11 @@ func _show_cutscene(node_data: Dictionary) -> void:
 		_click_tween.tween_property(_click_indicator, "position:x", base_pos.x, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		
 		# Hide the main dialogue box during cutscene
-		get_node("SpeakerNameBox").hide()
-		get_node("Content").hide()
-		get_node("BustRect").hide()
-		self.self_modulate.a = 0 # Hide panel background
+		get_node("DialoguePanel/SpeakerNameBox").hide()
+		get_node("DialoguePanel/Content").hide()
+		get_node("DialoguePanel/BustRect").hide()
+		$DialoguePanel.self_modulate.a = 0 # Hide panel background
+		$Dimmer.hide() # Hide dimmer for cutscenes as they have their own BG
 	else:
 		push_error("DialogueUI: Failed to load cutscene image: %s" % img_path)
 		_on_cutscene_clicked()
@@ -634,10 +635,11 @@ func _on_cutscene_clicked() -> void:
 	if _click_tween: _click_tween.kill()
 	
 	# Restore UI
-	get_node("SpeakerNameBox").show()
-	get_node("Content").show()
-	get_node("BustRect").show()
-	self.self_modulate.a = 1
+	get_node("DialoguePanel/SpeakerNameBox").show()
+	get_node("DialoguePanel/Content").show()
+	get_node("DialoguePanel/BustRect").show()
+	$DialoguePanel.self_modulate.a = 1
+	$Dimmer.show()
 	
 	var next_node = _current_cutscene_node_data.get("next", "exit")
 	

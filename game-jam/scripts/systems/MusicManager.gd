@@ -112,6 +112,14 @@ func _play_path(path: String):
 	
 	var audio_file = load(track_path)
 	if audio_file:
+		# Force looping for various stream types
+		if audio_file is AudioStreamWAV:
+			audio_file.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		elif "loop" in audio_file:
+			audio_file.loop = true
+		elif audio_file.has_method("set_loop"):
+			audio_file.set_loop(true)
+			
 		stream = audio_file
 		play()
 
