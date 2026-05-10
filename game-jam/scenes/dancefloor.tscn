@@ -13,18 +13,18 @@
 [ext_resource type="Script" uid="uid://cgn7jiehhjyyw" path="res://scenes/point_light_2d_4.gd" id="12_1rojm"]
 [ext_resource type="Script" uid="uid://4qwu3uyi5rpf" path="res://scenes/point_light_2d_6.gd" id="14_gcwxk"]
 [ext_resource type="Texture2D" uid="uid://dc8lhu4hskof7" path="res://assets/kenney_particle-pack/PNG (Transparent)/star_05.png" id="15_imjrb"]
-[ext_resource type="Script" path="res://scenes/point_light_2d_12.gd" id="16_k421b"]
+[ext_resource type="Script" uid="uid://du7mc1i12qx3h" path="res://scenes/point_light_2d_12.gd" id="16_k421b"]
 [ext_resource type="Texture2D" uid="uid://kxcx0kten0ij" path="res://assets/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="16_uf5x5"]
-[ext_resource type="Script" path="res://scenes/point_light_2d_13.gd" id="17_1rojm"]
-[ext_resource type="PackedScene" uid="uid://basfcys1bolx8" path="res://scenes/zain.tscn" id="18_1rojm"]
+[ext_resource type="Script" uid="uid://cc0ot2stbq3e3" path="res://scenes/point_light_2d_13.gd" id="17_1rojm"]
+[ext_resource type="PackedScene" path="res://scenes/zain.tscn" id="18_1rojm"]
 [ext_resource type="PackedScene" uid="uid://dsdsf1prci8fl" path="res://scenes/DJ.tscn" id="19_v1lo0"]
-[ext_resource type="PackedScene" uid="uid://c10kwm2oxdcit" path="res://scenes/tyreese.tscn" id="20_gcwxk"]
-[ext_resource type="PackedScene" uid="uid://cbu4a1vh76l0h" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
-[ext_resource type="PackedScene" uid="uid://ch5ux6gqpg1x6" path="res://scenes/Generic Male 5.tscn" id="22_7n8xg"]
+[ext_resource type="PackedScene" path="res://scenes/tyreese.tscn" id="20_gcwxk"]
+[ext_resource type="PackedScene" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
+[ext_resource type="PackedScene" path="res://scenes/Generic Male 5.tscn" id="22_7n8xg"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="22_door"]
-[ext_resource type="PackedScene" uid="uid://cgkihi3iptcn0" path="res://scenes/generic_female_3.tscn" id="23_hjygm"]
-[ext_resource type="PackedScene" uid="uid://cno3q4kswbg7n" path="res://scenes/generic_female_4.tscn" id="24_pncds"]
-[ext_resource type="PackedScene" uid="uid://ipt3nufplkj1" path="res://scenes/Bouncer.tscn" id="25_btks4"]
+[ext_resource type="PackedScene" path="res://scenes/generic_female_3.tscn" id="23_hjygm"]
+[ext_resource type="PackedScene" path="res://scenes/generic_female_4.tscn" id="24_pncds"]
+[ext_resource type="PackedScene" path="res://scenes/Bouncer.tscn" id="25_btks4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
 texture = ExtResource("1_va8kr")
@@ -11256,7 +11256,7 @@ sources/5 = SubResource("TileSetAtlasSource_7n8xg")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uf5x5"]
 normal = Vector2(-0.99999875, -0.0016129011)
-distance = -1151.0016
+distance = -1150.0016
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7n8xg"]
 normal = Vector2(0.9999952, -0.0031152498)
