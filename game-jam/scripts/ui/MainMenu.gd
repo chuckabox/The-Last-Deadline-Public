@@ -120,10 +120,10 @@ func _populate_gallery():
 	
 	for ending in endings:
 		var item = VBoxContainer.new()
-		item.custom_minimum_size = Vector2(300, 250)
+		item.custom_minimum_size = Vector2(300, 190)
 		
 		var tex_rect = TextureRect.new()
-		tex_rect.custom_minimum_size = Vector2(280, 180)
+		tex_rect.custom_minimum_size = Vector2(280, 140)
 		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		
