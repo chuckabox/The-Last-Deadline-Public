@@ -1,0 +1,16 @@
+{
+  "id": "bouncer",
+  "name": "Bouncer",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "text": "VIP area's through here. You better not cause any trouble in there.",
+        "options": [
+          { "text": "...", "next": "exit" }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}
