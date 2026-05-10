@@ -1,17 +1,19 @@
 # The Last Deadline
 
-**The Last Deadline** is an immersive narrative-driven club game where you navigate the chaotic energy of a night out. Through dialogue, social engineering, and a series of minigames, you must work your way from the main bar to the exclusive VIP area to reach your goal before the night ends.
+Navigate a wild night at the club — talk your way past bouncers, charm NPCs, and complete minigames to reach the VIP area before closing time.
 
-## How to Play
+## Controls
+| Action | Keys |
+|--------|------|
+| Move | `WASD` / Arrow Keys |
+| Interact | `E` / `Space` |
 
-- **Move**: Use `WASD` or `Arrow Keys` to walk around the club.
-- **Interact**: Press `E` or `Space` when near NPCs or interactive objects.
-- **Dialogue**: Select options during conversations to shape your path and influence the story.
-- **Minigames**:
-    - **Beer Pong**: Aim and launch the ball into the opponent's cups.
-    - **Bartender Memory**: Memorize and serve the correct sequence of drinks.
-    - **Dance Rhythm**: Follow the beat on the dance floor to impress the DJ.
-- **Alcohol System**: Watch your alcohol level! Drinking too much will blur your vision and make the controls harder to manage. Be careful not to black out!
+## Minigames
+- **Beer Pong** — Aim and sink the ball into cups
+- **Bartender Memory** — Memorize and serve drinks in order
+- **Dance Rhythm** — Hit the beats to impress the DJ
+
+**Watch your alcohol level!** Drink too much and your vision blurs, controls get sloppy — black out and it's game over.
 
 ## Credits
 
