@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c10kwm2oxdcit"]
 
 [ext_resource type="Texture2D" uid="uid://c56svqkbyxmfw" path="res://assets/npc/tyreese/sprite_sheet/character-spritesheet (10).png" id="1_o8lgn"]
+[ext_resource type="Script" path="res://scripts/npcs/NPC_Named.gd" id="2_named"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsane"]
 atlas = ExtResource("1_o8lgn")
@@ -75,7 +76,13 @@ animations = [{
 radius = 16.0
 height = 54.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=758508710]
+script = ExtResource("2_named")
+npc_id = "tyreese"
+npc_display_name = "Tyreese"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1847524151]
 sprite_frames = SubResource("SpriteFrames_mgead")
@@ -85,3 +92,8 @@ frame_progress = 0.36956263
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1554087171]
 shape = SubResource("CapsuleShape2D_jw6ek")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhsgbjklbngt1"]
 
 [ext_resource type="Texture2D" uid="uid://ciou1k4houc3r" path="res://assets/npc/claire/sprite sheet/character-spritesheet (11).png" id="1_nl2bd"]
+[ext_resource type="Script" path="res://scripts/npcs/NPC_Named.gd" id="2_named"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nl2bd"]
 radius = 12.0
@@ -47,7 +48,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
+
 [node name="Claire" type="CharacterBody2D" unique_id=645148224]
+script = ExtResource("2_named")
+npc_id = "claire"
+npc_display_name = "Claire"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1776911402]
 position = Vector2(-1, 20)
@@ -57,3 +64,8 @@ shape = SubResource("CapsuleShape2D_nl2bd")
 sprite_frames = SubResource("SpriteFrames_jato0")
 animation = &"sit"
 autoplay = "sit"
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")

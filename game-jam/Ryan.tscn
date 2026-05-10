@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://675rubexc32y"]
 
 [ext_resource type="Texture2D" uid="uid://dha3t2f63u6hg" path="res://assets/npc/ryan/sprite sheet/character-spritesheet (12).png" id="1_b2odx"]
+[ext_resource type="Script" path="res://scripts/npcs/NPC_Named.gd" id="2_named"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gm54v"]
 atlas = ExtResource("1_b2odx")
@@ -39,7 +40,13 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqnpq"]
 radius = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
+
 [node name="Ryan" type="CharacterBody2D" unique_id=611142657]
+script = ExtResource("2_named")
+npc_id = "ryan"
+npc_display_name = "Ryan"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1872739775]
 sprite_frames = SubResource("SpriteFrames_wf3sx")
@@ -49,3 +56,8 @@ autoplay = "sit"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1541210999]
 position = Vector2(-8, 16)
 shape = SubResource("CapsuleShape2D_yqnpq")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")

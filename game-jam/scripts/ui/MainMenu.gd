@@ -78,7 +78,7 @@ func _ready():
 		credits_back.mouse_entered.connect(_on_btn_hover.bind(credits_back))
 		credits_back.mouse_exited.connect(_on_btn_exit.bind(credits_back))
 		
-	var credits_content = get_node_or_null("UILayer/CreditsPanel/CreditsContent")
+	var credits_content = get_node_or_null("UILayer/CreditsPanel/ScrollContainer/CreditsContent")
 	if credits_content:
 		credits_content.meta_clicked.connect(_on_credits_link_clicked)
 		
@@ -127,6 +127,24 @@ func _run_entry_animation():
 	
 	tween.tween_property(menu_container, "modulate:a", 1.0, 0.8).set_delay(1.0)
 	tween.tween_property(menu_container, "position:y", original_menu_y, 0.8).set_delay(1.0)
+	
+	# Extra buttons (Credits / Developers) entry - staggered after main buttons
+	var credits_btn = get_node_or_null("UILayer/CreditsButton")
+	var dev_btn = get_node_or_null("UILayer/DevelopersButton")
+	
+	if credits_btn:
+		credits_btn.modulate.a = 0
+		var orig_y = credits_btn.position.y
+		credits_btn.position.y += 15
+		tween.tween_property(credits_btn, "modulate:a", 1.0, 0.6).set_delay(1.8)
+		tween.tween_property(credits_btn, "position:y", orig_y, 0.6).set_delay(1.8)
+		
+	if dev_btn:
+		dev_btn.modulate.a = 0
+		var orig_y = dev_btn.position.y
+		dev_btn.position.y += 15
+		tween.tween_property(dev_btn, "modulate:a", 1.0, 0.6).set_delay(1.8)
+		tween.tween_property(dev_btn, "position:y", orig_y, 0.6).set_delay(1.8)
 
 func _process(_delta):
 	# Subtle neon flicker
@@ -149,7 +167,7 @@ func _on_back_pressed():
 	if sfx_manager:
 		sfx_manager.play_sfx("menu_cancel")
 	gallery_panel.hide()
-	endings_button.grab_focus()
+	start_button.grab_focus()
 
 func _populate_gallery():
 	# Clear previous entries
@@ -283,6 +301,7 @@ func _on_credits_back_pressed():
 		var tween = create_tween()
 		tween.tween_property(credits_panel, "modulate:a", 0.0, 0.2)
 		tween.tween_callback(credits_panel.hide)
+		tween.tween_callback(start_button.grab_focus)
 
 func _on_credits_link_clicked(meta):
 	OS.shell_open(str(meta))
@@ -303,13 +322,4 @@ func _on_developers_back_pressed():
 		var tween = create_tween()
 		tween.tween_property(dev_panel, "modulate:a", 0.0, 0.2)
 		tween.tween_callback(dev_panel.hide)
-
-func _on_btn_hover(btn: Button):
-	if sfx_manager: sfx_manager.play_sfx("menu_scroll")
-	btn.pivot_offset = btn.size / 2.0
-	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.2)
-
-func _on_btn_exit(btn: Button):
-	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
+		tween.tween_callback(start_button.grab_focus)
