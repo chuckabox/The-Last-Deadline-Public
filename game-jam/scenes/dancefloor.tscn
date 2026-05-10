@@ -11362,7 +11362,7 @@ texture = ExtResource("8_2s5rb")
 script = ExtResource("10_c7qf2")
 
 [node name="PointLight2D4" type="PointLight2D" parent="CanvasModulate" unique_id=824686237]
-position = Vector2(316, 479)
+position = Vector2(314, 472.58224)
 color = Color(0.45739704, 0.5946258, 0.9920607, 1)
 texture = ExtResource("8_2s5rb")
 script = ExtResource("12_1rojm")
