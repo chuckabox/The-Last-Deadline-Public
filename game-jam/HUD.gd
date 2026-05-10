@@ -53,8 +53,8 @@ func _ready():
 			node.hide()
 
 	# Get other references
-	alcohol_stage_label = get_node_or_null("HUDContainer/AlcoholMeterPanel/AlcoholStageLabel")
-	bac_label = get_node_or_null("HUDContainer/AlcoholMeterPanel/BACLabel")
+	alcohol_stage_label = get_node_or_null("HUDContainer/AlcoholStageLabel")
+	bac_label = get_node_or_null("HUDContainer/BACLabel")
 	clock_label = get_node_or_null("HUDContainer/ClockLabel")
 	warning_label = get_node_or_null("HUDContainer/WarningText/WarningLabel")
 	warning_control = get_node_or_null("HUDContainer/WarningText")
@@ -158,10 +158,10 @@ func _update_bar_points(stage: int):
 			bar_points[i].hide()
 
 func _update_bac_text(value: float):
-	# Max BAC is 0.40% (blackout territory)
-	var bac = value * 0.40
+	# Display as 0-100% based on normalized alcohol value
+	var percentage = int(value * 100)
 	if bac_label:
-		bac_label.text = "BAC: %.2f%%" % bac
+		bac_label.text = "BAC: %d%%" % percentage
 
 func _on_stage_changed(new_stage: int) -> void:
 	_stage_token += 1
