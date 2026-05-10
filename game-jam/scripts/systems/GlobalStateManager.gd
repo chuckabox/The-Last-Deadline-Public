@@ -98,8 +98,14 @@ func _check_quest_milestones(flag_name: String) -> void:
 		"djDefeated":
 			if game_manager: game_manager.mark_npc_completed("dj")
 			quest_completed.emit("disco_beat")
+		"fratBroDefeated":
+			if game_manager: game_manager.mark_npc_completed("frat_bro")
+		"fatChudDefeated":
+			if game_manager: game_manager.mark_npc_completed("fat_chud")
 		"vipDefeated":
-			if game_manager: game_manager.mark_npc_completed("vip_access")
+			if game_manager: game_manager.mark_npc_completed("vip")
+		"bossConfronted":
+			if game_manager: game_manager.mark_npc_completed("owner")
 
 func _trigger_ending(ending_id: String) -> void:
 	var ending_manager = get_node_or_null("/root/EndingManager")

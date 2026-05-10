@@ -10008,7 +10008,7 @@ tile_set = SubResource("TileSet_jvqct")
 
 [node name="Player" parent="." unique_id=702286683 instance=ExtResource("8_y7rkj")]
 z_index = 10
-position = Vector2(88, 120)
+position = Vector2(84.343025, 112.67444)
 scale = Vector2(1.3, 1.3)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=359948426]
@@ -10064,7 +10064,7 @@ scale = Vector2(1.3, 1.3)
 
 [node name="Suvin" parent="." unique_id=649609300 instance=ExtResource("12_2g0h2")]
 z_index = 4
-position = Vector2(279.34302, 147.67444)
+position = Vector2(281.34302, 148.67444)
 
 [node name="CharacterBody2D2" parent="." unique_id=1193888606 instance=ExtResource("13_brpfv")]
 z_index = 3
