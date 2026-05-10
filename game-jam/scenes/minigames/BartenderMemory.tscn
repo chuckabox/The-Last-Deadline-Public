@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b6niqoolxsxj0" path="res://assets/drinks/Vodka.png" id="4_3bbui"]
 [ext_resource type="Texture2D" uid="uid://wpw4fc3dcdjb" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn_y"]
 [ext_resource type="Texture2D" uid="uid://h880knqxh06t" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_y_h"]
+[ext_resource type="Texture2D" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_main_char"]
+[ext_resource type="Texture2D" path="res://assets/npc/bartender/bust/Screenshot_2026-5-8_212017589.png" id="9_npc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_receipt"]
 texture = ExtResource("2_o6kqo")
@@ -79,14 +81,6 @@ theme_override_font_sizes/font_size = 20
 text = "Stage 1 / 3"
 horizontal_alignment = 1
 
-[node name="LivesLabel" type="Label" parent="." unique_id=272957356]
-layout_mode = 1
-offset_left = 30.0
-offset_top = 20.0
-offset_right = 150.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 22
-text = "❤ ❤ ❤"
 
 [node name="InstructionLabel" type="Label" parent="." unique_id=2109572658]
 layout_mode = 1
@@ -261,6 +255,38 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 52
 text = "ORDER COMPLETE!"
 horizontal_alignment = 1
+
+[node name="Main_character_bust" type="Sprite2D" parent="."]
+position = Vector2(133.46706, 512.67676)
+scale = Vector2(-0.9333455, 0.922566)
+texture = ExtResource("8_main_char")
+
+[node name="NPC_character_bust" type="Sprite2D" parent="."]
+position = Vector2(1001.84515, 511.24997)
+scale = Vector2(0.9691483, 0.9600693)
+texture = ExtResource("9_npc")
+
+[node name="YOU" type="Label" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 566.0
+offset_right = 375.0
+offset_bottom = 649.0
+theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "YOU"
+
+[node name="NPC_NAME" type="Label" parent="."]
+layout_mode = 0
+offset_left = 796.0
+offset_top = 581.0
+offset_right = 992.0
+offset_bottom = 664.0
+theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "BARTENDER"
 
 [node name="TutorialOverlay" type="ColorRect" parent="." unique_id=1560593560]
 layout_mode = 1

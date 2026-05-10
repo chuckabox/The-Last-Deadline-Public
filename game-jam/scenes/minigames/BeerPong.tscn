@@ -246,27 +246,6 @@ theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "YOU"
 
-[node name="VS" type="Label" parent="." unique_id=1598990283]
-layout_mode = 0
-offset_left = 544.0
-offset_top = 481.0
-offset_right = 671.0
-offset_bottom = 564.0
-theme_override_colors/font_color = Color(0.64410675, 0.12297075, 0.56579494, 1)
-theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "VS"
-
-[node name="VS2" type="Label" parent="." unique_id=131610105]
-layout_mode = 0
-offset_left = 498.0
-offset_top = 571.0
-offset_right = 663.0
-offset_bottom = 654.0
-theme_override_colors/font_color = Color(0.64410675, 0.12297075, 0.56579494, 1)
-theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "First to one wins!"
 
 [node name="FRAT BRO" type="Label" parent="." unique_id=1123665476]
 layout_mode = 0

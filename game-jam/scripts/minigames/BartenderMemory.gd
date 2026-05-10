@@ -199,7 +199,6 @@ func _on_drink_clicked(button_name: String):
 			if sfx_manager:
 				sfx_manager.play_sfx("sequence_correct")
 			if feedback_label:
-				feedback_label.text = "✓"
 				feedback_label.add_theme_color_override("font_color", Color.GREEN)
 			if progress_label:
 				progress_label.text = "%d / %d correct" % [player_sequence.size(), current_sequence.size()]
@@ -215,7 +214,7 @@ func _on_drink_clicked(button_name: String):
 			if sfx_manager:
 				sfx_manager.play_sfx("sequence_wrong")
 			if feedback_label:
-				feedback_label.text = "✗ Wrong order!"
+				feedback_label.text = "Wrong order!"
 				feedback_label.add_theme_color_override("font_color", Color.RED)
 
 			is_active = false
@@ -233,12 +232,7 @@ func _on_drink_clicked(button_name: String):
 					feedback_label.text = ""
 				generate_sequence()
 
-	# Clear feedback tick after short delay if still active
-	# Clear feedback tick after short delay if still active
-	if is_inside_tree():
-		await get_tree().create_timer(0.4).timeout
-	if is_inside_tree() and is_active and feedback_label and feedback_label.text == "✓":
-		feedback_label.text = ""
+
 
 func next_stage():
 	if current_stage >= total_stages:
@@ -282,14 +276,7 @@ func play_win_celebration():
 
 func update_ui():
 	if stage_label:
-		stage_label.text = "Stage %d / %d" % [current_stage, total_stages]
-	if lives_label:
-		var hearts = ""
-		for i in range(lives):
-			hearts += "❤ "
-		for i in range(3 - lives):
-			hearts += "♡ "
-		lives_label.text = hearts.strip_edges()
+		stage_label.text = "Stage %d / %d - Lives: %d" % [current_stage, total_stages, lives]
 
 func win_minigame():
 	is_active = false

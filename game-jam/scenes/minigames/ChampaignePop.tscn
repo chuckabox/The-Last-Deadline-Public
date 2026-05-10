@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://hkplrm82nnuo"]
 
 [ext_resource type="Script" path="res://scripts/minigames/ChampaignePop.gd" id="1_cp"]
+[ext_resource type="Texture2D" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_main_char"]
+[ext_resource type="Texture2D" path="res://assets/npc/vip/bust/Screenshot_2026-5-8_223639905.png" id="9_npc"]
 
 [node name="ChampaignePop" type="Control"]
 layout_mode = 3
@@ -57,6 +59,38 @@ layout_mode = 0
 offset_right = 45.0
 offset_bottom = 30.0
 color = Color(0, 0.8, 0, 0.5)
+
+[node name="Main_character_bust" type="Sprite2D" parent="."]
+position = Vector2(133.46706, 512.67676)
+scale = Vector2(-0.9333455, 0.922566)
+texture = ExtResource("8_main_char")
+
+[node name="NPC_character_bust" type="Sprite2D" parent="."]
+position = Vector2(1001.84515, 511.24997)
+scale = Vector2(0.9691483, 0.9600693)
+texture = ExtResource("9_npc")
+
+[node name="YOU" type="Label" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 566.0
+offset_right = 375.0
+offset_bottom = 649.0
+theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "YOU"
+
+[node name="NPC_NAME" type="Label" parent="."]
+layout_mode = 0
+offset_left = 796.0
+offset_top = 581.0
+offset_right = 992.0
+offset_bottom = 664.0
+theme_override_colors/font_color = Color(0.8755842, 0.86583614, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "VIP"
 
 [node name="InstructionLabel" type="Label" parent="."]
 layout_mode = 1
