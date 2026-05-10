@@ -5,7 +5,7 @@
     "start": "talk",
     "nodes": {
       "talk": {
-        "text": "Hello, my name is Zain.",
+        "text": "Join UQCS!",
         "options": [
           { "text": "...", "next": "exit" }
         ]

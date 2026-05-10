@@ -82,7 +82,7 @@ radius = 40.0
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=758508710]
 script = ExtResource("2_named")
 npc_id = "tyreese"
-npc_display_name = "Tyreese"
+npc_display_name = "Tyreece"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1847524151]
 sprite_frames = SubResource("SpriteFrames_mgead")
