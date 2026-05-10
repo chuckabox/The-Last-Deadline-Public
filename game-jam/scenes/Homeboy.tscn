@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drnel835ryhob" path="res://scripts/npcs/NPC_Friend.gd" id="1_h35v6"]
 [ext_resource type="Texture2D" uid="uid://rpbhnqvmvhrm" path="res://assets/npc/friend/sprite_sheet/character-spritesheet (8).png" id="2_agi71"]
+[ext_resource type="Texture2D" uid="uid://kxcx0kten0ij" path="res://assets/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="3_ue0j6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk0ku"]
 radius = 13.0
@@ -110,3 +111,9 @@ frame_progress = 0.13636415
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=999000888]
 shape = SubResource("CircleShape2D_interact")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1837908242]
+modulate = Color(0, 0, 0, 0.3529412)
+position = Vector2(0, 28)
+scale = Vector2(0.19858551, 0.09678257)
+texture = ExtResource("3_ue0j6")

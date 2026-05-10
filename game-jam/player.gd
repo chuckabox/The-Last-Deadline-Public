@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 300.0
+const SPEED := 200.0
 
 # Movement smoothing — interpolated between sober and drunk by `_drunk` (0..1)
 const ACCEL_SOBER := 4000.0      # near-instant directional response
