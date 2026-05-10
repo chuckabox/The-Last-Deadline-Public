@@ -259,12 +259,22 @@ func lose_minigame():
 	if path2_node and path2_node.has_method("play_arc_animation"):
 		path2_node.play_arc_animation()
 	await get_tree().create_timer(2.0).timeout
+	
+	# After await, the scene may have changed (e.g. blackout ending triggered).
+	# Bail out if this node is no longer in the tree to avoid crash.
+	if not is_inside_tree():
+		return
+	
 	var path3_node = get_node_or_null("Path2D3")
 	if path3_node and path3_node.has_method("play_arc_animation"):
 		path3_node.play_arc_animation()
 	print("Beer Pong LOST! Alcohol +1")
-	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+	if alcohol_system and is_instance_valid(alcohol_system) and alcohol_system.has_method("drink_alcohol"):
 		alcohol_system.drink_alcohol(0.2)
+	
+	if not is_inside_tree():
+		return
+	
 	emit_signal("minigame_lost")
 	
 	# Notify GameManager for global ending checks

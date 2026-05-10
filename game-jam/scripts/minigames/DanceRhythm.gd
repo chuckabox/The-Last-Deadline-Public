@@ -320,9 +320,15 @@ func lose_minigame():
 	is_active = false
 	if sfx_manager:
 		sfx_manager.play_sfx("error")
-	if alcohol_system and alcohol_system.has_method("drink_alcohol"):
+	if alcohol_system and is_instance_valid(alcohol_system) and alcohol_system.has_method("drink_alcohol"):
 		alcohol_system.drink_alcohol(0.2)
 	print("Dance Rhythm LOST!")
+	
+	# After drink_alcohol, the EndingManager may trigger a scene change (e.g. blackout).
+	# Bail out if this node is no longer in the tree to avoid crash.
+	if not is_inside_tree():
+		return
+	
 	emit_signal("minigame_lost")
 	if game_manager:
 		game_manager.minigame_lost.emit()

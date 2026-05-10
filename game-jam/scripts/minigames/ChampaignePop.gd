@@ -158,6 +158,13 @@ func lose_minigame(reason: String):
 		status_label.text = reason
 		status_label.add_theme_color_override("font_color", Color.RED)
 	print("Champagne Pop LOST! %s" % reason)
+	
+	# Check if this node is still in the tree before emitting signals.
+	# The EndingManager may trigger a scene change (e.g. blackout) which
+	# frees nodes mid-signal-chain and causes a crash.
+	if not is_inside_tree():
+		return
+	
 	emit_signal("minigame_lost")
 	
 	# Notify GameManager for global ending checks
