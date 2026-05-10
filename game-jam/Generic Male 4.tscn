@@ -28,6 +28,14 @@ region = Rect2(256, 960, 64, 64)
 atlas = ExtResource("1_qldmh")
 region = Rect2(320, 960, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qldmh"]
+atlas = ExtResource("1_qldmh")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh36t"]
+atlas = ExtResource("1_qldmh")
+region = Rect2(320, 128, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_juwce"]
 animations = [{
 "frames": [{
@@ -52,6 +60,17 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qldmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh36t")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1193888606]
@@ -63,3 +82,5 @@ shape = SubResource("CapsuleShape2D_eh36t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1675451256]
 sprite_frames = SubResource("SpriteFrames_juwce")
+animation = &"new_animation"
+frame_progress = 0.23130211

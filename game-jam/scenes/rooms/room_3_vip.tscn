@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c1fo2g8yx01c0" path="res://player.tscn" id="8_y7rkj"]
 [ext_resource type="Texture2D" uid="uid://b6a0p7gwy3mnc" path="res://assets/kenney_particle-pack/PNG (Black background)/circle_05.png" id="9_pyscc"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="10_door"]
+[ext_resource type="PackedScene" uid="uid://br663fqdq2ekk" path="res://scenes/VIP.tscn" id="11_xnoai"]
+[ext_resource type="PackedScene" uid="uid://h3mwfg2gutpr" path="res://scenes/suvin.tscn" id="12_2g0h2"]
+[ext_resource type="PackedScene" uid="uid://oxbt86dvt5wn" path="res://Generic Male 4.tscn" id="13_brpfv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_brpfv"]
 texture = ExtResource("2_e1bg1")
@@ -10006,6 +10009,7 @@ tile_set = SubResource("TileSet_jvqct")
 [node name="Player" parent="." unique_id=702286683 instance=ExtResource("8_y7rkj")]
 z_index = 10
 position = Vector2(88, 120)
+scale = Vector2(1.3, 1.3)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=359948426]
 color = Color(0.3180198, 0.31801978, 0.31801975, 1)
@@ -10052,3 +10056,16 @@ shape = SubResource("WorldBoundaryShape2D_xnoai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WestWall" unique_id=105885605]
 shape = SubResource("WorldBoundaryShape2D_2g0h2")
+
+[node name="CharacterBody2D" parent="." unique_id=1998826472 instance=ExtResource("11_xnoai")]
+z_index = 3
+position = Vector2(779.343, 260.67444)
+scale = Vector2(1.3, 1.3)
+
+[node name="Suvin" parent="." unique_id=649609300 instance=ExtResource("12_2g0h2")]
+z_index = 4
+position = Vector2(279.34302, 147.67444)
+
+[node name="CharacterBody2D2" parent="." unique_id=1193888606 instance=ExtResource("13_brpfv")]
+z_index = 3
+position = Vector2(778.343, 145.67444)
