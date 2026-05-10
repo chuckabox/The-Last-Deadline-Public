@@ -32,9 +32,9 @@ func _step_aside():
 	if speech_bubble:
 		speech_bubble.hide()
 		
-	# Move out of the way
-	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "position", position + Vector2(0, 50), 0.8)
+	# Don't move position, just wait and play idle
+	var tween = create_tween()
+	tween.tween_interval(0.8)
 	tween.tween_callback(func(): if animated_sprite: animated_sprite.play("idle"))
 
 func interact():

@@ -10,19 +10,44 @@ func _ready():
 		fade_layer.queue_free()
 	
 	var text_label = get_node_or_null("TextLabel")
+	var image_rect = get_node_or_null("TextureRect")
 	var buttons_container = get_node_or_null("Buttons")
 	var music = get_node_or_null("/root/MusicManager")
-
+	
+	# Silence the club music
 	if music:
 		music.stop_music()
-
-	# Narrative was already shown in the cutscene; this scene is just the
-	# "back to main menu" capstone.
+	
+	# Initial state: hide everything except the first text
+	if image_rect:
+		image_rect.modulate.a = 0.0
+	if buttons_container:
+		buttons_container.hide()
+		
 	if text_label:
-		text_label.hide()
+		text_label.modulate.a = 0.0
+		text_label.text = "Everything went black.\n\n..."
+		var t1 = create_tween()
+		t1.tween_property(text_label, "modulate:a", 1.0, 1.0)
+		
+	# Wait for black screen effect
+	await get_tree().create_timer(3.0).timeout
+	
+	if image_rect:
+		var tween = create_tween()
+		tween.tween_property(image_rect, "modulate:a", 1.0, 1.5)
+	
+	if text_label:
+		var t2 = create_tween()
+		t2.tween_property(text_label, "modulate:a", 0.0, 0.5)
+		t2.tween_callback(func(): text_label.text = "You woke up on the lawn at 8:00 AM.\nYour phone showed 16 missed calls.\n\nYou failed the deadline.")
+		t2.tween_property(text_label, "modulate:a", 1.0, 0.5)
+	
+	await get_tree().create_timer(3.0).timeout
+	
 	if buttons_container:
 		buttons_container.show()
-
+		
 	var menu_btn = get_node_or_null("Buttons/MainMenuButton")
 	if menu_btn:
 		if not menu_btn.pressed.is_connected(_on_menu_pressed):

@@ -30,12 +30,21 @@
         "options": [
           {
             "text": "[Take Drink] Sure, just one.",
-            "next": "exit",
-            "triggerGlobal": "drink"
+            "next": "drinkBranch"
           },
           {
             "text": "[Decline Drink] No thanks, I'm in a hurry.",
             "next": "jobBranch"
+          }
+        ]
+      },
+      "drinkBranch": {
+        "text": "Everything went fuzzy. You woke up at 3:00 AM on the office sofa. The deadline is gone. You failed.",
+        "options": [
+          {
+            "text": "...",
+            "next": "exit",
+            "triggerGlobal": "drink"
           }
         ]
       },
@@ -44,11 +53,29 @@
         "options": [
           {
             "text": "[Accept Job] I'll take the job.",
-            "next": "exit",
-            "triggerGlobal": "job"
+            "next": "averageEnding"
           },
           {
             "text": "[Decline Job] No. I have to graduate.",
+            "next": "successEnding"
+          }
+        ]
+      },
+      "averageEnding": {
+        "text": "You become the new Floor Manager. You have money, but your degree is abandoned.",
+        "options": [
+          {
+            "text": "...",
+            "next": "exit",
+            "triggerGlobal": "job"
+          }
+        ]
+      },
+      "successEnding": {
+        "text": "The Owner respects the hustle and hands you the keys. You burst out the doors.",
+        "options": [
+          {
+            "text": "...",
             "next": "exit",
             "triggerGlobal": "academic"
           }
