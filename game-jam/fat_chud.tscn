@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c81un7qj5ao2b" path="res://scripts/npcs/NPC_FatChud.gd" id="1_654sp"]
 [ext_resource type="Texture2D" uid="uid://d254syxtf37xc" path="res://assets/npc/fat_chud/sprite_sheet/character-spritesheet (4).png" id="2_yt0jd"]
+[ext_resource type="Texture2D" uid="uid://kxcx0kten0ij" path="res://assets/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="3_cp5ym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cp5ym"]
 atlas = ExtResource("2_yt0jd")
@@ -68,3 +69,9 @@ shape = SubResource("CapsuleShape2D_3c6if")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=295787642]
 shape = SubResource("CircleShape2D_interact")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1146606524]
+modulate = Color(0, 0, 0, 0.3529412)
+position = Vector2(0.20952892, 27.443476)
+scale = Vector2(0.19858551, 0.09678257)
+texture = ExtResource("3_cp5ym")

@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dp6ex4ugy17bt" path="res://scripts/npcs/NPC_FratBro.gd" id="1_7myf5"]
 [ext_resource type="Texture2D" uid="uid://dwtqvlnl52cri" path="res://assets/npc/frat_bro/sprite_sheet/character-spritesheet (7).png" id="2_g1k7f"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
-radius = 40.0
+[ext_resource type="Texture2D" uid="uid://kxcx0kten0ij" path="res://assets/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="3_io5u7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmr52"]
 atlas = ExtResource("2_g1k7f")
@@ -51,6 +49,9 @@ animations = [{
 radius = 14.0
 height = 56.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 40.0
+
 [node name="fratbro" type="CharacterBody2D" unique_id=1908960888]
 script = ExtResource("1_7myf5")
 
@@ -68,3 +69,9 @@ shape = SubResource("CapsuleShape2D_jtmey")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=999000666]
 shape = SubResource("CircleShape2D_interact")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1400808656]
+modulate = Color(0, 0, 0, 0.3529412)
+position = Vector2(1, 29)
+scale = Vector2(0.19858551, 0.09678257)
+texture = ExtResource("3_io5u7")

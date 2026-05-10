@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2exudqh0ika2" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cj4c6v7sq3gum" path="res://assets/npc/main character/sprite_sheet/character-spritesheet (9).png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://kxcx0kten0ij" path="res://assets/kenney_particle-pack/PNG (Transparent)/circle_05.png" id="3_i3pqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
@@ -151,7 +152,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,7 +184,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -212,7 +213,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk_up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7ghd"]
@@ -220,6 +221,7 @@ radius = 9.0
 height = 18.0
 
 [node name="Player" type="CharacterBody2D" unique_id=702286683]
+z_index = 1
 script = ExtResource("1_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=490607255]
@@ -234,7 +236,6 @@ position = Vector2(0, -25)
 sprite_frames = SubResource("SpriteFrames_b26j0")
 animation = &"Walk_up"
 autoplay = "Idle"
-frame_progress = 0.051287934
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2126154378]
 position = Vector2(-1, -2)
@@ -245,3 +246,9 @@ position = Vector2(-1, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision" unique_id=987654321]
 shape = SubResource("CapsuleShape2D_n7ghd")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1495257802]
+modulate = Color(0, 0, 0, 0.3529412)
+position = Vector2(-0.047917366, 2.2142885)
+scale = Vector2(0.19858551, 0.09678257)
+texture = ExtResource("3_i3pqv")
