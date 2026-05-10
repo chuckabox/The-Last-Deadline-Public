@@ -1,83 +1,101 @@
 extends Control
 
 func _ready():
-	print("Academic Weapon Ending")
-	
-	var text_label = get_node_or_null("TextLabel")
-	var clock_label = get_node_or_null("ClockLabel")
-	
-	# System references for feedback
+	get_tree().paused = false
 	var music = get_node_or_null("/root/MusicManager")
 	var sfx = get_node_or_null("/root/SFXManager")
-	
-	if text_label:
-		text_label.text = "You sprinted out the back door.\n\n..."
-		text_label.show()
-	
-	await get_tree().create_timer(2.0).timeout
-	
-	var time_manager = get_node_or_null("/root/TimeManager")
-	var final_elapsed = 599
-	var start_h = 11
-	var start_m = 50
-	
-	if time_manager:
-		time_manager.pause_time()
-		final_elapsed = int(time_manager.elapsed_seconds)
-		start_h = time_manager.start_hour
-		start_m = time_manager.start_minute
-		
-	var anim_start_elapsed = max(0, final_elapsed - 5)
-	
-	var get_time_str = func(elapsed: int) -> String:
-		var m = start_m + (elapsed / 60)
-		var h = start_h
-		if m >= 60:
-			h += 1
-			m = m % 60
-		var s = elapsed % 60
-		return "%d:%02d:%02d" % [h, m, s]
-	
-	if clock_label:
-		clock_label.show()
-		clock_label.text = get_time_str.call(anim_start_elapsed)
-	
-	# Count up the final seconds
-	for i in range(5):
-		await get_tree().create_timer(1.0).timeout
-		if clock_label:
-			clock_label.text = get_time_str.call(anim_start_elapsed + i + 1)
-		if sfx:
-			sfx.play_sfx("menu_scroll") # Play a beep sound
-	
-	await get_tree().create_timer(1.0).timeout
-	
+	if music:
+		music.stop_music()
 	if sfx:
-		sfx.play_sfx("sequence_correct") # Success sound
-		
-	if clock_label:
-		clock_label.text = "SUBMITTED!"
-		clock_label.add_theme_color_override("font_color", Color.GREEN)
+		sfx.play_sfx("sequence_correct")
 	
-	var final_time_str = get_time_str.call(final_elapsed)
-	var am_pm = "AM" if final_time_str.begins_with("12") else "PM"
-	
-	if text_label:
-		text_label.text = "You hit submit at %s %s.\n\nAssignment 2 is due in 6 hours.\n\nYou're an Academic Weapon." % [final_time_str, am_pm]
-	
-	await get_tree().create_timer(6.0).timeout
-	print("VICTORY - Academic Weapon Ending reached.")
-	_show_main_menu_button()
+	for child in get_children():
+		child.hide()
 
-func _show_main_menu_button():
+	_build_ui(
+		"res://assets/endings/academic_weapon.png",
+		"ACADEMIC WEAPON",
+		"You sprinted out the back door.\n\nYou hit submit at 11:59 PM.\nAssignment 2 is due in 6 hours.\n\nYou're an Academic Weapon."
+	)
+
+func _build_ui(image_path: String, title: String, body: String) -> void:
+	# Black background
+	var bg = ColorRect.new()
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	bg.color = Color(0, 0, 0, 1)
+	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(bg)
+
+	# Image — full screen
+	var img = TextureRect.new()
+	img.texture = load(image_path)
+	img.layout_mode = 1
+	img.anchor_left = 0.0
+	img.anchor_top = 0.0
+	img.anchor_right = 1.0
+	img.anchor_bottom = 1.0
+	img.offset_left = 0; img.offset_top = 0; img.offset_right = 0; img.offset_bottom = 0
+	img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	img.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(img)
+
+	# Text background overlay for readability
+	var overlay = ColorRect.new()
+	overlay.layout_mode = 1
+	overlay.anchor_left = 0.5
+	overlay.anchor_top = 0.0
+	overlay.anchor_right = 1.0
+	overlay.anchor_bottom = 1.0
+	overlay.color = Color(0, 0, 0, 0.65)
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(overlay)
+
+	# Right panel
+	var panel = VBoxContainer.new()
+	panel.layout_mode = 1
+	panel.anchor_left = 0.55
+	panel.anchor_top = 0.0
+	panel.anchor_right = 1.0
+	panel.anchor_bottom = 1.0
+	panel.offset_left = 0; panel.offset_top = 0; panel.offset_right = -40; panel.offset_bottom = 0
+	panel.add_theme_constant_override("separation", 24)
+	add_child(panel)
+
+	# Spacer top
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(0, 80)
+	spacer.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	panel.add_child(spacer)
+
+	# Title
+	var t = Label.new()
+	t.text = title
+	t.add_theme_font_size_override("font_size", 36)
+	t.add_theme_color_override("font_color", Color(1, 0.85, 0.2, 1))
+	t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	panel.add_child(t)
+
+	# Body
+	var b = Label.new()
+	b.text = body
+	b.add_theme_font_size_override("font_size", 22)
+	b.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+	b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	b.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	panel.add_child(b)
+
+	# Main Menu button — bottom right
 	var btn = Button.new()
 	btn.text = "Main Menu"
 	btn.add_theme_font_size_override("font_size", 22)
-	btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	btn.offset_left = -120
-	btn.offset_right = 120
-	btn.offset_top = -90
-	btn.offset_bottom = -40
-	add_child(btn)
-	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))
+	btn.custom_minimum_size = Vector2(200, 50)
+	btn.size_flags_horizontal = Control.SIZE_SHRINK_END
+	panel.add_child(btn)
+
+	var spacer2 = Control.new()
+	spacer2.custom_minimum_size = Vector2(0, 40)
+	panel.add_child(spacer2)
+
 	btn.grab_focus()
+	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))

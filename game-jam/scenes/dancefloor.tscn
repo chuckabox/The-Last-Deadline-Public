@@ -11256,7 +11256,7 @@ sources/5 = SubResource("TileSetAtlasSource_7n8xg")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uf5x5"]
 normal = Vector2(-0.99999875, -0.0016129011)
-distance = -1153.0194
+distance = -1151.0016
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7n8xg"]
 normal = Vector2(0.9999952, -0.0031152498)

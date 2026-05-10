@@ -1,32 +1,98 @@
 extends Control
 
 func _ready():
-	print("Floor Manager Ending")
-	
-	var text_label = get_node_or_null("TextLabel")
+	get_tree().paused = false
 	var music = get_node_or_null("/root/MusicManager")
-	
-	# Dim the music for a more somber mood
 	if music:
 		music.volume_db = -25.0
 	
-	if text_label:
-		text_label.text = "You became the new Floor Manager.\n\nYou have money, but your degree is abandoned.\n\nA year later, you're still pouring drinks\nand wondering what could have been."
-		text_label.show()
-	
-	await get_tree().create_timer(7.0).timeout
-	print("Ending - Floor Manager reached.")
-	_show_main_menu_button()
+	for child in get_children():
+		child.hide()
 
-func _show_main_menu_button():
+	_build_ui(
+		"res://assets/endings/job.png",
+		"FLOOR MANAGER",
+		"You became the new Floor Manager.\n\nYou have money, but your degree is abandoned.\n\nA year later, you're still pouring drinks\nand wondering what could have been."
+	)
+
+func _build_ui(image_path: String, title: String, body: String) -> void:
+	# Black background
+	var bg = ColorRect.new()
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	bg.color = Color(0, 0, 0, 1)
+	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(bg)
+
+	# Image — full screen
+	var img = TextureRect.new()
+	img.texture = load(image_path)
+	img.layout_mode = 1
+	img.anchor_left = 0.0
+	img.anchor_top = 0.0
+	img.anchor_right = 1.0
+	img.anchor_bottom = 1.0
+	img.offset_left = 0; img.offset_top = 0; img.offset_right = 0; img.offset_bottom = 0
+	img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	img.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(img)
+
+	# Text background overlay for readability
+	var overlay = ColorRect.new()
+	overlay.layout_mode = 1
+	overlay.anchor_left = 0.5
+	overlay.anchor_top = 0.0
+	overlay.anchor_right = 1.0
+	overlay.anchor_bottom = 1.0
+	overlay.color = Color(0, 0, 0, 0.65)
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(overlay)
+
+	# Right panel
+	var panel = VBoxContainer.new()
+	panel.layout_mode = 1
+	panel.anchor_left = 0.55
+	panel.anchor_top = 0.0
+	panel.anchor_right = 1.0
+	panel.anchor_bottom = 1.0
+	panel.offset_left = 0; panel.offset_top = 0; panel.offset_right = -40; panel.offset_bottom = 0
+	panel.add_theme_constant_override("separation", 24)
+	add_child(panel)
+
+	# Spacer top
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(0, 80)
+	spacer.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	panel.add_child(spacer)
+
+	# Title
+	var t = Label.new()
+	t.text = title
+	t.add_theme_font_size_override("font_size", 36)
+	t.add_theme_color_override("font_color", Color(1, 0.85, 0.2, 1))
+	t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	panel.add_child(t)
+
+	# Body
+	var b = Label.new()
+	b.text = body
+	b.add_theme_font_size_override("font_size", 22)
+	b.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+	b.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	b.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	panel.add_child(b)
+
+	# Main Menu button — bottom right
 	var btn = Button.new()
 	btn.text = "Main Menu"
 	btn.add_theme_font_size_override("font_size", 22)
-	btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	btn.offset_left = -120
-	btn.offset_right = 120
-	btn.offset_top = -90
-	btn.offset_bottom = -40
-	add_child(btn)
-	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))
+	btn.custom_minimum_size = Vector2(200, 50)
+	btn.size_flags_horizontal = Control.SIZE_SHRINK_END
+	panel.add_child(btn)
+
+	var spacer2 = Control.new()
+	spacer2.custom_minimum_size = Vector2(0, 40)
+	panel.add_child(spacer2)
+
 	btn.grab_focus()
+	btn.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))

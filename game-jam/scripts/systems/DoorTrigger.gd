@@ -102,10 +102,7 @@ func _set_player_in_range(value: bool):
 func attempt_transition():
 	# Check if locked
 	if is_locked:
-		# DEBUG: bypass lock check
-		if true:
-			pass
-		elif requires_flag and game_manager:
+		if requires_flag and game_manager:
 			if game_manager.has_method("is_npc_completed"):
 				if not game_manager.is_npc_completed(requires_flag):
 					show_locked_message()
@@ -137,7 +134,6 @@ func attempt_transition():
 		print("ERROR: RoomTransitionManager not found or change_room method missing!")
 
 func is_room_accessible() -> bool:
-	return true # DEBUG: Temporarily allow all access
 	if not game_manager:
 		return true # Allow transition if game manager isn't ready for testing
 		

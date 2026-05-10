@@ -11,9 +11,14 @@ func _on_area_entered(area):
 	if area.name.to_lower().contains("playercollision"):
 		var global_state = get_node_or_null("/root/GlobalStateManager")
 		if global_state and not has_moved:
-			# DEBUG: always step aside
-			_step_aside()
-			return
+			if global_state.has_method("is_npc_completed"):
+				if global_state.is_npc_completed("dj"):
+					_step_aside()
+					return
+			elif "npc_completed_status" in global_state:
+				if global_state.npc_completed_status.get("dj", false):
+					_step_aside()
+					return
 			
 	super._on_area_entered(area)
 
