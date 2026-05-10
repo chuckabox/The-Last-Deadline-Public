@@ -145,6 +145,21 @@ func _on_area_exited(area):
 		is_in_range = false
 		_update_prompt_visibility()
 
+func _physics_process(_delta):
+	# Safety net: if the player spawned already overlapping our InteractionArea
+	# (e.g. after a room transition placed them next to us), area_entered never
+	# fires. Poll overlaps each frame to keep is_in_range correct.
+	if not collision_area or is_interacting:
+		return
+	var overlapping := false
+	for a in collision_area.get_overlapping_areas():
+		if a.name.to_lower().contains("playercollision"):
+			overlapping = true
+			break
+	if overlapping != is_in_range:
+		is_in_range = overlapping
+		_update_prompt_visibility()
+
 func _update_prompt_visibility():
 	if is_in_range and not is_interacting and can_interact:
 		if hud and hud.has_method("show_interaction_prompt"):

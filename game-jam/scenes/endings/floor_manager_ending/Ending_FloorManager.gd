@@ -2,20 +2,15 @@ extends Control
 
 func _ready():
 	print("Floor Manager Ending")
-	
+
 	var text_label = get_node_or_null("TextLabel")
+	if text_label:
+		text_label.hide()
+
 	var music = get_node_or_null("/root/MusicManager")
-	
-	# Dim the music for a more somber mood
 	if music:
 		music.volume_db = -25.0
-	
-	if text_label:
-		text_label.text = "You became the new Floor Manager.\n\nYou have money, but your degree is abandoned.\n\nA year later, you're still pouring drinks\nand wondering what could have been."
-		text_label.show()
-	
-	await get_tree().create_timer(7.0).timeout
-	print("Ending - Floor Manager reached.")
+
 	_show_main_menu_button()
 
 func _show_main_menu_button():

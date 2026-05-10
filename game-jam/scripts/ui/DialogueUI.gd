@@ -47,6 +47,8 @@ var _current_cutscene_node_data = {}
 var _cutscene_overlay: TextureRect
 var _click_indicator: TextureRect
 var _click_tween: Tween
+var _cutscene_narrative_panel: PanelContainer
+var _cutscene_narrative_label: Label
 
 var _is_showing_text_screen = false
 var _text_screen_overlay: ColorRect
@@ -157,9 +159,39 @@ func _build_cutscene_display() -> void:
 	_click_indicator.modulate = Color.WHITE
 	_click_indicator.hide()
 	_cutscene_overlay.add_child(_click_indicator)
-	
+
+	# Narrative panel on the right side, used only for ending cutscenes.
+	_cutscene_narrative_panel = PanelContainer.new()
+	_cutscene_narrative_panel.name = "NarrativePanel"
+	_cutscene_narrative_panel.set_anchors_preset(Control.PRESET_RIGHT_WIDE)
+	_cutscene_narrative_panel.offset_left = -520
+	_cutscene_narrative_panel.offset_top = 80
+	_cutscene_narrative_panel.offset_right = -40
+	_cutscene_narrative_panel.offset_bottom = -160
+	var panel_style := StyleBoxFlat.new()
+	panel_style.bg_color = Color(0, 0, 0, 0.72)
+	panel_style.border_color = Color(1, 1, 1, 0.35)
+	panel_style.set_border_width_all(2)
+	panel_style.set_corner_radius_all(6)
+	panel_style.content_margin_left = 24
+	panel_style.content_margin_right = 24
+	panel_style.content_margin_top = 24
+	panel_style.content_margin_bottom = 24
+	_cutscene_narrative_panel.add_theme_stylebox_override("panel", panel_style)
+	_cutscene_narrative_panel.hide()
+
+	_cutscene_narrative_label = Label.new()
+	_cutscene_narrative_label.add_theme_font_override("font", load("res://assets/fonts/monogram.ttf"))
+	_cutscene_narrative_label.add_theme_font_size_override("font_size", 28)
+	_cutscene_narrative_label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+	_cutscene_narrative_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_cutscene_narrative_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	_cutscene_narrative_panel.add_child(_cutscene_narrative_label)
+
+	_cutscene_overlay.add_child(_cutscene_narrative_panel)
+
 	_build_text_screen_display()
-	
+
 	add_child(_cutscene_overlay)
 
 func _build_text_screen_display() -> void:
@@ -622,6 +654,22 @@ func _show_cutscene(node_data: Dictionary) -> void:
 		get_node("DialoguePanel/BustRect").hide()
 		$DialoguePanel.self_modulate.a = 0 # Hide panel background
 		$Dimmer.hide() # Hide dimmer for cutscenes as they have their own BG
+
+		# Show narrative text on the right side for ending cutscenes
+		if _is_ending_cutscene and _cutscene_narrative_panel and _cutscene_narrative_label:
+			var em = get_node_or_null("/root/EndingManager")
+			var ending_id := ""
+			if em:
+				ending_id = em.pending_ending
+			var lines = _get_ending_text_lines(ending_id)
+			_cutscene_narrative_label.text = "\n\n".join(lines)
+			_cutscene_narrative_panel.show()
+			_cutscene_narrative_panel.modulate.a = 0.0
+			var nt = create_tween()
+			nt.tween_interval(0.4)
+			nt.tween_property(_cutscene_narrative_panel, "modulate:a", 1.0, 0.6)
+		elif _cutscene_narrative_panel:
+			_cutscene_narrative_panel.hide()
 	else:
 		push_error("DialogueUI: Failed to load cutscene image: %s" % img_path)
 		_on_cutscene_clicked()
@@ -644,11 +692,11 @@ func _on_cutscene_clicked() -> void:
 	var next_node = _current_cutscene_node_data.get("next", "exit")
 	
 	if is_ending or next_node == "FINISH_ENDING":
+		if _cutscene_narrative_panel:
+			_cutscene_narrative_panel.hide()
 		var em = get_node_or_null("/root/EndingManager")
 		if em:
-			var ending_id = em.pending_ending
-			var lines = _get_ending_text_lines(ending_id)
-			show_text_screen(lines, func(): em.perform_transition(ending_id, "", ""))
+			em.perform_transition(em.pending_ending, "", "")
 		return
 
 	if next_node == "exit" or next_node == "":
