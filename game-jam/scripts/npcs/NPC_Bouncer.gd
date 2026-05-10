@@ -10,7 +10,8 @@ func _ready():
 func _on_area_entered(area):
 	if area.name.to_lower().contains("playercollision"):
 		var global_state = get_node_or_null("/root/GlobalStateManager")
-		if global_state and global_state.check_flag("djDefeated") and not has_moved:
+		if global_state and not has_moved:
+			# DEBUG: always step aside
 			_step_aside()
 			return
 			

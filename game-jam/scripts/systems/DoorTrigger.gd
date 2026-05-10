@@ -83,7 +83,10 @@ func _set_player_in_range(value: bool):
 func attempt_transition():
 	# Check if locked
 	if is_locked:
-		if requires_flag and game_manager:
+		# DEBUG: bypass lock check
+		if true:
+			pass
+		elif requires_flag and game_manager:
 			if game_manager.has_method("is_npc_completed"):
 				if not game_manager.is_npc_completed(requires_flag):
 					show_locked_message()

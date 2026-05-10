@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://skm34edw351l"]
+[gd_scene load_steps=10 format=3 uid="uid://skm34edw351l"]
+
+[ext_resource type="Script" uid="uid://cx6m34edw351l" path="res://scripts/npcs/NPC_Boss.gd" id="1_script"]
 
 [ext_resource type="Texture2D" uid="uid://cbx7bctv7urqk" path="res://assets/npc/boss/sprite_sheet/character-spritesheet.png" id="1_dlmty"]
 
@@ -49,7 +51,11 @@ animations = [{
 radius = 16.0
 height = 38.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 45.0
+
 [node name="Boss" type="CharacterBody2D" unique_id=1943639529]
+script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2107728311]
 sprite_frames = SubResource("SpriteFrames_2cdgk")
@@ -59,3 +65,9 @@ frame_progress = 0.50952184
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1384852417]
 position = Vector2(-5, 14)
 shape = SubResource("CapsuleShape2D_qsl3t")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=999111]
+position = Vector2(-5, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=999222]
+shape = SubResource("CircleShape2D_interact")
