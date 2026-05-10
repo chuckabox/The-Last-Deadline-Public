@@ -8,7 +8,7 @@ var can_interact = true
 var is_in_range = false
 
 # References
-var dialogue_ui: Panel
+var dialogue_ui: Control
 var animated_sprite: AnimatedSprite2D
 var collision_area: Area2D
 var game_manager: Node

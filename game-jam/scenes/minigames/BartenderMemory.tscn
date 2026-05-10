@@ -4,6 +4,30 @@
 [ext_resource type="PackedScene" uid="uid://oj47nyfbfkpc" path="res://assets/drinks/Rum.tscn" id="2_6yfvo"]
 [ext_resource type="Texture2D" uid="uid://culoiehhw3dxv" path="res://assets/drinks/Tequila.png" id="3_xxj88"]
 [ext_resource type="Texture2D" uid="uid://b6niqoolxsxj0" path="res://assets/drinks/Vodka.png" id="4_3bbui"]
+[ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_vow1y"]
+[ext_resource type="Texture2D" uid="uid://wpw4fc3dcdjb" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn_y"]
+[ext_resource type="Texture2D" uid="uid://h880knqxh06t" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_y_h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_yellow"]
+texture = ExtResource("5_btn_y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_yellow_hover"]
+texture = ExtResource("6_btn_y_h")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
 
 [node name="BartenderMemory" type="Control" unique_id=506268808]
 layout_mode = 3
@@ -126,33 +150,60 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -110.0
-offset_right = 200.0
-offset_bottom = -20.0
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 25
 alignment = 1
 
 [node name="VodkaButton" type="Button" parent="DrinkButtons" unique_id=369557324]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_yellow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 disabled = true
 text = "Vodka"
 
 [node name="TequilaButton" type="Button" parent="DrinkButtons" unique_id=489913733]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_yellow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 disabled = true
 text = "Tequila"
 
 [node name="RumButton" type="Button" parent="DrinkButtons" unique_id=1896213513]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_yellow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 disabled = true
 text = "Rum"
 

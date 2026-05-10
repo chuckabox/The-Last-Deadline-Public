@@ -11,7 +11,7 @@ class_name DoorTrigger
 # References
 var game_manager: Node
 var room_transition_manager: Node
-var dialogue_ui: Panel
+var dialogue_ui: Control
 var audio_manager: Node
 
 # Interaction State
