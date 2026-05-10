@@ -24,6 +24,8 @@ var warning_label: Label
 var warning_control: Control
 var screen_effects: ColorRect
 var hud_container: Control
+var interaction_prompt: Control
+var interaction_icon: TextureRect
 
 # References to systems
 var alcohol_system: Node
@@ -57,6 +59,8 @@ func _ready():
 	warning_label = get_node_or_null("HUDContainer/WarningText/WarningLabel")
 	warning_control = get_node_or_null("HUDContainer/WarningText")
 	screen_effects = get_node_or_null("HUDContainer/ScreenEffects")
+	interaction_prompt = get_node_or_null("HUDContainer/InteractionPrompt")
+	interaction_icon = get_node_or_null("HUDContainer/InteractionPrompt/KeyIcon")
 
 	# Get system references
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
@@ -268,3 +272,30 @@ func _current_stage() -> int:
 	if alcohol_system and "current_stage" in alcohol_system:
 		return alcohol_system.current_stage
 	return 0
+
+func show_interaction_prompt(action_name: String = "ui_interact"):
+	if not interaction_prompt or not interaction_icon: return
+	
+	# Configure the icon based on the action
+	var atlas = AtlasTexture.new()
+	atlas.atlas = load("res://assets/ui/Keyboard Letters and Symbols.png")
+	
+	# Default to 'E' key (64, 32, 16, 16)
+	var region = Rect2(64, 32, 16, 16)
+	
+	# Try to detect if the bound key is different
+	var events = InputMap.action_get_events(action_name)
+	if events.size() > 0:
+		var event_text = events[0].as_text().to_upper()
+		if "SPACE" in event_text:
+			region = Rect2(64, 128, 48, 16) # Space bar region (approximate)
+		elif "F" in event_text:
+			region = Rect2(80, 32, 16, 16)
+			
+	atlas.region = region
+	interaction_icon.texture = atlas
+	interaction_prompt.show()
+
+func hide_interaction_prompt():
+	if interaction_prompt:
+		interaction_prompt.hide()

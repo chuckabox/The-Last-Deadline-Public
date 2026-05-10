@@ -590,3 +590,45 @@ text = "11:50 PM"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_group_ = true
+
+[node name="InteractionPrompt" type="HBoxContainer" parent="HUDContainer" unique_id=999111222]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="LabelPre" type="Label" parent="HUDContainer/InteractionPrompt"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+text = "Press"
+vertical_alignment = 1
+
+[node name="KeyIcon" type="TextureRect" parent="HUDContainer/InteractionPrompt"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LabelPost" type="Label" parent="HUDContainer/InteractionPrompt"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+text = "to interact"
+vertical_alignment = 1

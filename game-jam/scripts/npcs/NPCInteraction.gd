@@ -13,8 +13,8 @@ var is_in_range = false
 var can_interact = true
 var is_interacting = false
 var has_completed_quest = false
-var prompt_sprite: Sprite2D
 var speech_bubble: CanvasItem
+var hud: Node
 
 # References
 var dialogue_ui: Panel
@@ -37,6 +37,7 @@ func _ready():
 	animated_sprite = get_node_or_null("AnimatedSprite2D")
 
 	dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
+	hud = get_node_or_null("/root/Main/HUD")
 	game_manager = get_node_or_null("/root/GameManager")
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	audio_manager = get_node_or_null("/root/AudioManager")
@@ -47,7 +48,6 @@ func _ready():
 		if not collision_area.area_exited.is_connected(_on_area_exited):
 			collision_area.area_exited.connect(_on_area_exited)
 
-	_setup_prompt()
 	_setup_speech_bubble()
 
 	if game_manager:
@@ -116,20 +116,7 @@ func _update_speech_bubble_icon():
 	t.tween_property(speech_bubble, "position", base_pos + Vector2(0, -3), 0.8).set_trans(Tween.TRANS_SINE)
 	t.tween_property(speech_bubble, "position", base_pos, 0.8).set_trans(Tween.TRANS_SINE)
 
-func _setup_prompt():
-	if has_node("InteractionPrompt"):
-		return
 
-	prompt_sprite = Sprite2D.new()
-	prompt_sprite.name = "InteractionPrompt"
-	prompt_sprite.texture = load("res://assets/ui/Keyboard Letters and Symbols.png")
-	prompt_sprite.region_enabled = true
-	prompt_sprite.region_rect = Rect2(64, 32, 16, 16)
-	prompt_sprite.position = Vector2(0, -30)
-	prompt_sprite.scale = Vector2(1.5, 1.5)
-	prompt_sprite.hide()
-	prompt_sprite.z_index = 10
-	add_child(prompt_sprite)
 
 func _input(event):
 	if event.is_action_pressed("ui_interact") and is_in_range and can_interact and not is_interacting:
@@ -149,17 +136,12 @@ func _on_area_exited(area):
 		_update_prompt_visibility()
 
 func _update_prompt_visibility():
-	if not prompt_sprite:
-		return
-
 	if is_in_range and not is_interacting and can_interact:
-		if not prompt_sprite.visible:
-			prompt_sprite.show()
-			prompt_sprite.scale = Vector2.ZERO
-			var t = create_tween()
-			t.tween_property(prompt_sprite, "scale", Vector2(1.5, 1.5), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		if hud and hud.has_method("show_interaction_prompt"):
+			hud.show_interaction_prompt("ui_interact")
 	else:
-		prompt_sprite.hide()
+		if hud and hud.has_method("hide_interaction_prompt"):
+			hud.hide_interaction_prompt()
 
 func interact():
 	if has_completed_quest:

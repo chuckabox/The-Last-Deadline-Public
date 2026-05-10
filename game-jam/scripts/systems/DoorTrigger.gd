@@ -16,13 +16,14 @@ var audio_manager: Node
 
 # Interaction State
 var player_in_range: bool = false
-var prompt_sprite: Sprite2D
+var hud: Node
 
 func _ready():
 	# Get references safely
 	game_manager = get_node_or_null("/root/GameManager")
 	room_transition_manager = get_node_or_null("/root/RoomTransitionManager")
 	dialogue_ui = get_node_or_null("/root/Main/HUD/DialogueUI")
+	hud = get_node_or_null("/root/Main/HUD")
 	audio_manager = get_node_or_null("/root/AudioManager")
 	
 	# Connect signals
@@ -37,28 +38,11 @@ func _ready():
 	if not body_exited.is_connected(_on_body_exited):
 		body_exited.connect(_on_body_exited)
 	
-	# Create interaction prompt
-	_setup_prompt()
+
 	
 	print("Door trigger ready - Target: %s, Locked: %s" % [target_room, is_locked])
 
-func _setup_prompt():
-	prompt_sprite = Sprite2D.new()
-	prompt_sprite.name = "InteractionPrompt"
-	prompt_sprite.texture = load("res://assets/ui/Keyboard Letters and Symbols.png")
-	prompt_sprite.region_enabled = true
-	# 'E' key is at 64, 32 in the 16x16 grid
-	prompt_sprite.region_rect = Rect2(64, 32, 16, 16)
-	prompt_sprite.position = Vector2(0, -50)
-	
-	# Compensate for parent scale to keep the prompt uniform
-	var base_scale = 1.5
-	var comp_x = base_scale / abs(scale.x) if scale.x != 0 else base_scale
-	var comp_y = base_scale / abs(scale.y) if scale.y != 0 else base_scale
-	prompt_sprite.scale = Vector2(comp_x, comp_y)
-	prompt_sprite.hide()
-	prompt_sprite.z_index = 10
-	add_child(prompt_sprite)
+
 
 func _input(event):
 	if player_in_range and event.is_action_pressed("ui_interact"):
@@ -89,22 +73,12 @@ func _set_player_in_range(value: bool):
 	player_in_range = value
 	print("DoorTrigger: Player in range = ", value)
 	
-	if prompt_sprite:
-		if player_in_range:
-			prompt_sprite.show()
-			
-			# Use compensated scale for the tween
-			var base_scale = 1.5
-			var target_scale = Vector2(
-				base_scale / abs(scale.x) if scale.x != 0 else base_scale,
-				base_scale / abs(scale.y) if scale.y != 0 else base_scale
-			)
-			
-			prompt_sprite.scale = Vector2.ZERO
-			var t = create_tween()
-			t.tween_property(prompt_sprite, "scale", target_scale, 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		else:
-			prompt_sprite.hide()
+	if value:
+		if hud and hud.has_method("show_interaction_prompt"):
+			hud.show_interaction_prompt("ui_interact")
+	else:
+		if hud and hud.has_method("hide_interaction_prompt"):
+			hud.hide_interaction_prompt()
 
 func attempt_transition():
 	# Check if locked
