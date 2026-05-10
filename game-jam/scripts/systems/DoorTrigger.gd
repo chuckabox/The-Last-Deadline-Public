@@ -115,6 +115,7 @@ func attempt_transition():
 		print("ERROR: RoomTransitionManager not found or change_room method missing!")
 
 func is_room_accessible() -> bool:
+	return true # DEBUG: Temporarily allow all access
 	if not game_manager:
 		return true # Allow transition if game manager isn't ready for testing
 		

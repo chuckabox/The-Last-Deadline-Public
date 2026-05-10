@@ -53,8 +53,8 @@ func _ready():
 			node.hide()
 
 	# Get other references
-	alcohol_stage_label = get_node_or_null("HUDContainer/AlcoholMeterPanel/AlcoholStageLabel")
-	bac_label = get_node_or_null("HUDContainer/AlcoholMeterPanel/BACLabel")
+	alcohol_stage_label = get_node_or_null("HUDContainer/AlcoholStageLabel")
+	bac_label = get_node_or_null("HUDContainer/BACLabel")
 	clock_label = get_node_or_null("HUDContainer/ClockLabel")
 	warning_label = get_node_or_null("HUDContainer/WarningText/WarningLabel")
 	warning_control = get_node_or_null("HUDContainer/WarningText")
@@ -81,7 +81,7 @@ func _ready():
 
 	# Initial state
 	_update_bar_points(_current_stage())
-	_update_bac_text(_current_alcohol_value())
+	_update_bac_text(_current_stage())
 
 	# Explicitly set clock baseline
 	if clock_label:
@@ -141,7 +141,7 @@ func _setup_screen_shader():
 
 func _on_alcohol_changed(value: float, stage: int) -> void:
 	_update_bar_points(stage)
-	_update_bac_text(value)
+	_update_bac_text(stage)
 
 func _update_bar_points(stage: int):
 	# Spec: each alcohol stage is 2 bar points.
@@ -157,11 +157,12 @@ func _update_bar_points(stage: int):
 		else:
 			bar_points[i].hide()
 
-func _update_bac_text(value: float):
-	# Max BAC is 0.40% (blackout territory)
-	var bac = value * 0.40
+func _update_bac_text(stage: int):
+	# Display fixed percentages based on current stage
+	# Stage 0: 0%, Stage 1: 25%, Stage 2: 50%, Stage 3: 75%, Stage 4: 100%
+	var percentage = clamp(stage * 25, 0, 100)
 	if bac_label:
-		bac_label.text = "BAC: %.2f%%" % bac
+		bac_label.text = "BAC: %d%%" % percentage
 
 func _on_stage_changed(new_stage: int) -> void:
 	_stage_token += 1
@@ -220,15 +221,28 @@ func _apply_stage_effects(new_stage: int) -> void:
 	if cur_pulse == null: cur_pulse = 0.0
 	
 	if new_stage == 4:
-		# Start a blinking loop with a long delay
-		# 0.3s close, 0.3s open, 15s wait
+		# Start a blinking loop with a 15s period
+		# 0.5s blink cycle, 14.5s wait
 		_pulse_tween = create_tween().set_loops()
+		
+		# Screen blackout pulse
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.0, 0.95, 0.3).set_trans(Tween.TRANS_SINE)
+			0.0, 0.98, 0.25).set_trans(Tween.TRANS_SINE)
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.95, 0.0, 0.3).set_trans(Tween.TRANS_SINE)
-		_pulse_tween.tween_interval(15.0)
+			0.98, 0.0, 0.25).set_trans(Tween.TRANS_SINE)
+		
+		# HUD Labels pulse (sync with screen)
+		if bac_label and alcohol_stage_label:
+			_pulse_tween.parallel().tween_property(bac_label, "modulate:a", 0.0, 0.25)
+			_pulse_tween.parallel().tween_property(alcohol_stage_label, "modulate:a", 0.0, 0.25)
+			_pulse_tween.chain().tween_property(bac_label, "modulate:a", 1.0, 0.25)
+			_pulse_tween.parallel().tween_property(alcohol_stage_label, "modulate:a", 1.0, 0.25)
+		
+		_pulse_tween.tween_interval(14.5)
 	else:
+		# Reset HUD alpha when not in stage 4
+		if bac_label: bac_label.modulate.a = 1.0
+		if alcohol_stage_label: alcohol_stage_label.modulate.a = 1.0
 		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
 			cur_pulse, 0.0, 1.0)
 

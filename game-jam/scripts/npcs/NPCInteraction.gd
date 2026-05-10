@@ -55,6 +55,10 @@ func _ready():
 			has_completed_quest = game_manager.is_npc_completed(npc_id)
 		elif "npc_completed_status" in game_manager:
 			has_completed_quest = game_manager.npc_completed_status.get(npc_id, false)
+		
+		# Listen for global completion updates (e.g. from mini-games)
+		if not game_manager.npc_completed.is_connected(_on_global_npc_completed):
+			game_manager.npc_completed.connect(_on_global_npc_completed)
 	
 	_update_speech_bubble_icon()
 
@@ -75,15 +79,17 @@ func _setup_speech_bubble():
 		speech_bubble = bubble
 		_update_speech_bubble_icon()
 
+var bob_tween: Tween
+
 func _update_speech_bubble_icon():
 	if not speech_bubble or not (speech_bubble is AnimatedSprite2D):
 		return
 	
 	var frames = SpriteFrames.new()
-	# SpriteFrames.new() comes with a "default" animation by default, 
-	# so we don't need to add it manually.
 	
 	if has_completed_quest:
+		# Second icon (Happy) from tiny_speech_indicators-11x11.png
+		# Index 1 = x position 11 (11x11 icons)
 		var tex = load("res://assets/npc/tiny-speech-indicators/tiny_speech_indicators-11x11.png")
 		var atlas = AtlasTexture.new()
 		atlas.atlas = tex
@@ -92,6 +98,7 @@ func _update_speech_bubble_icon():
 		speech_bubble.sprite_frames = frames
 		speech_bubble.scale = Vector2(2, 2)
 	else:
+		# Animated exclamation mark
 		var tex = load("res://assets/npc/tiny-speech-indicators/exclamation-7x8.png")
 		var frame_width = 7
 		var frame_height = 8
@@ -106,15 +113,18 @@ func _update_speech_bubble_icon():
 		
 		speech_bubble.sprite_frames = frames
 		speech_bubble.scale = Vector2(2, 2)
-		speech_bubble.sprite_frames.set_animation_speed("default", 8.0) # Set a reasonable animation speed
+		speech_bubble.sprite_frames.set_animation_speed("default", 8.0)
 	
 	speech_bubble.play("default")
 	
 	# Add a procedural bobbing animation to make it feel "alive"
+	if bob_tween:
+		bob_tween.kill()
+		
 	var base_pos = Vector2(0, -35)
-	var t = create_tween().set_loops()
-	t.tween_property(speech_bubble, "position", base_pos + Vector2(0, -3), 0.8).set_trans(Tween.TRANS_SINE)
-	t.tween_property(speech_bubble, "position", base_pos, 0.8).set_trans(Tween.TRANS_SINE)
+	bob_tween = create_tween().set_loops()
+	bob_tween.tween_property(speech_bubble, "position", base_pos + Vector2(0, -3), 0.8).set_trans(Tween.TRANS_SINE)
+	bob_tween.tween_property(speech_bubble, "position", base_pos, 0.8).set_trans(Tween.TRANS_SINE)
 
 
 
@@ -223,3 +233,9 @@ func face_direction(direction: Vector2):
 			animated_sprite.flip_h = false
 		elif direction.x < 0:
 			animated_sprite.flip_h = true
+
+func _on_global_npc_completed(completed_npc_id: String):
+	if completed_npc_id == npc_id:
+		has_completed_quest = true
+		_update_speech_bubble_icon()
+		print("NPC '%s' updated speech bubble to happy icon after global completion" % npc_id)

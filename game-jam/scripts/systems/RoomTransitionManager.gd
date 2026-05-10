@@ -3,6 +3,7 @@ extends Node
 
 # Room Management
 var current_room = "bar"
+var previous_room = ""
 var current_room_scene: Node = null
 
 var room_paths = {
@@ -10,6 +11,20 @@ var room_paths = {
 	"bar": "res://scenes/rooms/room_1_bar.tscn",
 	"disco": "res://scenes/dancefloor.tscn",
 	"vip": "res://scenes/rooms/room_3_vip.tscn"
+}
+
+# Spawn points for player when entering a room from a specific previous room
+var spawn_points = {
+	"disco": {
+		"bar": Vector2(100, 150),
+		"vip": Vector2(1030, 140)
+	},
+	"bar": {
+		"disco": Vector2(274, 160)
+	},
+	"vip": {
+		"disco": Vector2(90, 150)
+	}
 }
 
 # Transition state
@@ -50,6 +65,9 @@ func change_room(room_name: String) -> bool:
 	is_transitioning = true
 	emit_signal("transition_started")
 	
+	# Store previous room
+	previous_room = current_room
+	
 	# Fade to black
 	await fade_to_black(0.5)
 	
@@ -80,6 +98,16 @@ func change_room(room_name: String) -> bool:
 		var main_node = get_node_or_null("/root/Main")
 		if main_node:
 			main_node.add_child(current_room_scene)
+	
+	# Handle player spawn positioning
+	var player = current_room_scene.get_node_or_null("Player")
+	if not player:
+		player = current_room_scene.find_child("Player")
+		
+	if player and previous_room != "" and spawn_points.has(room_name):
+		if spawn_points[room_name].has(previous_room):
+			player.global_position = spawn_points[room_name][previous_room]
+			print("Set player spawn position to: ", player.global_position, " (coming from ", previous_room, ")")
 	
 	# Update current room state
 	current_room = room_name
@@ -197,6 +225,9 @@ func change_room_iris(room_name: String) -> bool:
 	is_transitioning = true
 	emit_signal("transition_started")
 	
+	# Store previous room
+	previous_room = current_room
+	
 	await iris_to_black(0.8)
 	
 	if current_scene_node:
@@ -211,6 +242,16 @@ func change_room_iris(room_name: String) -> bool:
 	else:
 		var main_node = get_node_or_null("/root/Main")
 		if main_node: main_node.add_child(current_room_scene)
+	
+	# Handle player spawn positioning
+	var player = current_room_scene.get_node_or_null("Player")
+	if not player:
+		player = current_room_scene.find_child("Player")
+		
+	if player and previous_room != "" and spawn_points.has(room_name):
+		if spawn_points[room_name].has(previous_room):
+			player.global_position = spawn_points[room_name][previous_room]
+			print("Set player spawn position (iris) to: ", player.global_position, " (coming from ", previous_room, ")")
 	
 	current_room = room_name
 	if game_manager and "current_room" in game_manager:

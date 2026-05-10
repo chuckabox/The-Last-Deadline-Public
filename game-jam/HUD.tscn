@@ -568,6 +568,18 @@ scale = Vector2(3, 3)
 tile_map_data = PackedByteArray(0, 0, 1, 0, 7, 0, 1, 0, 34, 0, 6, 0, 0, 0, 1, 0, 8, 0, 1, 0, 34, 0, 7, 0, 0, 0, 2, 0, 8, 0, 1, 0, 35, 0, 7, 0, 0, 0, 2, 0, 7, 0, 1, 0, 35, 0, 6, 0, 0, 0)
 tile_set = SubResource("TileSet_ne771")
 
+[node name="BACLabel" type="Label" parent="HUDContainer" unique_id=123456789]
+texture_filter = 1
+layout_mode = 1
+offset_left = 39.0
+offset_top = 350.0
+offset_right = 128.0
+offset_bottom = 381.0
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
+text = "BAC: 0%"
+vertical_alignment = 1
+
 [node name="ClockFrame" type="TileMapLayer" parent="HUDContainer" unique_id=716494234]
 position = Vector2(-904, 0)
 scale = Vector2(4, 4)
@@ -576,7 +588,7 @@ tile_set = SubResource("TileSet_ne771")
 
 [node name="ClockLabel" type="Label" parent="HUDContainer" unique_id=221180680]
 texture_filter = 1
-anchors_preset = 5
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -515.0
@@ -608,7 +620,7 @@ grow_vertical = 0
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="LabelPre" type="Label" parent="HUDContainer/InteractionPrompt"]
+[node name="LabelPre" type="Label" parent="HUDContainer/InteractionPrompt" unique_id=1081542654]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -617,14 +629,14 @@ theme_override_font_sizes/font_size = 32
 text = "Press"
 vertical_alignment = 1
 
-[node name="KeyIcon" type="TextureRect" parent="HUDContainer/InteractionPrompt"]
+[node name="KeyIcon" type="TextureRect" parent="HUDContainer/InteractionPrompt" unique_id=2007820297]
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LabelPost" type="Label" parent="HUDContainer/InteractionPrompt"]
+[node name="LabelPost" type="Label" parent="HUDContainer/InteractionPrompt" unique_id=1497233052]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
