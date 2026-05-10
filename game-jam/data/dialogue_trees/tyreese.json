@@ -1,11 +1,11 @@
 {
   "id": "tyreese",
-  "name": "Tyreese",
+  "name": "Tyreece",
   "dialogue": {
     "start": "talk",
     "nodes": {
       "talk": {
-        "text": "Hello, my name is Tyreese.",
+        "text": "Can't wait for GameJam!",
         "options": [
           { "text": "...", "next": "exit" }
         ]

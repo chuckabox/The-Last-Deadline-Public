@@ -5,7 +5,7 @@
     "start": "talk",
     "nodes": {
       "talk": {
-        "text": "Hello, my name is Claire.",
+        "text": "Am I in a game right now?",
         "options": [
           { "text": "...", "next": "exit" }
         ]
