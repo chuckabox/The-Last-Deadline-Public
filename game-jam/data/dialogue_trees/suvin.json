@@ -1,0 +1,16 @@
+{
+  "id": "suvin",
+  "name": "Suvin",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "text": "Hello, my name is Suvin.",
+        "options": [
+          { "text": "...", "next": "exit" }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}

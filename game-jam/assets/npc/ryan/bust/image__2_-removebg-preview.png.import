@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck57us1rgc7t4"
-path="res://.godot/imported/Screenshot_2026-5-9_153737471.png-14aac2450a3a59f196dd80ed993efd6a.ctex"
+uid="uid://2feacprlhfou"
+path="res://.godot/imported/image__2_-removebg-preview.png-c4aaa09389c7fe5963dde41b18a04520.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/npc/ryan/bust/Screenshot_2026-5-9_153737471.png"
-dest_files=["res://.godot/imported/Screenshot_2026-5-9_153737471.png-14aac2450a3a59f196dd80ed993efd6a.ctex"]
+source_file="res://assets/npc/ryan/bust/image__2_-removebg-preview.png"
+dest_files=["res://.godot/imported/image__2_-removebg-preview.png-c4aaa09389c7fe5963dde41b18a04520.ctex"]
 
 [params]
 

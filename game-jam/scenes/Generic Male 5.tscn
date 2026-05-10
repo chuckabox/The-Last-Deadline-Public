@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://ch5ux6gqpg1x6"]
+
+[ext_resource type="Texture2D" uid="uid://b3d0yq5eri1l2" path="res://assets/npc/genericNPCs/genericMaleFive.png" id="1_a0rvp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oio1k"]
+atlas = ExtResource("1_a0rvp")
+region = Rect2(0, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb0ji"]
+atlas = ExtResource("1_a0rvp")
+region = Rect2(64, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpd61"]
+atlas = ExtResource("1_a0rvp")
+region = Rect2(128, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ckmw"]
+atlas = ExtResource("1_a0rvp")
+region = Rect2(192, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otnhm"]
+atlas = ExtResource("1_a0rvp")
+region = Rect2(256, 768, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snfqj"]
+atlas = ExtResource("1_a0rvp")
+region = Rect2(320, 768, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cdrr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oio1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb0ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpd61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ckmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otnhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snfqj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3qm1"]
+radius = 12.0
+height = 50.0
+
+[node name="Generic Male 5" type="CharacterBody2D" unique_id=1321952699]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13341369]
+sprite_frames = SubResource("SpriteFrames_1cdrr")
+autoplay = "default"
+frame_progress = 0.6256059
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=711111657]
+position = Vector2(1, 8)
+shape = SubResource("CapsuleShape2D_i3qm1")

@@ -1,0 +1,16 @@
+{
+  "id": "claire",
+  "name": "Claire",
+  "dialogue": {
+    "start": "talk",
+    "nodes": {
+      "talk": {
+        "text": "Hello, my name is Claire.",
+        "options": [
+          { "text": "...", "next": "exit" }
+        ]
+      },
+      "exit": { "text": null, "options": [] }
+    }
+  }
+}

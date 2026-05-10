@@ -6,8 +6,8 @@ var drinks = ["Vodka", "Tequila", "Rum"]
 # Stage config: [sequence_length, display_time]
 const STAGE_CONFIG = [
 	{"length": 4, "display_time": 3.0},
-	{"length": 6, "display_time": 2.5},
-	{"length": 8, "display_time": 2.0},
+	{"length": 6, "display_time": 3.0},
+	{"length": 8, "display_time": 4.0},
 ]
 
 # Game State
