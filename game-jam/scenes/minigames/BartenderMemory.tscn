@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_vow1y"]
 [ext_resource type="Texture2D" uid="uid://wpw4fc3dcdjb" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn_y"]
 [ext_resource type="Texture2D" uid="uid://h880knqxh06t" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_y_h"]
+[ext_resource type="Texture2D" uid="uid://c3d2r2xprg428" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame02a.png" id="7_receipt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_yellow"]
 texture = ExtResource("5_btn_y")
@@ -25,6 +26,14 @@ texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 expand_margin_left = 8.0
 expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_receipt"]
+texture = ExtResource("7_receipt")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 96, 96)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
@@ -112,6 +121,7 @@ offset_right = 120.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_receipt")
 
 [node name="TicketLabel" type="Label" parent="TicketPanel" unique_id=181795774]
 layout_mode = 1
@@ -120,7 +130,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_fonts/font = ExtResource("2_vow1y")
+theme_override_font_sizes/font_size = 32
 text = "Vodka
 Tequila
 Rum"
@@ -130,17 +142,17 @@ vertical_alignment = 1
 [node name="DrinkSprites" type="Node2D" parent="." unique_id=497282724]
 
 [node name="Tequila" type="Sprite2D" parent="DrinkSprites" unique_id=1335603354]
-position = Vector2(575, 498)
+position = Vector2(576, 470)
 scale = Vector2(0.16613938, 0.1661394)
 texture = ExtResource("3_xxj88")
 
 [node name="Vodka" type="Sprite2D" parent="DrinkSprites" unique_id=199900350]
-position = Vector2(438, 510)
+position = Vector2(368, 470)
 scale = Vector2(0.15116276, 0.15116274)
 texture = ExtResource("4_3bbui")
 
 [node name="Rum" parent="DrinkSprites" unique_id=69686100 instance=ExtResource("2_6yfvo")]
-position = Vector2(713, 496)
+position = Vector2(784, 470)
 scale = Vector2(0.18063588, 0.16434263)
 
 [node name="DrinkButtons" type="HBoxContainer" parent="." unique_id=1192844859]
