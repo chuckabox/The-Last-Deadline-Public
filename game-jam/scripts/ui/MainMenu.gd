@@ -167,7 +167,7 @@ func _on_back_pressed():
 	if sfx_manager:
 		sfx_manager.play_sfx("menu_cancel")
 	gallery_panel.hide()
-	endings_button.grab_focus()
+	start_button.grab_focus()
 
 func _populate_gallery():
 	# Clear previous entries
@@ -301,6 +301,7 @@ func _on_credits_back_pressed():
 		var tween = create_tween()
 		tween.tween_property(credits_panel, "modulate:a", 0.0, 0.2)
 		tween.tween_callback(credits_panel.hide)
+		tween.tween_callback(start_button.grab_focus)
 
 func _on_credits_link_clicked(meta):
 	OS.shell_open(str(meta))
@@ -321,3 +322,4 @@ func _on_developers_back_pressed():
 		var tween = create_tween()
 		tween.tween_property(dev_panel, "modulate:a", 0.0, 0.2)
 		tween.tween_callback(dev_panel.hide)
+		tween.tween_callback(start_button.grab_focus)
