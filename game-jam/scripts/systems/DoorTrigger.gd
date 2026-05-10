@@ -150,14 +150,19 @@ func show_locked_message():
 	if audio_manager:
 		audio_manager.play_sfx("error")
 	
-	# TODO: Display lock message on screen near player/door
+	if hud and hud.has_method("show_warning"):
+		hud.show_warning(lock_message)
 
 func show_access_denied():
 	print("Access denied to room: %s" % target_room)
 	if audio_manager:
 		audio_manager.play_sfx("error")
 	
-	# TODO: Display access denied message on screen
+	if hud and hud.has_method("show_warning"):
+		if target_room == "vip":
+			hud.show_warning("You don't have a VIP pass")
+		else:
+			hud.show_warning("Access Denied")
 
 func unlock():
 	is_locked = false

@@ -299,3 +299,15 @@ func show_interaction_prompt(action_name: String = "ui_interact"):
 func hide_interaction_prompt():
 	if interaction_prompt:
 		interaction_prompt.hide()
+
+func show_warning(text: String, duration: float = 2.0):
+	if not warning_control or not warning_label: return
+	
+	warning_label.text = text
+	warning_control.show()
+	
+	# Use a tween to handle the timeout and fade if desired, 
+	# or just a simple timer.
+	var t = create_tween()
+	t.tween_interval(duration)
+	t.tween_callback(warning_control.hide)
