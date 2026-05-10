@@ -202,31 +202,32 @@ func _apply_stage_effects(new_stage: int) -> void:
 	var mat = screen_effects.material as ShaderMaterial
 	
 	# Vignette (Stage 2+)
-	var vig = 0.6 if new_stage >= 2 else 0.0
+	var vig = 0.35 if new_stage >= 2 else 0.0
 	var cur_vig = mat.get_shader_parameter("vignette_intensity")
 	if cur_vig == null: cur_vig = 0.0
 	_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("vignette_intensity", v), 
 		cur_vig, vig, 1.0)
 		
 	# Blur (Stage 3+)
-	var blur = 2.0 if new_stage >= 3 else 0.0
+	var blur = 1.5 if new_stage >= 3 else 0.0
 	var cur_blur = mat.get_shader_parameter("blur_amount")
 	if cur_blur == null: cur_blur = 0.0
 	_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("blur_amount", v), 
 		cur_blur, blur, 1.0)
 		
-	# Blackout Pulse (Stage 4)
+	# Blackout Blink (Stage 4)
 	var cur_pulse = mat.get_shader_parameter("pulse_intensity")
 	if cur_pulse == null: cur_pulse = 0.0
 	
 	if new_stage == 4:
-		# Start a pulsing loop on a separate tween so it doesn't loop the vignette/blur
-		# SLOWER PULSE: 0.8s build, 2.2s decay
+		# Start a blinking loop with a long delay
+		# 0.3s close, 0.3s open, 15s wait
 		_pulse_tween = create_tween().set_loops()
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			cur_pulse, 0.45, 0.8)
+			0.0, 0.95, 0.3).set_trans(Tween.TRANS_SINE)
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.45, 0.05, 2.2)
+			0.95, 0.0, 0.3).set_trans(Tween.TRANS_SINE)
+		_pulse_tween.tween_interval(15.0)
 	else:
 		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
 			cur_pulse, 0.0, 1.0)
