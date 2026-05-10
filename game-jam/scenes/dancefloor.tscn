@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://cbu4a1vh76l0h" path="res://assets/Generic Male2.tscn" id="21_uf5x5"]
 [ext_resource type="PackedScene" uid="uid://ch5ux6gqpg1x6" path="res://scenes/Generic Male 5.tscn" id="22_7n8xg"]
 [ext_resource type="Script" uid="uid://clafq4mqndrsw" path="res://scripts/systems/DoorTrigger.gd" id="22_door"]
+[ext_resource type="PackedScene" uid="uid://cgkihi3iptcn0" path="res://scenes/generic_female_3.tscn" id="23_hjygm"]
+[ext_resource type="PackedScene" uid="uid://cno3q4kswbg7n" path="res://scenes/generic_female_4.tscn" id="24_pncds"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k421b"]
 texture = ExtResource("1_va8kr")
@@ -11394,12 +11396,12 @@ texture = ExtResource("16_uf5x5")
 
 [node name="Tyreese" parent="." unique_id=758508710 instance=ExtResource("20_gcwxk")]
 z_index = 2
-position = Vector2(573, 387.8365)
+position = Vector2(635.00006, 313.0608)
 scale = Vector2(1.3, 1.3)
 
 [node name="Zain" parent="." unique_id=203970238 instance=ExtResource("18_1rojm")]
 z_index = 3
-position = Vector2(311.00003, 449.651)
+position = Vector2(231.00002, 469.5912)
 scale = Vector2(1.3, 1.3)
 
 [node name="DJ" parent="." unique_id=1338150573 instance=ExtResource("19_v1lo0")]
@@ -11409,7 +11411,7 @@ scale = Vector2(1.3, 1.3)
 
 [node name="CharacterBody2D" parent="." unique_id=1031433549 instance=ExtResource("21_uf5x5")]
 z_index = 1
-position = Vector2(413, 319.04288)
+position = Vector2(449.00003, 337.98602)
 scale = Vector2(1.3, 1.3)
 
 [node name="BarDoor" type="Area2D" parent="." unique_id=999000333]
@@ -11433,5 +11435,15 @@ shape = SubResource("RectangleShape2D_door")
 
 [node name="Generic Male 5" parent="." unique_id=1321952699 instance=ExtResource("22_7n8xg")]
 z_index = 4
-position = Vector2(600, 534.3968)
+position = Vector2(626.00006, 545.3639)
 scale = Vector2(1.3, 1.3)
+
+[node name="Generic Female 3" parent="." unique_id=1955793045 instance=ExtResource("23_hjygm")]
+z_index = 5
+position = Vector2(442, 577.26825)
+scale = Vector2(1.2, 1.2)
+
+[node name="Generic Female 4" parent="." unique_id=733859778 instance=ExtResource("24_pncds")]
+z_index = 2
+position = Vector2(262, 264.2074)
+scale = Vector2(1.2, 1.2)
