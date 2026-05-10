@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://rssk8rmqvy6j" path="res://scripts/minigames/DanceRhythm.gd" id="1_dr"]
 [ext_resource type="Texture2D" uid="uid://cj4c6v7sq3gum" path="res://assets/npc/main character/sprite_sheet/character-spritesheet (9).png" id="2_sprite"]
-[ext_resource type="Texture2D" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_main_char"]
-[ext_resource type="Texture2D" path="res://assets/npc/dj/bust/Screenshot_2026-5-8_234558802.png" id="9_npc"]
+[ext_resource type="Texture2D" uid="uid://b2knwa0sbj5mb" path="res://assets/npc/main character/bust/Screenshot_2026-5-9_21922729.png" id="8_main_char"]
+[ext_resource type="Texture2D" uid="uid://dk6w8ym4mh2nc" path="res://assets/npc/dj/bust/Screenshot_2026-5-8_234558802.png" id="9_npc"]
+[ext_resource type="Texture2D" uid="uid://c3uausiww8dan" path="res://assets/ui/Keyboard Letters and Symbols.png" id="10_keys"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_64fau"]
 atlas = ExtResource("2_sprite")
@@ -47,6 +48,22 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_key_up"]
+atlas = ExtResource("10_keys")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_key_down"]
+atlas = ExtResource("10_keys")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_key_left"]
+atlas = ExtResource("10_keys")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_key_right"]
+atlas = ExtResource("10_keys")
+region = Rect2(48, 0, 16, 16)
 
 [node name="DanceRhythm" type="Control" unique_id=2038406101]
 layout_mode = 3
@@ -100,53 +117,37 @@ color = Color(1, 1, 1, 0.05)
 [node name="PoseIndicators" type="Node2D" parent="." unique_id=934275432]
 position = Vector2(576, 324)
 
-[node name="UpIndicator" type="Label" parent="PoseIndicators" unique_id=450942580]
-offset_left = -16.0
-offset_top = -110.0
-offset_right = -16.0
-offset_bottom = -110.0
-theme_override_font_sizes/font_size = 32
-text = "↑"
-horizontal_alignment = 1
+[node name="UpIndicator" type="Sprite2D" parent="PoseIndicators" unique_id=450942580]
+position = Vector2(2, -110)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_key_up")
 
-[node name="DownIndicator" type="Label" parent="PoseIndicators" unique_id=412824102]
-offset_left = -16.0
-offset_top = 90.0
-offset_right = -16.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 32
-text = "↓"
-horizontal_alignment = 1
+[node name="DownIndicator" type="Sprite2D" parent="PoseIndicators" unique_id=412824102]
+position = Vector2(2, 90)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_key_down")
 
-[node name="LeftIndicator" type="Label" parent="PoseIndicators" unique_id=26758849]
-offset_left = -130.0
-offset_top = -16.0
-offset_right = -98.0
-offset_bottom = 29.0
-theme_override_font_sizes/font_size = 32
-text = "←"
-horizontal_alignment = 1
+[node name="LeftIndicator" type="Sprite2D" parent="PoseIndicators" unique_id=26758849]
+position = Vector2(-114, 0)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_key_left")
 
-[node name="RightIndicator" type="Label" parent="PoseIndicators" unique_id=1737490626]
-offset_left = 90.0
-offset_top = -16.0
-offset_right = 90.0
-offset_bottom = -16.0
-theme_override_font_sizes/font_size = 32
-text = "→"
-horizontal_alignment = 1
+[node name="RightIndicator" type="Sprite2D" parent="PoseIndicators" unique_id=1737490626]
+position = Vector2(114, 0)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_key_right")
 
-[node name="Main_character_bust" type="Sprite2D" parent="."]
+[node name="Main_character_bust" type="Sprite2D" parent="." unique_id=10061452]
 position = Vector2(133.46706, 512.67676)
 scale = Vector2(-0.9333455, 0.922566)
 texture = ExtResource("8_main_char")
 
-[node name="NPC_character_bust" type="Sprite2D" parent="."]
+[node name="NPC_character_bust" type="Sprite2D" parent="." unique_id=340780953]
 position = Vector2(1001.84515, 511.24997)
 scale = Vector2(0.9691483, 0.9600693)
 texture = ExtResource("9_npc")
 
-[node name="YOU" type="Label" parent="."]
+[node name="YOU" type="Label" parent="." unique_id=1915485331]
 layout_mode = 0
 offset_left = 248.0
 offset_top = 566.0
@@ -157,7 +158,7 @@ theme_override_colors/font_outline_color = Color(0.9882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "YOU"
 
-[node name="NPC_NAME" type="Label" parent="."]
+[node name="NPC_NAME" type="Label" parent="." unique_id=1501303935]
 layout_mode = 0
 offset_left = 796.0
 offset_top = 581.0

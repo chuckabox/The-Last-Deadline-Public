@@ -26,6 +26,21 @@ var last_spawn_time = 0.0
 
 # Rail distances from player centre
 const RAIL_DISTANCE = 600.0
+
+# Distance from rail origin at which each arrow key indicator sits.
+# Matches the indicator positions in the scene:
+#   UpIndicator:    position (0, -110) → 110 units along up rail
+#   DownIndicator:  position (0,   90) →  90 units along down rail
+#   LeftIndicator:  position (-114, 0) → 114 units along left rail
+#   RightIndicator: position (114,  0) → 114 units along right rail
+const INDICATOR_DISTANCE = {
+	0: 110.0,  # Up
+	1: 90.0,   # Down
+	2: 114.0,  # Left
+	3: 114.0   # Right
+}
+
+# How close (in px) to the indicator centre counts as a hit
 const HIT_DISTANCE = 55.0
 
 # Directions: 0=Up, 1=Down, 2=Left, 3=Right
@@ -49,6 +64,14 @@ const DIRECTION_FRAMES = {
 	3: 2
 }
 
+# Maps direction to indicator node name
+const DIRECTION_INDICATORS = {
+	0: "UpIndicator",
+	1: "DownIndicator",
+	2: "LeftIndicator",
+	3: "RightIndicator"
+}
+
 var active_silhouettes = []
 
 # References
@@ -60,6 +83,7 @@ var instruction_label: Label
 var hit_zone_visual: ColorRect
 var pulse_overlay: ColorRect
 var background: ColorRect
+var pose_indicators: Node2D
 var alcohol_system: Node
 var game_manager: Node
 var sfx_manager: Node
@@ -77,6 +101,7 @@ func _ready():
 	instruction_label = get_node_or_null("UI/InstructionLabel")
 	pulse_overlay = get_node_or_null("UI/PulseOverlay")
 	background = get_node_or_null("Background")
+	pose_indicators = get_node_or_null("PoseIndicators")
 
 	alcohol_system = get_node_or_null("/root/AlcoholSystem")
 	game_manager = get_node_or_null("/root/GameManager")
@@ -120,7 +145,7 @@ func _physics_process(delta):
 			target_color = Color(0.3, 0.1, 0.0, 0.6) # Orange/Red
 		elif crowd_energy > 0.25:
 			target_color = Color(0.0, 0.1, 0.2, 0.6) # Deep Blue
-			
+
 		background.color = background.color.lerp(target_color, delta * 2.0)
 
 	# Spawn silhouettes
@@ -130,7 +155,7 @@ func _physics_process(delta):
 		last_spawn_time = 0.0
 
 	# Move silhouettes inward
-	var fall_speed = 120.0 + (difficulty_stage * 20.0) # Slower fall speed
+	var fall_speed = 120.0 + (difficulty_stage * 20.0)
 	var to_remove = []
 
 	for s in active_silhouettes:
@@ -138,7 +163,7 @@ func _physics_process(delta):
 		var dir_vec = DIRECTION_VECTORS[s["direction"]]
 		s["node"].position = dir_vec * s["distance"]
 
-		# Fade in as it approaches the player
+		# Fade in as it approaches the indicator
 		var distance_ratio = clampf(s["distance"] / RAIL_DISTANCE, 0.0, 1.0)
 		s["node"].modulate.a = lerpf(s["max_alpha"], 0.0, distance_ratio)
 
@@ -146,7 +171,7 @@ func _physics_process(delta):
 		if difficulty_stage >= 2:
 			s["node"].rotation += 0.5 * delta
 
-		# Missed — passed through player
+		# Missed — passed all the way through and out the other side
 		if s["distance"] <= 0:
 			to_remove.append(s)
 			miss_silhouette()
@@ -161,32 +186,47 @@ func _input(event):
 
 	for direction in DIRECTION_ACTIONS.keys():
 		if event.is_action_pressed(DIRECTION_ACTIONS[direction]):
+			flicker_indicator(direction)
 			check_hit(direction)
 			break
+
+# Flicker the arrow key sprite for the given direction
+func flicker_indicator(direction: int):
+	if not pose_indicators:
+		return
+	var indicator = pose_indicators.get_node_or_null(DIRECTION_INDICATORS[direction])
+	if not indicator:
+		return
+
+	var tween = create_tween()
+	tween.tween_property(indicator, "modulate", Color(1, 1, 0, 1), 0.0)   # snap to bright yellow
+	tween.tween_property(indicator, "modulate", Color(1, 1, 1, 1), 0.12)  # fade back to normal
 
 func check_hit(direction: int):
 	var closest = null
 	var closest_dist = HIT_DISTANCE + 20.0
 
+	# Hit window is centred on the indicator, not the player
+	var target_distance = INDICATOR_DISTANCE[direction]
+
 	for s in active_silhouettes:
 		if s["direction"] == direction:
-			var dist_from_player = abs(s["distance"])
-			if dist_from_player < closest_dist:
-				closest_dist = dist_from_player
+			var dist_from_indicator = abs(s["distance"] - target_distance)
+			if dist_from_indicator < closest_dist:
+				closest_dist = dist_from_indicator
 				closest = s
 
 	if closest and closest_dist <= HIT_DISTANCE:
-
 		combo += 1
 		var old_energy = crowd_energy
-		crowd_energy = min(1.0, crowd_energy + 0.03 + (combo * 0.001)) # Harder energy gain
+		crowd_energy = min(1.0, crowd_energy + 0.03 + (combo * 0.001))
 
 		if player_sprite:
 			player_sprite.frame = DIRECTION_FRAMES[direction]
 
 		if sfx_manager:
 			sfx_manager.play_sfx("pose_match")
-			
+
 		trigger_success_pulse()
 		check_milestone(old_energy, crowd_energy)
 
@@ -252,38 +292,38 @@ func spawn_silhouette():
 
 func trigger_success_pulse():
 	if pulse_overlay:
-		pulse_overlay.color = Color(1, 1, 1, 1) # White pulse
+		pulse_overlay.color = Color(1, 1, 1, 1)
 		pulse_overlay.modulate.a = 0.3
 
 func check_milestone(old_val: float, new_val: float):
-	var thresholds = [0.2, 0.3, 0.4,0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+	var thresholds = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 	for t in thresholds:
 		if old_val < t and new_val >= t:
 			spawn_milestone_ring()
-	var thresholds2 = [0.3,0.5,0.7]
+	var thresholds2 = [0.3, 0.5, 0.7]
 	for t in thresholds2:
 		if old_val < t and new_val >= t:
 			up_difficulty()
 
 func up_difficulty():
-	difficulty_stage+=1
-	
+	difficulty_stage += 1
+
 func spawn_milestone_ring():
 	var ring = MilestoneRing.new()
 	ring.position = Vector2(576, 324)
 	add_child(ring)
-	
+
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(ring, "radius", 800.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(ring, "thickness", 0.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(ring, "ring_color:a", 0.0, 0.6)
-	
+
 	tween.chain().tween_callback(ring.queue_free)
 
 func trigger_beat_pulse():
 	if difficulty_stage >= 4 and pulse_overlay:
-		pulse_overlay.color = Color(0, 0, 0, 1) # Black pulse for beat
+		pulse_overlay.color = Color(0, 0, 0, 1)
 		pulse_overlay.modulate.a = 0.9
 
 	if hit_zone_visual:
@@ -323,12 +363,10 @@ func lose_minigame():
 	if alcohol_system and is_instance_valid(alcohol_system) and alcohol_system.has_method("drink_alcohol"):
 		alcohol_system.drink_alcohol(0.2)
 	print("Dance Rhythm LOST!")
-	
-	# After drink_alcohol, the EndingManager may trigger a scene change (e.g. blackout).
-	# Bail out if this node is no longer in the tree to avoid crash.
+
 	if not is_inside_tree():
 		return
-	
+
 	emit_signal("minigame_lost")
 	if game_manager:
 		game_manager.minigame_lost.emit()
