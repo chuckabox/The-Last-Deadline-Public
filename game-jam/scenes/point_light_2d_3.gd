@@ -2,9 +2,9 @@ extends PointLight2D
 
 # Controls for the Inspector
 @export_group("Movement Settings")
-@export var radius: float = 200.0      # How far it wanders
-@export var move_speed: float = 3.0    # Speed of wandering
-@export var rotate_speed: float = 0.2  # Speed of rotation
+@export var radius: float = 225.0      # How far it wanders
+@export var move_speed: float = 2.8    # Speed of wandering
+@export var rotate_speed: float = 0.4  # Speed of rotation
 
 @export_group("Visual Settings")
 @export var flicker: bool = true       # Should it pulse in brightness?
