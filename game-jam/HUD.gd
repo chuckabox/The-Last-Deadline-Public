@@ -221,15 +221,28 @@ func _apply_stage_effects(new_stage: int) -> void:
 	if cur_pulse == null: cur_pulse = 0.0
 	
 	if new_stage == 4:
-		# Start a blinking loop with a long delay
-		# 0.3s close, 0.3s open, 15s wait
+		# Start a blinking loop with a 15s period
+		# 0.5s blink cycle, 14.5s wait
 		_pulse_tween = create_tween().set_loops()
+		
+		# Screen blackout pulse
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.0, 0.95, 0.3).set_trans(Tween.TRANS_SINE)
+			0.0, 0.98, 0.25).set_trans(Tween.TRANS_SINE)
 		_pulse_tween.tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
-			0.95, 0.0, 0.3).set_trans(Tween.TRANS_SINE)
-		_pulse_tween.tween_interval(15.0)
+			0.98, 0.0, 0.25).set_trans(Tween.TRANS_SINE)
+		
+		# HUD Labels pulse (sync with screen)
+		if bac_label and alcohol_stage_label:
+			_pulse_tween.parallel().tween_property(bac_label, "modulate:a", 0.0, 0.25)
+			_pulse_tween.parallel().tween_property(alcohol_stage_label, "modulate:a", 0.0, 0.25)
+			_pulse_tween.chain().tween_property(bac_label, "modulate:a", 1.0, 0.25)
+			_pulse_tween.parallel().tween_property(alcohol_stage_label, "modulate:a", 1.0, 0.25)
+		
+		_pulse_tween.tween_interval(14.5)
 	else:
+		# Reset HUD alpha when not in stage 4
+		if bac_label: bac_label.modulate.a = 1.0
+		if alcohol_stage_label: alcohol_stage_label.modulate.a = 1.0
 		_effects_tween.parallel().tween_method(func(v): mat.set_shader_parameter("pulse_intensity", v), 
 			cur_pulse, 0.0, 1.0)
 
