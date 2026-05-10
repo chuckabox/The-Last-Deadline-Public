@@ -303,13 +303,3 @@ func _on_developers_back_pressed():
 		var tween = create_tween()
 		tween.tween_property(dev_panel, "modulate:a", 0.0, 0.2)
 		tween.tween_callback(dev_panel.hide)
-
-func _on_btn_hover(btn: Button):
-	if sfx_manager: sfx_manager.play_sfx("menu_scroll")
-	btn.pivot_offset = btn.size / 2.0
-	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.2)
-
-func _on_btn_exit(btn: Button):
-	var tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.2)
