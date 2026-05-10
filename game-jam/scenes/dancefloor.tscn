@@ -11449,7 +11449,7 @@ z_index = 2
 position = Vector2(262, 264.2074)
 scale = Vector2(1.2, 1.2)
 
-[node name="Bouncer" parent="." unique_id=1219110755 instance=ExtResource("25_btks4")]
+[node name="Bouncer_vip" parent="." unique_id=1219110755 instance=ExtResource("25_btks4")]
 z_index = 6
 position = Vector2(1034.0001, 123.62911)
 scale = Vector2(1.4, 1.4)
