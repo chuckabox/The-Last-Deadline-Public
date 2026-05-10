@@ -1,13 +1,17 @@
-[gd_scene format=3 uid="uid://cx4x6l0e0qja"]
+[gd_scene format=3 uid="uid://cx4x6l0e0qjk"]
 
 [ext_resource type="Script" uid="uid://c1dpddheneh8o" path="res://scripts/minigames/BartenderMemory.gd" id="1_bm"]
 [ext_resource type="PackedScene" uid="uid://oj47nyfbfkpc" path="res://assets/drinks/Rum.tscn" id="2_6yfvo"]
+[ext_resource type="Texture2D" uid="uid://wl1dpedww435" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_InputField02a.png" id="2_o6kqo"]
+[ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_vow1y"]
 [ext_resource type="Texture2D" uid="uid://culoiehhw3dxv" path="res://assets/drinks/Tequila.png" id="3_xxj88"]
 [ext_resource type="Texture2D" uid="uid://b6niqoolxsxj0" path="res://assets/drinks/Vodka.png" id="4_3bbui"]
-[ext_resource type="FontFile" uid="uid://dvsww5c2xumnb" path="res://assets/fonts/monogram.ttf" id="2_vow1y"]
 [ext_resource type="Texture2D" uid="uid://wpw4fc3dcdjb" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_3.png" id="5_btn_y"]
 [ext_resource type="Texture2D" uid="uid://h880knqxh06t" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Button01a_4.png" id="6_btn_y_h"]
-[ext_resource type="Texture2D" uid="uid://c3d2r2xprg428" path="res://assets/ui/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame02a.png" id="7_receipt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_receipt"]
+texture = ExtResource("2_o6kqo")
+region_rect = Rect2(0, 0, 62, 30.75)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_yellow"]
 texture = ExtResource("5_btn_y")
@@ -27,16 +31,7 @@ texture_margin_bottom = 6.0
 expand_margin_left = 8.0
 expand_margin_right = 8.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_receipt"]
-texture = ExtResource("7_receipt")
-texture_margin_left = 10.0
-texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
-region_rect = Rect2(0, 0, 96, 96)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
-
 
 [node name="BartenderMemory" type="Control" unique_id=506268808]
 layout_mode = 3
@@ -86,7 +81,6 @@ horizontal_alignment = 1
 
 [node name="LivesLabel" type="Label" parent="." unique_id=272957356]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 30.0
 offset_top = 20.0
 offset_right = 150.0
@@ -181,8 +175,8 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn_yellow")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 disabled = true
 text = "Vodka"
@@ -197,8 +191,8 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn_yellow")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 disabled = true
 text = "Tequila"
@@ -213,8 +207,8 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vow1y")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn_yellow")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_yellow_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_yellow_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 disabled = true
 text = "Rum"

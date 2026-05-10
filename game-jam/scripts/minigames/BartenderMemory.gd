@@ -130,13 +130,13 @@ func generate_sequence():
 	if ticket_label:
 		ticket_label.text = sequence_text
 		ticket_label.rotation_degrees = 0.0
-		ticket_label.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+		ticket_label.add_theme_color_override("font_color", Color(0.1, 0.1, 0.1, 1))
 
 		if difficulty_stage >= 2:
 			ticket_label.rotation_degrees = randf_range(-12.0, 12.0)
 
 		if difficulty_stage >= 3:
-			ticket_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.7))
+			ticket_label.add_theme_color_override("font_color", Color(0.1, 0.1, 0.1, 0.6))
 			ticket_label.add_theme_constant_override("shadow_offset_x", 4)
 			ticket_label.add_theme_constant_override("shadow_offset_y", 4)
 
