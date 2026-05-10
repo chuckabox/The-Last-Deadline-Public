@@ -133,6 +133,9 @@ func perform_transition(id: String, _title: String, _description: String) -> voi
 			path = "res://scenes/endings/academic_weapon_ending/Ending_AcademicWeapon.tscn"
 			
 	if path != "":
-		get_tree().change_scene_to_file(path)
+		# Defer the scene change so that all signal callbacks finish
+		# processing before the current tree is freed. This prevents
+		# crashes when a minigame loss triggers the ending mid-signal-chain.
+		get_tree().call_deferred("change_scene_to_file", path)
 	else:
 		push_error("EndingManager: No path defined for ending %s" % id)

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bvip456"]
 
-[ext_resource type="Script" uid="uid://cyctxa1m7wspa" path="res://scenes/rooms/room_3_vip.gd" id="1_26euq"]
+[ext_resource type="Script" path="res://scenes/rooms/room_3_vip.gd" id="1_26euq"]
 [ext_resource type="Texture2D" uid="uid://c4gfswry6810r" path="res://assets/tilesets/bar/1.png" id="2_e1bg1"]
 [ext_resource type="Texture2D" uid="uid://ptgfxkqk2ar1" path="res://assets/tilesets/bar/2.png" id="3_y7rkj"]
 [ext_resource type="Texture2D" uid="uid://dht1cpq21obei" path="res://assets/tilesets/bar/3.png" id="4_pyscc"]
