@@ -10076,7 +10076,6 @@ position = Vector2(778.343, 145.67444)
 z_index = 2
 position = Vector2(858.3431, 103.674446)
 scale = Vector2(1.3, 1.3)
-script = null
 
 [node name="Bouncer" parent="." unique_id=1219110755 instance=ExtResource("15_6wa16")]
 z_index = 1
