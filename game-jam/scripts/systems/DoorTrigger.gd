@@ -49,6 +49,21 @@ func _input(event):
 		print("DoorTrigger: Interaction key 'E' pressed!")
 		attempt_transition()
 
+func _physics_process(_delta):
+	# Defensive overlap check — keeps player_in_range correct even if a signal
+	# was missed (e.g. player spawned already overlapping after a room change).
+	var overlapping := false
+	for b in get_overlapping_bodies():
+		if b.name == "Player":
+			overlapping = true
+			break
+	if not overlapping:
+		for a in get_overlapping_areas():
+			if a.name == "PlayerCollision" or (a.get_parent() and a.get_parent().name == "Player"):
+				overlapping = true
+				break
+	_set_player_in_range(overlapping)
+
 func _on_area_entered(area):
 	print("DoorTrigger: Area entered: ", area.name)
 	if area.name == "PlayerCollision" or area.get_parent().name == "Player":
@@ -69,10 +84,14 @@ func _on_body_exited(body):
 
 func _set_player_in_range(value: bool):
 	if player_in_range == value: return
-	
+
 	player_in_range = value
 	print("DoorTrigger: Player in range = ", value)
-	
+
+	# Lazily re-acquire HUD in case the reference was lost during a room transition.
+	if not hud or not is_instance_valid(hud):
+		hud = get_node_or_null("/root/Main/HUD")
+
 	if value:
 		if hud and hud.has_method("show_interaction_prompt"):
 			hud.show_interaction_prompt("ui_interact")
