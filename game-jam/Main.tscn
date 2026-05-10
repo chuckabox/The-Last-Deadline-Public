@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dplclcwunao6" path="res://HUD.tscn" id="6_hud"]
 [ext_resource type="PackedScene" uid="uid://dm6u8q7l0qjk" path="res://scenes/ui/MainMenu.tscn" id="7_mm"]
 [ext_resource type="PackedScene" uid="uid://dhpfsnqw0s3qd" path="res://scenes/ui/DialogueUI.tscn" id="8_trn2v"]
+[ext_resource type="Script" path="res://scripts/ui/PauseMenu.gd" id="9_pause"]
 
 [node name="Main" type="Control" unique_id=1773683984]
 layout_mode = 3
@@ -20,3 +21,8 @@ grow_vertical = 2
 visible = false
 
 [node name="DialogueUI" parent="HUD" unique_id=562428956 instance=ExtResource("8_trn2v")]
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("9_pause")
+
