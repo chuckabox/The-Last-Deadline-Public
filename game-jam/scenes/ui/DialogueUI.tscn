@@ -82,14 +82,14 @@ wait_time = 0.25
 [node name="SpeakerNameBox" type="NinePatchRect" parent="DialoguePanel" unique_id=2012769172]
 custom_minimum_size = Vector2(180, 45)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -90.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 60.0
 offset_top = -25.0
-offset_right = 90.0
+offset_right = 240.0
 offset_bottom = 20.0
-grow_horizontal = 2
+grow_horizontal = 1
 texture = ExtResource("4_banner")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -127,12 +127,6 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
-
-[node name="PortraitRect" type="TextureRect" parent="DialoguePanel/Content/UpperLayout" unique_id=1549790804]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
 
 [node name="DialogueContent" type="VBoxContainer" parent="DialoguePanel/Content/UpperLayout" unique_id=786390648]
 layout_mode = 2
