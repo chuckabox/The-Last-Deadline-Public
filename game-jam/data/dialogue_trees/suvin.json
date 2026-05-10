@@ -2,15 +2,15 @@
   "id": "suvin",
   "name": "Suvin",
   "dialogue": {
-    "start": "talk",
-    "nodes": {
-      "talk": {
-        "text": "Wow, they're just letting anyone in the VIP room",
-        "options": [
-          { "text": "...", "next": "exit" }
-        ]
-      },
-      "exit": { "text": null, "options": [] }
-    }
+	"start": "talk",
+	"nodes": {
+	  "talk": {
+		"text": "Wow, they're just letting anyone in the VIP room",
+		"options": [
+		  { "text": "...", "next": "exit" }
+		]
+	  },
+	  "exit": { "text": null, "options": [] }
+	}
   }
 }

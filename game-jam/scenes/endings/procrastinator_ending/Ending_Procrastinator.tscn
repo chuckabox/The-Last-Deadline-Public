@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cx4x6l0e0qjc"]
 
 [ext_resource type="Script" path="res://scenes/endings/procrastinator_ending/Ending_Procrastinator.gd" id="1_pe"]
+[ext_resource type="Texture2D" path="res://assets/endings/the_procastinator.jpg" id="2_img"]
 
 [node name="Ending_Procrastinator" type="Control"]
 layout_mode = 3
@@ -20,6 +21,26 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="EndingImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_img")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
 [node name="TextLabel" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -28,14 +49,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -60.0
-offset_right = 300.0
-offset_bottom = -20.0
+offset_left = -400.0
+offset_top = -100.0
+offset_right = 400.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 28
-text = "The clock struck midnight."
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "The Procrastinator"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -47,14 +71,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = 20.0
-offset_right = 300.0
-offset_bottom = 60.0
+offset_left = -400.0
+offset_top = -30.0
+offset_right = 400.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.8, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
-text = "Grade: 0% - Late submission not accepted."
+theme_override_colors/font_color = Color(0.9, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Grade: 0%  —  Late submission not accepted."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FlavorLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "The assignment sat open in another tab all night.\nIn the end, the deadline didn't wait — and neither did your GPA."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
