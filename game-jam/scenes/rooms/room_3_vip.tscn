@@ -10061,7 +10061,7 @@ shape = SubResource("WorldBoundaryShape2D_2g0h2")
 
 [node name="CharacterBody2D" parent="." unique_id=1998826472 instance=ExtResource("11_xnoai")]
 z_index = 3
-position = Vector2(557.3431, 434.67444)
+position = Vector2(560.3431, 441.67447)
 scale = Vector2(1.3, 1.3)
 
 [node name="Suvin" parent="." unique_id=649609300 instance=ExtResource("12_2g0h2")]
