@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://h3mwfg2gutpr"]
+
+[ext_resource type="Texture2D" uid="uid://cklv0drqwcxbc" path="res://assets/npc/suvin/sprite_sheet/character-spritesheet (14).png" id="1_pcuqf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7o30"]
+atlas = ExtResource("1_pcuqf")
+region = Rect2(0, 1408, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ea30o"]
+atlas = ExtResource("1_pcuqf")
+region = Rect2(64, 1408, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcuqf"]
+atlas = ExtResource("1_pcuqf")
+region = Rect2(128, 1920, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f0lcs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7o30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ea30o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcuqf")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfjsm"]
+radius = 19.0
+height = 60.0
+
+[node name="Suvin" type="CharacterBody2D" unique_id=649609300]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1108386793]
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_f0lcs")
+animation = &"sit"
+autoplay = "sit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1597842901]
+position = Vector2(1, 9)
+shape = SubResource("CapsuleShape2D_kfjsm")

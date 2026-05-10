@@ -168,4 +168,5 @@ shape = SubResource("CapsuleShape2D_bulbq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=831160306]
 sprite_frames = SubResource("SpriteFrames_k2hmr")
 animation = &"dance2"
-frame_progress = 0.5975207
+autoplay = "dance2"
+frame_progress = 0.6438039
