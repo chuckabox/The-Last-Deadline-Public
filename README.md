@@ -4,6 +4,12 @@
   <img src="https://raw.githubusercontent.com/chuckabox/The-Last-Deadline-Public/main/game-jam/assets/endings/the_procastinator.jpg">
 </p>
 
+## UQCS GameJam 2026 Results
+
+🥇 1st place out of 37 teams  
+👥 140+ participants  
+⏱️ Built in 48 hours  
+
 ## Overview
 
 It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in a club during a "Power Hour" lockdown. To save your GPA, you must navigate the venue, complete tasks for staff and NPCs, and find the back exit before the clock strikes twelve.
