@@ -14,6 +14,10 @@
 
 It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in a club during a "Power Hour" lockdown. To save your GPA, you must navigate the venue, complete tasks for staff and NPCs, and find the back exit before the clock strikes twelve.
 
+## Download
+
+The latest pre-built binaries can be found on the [Releases page](https://github.com/chuckabox/The-Last-Deadline-Public/releases/tag/v1.0.0).
+
 ## Gameplay Systems
 
 * **Alcohol Engine:** Your BAC % directly impacts visuals and game difficulty.
