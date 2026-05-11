@@ -1,46 +1,36 @@
 # The Last Deadline
 
-Navigate a wild night at the club — talk your way past bouncers, charm NPCs, and complete minigames to reach the VIP area before closing time.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chuckabox/The-Last-Deadline-Public/main/game-jam/assets/endings/the_procastinator.jpg">
+</p>
+
+## Overview
+
+It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in a club during a "Power Hour" lockdown. To save your GPA, you must navigate the venue, complete tasks for staff and NPCs, and find the back exit before the clock strikes twelve.
+
+## Gameplay Systems
+
+* **Alcohol Engine**: Your BAC % directly impacts visuals. High levels trigger movement sways, tunnel vision, and eventual blackouts.
+* **Friend Dialogue**: Your friend provides dynamic hints on how to progress the stages.
+* **Sequential Progression**: Complete specific quests in the Main Bar and Disco to earn keycards for the VIP Lounge and the Manager's Office.
 
 ## Controls
+
 | Action | Keys |
-|--------|------|
-| Move | `WASD` / Arrow Keys |
-| Interact | `E` / `Space` |
+| --- | --- |
+| Move | WASD / Arrow Keys |
+| Interact | E |
 
-## Minigames
-- **Beer Pong** — Aim and sink the ball into cups
-- **Bartender Memory** — Memorize and serve drinks in order
-- **Dance Rhythm** — Hit the beats to impress the DJ
+## Mini-games
 
-**Watch your alcohol level!** Drink too much and your vision blurs, controls get sloppy — black out and it's game over.
+* **Bartender Memory:** Sequential memorisation of drink orders to get the Bartender's help.
+* **Beer Pong:** Timing-based skill game to win over the Frat Bro.
+* **Drink Pour Accuracy:** Precision filling game featuring a moving target line for the Fat Chud.
+* **Dance Rhythm:** Beat-matching game to increase the dance floor's energy to get the VIP pass from the DJ.
 
-## Credits
+## Team
 
-### Developers
-- **Adin Sreekesh**
-- **Pascal Khosrotehrani**
-- **Peter Ma**
-- **Rio O'Dwyer**
-
-### Assets & Tools
-- **UI & Icons**: 
-    - [Complete UI Essential Pack](https://crusenho.itch.io/complete-ui-essential-pack)
-    - [Icons Essential Pack](https://crusenho.itch.io/icons-essential-pack-free-icons)
-    - [Keyboard Keys for UI](https://dreammixgames.itch.io/keyboard-keys-for-ui)
-    - [Basic Pixel Progress Bar](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar)
-- **Art & Environments**:
-    - [Pixel Charagen](https://cazwolf.itch.io/pixel-charagen)
-    - [Universal LPC Spritesheet Character Generator](https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/)
-    - [Modern Bar/Nightclub Tileset](https://comshadow.itch.io/modern-bar-nightclub-pixel-art-tileset-pack)
-    - [Free Textures of Light](https://pixelfranek.itch.io/free-textures-of-light)
-- **Audio & Music**:
-    - [Pixel UI SFX Pack](https://jdsherbert.itch.io/pixel-ui-sfx-pack)
-    - [Monolith OST](https://garoslaw.itch.io/monolith-ost)
-    - [16-Bit Retro Music Collection](https://pigthewonderdog.itch.io/16-bit-retro-music-collection)
-    - [Dark Dragon Chiptune Music](https://fatalexit.itch.io/dark-dragon-royalty-free-cca-chiptune-music-for-games)
-- **Fonts**:
-    - [Monogram](https://datagoblin.itch.io/monogram) by Vinícius Menézio
-
----
-*Created for Game Jam 2026*
+* [Peter Ma](https://www.linkedin.com/in/peterzma/)
+* [Adin Sreekesh](https://www.linkedin.com/in/a-sreekesh/)
+* [Rio O'Dwyer](https://www.linkedin.com/in/rio-o-dwyer-b97628377/)
+* [Pascal Khosrotehrani](https://www.linkedin.com/in/pascal-khosrotehrani-590243353/)
