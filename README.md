@@ -44,4 +44,4 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 
 ## Dev Notes
 
-Final build was committed at `35b56b6`, 1 minute before the submission deadline. Ironic timing for a game about timing 😭.
+Final build was committed at `35b56b6`, 1 minute before the submission deadline. Ironic timing for a game about deadlines 😭
