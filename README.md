@@ -41,3 +41,7 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 * [Adin Sreekesh](https://www.linkedin.com/in/a-sreekesh/)
 * [Rio O'Dwyer](https://www.linkedin.com/in/rio-o-dwyer-b97628377/)
 * [Pascal Khosrotehrani](https://www.linkedin.com/in/pascal-khosrotehrani-590243353/)
+
+## Dev Notes
+
+Final build was committed at `35b56b6`, 1 minute before the submission deadline. Ironic timing, but it made it in.
