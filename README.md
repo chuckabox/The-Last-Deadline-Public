@@ -16,9 +16,10 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 
 ## Gameplay Systems
 
-* **Alcohol Engine**: Your BAC % directly impacts visuals. High levels trigger movement sways, tunnel vision, and eventual blackouts.
-* **Friend Dialogue**: Your friend provides dynamic hints on how to progress the stages.
-* **Sequential Progression**: Complete specific quests in the Main Bar and Disco to earn keycards for the VIP Lounge and the Manager's Office.
+* **Alcohol Engine:** Your BAC % directly impacts visuals. High levels trigger movement sways, tunnel vision, and eventual blackouts.
+* **Friend Dialogue:** Your friend provides dynamic hints on how to progress the stages.
+* **Sequential Progression:** Complete specific room quests in to earn access for the VIP Lounge.
+* **Dynamic Endings:** Your choices shape the outcome, leading to 5 distinct endings.
 
 ## Controls
 
