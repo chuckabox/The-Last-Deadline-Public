@@ -21,6 +21,19 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 * **Sequential Progression:** Complete specific room quests in to earn access for the VIP Lounge.
 * **Dynamic Endings:** Your choices shape the outcome, leading to 5 distinct endings.
 
+## Screenshots
+
+<p align="center">
+  <img src="pictures/start.png" alt="Start Screen" width="45%">
+  <img src="pictures/person.png" alt="Dialogue System" width="45%">
+  <br>
+  <img src="pictures/room1.png" alt="Room 1" width="45%">
+  <img src="pictures/room2.png" alt="Room 2" width="45%">
+  <br>
+  <img src="pictures/room3.png" alt="Room 3" width="45%">
+  <img src="pictures/endings.png" alt="Game Endings" width="45%">
+</p>
+
 ## How to Run
 
 1. Download Godot Engine 4.6 or later.
