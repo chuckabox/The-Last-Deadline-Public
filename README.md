@@ -21,6 +21,15 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 * **Sequential Progression:** Complete specific room quests in to earn access for the VIP Lounge.
 * **Dynamic Endings:** Your choices shape the outcome, leading to 5 distinct endings.
 
+## How to Run
+
+1. Download Godot Engine 4.6 or later.
+2. Download or clone this repository.
+3. Open Godot Engine and select Import.
+4. Navigate to the `game-jam` directory and select `project.godot`.
+5. Click Import & Edit.
+6. Press F5 or the Play button to start the game.
+
 ## Controls
 
 | Action | Keys |
