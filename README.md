@@ -38,15 +38,6 @@ The latest release can be found on the [Releases page](https://github.com/chucka
   <img src="pictures/endings.png" alt="Game Endings" width="45%">
 </p>
 
-## How to Run
-
-1. Download Godot Engine 4.6 or later.
-2. Download or clone this repository.
-3. Open Godot Engine and select Import.
-4. Navigate to the `game-jam` directory and select `project.godot`.
-5. Click Import & Edit.
-6. Press F5 or the Play button to start the game.
-
 ## Controls
 
 | Action   | Keys              |
