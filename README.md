@@ -8,7 +8,7 @@
 
 🥇 1st place out of 37 teams  
 👥 140+ participants  
-⏱️ Built in 48 hours  
+⏱️ Built in 48 hours
 
 ## Overview
 
@@ -16,14 +16,14 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 
 ## Download
 
-The latest pre-built binaries can be found on the [Releases page](https://github.com/chuckabox/The-Last-Deadline-Public/releases/tag/v1.0.0).
+The latest release can be found on the [Releases page](https://github.com/chuckabox/The-Last-Deadline-Public/releases/tag/v1.0.0).
 
 ## Gameplay Systems
 
-* **Alcohol Engine:** Your BAC % directly impacts visuals and game difficulty.
-* **Friend Dialogue:** Your friend provides dynamic hints on how to progress the stages.
-* **Sequential Progression:** Complete specific room quests in to earn access for the VIP Lounge.
-* **Dynamic Endings:** Your choices shape the outcome, leading to 5 distinct endings.
+- **Alcohol Engine:** Your BAC % directly impacts visuals and game difficulty.
+- **Friend Dialogue:** Your friend provides dynamic hints on how to progress the stages.
+- **Sequential Progression:** Complete specific room quests in to earn access for the VIP Lounge.
+- **Dynamic Endings:** Your choices shape the outcome, leading to 5 distinct endings.
 
 ## Screenshots
 
@@ -49,24 +49,24 @@ The latest pre-built binaries can be found on the [Releases page](https://github
 
 ## Controls
 
-| Action | Keys |
-| --- | --- |
-| Move | WASD / Arrow Keys |
-| Interact | E |
+| Action   | Keys              |
+| -------- | ----------------- |
+| Move     | WASD / Arrow Keys |
+| Interact | E                 |
 
 ## Mini-games
 
-* **Bartender Memory:** Sequential memorisation of drink orders to get the Bartender's help.
-* **Beer Pong:** Timing-based skill game to win over the Frat Bro.
-* **Drink Pour Accuracy:** Precision filling game featuring a moving target line for the Fat Chud.
-* **Dance Rhythm:** Beat-matching game to increase the dance floor's energy to get the VIP pass from the DJ.
+- **Bartender Memory:** Sequential memorisation of drink orders to get the Bartender's help.
+- **Beer Pong:** Timing-based skill game to win over the Frat Bro.
+- **Drink Pour Accuracy:** Precision filling game featuring a moving target line for the Fat Chud.
+- **Dance Rhythm:** Beat-matching game to increase the dance floor's energy to get the VIP pass from the DJ.
 
 ## Team
 
-* [Peter Ma](https://www.linkedin.com/in/peterzma/)
-* [Adin Sreekesh](https://www.linkedin.com/in/a-sreekesh/)
-* [Rio O'Dwyer](https://www.linkedin.com/in/rio-o-dwyer-b97628377/)
-* [Pascal Khosrotehrani](https://www.linkedin.com/in/pascal-khosrotehrani-590243353/)
+- [Peter Ma](https://www.linkedin.com/in/peterzma/)
+- [Adin Sreekesh](https://www.linkedin.com/in/a-sreekesh/)
+- [Rio O'Dwyer](https://www.linkedin.com/in/rio-o-dwyer-b97628377/)
+- [Pascal Khosrotehrani](https://www.linkedin.com/in/pascal-khosrotehrani-590243353/)
 
 ## Dev Notes
 
