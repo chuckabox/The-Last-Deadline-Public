@@ -16,7 +16,7 @@ It is 11:50 PM. Your brutal assignment is due at midnight, but you are stuck in 
 
 ## Download
 
-The latest release can be found on the [Releases page](https://github.com/chuckabox/The-Last-Deadline-Public/releases/tag/v1.0.0).
+The latest release can be found on the [Releases page](https://github.com/chuckabox/The-Last-Deadline-Public/releases/tag/v1.0.1).
 
 ## Gameplay Systems
 
